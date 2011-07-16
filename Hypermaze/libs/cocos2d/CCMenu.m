@@ -2,6 +2,7 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
+ * Copyright (c) 2011 Zynga Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -122,7 +123,7 @@ enum {
 /*
  * override add:
  */
--(void) addChild:(CCMenuItem*)child z:(int)z tag:(int) aTag
+-(void) addChild:(CCMenuItem*)child z:(NSInteger)z tag:(NSInteger) aTag
 {
 	NSAssert( [child isKindOfClass:[CCMenuItem class]], @"Menu only supports MenuItem objects as children");
 	[super addChild:child z:z tag:aTag];
@@ -302,7 +303,7 @@ enum {
 #pragma mark Menu - Alignment
 -(void) alignItemsVertically
 {
-	return [self alignItemsVerticallyWithPadding:kDefaultPadding];
+	[self alignItemsVerticallyWithPadding:kDefaultPadding];
 }
 -(void) alignItemsVerticallyWithPadding:(float)padding
 {
@@ -323,7 +324,7 @@ enum {
 
 -(void) alignItemsHorizontally
 {
-	return [self alignItemsHorizontallyWithPadding:kDefaultPadding];
+	[self alignItemsHorizontallyWithPadding:kDefaultPadding];
 }
 
 -(void) alignItemsHorizontallyWithPadding:(float)padding
@@ -400,7 +401,7 @@ enum {
 		[item setPosition:ccp(x - winSize.width / 2,
 							  y - itemSize.height / 2)];
             
-		x += w + 10;
+		x += w;
 		++columnsOccupied;
 		
 		if(columnsOccupied >= rowColumns) {

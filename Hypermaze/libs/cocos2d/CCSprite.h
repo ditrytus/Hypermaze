@@ -2,6 +2,7 @@
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
  * Copyright (c) 2008-2010 Ricardo Quesada
+ * Copyright (c) 2011 Zynga Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +35,7 @@
 
 #pragma mark CCSprite
 
-enum {
-	/// CCSprite invalid index on the CCSpriteBatchode
-	CCSpriteIndexNotInitialized = 0xffffffff,
-};
+#define CCSpriteIndexNotInitialized 0xffffffff 	/// CCSprite invalid index on the CCSpriteBatchode
 
 /**
  Whether or not an CCSprite will rotate, scale or translate with it's parent.
@@ -52,9 +50,11 @@ typedef enum {
 	CC_HONOR_PARENT_TRANSFORM_ROTATE	=  1 << 1,
 	//! Scale with it's parent
 	CC_HONOR_PARENT_TRANSFORM_SCALE		=  1 << 2,
+	//! Skew with it's parent
+	CC_HONOR_PARENT_TRANSFORM_SKEW		=  1 << 3,
 
 	//! All possible transformation enabled. Default value.
-	CC_HONOR_PARENT_TRANSFORM_ALL		=  CC_HONOR_PARENT_TRANSFORM_TRANSLATE | CC_HONOR_PARENT_TRANSFORM_ROTATE | CC_HONOR_PARENT_TRANSFORM_SCALE,
+	CC_HONOR_PARENT_TRANSFORM_ALL		=  CC_HONOR_PARENT_TRANSFORM_TRANSLATE | CC_HONOR_PARENT_TRANSFORM_ROTATE | CC_HONOR_PARENT_TRANSFORM_SCALE | CC_HONOR_PARENT_TRANSFORM_SKEW,
 
 } ccHonorParentTransform;
 
@@ -142,7 +142,7 @@ typedef enum {
 @property (nonatomic,readwrite) BOOL dirty;
 /** the quad (tex coords, vertex coords and color) information */
 @property (nonatomic,readonly) ccV3F_C4B_T2F_Quad quad;
-/** The index used on the TextureATlas. Don't modify this value unless you know what you are doing */
+/** The index used on the TextureAtlas. Don't modify this value unless you know what you are doing */
 @property (nonatomic,readwrite) NSUInteger atlasIndex;
 /** returns the rect of the CCSprite in points */
 @property (nonatomic,readonly) CGRect textureRect;

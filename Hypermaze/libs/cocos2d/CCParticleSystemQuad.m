@@ -1,8 +1,10 @@
 /*
  * cocos2d for iPhone: http://www.cocos2d-iphone.org
  *
- * Copyright (c) 2008-2010 Ricardo Quesada
  * Copyright (c) 2009 Leonardo Kasperavičius
+ *
+ * Copyright (c) 2008-2010 Ricardo Quesada
+ * Copyright (c) 2011 Zynga Inc.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +45,7 @@
 
 
 // overriding the init method
--(id) initWithTotalParticles:(int) numberOfParticles
+-(id) initWithTotalParticles:(NSUInteger) numberOfParticles
 {
 	// base initialization
 	if( (self=[super initWithTotalParticles:numberOfParticles]) ) {
@@ -92,11 +94,10 @@
 	[super dealloc];
 }
 
-// rect is in Points coordinates.
+// pointRect is in Points coordinates.
 -(void) initTexCoordsWithRect:(CGRect)pointRect
 {
-	// convert to Tex coords
-	
+	// convert to pixels coords
 	CGRect rect = CGRectMake(
 							 pointRect.origin.x * CC_CONTENT_SCALE_FACTOR(),
 							 pointRect.origin.y * CC_CONTENT_SCALE_FACTOR(),
@@ -148,9 +149,8 @@
 
 -(void) setTexture:(CCTexture2D *)texture
 {
-	[self setTexture:texture withRect:CGRectMake(0,0, 
-												 [texture pixelsWide] / CC_CONTENT_SCALE_FACTOR(), 
-												 [texture pixelsHigh] / CC_CONTENT_SCALE_FACTOR() )];
+	CGSize s = [texture contentSize];
+	[self setTexture:texture withRect:CGRectMake(0,0, s.width, s.height)];
 }
 
 -(void) setDisplayFrame:(CCSpriteFrame *)spriteFrame
@@ -166,8 +166,8 @@
 -(void) initIndices
 {
 	for( NSUInteger i=0;i< totalParticles;i++) {
-		const int i6 = i*6;
-		const int i4 = i*4;
+		const NSUInteger i6 = i*6;
+		const NSUInteger i4 = i*4;
 		indices_[i6+0] = (GLushort) i4+0;
 		indices_[i6+1] = (GLushort) i4+1;
 		indices_[i6+2] = (GLushort) i4+2;
@@ -258,6 +258,8 @@
 // overriding draw method
 -(void) draw
 {	
+	[super draw];
+
 	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
 	// Needed states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
 	// Unneeded states: -
@@ -297,7 +299,7 @@
 		glBlendFunc( blendFunc_.src, blendFunc_.dst );
 	
 	NSAssert( particleIdx == particleCount, @"Abnormal error in particle quad");
-	glDrawElements(GL_TRIANGLES, particleIdx*6, GL_UNSIGNED_SHORT, indices_);
+	glDrawElements(GL_TRIANGLES, (GLsizei) particleIdx*6, GL_UNSIGNED_SHORT, indices_);
 	
 	// restore blend state
 	if( newBlend )
