@@ -11,9 +11,27 @@
 
 
 @interface MainMenuLayer : CCLayer {
+	BOOL isInTrasition;
+	CCAction *showFromRightAndFadeIn;
+	CCAction *hideToRightAndFadeOut;
+	CCAction *showFromLeftAndFadeIn;
+	CCAction *hideToLeftAndFadeOut;
+	CCAction *moveLeftWithEasing;
+	CCAction *moveRightWithEasing;
+	CCAction *fadeInWithEasing;
+	CCAction *fadeOutWithEasing;
+	CCMenu *mainMenu;
+	CCMenu *optionsMenu;
+	CCMenu *newGameMenu;
+	CCMenu *gameSettingsMenu;
 	CCSprite *title;
 	CCSprite *background;
-	CCMenu *mainMenu;
+	CCMenuItemToggle *sizeItem;
+	
+	CGPoint menuBeginLocation;
+	CGPoint middleScreen;
+	CGPoint titleLocation;
+	
 }
 
 +(CCScene *) scene;

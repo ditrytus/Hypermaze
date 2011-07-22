@@ -10,6 +10,11 @@
 		3B1DDF9813D194180006E818 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9713D194180006E818 /* app-icon-57.png */; };
 		3B1DDF9A13D194380006E818 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9913D194380006E818 /* app-icon-114.png */; };
 		3B1DDF9C13D194490006E818 /* app-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9B13D194490006E818 /* app-icon-72.png */; };
+		3B40C90213D9EF2600C2BEDF /* HPMaze.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90113D9EF2600C2BEDF /* HPMaze.m */; };
+		3B40C90513D9F28000C2BEDF /* HPMazeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */; };
+		3B40C90813D9FE6900C2BEDF /* HPChamberUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */; };
+		3B40C90A13D9FF7700C2BEDF /* HPDirection.h in Resources */ = {isa = PBXBuildFile; fileRef = 3B40C90913D9FF7700C2BEDF /* HPDirection.h */; };
+		3B40C90D13DA024B00C2BEDF /* HPDirectionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */; };
 		3B43E20013D0A71D006AF368 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E1FF13D0A71D006AF368 /* QuartzCore.framework */; };
 		3B43E20213D0A71D006AF368 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E20113D0A71D006AF368 /* OpenGLES.framework */; };
 		3B43E20413D0A71D006AF368 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E20313D0A71D006AF368 /* OpenAL.framework */; };
@@ -127,6 +132,15 @@
 		3B1DDF9713D194180006E818 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-57.png"; path = "../app-icon-57.png"; sourceTree = "<group>"; };
 		3B1DDF9913D194380006E818 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-114.png"; path = "../app-icon-114.png"; sourceTree = "<group>"; };
 		3B1DDF9B13D194490006E818 /* app-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-72.png"; path = "../app-icon-72.png"; sourceTree = "<group>"; };
+		3B40C90013D9EF2600C2BEDF /* HPMaze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMaze.h; sourceTree = "<group>"; };
+		3B40C90113D9EF2600C2BEDF /* HPMaze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMaze.m; sourceTree = "<group>"; };
+		3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeGenerator.h; sourceTree = "<group>"; };
+		3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeGenerator.m; sourceTree = "<group>"; };
+		3B40C90613D9FE6900C2BEDF /* HPChamberUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPChamberUtil.h; sourceTree = "<group>"; };
+		3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPChamberUtil.m; sourceTree = "<group>"; };
+		3B40C90913D9FF7700C2BEDF /* HPDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDirection.h; sourceTree = "<group>"; };
+		3B40C90B13DA024A00C2BEDF /* HPDirectionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDirectionUtil.h; sourceTree = "<group>"; };
+		3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDirectionUtil.m; sourceTree = "<group>"; };
 		3B43E1FB13D0A71D006AF368 /* Hypermaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypermaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B43E1FF13D0A71D006AF368 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B43E20113D0A71D006AF368 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -401,6 +415,22 @@
 			name = Icons;
 			sourceTree = "<group>";
 		};
+		3B40C8FE13D9EEDC00C2BEDF /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				3B40C90013D9EF2600C2BEDF /* HPMaze.h */,
+				3B40C90113D9EF2600C2BEDF /* HPMaze.m */,
+				3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */,
+				3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */,
+				3B40C90613D9FE6900C2BEDF /* HPChamberUtil.h */,
+				3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */,
+				3B40C90913D9FF7700C2BEDF /* HPDirection.h */,
+				3B40C90B13DA024A00C2BEDF /* HPDirectionUtil.h */,
+				3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 		3B43E1F013D0A71D006AF368 = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +466,7 @@
 		3B43E20F13D0A71D006AF368 /* Hypermaze */ = {
 			isa = PBXGroup;
 			children = (
+				3B40C8FE13D9EEDC00C2BEDF /* Logic */,
 				3B43E35B13D0A71F006AF368 /* AppDelegate.h */,
 				3B43E35C13D0A71F006AF368 /* AppDelegate.m */,
 				3B43E35E13D0A71F006AF368 /* RootViewController.h */,
@@ -763,6 +794,7 @@
 				3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */,
 				3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */,
 				3B69B3BB13D1F08200C38CB1 /* background.png in Resources */,
+				3B40C90A13D9FF7700C2BEDF /* HPDirection.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +900,10 @@
 				3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */,
 				3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */,
 				3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */,
+				3B40C90213D9EF2600C2BEDF /* HPMaze.m in Sources */,
+				3B40C90513D9F28000C2BEDF /* HPMazeGenerator.m in Sources */,
+				3B40C90813D9FE6900C2BEDF /* HPChamberUtil.m in Sources */,
+				3B40C90D13DA024B00C2BEDF /* HPDirectionUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
