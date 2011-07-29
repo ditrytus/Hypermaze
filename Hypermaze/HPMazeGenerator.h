@@ -9,8 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "HPMaze.h"
 
-@interface HPMazeGenerator : NSObject
+typedef enum {
+	genBegin,
+	genWorking,
+	genComplete
+} HPMazeGeneratorState;
 
-+ (HPMaze*) generateMazeInSize: (int) size;
+@interface HPMazeGenerator : NSObject {
+	HPMazeGeneratorState status;
+	HPMaze *maze;
+	double progress;
+}
+
+- (void) generateMazeInSize: (int) size;
+- (HPMazeGeneratorState) getStatus;
+- (double) getProgress;
+- (HPMaze*) getMaze;
 
 @end

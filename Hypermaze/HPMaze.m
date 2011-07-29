@@ -10,12 +10,25 @@
 
 @implementation HPMaze
 
--(id)initWithTopology:(NSArray*) arrayWithTopology {
+-(id)initWithTopology:(Byte ***) arrayWithTopology {
 	self = [super init];
     if (self) {
 		topology = arrayWithTopology;
+		size = sizeof(arrayWithTopology) / sizeof(Byte);
     }
     return self;
+}
+
+-(void) dealloc {
+	for (int i=0; i<size; i++) {
+		topology[i] = (Byte**) malloc(size*sizeof(Byte*));
+		for (int j=0; j<size; j++) {
+			free(topology[i][j]);
+		}
+		free(topology[i]);
+	}
+	free(topology);
+	[super dealloc];
 }
 
 @end

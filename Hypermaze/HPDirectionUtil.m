@@ -22,4 +22,21 @@
 	}
 }
 
++ (HPDirection) getNextDirection: (HPDirection) direction {
+	int directionIndex = 0;
+	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
+	for (int i=0; i<DIR_TOTAL_DIRECTIONS; i++) {
+		if (allDirections[i] == direction) {
+			directionIndex = i;
+			break;
+		}
+	}
+	return allDirections[(directionIndex + 1) % DIR_TOTAL_DIRECTIONS];
+}
+
++ (HPDirection*) getAllDirections {
+	static HPDirection allDirections[DIR_TOTAL_DIRECTIONS] = {dirNorth, dirNorthEast, dirNorthWest, dirSouthEast, dirSouthWest, dirSouth};
+	return allDirections;
+}
+
 @end

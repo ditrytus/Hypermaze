@@ -11,11 +11,11 @@
 @implementation HPChamberUtil
 
 + (BOOL) canGoInDirection: (HPDirection) direction fromChamber: (Byte) chamber {
-	return (direction & chamber) > 0;
+	return (direction & chamber ) > 0;
 }
 
 + (Byte) createPassageInDirection: (HPDirection) direction chamber: (Byte) chamber {
-	return (chamber | direction);
+	return (direction | chamber);
 }
 
 @end

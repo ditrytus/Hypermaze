@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface HPMaze : NSObject {
-	NSArray *topology;
+	Byte ***topology;
+	int size;
 }
 
--(id)initWithTopology:(NSArray*) arrayWithTopology;
+-(id)initWithTopology:(Byte ***) arrayWithTopology;
 
 @end

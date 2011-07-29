@@ -1,8 +1,10 @@
+#define DIR_TOTAL_DIRECTIONS 6
+
 typedef enum {
-	dirNorth = 0x1,
-	dirNorthWest = 0x2,
-	dirNorthEast = 0x4,
-	dirSouthWest = 0x8,
-	dirSouthEast = 0x16,
-	dirSouth = 0x32
+	dirNorth = 1,
+	dirNorthWest = 2,
+	dirNorthEast = 4,
+	dirSouthWest = 8,
+	dirSouthEast = 16,
+	dirSouth = 32
 } HPDirection;

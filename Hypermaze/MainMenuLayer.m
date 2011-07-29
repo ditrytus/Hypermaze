@@ -7,6 +7,7 @@
 //
 
 #import "MainMenuLayer.h"
+#import "LoadingLayer.h"
 #import "cocos2d.h"
 
 const int MENU_MOVE_DISTANCE = 1000;
@@ -224,10 +225,10 @@ const int MIN_MAZE_SIZE = 3;
 											   position: ccp(-MENU_MOVE_DISTANCE,0)]
 												 rate: MENU_TRANSTITION_EASING_RATE] retain];
 	
-	moveRightWithEasing = [CCEaseOut actionWithAction:
+	moveRightWithEasing = [[CCEaseOut actionWithAction:
 						   [CCMoveBy actionWithDuration: MENU_TRANSITION_DURATION
 											   position: ccp(MENU_MOVE_DISTANCE,0)]
-												 rate: MENU_TRANSTITION_EASING_RATE];
+												 rate: MENU_TRANSTITION_EASING_RATE] retain];
 	
 	showFromRightAndFadeIn = [[CCSpawn actions:
 							   [[fadeInWithEasing copy] autorelease],
@@ -340,6 +341,7 @@ const int MIN_MAZE_SIZE = 3;
 
 - (void) onPlayClick: (CCMenuItem  *) menuItem 
 {
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene:[LoadingLayer scene]]];
 }
 
 - (void) onBackFromGameSettingsClick: (CCMenuItem  *) menuItem 

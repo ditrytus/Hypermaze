@@ -12,5 +12,6 @@
 @interface HPDirectionUtil : NSObject
 
 + (HPDirection) getOpositeDirectionTo: (HPDirection) direction;
-
++ (HPDirection*) getAllDirections;
++ (HPDirection) getNextDirection: (HPDirection) direction;
 @end
