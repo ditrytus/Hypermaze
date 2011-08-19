@@ -1,0 +1,1277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		
+		<key>chambers_1_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{15, 0}, {32, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 8}</string>
+			<key>spriteSize</key>
+			<string>{32, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{294, 309}, {32, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_10_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {48, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{328, 309}, {48, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_11_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{194, 262}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_12_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{258, 254}, {62, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_13_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{194, 140}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_14_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{322, 254}, {62, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_15_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 75}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_16_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 18}, {48, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -5}</string>
+			<key>spriteSize</key>
+			<string>{48, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{378, 356}, {48, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_17_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{150, 374}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_18_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -1}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{322, 197}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_19_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{322, 67}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_2_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {48, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{378, 309}, {48, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_20_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 9}, {48, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -1}</string>
+			<key>spriteSize</key>
+			<string>{48, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{216, 439}, {48, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_21_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{200, 374}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_22_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -1}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{258, 197}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_23_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{322, 132}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_24_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 18}, {62, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -5}</string>
+			<key>spriteSize</key>
+			<string>{62, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 262}, {62, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_25_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 75}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_26_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -1}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{194, 205}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_27_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 2}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_28_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -1}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 205}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_29_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{258, 132}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_3_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, 8}</string>
+			<key>spriteSize</key>
+			<string>{48, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 309}, {48, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_30_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -1}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 205}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_31_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{322, 2}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_32_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{15, 18}, {32, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -9}</string>
+			<key>spriteSize</key>
+			<string>{32, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{478, 367}, {32, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_33_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{15, 0}, {32, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{32, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{116, 374}, {32, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_34_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{244, 309}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_35_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 367}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_36_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 8}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{116, 447}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_37_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{450, 148}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_38_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 140}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_39_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 2}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_4_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 9}, {48, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{166, 327}, {48, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_40_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 18}, {48, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -9}</string>
+			<key>spriteSize</key>
+			<string>{48, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{300, 367}, {48, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_41_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{450, 294}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_42_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{166, 439}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_43_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{450, 221}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_44_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 67}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_45_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 2}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_46_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{194, 75}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_47_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 221}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_48_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 18}, {48, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -9}</string>
+			<key>spriteSize</key>
+			<string>{48, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{266, 431}, {48, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_49_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{450, 2}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_5_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{7, 8}</string>
+			<key>spriteSize</key>
+			<string>{48, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{250, 374}, {48, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_50_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{258, 67}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_51_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 148}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_52_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 8}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 440}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_53_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{14, 0}, {48, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{7, -0}</string>
+			<key>spriteSize</key>
+			<string>{48, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{450, 75}, {48, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_54_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{258, 2}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_55_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 367}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_56_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 18}, {62, 53}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -9}</string>
+			<key>spriteSize</key>
+			<string>{62, 53}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 254}, {62, 53}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_57_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 75}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_58_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 132}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_59_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 294}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_6_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 9}, {62, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 4}</string>
+			<key>spriteSize</key>
+			<string>{62, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 262}, {62, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_60_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{2, 440}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_61_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{194, 2}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_62_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 8}, {62, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -4}</string>
+			<key>spriteSize</key>
+			<string>{62, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{130, 140}, {62, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_63_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 71}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{62, 71}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{66, 2}, {62, 71}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_7_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {62, 55}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 8}</string>
+			<key>spriteSize</key>
+			<string>{62, 55}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 197}, {62, 55}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_8_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 18}, {48, 45}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, -5}</string>
+			<key>spriteSize</key>
+			<string>{48, 45}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{428, 367}, {48, 45}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>chambers_9_green.png</key>
+		<dict>
+			<key>aliases</key>
+			<array/>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {48, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{-7, 4}</string>
+			<key>spriteSize</key>
+			<string>{48, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{62, 71}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{116, 309}, {48, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>3</integer>
+		<key>size</key>
+		<string>{512, 512}</string>
+	</dict>
+</dict>
+</plist>
