@@ -7,6 +7,8 @@
 //
 
 #import "LoadingLayer.h"
+#import "Game.h"
+#import "HPConfiguration.h"
 
 @implementation LoadingLayer
 
@@ -81,7 +83,7 @@
 		case genBegin: {
 			aQueue = [[[NSOperationQueue alloc] init] retain];
 			[aQueue addOperationWithBlock:^{
-				[generator generateMazeInSize: 20];
+				[generator generateMazeInSize: [[HPConfiguration sharedConfiguration].difficulty intValue]];
 			}];
 		} break;
 		case genWorking: {
@@ -89,6 +91,7 @@
 		} break;
 		case genComplete: {
 			[fill setTextureRect:CGRectMake(0, 0, 794, 166)];
+			[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene:[[Game alloc] initWithLogic:  [[HPLogic alloc] initWithMaze:[generator getMaze]]]]];
 		} break;
 	}
 }

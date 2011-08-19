@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "HPDirection.h"
+#import "FS3DPoint.h"
+
+#define INVALID_POINT point3D(-1,-1,-1)
 
 @interface HPDirectionUtil : NSObject
 
 + (HPDirection) getOpositeDirectionTo: (HPDirection) direction;
 + (HPDirection*) getAllDirections;
 + (HPDirection) getNextDirection: (HPDirection) direction;
++ (FS3DPoint) moveInDirection: (HPDirection) direction fromPoint: (FS3DPoint) currentPosition;
+
 @end

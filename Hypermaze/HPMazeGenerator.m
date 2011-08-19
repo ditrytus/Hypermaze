@@ -13,7 +13,6 @@
 #import "HPDirectionUtil.h"
 #import "HPChamberUtil.h"
 
-#define INVALID_POINT point3D(-1,-1,-1)
 #define MOLE_MAX_LENGTH 8000
 
 FS3DPoint getNextFreeChamber(Byte ***topology, int size) {
@@ -25,19 +24,6 @@ FS3DPoint getNextFreeChamber(Byte ***topology, int size) {
 				}
 			}
 		}
-	}
-	return INVALID_POINT;
-}
-
-FS3DPoint moveInDirection(FS3DPoint currentPosition, HPDirection direction)
-{
-	switch(direction) {
-		case dirNorth: return point3D(currentPosition.x, currentPosition.y + 1, currentPosition.z);
-		case dirNorthEast: return point3D(currentPosition.x + 1, currentPosition.y, currentPosition.z);
-		case dirNorthWest: return point3D(currentPosition.x, currentPosition.y, currentPosition.z + 1);
-		case dirSouthEast: return point3D(currentPosition.x, currentPosition.y, currentPosition.z - 1);
-		case dirSouthWest: return point3D(currentPosition.x - 1, currentPosition.y, currentPosition.z);
-		case dirSouth: return point3D(currentPosition.x, currentPosition.y - 1, currentPosition.z);
 	}
 	return INVALID_POINT;
 }
@@ -56,7 +42,7 @@ void crushWallInDirection(Byte*** top, FS3DPoint pos, HPDirection dir)
 }
 
 FS3DPoint digIntoChamber(Byte*** topology, FS3DPoint position, HPDirection direction) {
-	FS3DPoint nextPosition = moveInDirection(position, direction);
+	FS3DPoint nextPosition = [HPDirectionUtil moveInDirection: direction fromPoint: position];
 	HPDirection opositeDirection = [HPDirectionUtil getOpositeDirectionTo: direction];
 	crushWallInDirection(topology, position, direction);
 	crushWallInDirection(topology, nextPosition, opositeDirection);
@@ -88,6 +74,11 @@ Byte *** initTopology(int size) {
     return self;
 }
 
+void digEntranceAndExit(Byte ***topology,int size) {
+	crushWallInDirection(topology, point3D(0, 0, 0), dirSouthEast);
+	crushWallInDirection(topology, point3D(size-1, size-1, size-1), dirSouthWest);
+
+}
 - (void) generateMazeInSize: (int) size {
 	status = genWorking;
 	Byte ***topology = initTopology(size);
@@ -98,13 +89,12 @@ Byte *** initTopology(int size) {
 	FS3DPoint molePosition = point3D(0, 0, 0);
 	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
 	do {
-		[NSThread sleepForTimeInterval:0.001];
 		moleLength++;		
-		if (!firstMole) {
+		if (!firstMole && moleLength==1) {
 			HPDirection dirToExisting;
 			for (int i=0; i<DIR_TOTAL_DIRECTIONS; i++) {
 				dirToExisting = allDirections[i];
-				FS3DPoint visitedPosition = moveInDirection(molePosition, dirToExisting);
+				FS3DPoint visitedPosition = [HPDirectionUtil moveInDirection: dirToExisting fromPoint: molePosition];
 				if (isPositionValid(visitedPosition, size)) {
 					if (!isChamberFree(topology, visitedPosition)) {
 						break;
@@ -122,22 +112,36 @@ Byte *** initTopology(int size) {
 		HPDirection moleDirection = randomDirection;
 		BOOL canDigIntoChamber = NO;
 		BOOL checkedAllDirections = NO;
-		
 		do {
 			moleDirection = [HPDirectionUtil getNextDirection: moleDirection];
 			checkedAllDirections = moleDirection == randomDirection;
-			FS3DPoint nextMolePosition = moveInDirection(molePosition, moleDirection);
+			FS3DPoint nextMolePosition = [HPDirectionUtil moveInDirection: moleDirection fromPoint: molePosition];
 			canDigIntoChamber = isPositionValid(nextMolePosition, size) && isChamberFree(topology, nextMolePosition);
-		} while (!canDigIntoChamber && !checkedAllDirections);
+		} while (!(canDigIntoChamber || checkedAllDirections));
 		if (canDigIntoChamber && moleLength < MOLE_MAX_LENGTH) {
 			molePosition = digIntoChamber(topology, molePosition, moleDirection);
 			diggedChambers++;
 			progress = (double)diggedChambers/(double)totalChambers;
 		} else {
 			molePosition = getNextFreeChamber(topology, size);
+			moleLength = 0;
 		}
 	} while (totalChambers > diggedChambers);
-	maze = [[HPMaze alloc] initWithTopology: topology];
+	digEntranceAndExit(topology,size);
+	maze = [[HPMaze alloc] initWithTopology: topology size: size];
+	
+//	TODO: Do wywalenia
+	
+//	for (int i=0; i<size; i++) {
+//		NSLog(@" ");
+//		for (int j=0; j<size; j++) {
+//			NSMutableString* log = [[NSMutableString alloc] init];
+//			for (int h=0; h<size; h++) {
+//				[log appendFormat:@"%@  ", [NSNumber numberWithChar:topology[i][j][h]]];
+//			}
+//			NSLog(@"%@",log);
+//		}	
+//	}
 	status = genComplete;
 }
 

@@ -10,11 +10,14 @@
 
 @implementation HPMaze
 
--(id)initWithTopology:(Byte ***) arrayWithTopology {
+@synthesize topology;
+@synthesize size;
+
+-(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize {
 	self = [super init];
     if (self) {
 		topology = arrayWithTopology;
-		size = sizeof(arrayWithTopology) / sizeof(Byte);
+		size = arraySize;
     }
     return self;
 }

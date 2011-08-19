@@ -10,11 +10,22 @@
 		3B1DDF9813D194180006E818 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9713D194180006E818 /* app-icon-57.png */; };
 		3B1DDF9A13D194380006E818 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9913D194380006E818 /* app-icon-114.png */; };
 		3B1DDF9C13D194490006E818 /* app-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9B13D194490006E818 /* app-icon-72.png */; };
+		3B3EB9EE13E2D4CD001A0DD4 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */; };
+		3B3EB9F113E2D64E001A0DD4 /* HPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */; };
+		3B3EB9F713E306A8001A0DD4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3EB9F613E306A7001A0DD4 /* Game.m */; };
 		3B40C90213D9EF2600C2BEDF /* HPMaze.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90113D9EF2600C2BEDF /* HPMaze.m */; };
 		3B40C90513D9F28000C2BEDF /* HPMazeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */; };
 		3B40C90813D9FE6900C2BEDF /* HPChamberUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */; };
 		3B40C90A13D9FF7700C2BEDF /* HPDirection.h in Resources */ = {isa = PBXBuildFile; fileRef = 3B40C90913D9FF7700C2BEDF /* HPDirection.h */; };
 		3B40C90D13DA024B00C2BEDF /* HPDirectionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */; };
+		3B40C91B13DAD51200C2BEDF /* MultiDimensional.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C91A13DAD51200C2BEDF /* MultiDimensional.m */; };
+		3B40C91F13DADBC700C2BEDF /* FS3DSize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C91E13DADBC700C2BEDF /* FS3DSize.c */; };
+		3B40C92113DAF1AF00C2BEDF /* FS3DPoint.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C92013DAF1AF00C2BEDF /* FS3DPoint.c */; };
+		3B40C92313DAF95D00C2BEDF /* HPDirection.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C92213DAF95D00C2BEDF /* HPDirection.c */; };
+		3B40C92913DB1FA300C2BEDF /* progressbar_joint.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B40C92713DB1FA300C2BEDF /* progressbar_joint.png */; };
+		3B40C92C13DB255100C2BEDF /* LoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40C92B13DB255000C2BEDF /* LoadingLayer.m */; };
+		3B40C92F13DB2E2600C2BEDF /* progressbar_fill.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B40C92D13DB2E2600C2BEDF /* progressbar_fill.jpg */; };
+		3B40C93013DB2E2600C2BEDF /* progressbar_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B40C92E13DB2E2600C2BEDF /* progressbar_mask.png */; };
 		3B43E20013D0A71D006AF368 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E1FF13D0A71D006AF368 /* QuartzCore.framework */; };
 		3B43E20213D0A71D006AF368 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E20113D0A71D006AF368 /* OpenGLES.framework */; };
 		3B43E20413D0A71D006AF368 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B43E20313D0A71D006AF368 /* OpenAL.framework */; };
@@ -123,6 +134,23 @@
 		3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */; };
 		3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */; };
 		3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */; };
+		3B7E1BDF13E4158400D80D8F /* HPGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E1BDE13E4158400D80D8F /* HPGameState.m */; };
+		3B7E1BE713E44B4000D80D8F /* iso_arrow_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE113E44B4000D80D8F /* iso_arrow_n.png */; };
+		3B7E1BE813E44B4000D80D8F /* iso_arrow_ne.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE213E44B4000D80D8F /* iso_arrow_ne.png */; };
+		3B7E1BE913E44B4000D80D8F /* iso_arrow_nw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE313E44B4000D80D8F /* iso_arrow_nw.png */; };
+		3B7E1BEA13E44B4000D80D8F /* iso_arrow_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE413E44B4000D80D8F /* iso_arrow_s.png */; };
+		3B7E1BEB13E44B4000D80D8F /* iso_arrow_se.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE513E44B4000D80D8F /* iso_arrow_se.png */; };
+		3B7E1BEC13E44B4000D80D8F /* iso_arrow_sw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE613E44B4000D80D8F /* iso_arrow_sw.png */; };
+		3B92C5DB13E3201100C1A395 /* HPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C5DA13E3201100C1A395 /* HPLogic.m */; };
+		3B92C77B13E328C100C1A395 /* chambers_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77613E328C100C1A395 /* chambers_green.png */; };
+		3B92C77C13E328C100C1A395 /* chambers_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77713E328C100C1A395 /* chambers_pink.png */; };
+		3B92C77D13E328C100C1A395 /* chambers_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77813E328C100C1A395 /* chambers_red.png */; };
+		3B92C77E13E328C100C1A395 /* chambers_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77913E328C100C1A395 /* chambers_yellow.png */; };
+		3B92C78413E32A3700C1A395 /* chambers_green.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78013E32A3700C1A395 /* chambers_green.plist */; };
+		3B92C78513E32A3700C1A395 /* chambers_pink.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78113E32A3700C1A395 /* chambers_pink.plist */; };
+		3B92C78613E32A3700C1A395 /* chambers_red.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78213E32A3700C1A395 /* chambers_red.plist */; };
+		3B92C78713E32A3700C1A395 /* chambers_yellow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78313E32A3700C1A395 /* chambers_yellow.plist */; };
+		3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */; };
 		3BFC8B9413D0AAAA00EED35E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8B9313D0AAAA00EED35E /* Default.png */; };
 		3BFC8B9613D0AAB200EED35E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8B9513D0AAB200EED35E /* Default@2x.png */; };
 /* End PBXBuildFile section */
@@ -132,6 +160,11 @@
 		3B1DDF9713D194180006E818 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-57.png"; path = "../app-icon-57.png"; sourceTree = "<group>"; };
 		3B1DDF9913D194380006E818 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-114.png"; path = "../app-icon-114.png"; sourceTree = "<group>"; };
 		3B1DDF9B13D194490006E818 /* app-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-72.png"; path = "../app-icon-72.png"; sourceTree = "<group>"; };
+		3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		3B3EB9EF13E2D64E001A0DD4 /* HPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPConfiguration.h; sourceTree = "<group>"; };
+		3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPConfiguration.m; sourceTree = "<group>"; };
+		3B3EB9F513E306A7001A0DD4 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		3B3EB9F613E306A7001A0DD4 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		3B40C90013D9EF2600C2BEDF /* HPMaze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMaze.h; sourceTree = "<group>"; };
 		3B40C90113D9EF2600C2BEDF /* HPMaze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMaze.m; sourceTree = "<group>"; };
 		3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeGenerator.h; sourceTree = "<group>"; };
@@ -141,6 +174,19 @@
 		3B40C90913D9FF7700C2BEDF /* HPDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDirection.h; sourceTree = "<group>"; };
 		3B40C90B13DA024A00C2BEDF /* HPDirectionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDirectionUtil.h; sourceTree = "<group>"; };
 		3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDirectionUtil.m; sourceTree = "<group>"; };
+		3B40C91913DAD51200C2BEDF /* MultiDimensional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDimensional.h; sourceTree = "<group>"; };
+		3B40C91A13DAD51200C2BEDF /* MultiDimensional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDimensional.m; sourceTree = "<group>"; };
+		3B40C91C13DAD6A700C2BEDF /* FS3DPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FS3DPoint.h; sourceTree = "<group>"; };
+		3B40C91D13DAD6EB00C2BEDF /* FS3DSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FS3DSize.h; sourceTree = "<group>"; };
+		3B40C91E13DADBC700C2BEDF /* FS3DSize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FS3DSize.c; sourceTree = "<group>"; };
+		3B40C92013DAF1AF00C2BEDF /* FS3DPoint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FS3DPoint.c; sourceTree = "<group>"; };
+		3B40C92213DAF95D00C2BEDF /* HPDirection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HPDirection.c; sourceTree = "<group>"; };
+		3B40C92413DAFEF100C2BEDF /* FSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArray.h; sourceTree = "<group>"; };
+		3B40C92713DB1FA300C2BEDF /* progressbar_joint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbar_joint.png; sourceTree = "<group>"; };
+		3B40C92A13DB254F00C2BEDF /* LoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingLayer.h; sourceTree = "<group>"; };
+		3B40C92B13DB255000C2BEDF /* LoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingLayer.m; sourceTree = "<group>"; };
+		3B40C92D13DB2E2600C2BEDF /* progressbar_fill.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = progressbar_fill.jpg; sourceTree = "<group>"; };
+		3B40C92E13DB2E2600C2BEDF /* progressbar_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbar_mask.png; sourceTree = "<group>"; };
 		3B43E1FB13D0A71D006AF368 /* Hypermaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypermaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B43E1FF13D0A71D006AF368 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B43E20113D0A71D006AF368 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -360,6 +406,27 @@
 		3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu_spritesheet.plist; sourceTree = "<group>"; };
 		3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_spritesheet.png; sourceTree = "<group>"; };
+		3B7E1BDB13E414A100D80D8F /* HPMoveHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMoveHandler.h; sourceTree = "<group>"; };
+		3B7E1BDD13E4158400D80D8F /* HPGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGameState.h; sourceTree = "<group>"; };
+		3B7E1BDE13E4158400D80D8F /* HPGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGameState.m; sourceTree = "<group>"; };
+		3B7E1BE113E44B4000D80D8F /* iso_arrow_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_n.png; sourceTree = "<group>"; };
+		3B7E1BE213E44B4000D80D8F /* iso_arrow_ne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_ne.png; sourceTree = "<group>"; };
+		3B7E1BE313E44B4000D80D8F /* iso_arrow_nw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_nw.png; sourceTree = "<group>"; };
+		3B7E1BE413E44B4000D80D8F /* iso_arrow_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_s.png; sourceTree = "<group>"; };
+		3B7E1BE513E44B4000D80D8F /* iso_arrow_se.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_se.png; sourceTree = "<group>"; };
+		3B7E1BE613E44B4000D80D8F /* iso_arrow_sw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_sw.png; sourceTree = "<group>"; };
+		3B92C5D913E3201100C1A395 /* HPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLogic.h; sourceTree = "<group>"; };
+		3B92C5DA13E3201100C1A395 /* HPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLogic.m; sourceTree = "<group>"; };
+		3B92C77613E328C100C1A395 /* chambers_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chambers_green.png; sourceTree = "<group>"; };
+		3B92C77713E328C100C1A395 /* chambers_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chambers_pink.png; sourceTree = "<group>"; };
+		3B92C77813E328C100C1A395 /* chambers_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chambers_red.png; sourceTree = "<group>"; };
+		3B92C77913E328C100C1A395 /* chambers_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chambers_yellow.png; sourceTree = "<group>"; };
+		3B92C78013E32A3700C1A395 /* chambers_green.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_green.plist; sourceTree = "<group>"; };
+		3B92C78113E32A3700C1A395 /* chambers_pink.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_pink.plist; sourceTree = "<group>"; };
+		3B92C78213E32A3700C1A395 /* chambers_red.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_red.plist; sourceTree = "<group>"; };
+		3B92C78313E32A3700C1A395 /* chambers_yellow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_yellow.plist; sourceTree = "<group>"; };
+		3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIsoSystem.h; sourceTree = "<group>"; };
+		3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIsoSystem.m; sourceTree = "<group>"; };
 		3BFC8B9313D0AAAA00EED35E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		3BFC8B9513D0AAB200EED35E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		3BFC8B9B13D0AAFE00EED35E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -387,6 +454,9 @@
 		3B1DDF9513D185440006E818 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3B7E1BE013E44B1D00D80D8F /* Interface */,
+				3B92C5DD13E3283000C1A395 /* MazeElements */,
+				3B40C92513DB1F7400C2BEDF /* Loading */,
 				3B793D3813D1B10200DB6EEB /* MainMenu */,
 				3B1DDF9D13D194590006E818 /* Icons */,
 				3B1DDF9613D185530006E818 /* Splashscreens */,
@@ -427,8 +497,40 @@
 				3B40C90913D9FF7700C2BEDF /* HPDirection.h */,
 				3B40C90B13DA024A00C2BEDF /* HPDirectionUtil.h */,
 				3B40C90C13DA024A00C2BEDF /* HPDirectionUtil.m */,
+				3B40C92213DAF95D00C2BEDF /* HPDirection.c */,
+				3B92C5D913E3201100C1A395 /* HPLogic.h */,
+				3B92C5DA13E3201100C1A395 /* HPLogic.m */,
+				3B7E1BDB13E414A100D80D8F /* HPMoveHandler.h */,
+				3B7E1BDD13E4158400D80D8F /* HPGameState.h */,
+				3B7E1BDE13E4158400D80D8F /* HPGameState.m */,
 			);
 			name = Logic;
+			sourceTree = "<group>";
+		};
+		3B40C91213DAC1ED00C2BEDF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3B40C91913DAD51200C2BEDF /* MultiDimensional.h */,
+				3B40C91A13DAD51200C2BEDF /* MultiDimensional.m */,
+				3B40C91C13DAD6A700C2BEDF /* FS3DPoint.h */,
+				3B40C91D13DAD6EB00C2BEDF /* FS3DSize.h */,
+				3B40C91E13DADBC700C2BEDF /* FS3DSize.c */,
+				3B40C92013DAF1AF00C2BEDF /* FS3DPoint.c */,
+				3B40C92413DAFEF100C2BEDF /* FSArray.h */,
+				3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */,
+				3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3B40C92513DB1F7400C2BEDF /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				3B40C92D13DB2E2600C2BEDF /* progressbar_fill.jpg */,
+				3B40C92E13DB2E2600C2BEDF /* progressbar_mask.png */,
+				3B40C92713DB1FA300C2BEDF /* progressbar_joint.png */,
+			);
+			name = Loading;
 			sourceTree = "<group>";
 		};
 		3B43E1F013D0A71D006AF368 = {
@@ -466,6 +568,7 @@
 		3B43E20F13D0A71D006AF368 /* Hypermaze */ = {
 			isa = PBXGroup;
 			children = (
+				3B40C91213DAC1ED00C2BEDF /* Helpers */,
 				3B40C8FE13D9EEDC00C2BEDF /* Logic */,
 				3B43E35B13D0A71F006AF368 /* AppDelegate.h */,
 				3B43E35C13D0A71F006AF368 /* AppDelegate.m */,
@@ -482,6 +585,12 @@
 				3B43E35713D0A71F006AF368 /* Supporting Files */,
 				3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */,
 				3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */,
+				3B40C92A13DB254F00C2BEDF /* LoadingLayer.h */,
+				3B40C92B13DB255000C2BEDF /* LoadingLayer.m */,
+				3B3EB9EF13E2D64E001A0DD4 /* HPConfiguration.h */,
+				3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */,
+				3B3EB9F513E306A7001A0DD4 /* Game.h */,
+				3B3EB9F613E306A7001A0DD4 /* Game.m */,
 			);
 			path = Hypermaze;
 			sourceTree = "<group>";
@@ -493,6 +602,7 @@
 				3B43E21313D0A71D006AF368 /* fps_images.png */,
 				3B43E22113D0A71D006AF368 /* Info.plist */,
 				3B43E22213D0A71D006AF368 /* iTunesArtwork */,
+				3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -737,6 +847,34 @@
 			name = MainMenu;
 			sourceTree = "<group>";
 		};
+		3B7E1BE013E44B1D00D80D8F /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				3B7E1BE113E44B4000D80D8F /* iso_arrow_n.png */,
+				3B7E1BE213E44B4000D80D8F /* iso_arrow_ne.png */,
+				3B7E1BE313E44B4000D80D8F /* iso_arrow_nw.png */,
+				3B7E1BE413E44B4000D80D8F /* iso_arrow_s.png */,
+				3B7E1BE513E44B4000D80D8F /* iso_arrow_se.png */,
+				3B7E1BE613E44B4000D80D8F /* iso_arrow_sw.png */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		3B92C5DD13E3283000C1A395 /* MazeElements */ = {
+			isa = PBXGroup;
+			children = (
+				3B92C78013E32A3700C1A395 /* chambers_green.plist */,
+				3B92C78113E32A3700C1A395 /* chambers_pink.plist */,
+				3B92C78213E32A3700C1A395 /* chambers_red.plist */,
+				3B92C78313E32A3700C1A395 /* chambers_yellow.plist */,
+				3B92C77613E328C100C1A395 /* chambers_green.png */,
+				3B92C77713E328C100C1A395 /* chambers_pink.png */,
+				3B92C77813E328C100C1A395 /* chambers_red.png */,
+				3B92C77913E328C100C1A395 /* chambers_yellow.png */,
+			);
+			name = MazeElements;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -795,6 +933,24 @@
 				3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */,
 				3B69B3BB13D1F08200C38CB1 /* background.png in Resources */,
 				3B40C90A13D9FF7700C2BEDF /* HPDirection.h in Resources */,
+				3B40C92913DB1FA300C2BEDF /* progressbar_joint.png in Resources */,
+				3B40C92F13DB2E2600C2BEDF /* progressbar_fill.jpg in Resources */,
+				3B40C93013DB2E2600C2BEDF /* progressbar_mask.png in Resources */,
+				3B3EB9EE13E2D4CD001A0DD4 /* Settings.plist in Resources */,
+				3B92C77B13E328C100C1A395 /* chambers_green.png in Resources */,
+				3B92C77C13E328C100C1A395 /* chambers_pink.png in Resources */,
+				3B92C77D13E328C100C1A395 /* chambers_red.png in Resources */,
+				3B92C77E13E328C100C1A395 /* chambers_yellow.png in Resources */,
+				3B92C78413E32A3700C1A395 /* chambers_green.plist in Resources */,
+				3B92C78513E32A3700C1A395 /* chambers_pink.plist in Resources */,
+				3B92C78613E32A3700C1A395 /* chambers_red.plist in Resources */,
+				3B92C78713E32A3700C1A395 /* chambers_yellow.plist in Resources */,
+				3B7E1BE713E44B4000D80D8F /* iso_arrow_n.png in Resources */,
+				3B7E1BE813E44B4000D80D8F /* iso_arrow_ne.png in Resources */,
+				3B7E1BE913E44B4000D80D8F /* iso_arrow_nw.png in Resources */,
+				3B7E1BEA13E44B4000D80D8F /* iso_arrow_s.png in Resources */,
+				3B7E1BEB13E44B4000D80D8F /* iso_arrow_se.png in Resources */,
+				3B7E1BEC13E44B4000D80D8F /* iso_arrow_sw.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,6 +1060,16 @@
 				3B40C90513D9F28000C2BEDF /* HPMazeGenerator.m in Sources */,
 				3B40C90813D9FE6900C2BEDF /* HPChamberUtil.m in Sources */,
 				3B40C90D13DA024B00C2BEDF /* HPDirectionUtil.m in Sources */,
+				3B40C91B13DAD51200C2BEDF /* MultiDimensional.m in Sources */,
+				3B40C91F13DADBC700C2BEDF /* FS3DSize.c in Sources */,
+				3B40C92113DAF1AF00C2BEDF /* FS3DPoint.c in Sources */,
+				3B40C92313DAF95D00C2BEDF /* HPDirection.c in Sources */,
+				3B40C92C13DB255100C2BEDF /* LoadingLayer.m in Sources */,
+				3B3EB9F113E2D64E001A0DD4 /* HPConfiguration.m in Sources */,
+				3B3EB9F713E306A8001A0DD4 /* Game.m in Sources */,
+				3B92C5DB13E3201100C1A395 /* HPLogic.m in Sources */,
+				3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */,
+				3B7E1BDF13E4158400D80D8F /* HPGameState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

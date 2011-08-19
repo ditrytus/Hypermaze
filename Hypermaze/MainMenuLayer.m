@@ -9,6 +9,7 @@
 #import "MainMenuLayer.h"
 #import "LoadingLayer.h"
 #import "cocos2d.h"
+#import "HPConfiguration.h"
 
 const int MENU_MOVE_DISTANCE = 1000;
 const float MENU_TRANSITION_DURATION = 0.5;
@@ -128,7 +129,18 @@ const int MIN_MAZE_SIZE = 3;
 														  selectedFameName:@"sound_on_en.png"
 															 	  selector:@selector(onSoundToggle:)];
 	CCMenuItemToggle *musicToggle = [self menuItemToggle: @selector(onMusicToggle:)];
+	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	if ([[configuration music] boolValue]) {
+		[musicToggle setSelectedIndex:1];
+	} else {
+		[musicToggle setSelectedIndex:0];
+	}
 	CCMenuItemToggle *soundToggle = [self menuItemToggle: @selector(onSoundToggle:)];
+	if ([[configuration sound] boolValue]) {
+		[soundToggle setSelectedIndex:1];
+	} else {
+		[soundToggle setSelectedIndex:0];
+	}
 	CCMenuItemSprite* facebookItem = [self menuItemSpriteFromNormalFrameName:@"facebook_off_en.png"
 															selectedFameName:@"facebook_on_en.png"
 																	selector:@selector(onFacebookClick:)];
@@ -189,7 +201,7 @@ const int MIN_MAZE_SIZE = 3;
 		[numbers addObject: spriteItem];
 	}
 	[sizeItem setSubItems: numbers];
-	[sizeItem setSelectedIndex:1];
+	[sizeItem setSelectedIndex: [[HPConfiguration sharedConfiguration].difficulty integerValue] - MIN_MAZE_SIZE];
 	[sizeItem setIsEnabled:NO];
 	CCMenuItemSprite* playButton = [self menuItemSpriteFromNormalFrameName:@"play_off_en.png"
 														  selectedFameName:@"play_on_en.png"
@@ -323,12 +335,20 @@ const int MIN_MAZE_SIZE = 3;
 	return self;
 }
 
+void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
+  HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	configuration.difficulty = [NSNumber numberWithInteger: [sizeItem selectedIndex] + MIN_MAZE_SIZE];
+	[configuration save];
+
+}
 - (void) onIncreaseSizeClick: (CCMenuItem  *) menuItem 
 {
 	int currentSizeIndex = [sizeItem selectedIndex];
 	if (currentSizeIndex < MAX_MAZE_SIZE - MIN_MAZE_SIZE) {
 		[sizeItem setSelectedIndex: currentSizeIndex + 1];
 	}
+	UpdateDifficultyConfig(sizeItem);
+
 }
 
 - (void) onDecreaseSizeClick: (CCMenuItem  *) menuItem 
@@ -337,6 +357,7 @@ const int MIN_MAZE_SIZE = 3;
 	if (currentSizeIndex > MIN_MAZE_SIZE - MIN_MAZE_SIZE) {
 		[sizeItem setSelectedIndex: currentSizeIndex - 1];
 	}
+	UpdateDifficultyConfig(sizeItem);
 }
 
 - (void) onPlayClick: (CCMenuItem  *) menuItem 
@@ -402,12 +423,18 @@ const int MIN_MAZE_SIZE = 3;
 	}
 }
 
-- (void) onMusicToggle: (CCMenuItem *) menuItem
+- (void) onMusicToggle: (CCMenuItemToggle *) menuItem
 {
+	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	configuration.music = [NSNumber numberWithInteger: [menuItem selectedIndex]];
+	[configuration save];
 }
 
-- (void) onSoundToggle: (CCMenuItem *) menuItem
+- (void) onSoundToggle: (CCMenuItemToggle *) menuItem
 {
+	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	configuration.sound = [NSNumber numberWithInteger: [menuItem selectedIndex]];
+	[configuration save];
 }
 
 - (void) onFacebookClick: (CCMenuItem *) menuItem

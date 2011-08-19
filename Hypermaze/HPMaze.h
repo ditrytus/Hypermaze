@@ -13,6 +13,9 @@
 	int size;
 }
 
--(id)initWithTopology:(Byte ***) arrayWithTopology;
+-(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize ;
+
+@property (readonly, nonatomic) Byte*** topology;
+@property (readonly, nonatomic) int size;
 
 @end
