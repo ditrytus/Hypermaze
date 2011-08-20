@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "HPLogic.h"
+#import "HPMazeLayer.h"
 #import "FSIsoSystem.h"
 
 @interface Game : CCScene {
 	HPLogic* logic;
-	CCLayer* backgroundLayer;
-	CCLayer* mazeLayer;
+	HPMazeLayer* mazeLayer;
 	CCLayer* interfaceLayer;
-	FSIsoSystem* isoSys;
-	CCSprite**** pinkChambers;
 	CGSize size;
 	CGPoint middleScreen;
 	

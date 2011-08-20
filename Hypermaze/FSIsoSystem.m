@@ -28,16 +28,6 @@
 				tileCoords[x][y] = CGPointMake(firstPosition.x + xVertex.x*x + yVertex.x*y, firstPosition.y + xVertex.y*x + yVertex.y*y);
 			}
 		}
-		
-		//TODO: Do wywalenia
-		
-//		for (int j=0; j<mapLogicalSize.height; j++) {
-//			NSMutableString* log = [[NSMutableString alloc] init];
-//			for (int h=0; h<mapLogicalSize.width; h++) {
-//				[log appendFormat:@"(%d,%d) ", tileCoords[h][j].x, tileCoords[h][j].y];
-//			}
-//			NSLog(@"%@",log);
-//		}	
 	}
     return self;
 }

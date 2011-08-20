@@ -76,22 +76,28 @@
     return self;
 }
 
+- (void) onEnterTransitionDidFinish {
+	aQueue = [[[NSOperationQueue alloc] init] retain];
+	[aQueue addOperationWithBlock:^{
+		[generator generateMazeInSize: [[HPConfiguration sharedConfiguration].difficulty intValue]];
+	}];
+}
+
 -(void) update:(ccTime)deltaTime
 {
+	static bool completePerformed = NO;
 	switch([generator getStatus])
 	{
-		case genBegin: {
-			aQueue = [[[NSOperationQueue alloc] init] retain];
-			[aQueue addOperationWithBlock:^{
-				[generator generateMazeInSize: [[HPConfiguration sharedConfiguration].difficulty intValue]];
-			}];
-		} break;
 		case genWorking: {
 			[fill setTextureRect:CGRectMake(0, 0, 794 * [generator getProgress], 166)];
 		} break;
 		case genComplete: {
-			[fill setTextureRect:CGRectMake(0, 0, 794, 166)];
-			[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene:[[Game alloc] initWithLogic:  [[HPLogic alloc] initWithMaze:[generator getMaze]]]]];
+			if (!completePerformed)
+			{
+				completePerformed = YES;
+				[fill setTextureRect:CGRectMake(0, 0, 794, 166)];
+				[[CCDirector sharedDirector] replaceScene: [[CCTransitionCrossFade transitionWithDuration:0.5 scene:[[Game alloc] initWithLogic:  [[HPLogic alloc] initWithMaze:[generator getMaze]]]] retain]];
+			}
 		} break;
 	}
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B1075C613FED6AF00F38A4B /* FSRadialAligner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1075C513FED6AF00F38A4B /* FSRadialAligner.m */; };
 		3B1DDF9813D194180006E818 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9713D194180006E818 /* app-icon-57.png */; };
 		3B1DDF9A13D194380006E818 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9913D194380006E818 /* app-icon-114.png */; };
 		3B1DDF9C13D194490006E818 /* app-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9B13D194490006E818 /* app-icon-72.png */; };
@@ -151,11 +152,15 @@
 		3B92C78613E32A3700C1A395 /* chambers_red.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78213E32A3700C1A395 /* chambers_red.plist */; };
 		3B92C78713E32A3700C1A395 /* chambers_yellow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78313E32A3700C1A395 /* chambers_yellow.plist */; };
 		3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */; };
+		3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */; };
+		3BF0799813FEDB4E00B52E65 /* FSTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */; };
 		3BFC8B9413D0AAAA00EED35E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8B9313D0AAAA00EED35E /* Default.png */; };
 		3BFC8B9613D0AAB200EED35E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8B9513D0AAB200EED35E /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B1075C413FED6AF00F38A4B /* FSRadialAligner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRadialAligner.h; sourceTree = "<group>"; };
+		3B1075C513FED6AF00F38A4B /* FSRadialAligner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSRadialAligner.m; sourceTree = "<group>"; };
 		3B1DDF9213D183910006E818 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3B1DDF9713D194180006E818 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-57.png"; path = "../app-icon-57.png"; sourceTree = "<group>"; };
 		3B1DDF9913D194380006E818 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-114.png"; path = "../app-icon-114.png"; sourceTree = "<group>"; };
@@ -427,6 +432,10 @@
 		3B92C78313E32A3700C1A395 /* chambers_yellow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_yellow.plist; sourceTree = "<group>"; };
 		3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIsoSystem.h; sourceTree = "<group>"; };
 		3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIsoSystem.m; sourceTree = "<group>"; };
+		3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeLayer.h; sourceTree = "<group>"; };
+		3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeLayer.m; sourceTree = "<group>"; };
+		3BF0799613FEDB4E00B52E65 /* FSTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTreeNode.h; sourceTree = "<group>"; };
+		3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTreeNode.m; sourceTree = "<group>"; };
 		3BFC8B9313D0AAAA00EED35E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		3BFC8B9513D0AAB200EED35E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		3BFC8B9B13D0AAFE00EED35E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -519,6 +528,10 @@
 				3B40C92413DAFEF100C2BEDF /* FSArray.h */,
 				3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */,
 				3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */,
+				3B1075C413FED6AF00F38A4B /* FSRadialAligner.h */,
+				3B1075C513FED6AF00F38A4B /* FSRadialAligner.m */,
+				3BF0799613FEDB4E00B52E65 /* FSTreeNode.h */,
+				3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -591,6 +604,8 @@
 				3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */,
 				3B3EB9F513E306A7001A0DD4 /* Game.h */,
 				3B3EB9F613E306A7001A0DD4 /* Game.m */,
+				3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */,
+				3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */,
 			);
 			path = Hypermaze;
 			sourceTree = "<group>";
@@ -1070,6 +1085,9 @@
 				3B92C5DB13E3201100C1A395 /* HPLogic.m in Sources */,
 				3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */,
 				3B7E1BDF13E4158400D80D8F /* HPGameState.m in Sources */,
+				3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */,
+				3B1075C613FED6AF00F38A4B /* FSRadialAligner.m in Sources */,
+				3BF0799813FEDB4E00B52E65 /* FSTreeNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
