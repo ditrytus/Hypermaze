@@ -16,7 +16,11 @@
 	NSMutableArray* root;
 }
 
+@property(nonatomic, readwrite) double radius;
+
+- (id)initWithAngle: (double) ang radius: (double) rad margin: (double) marg root: (NSMutableArray*) rt;
 - (CGPoint) alignElementOnIndex: (NSIndexPath*) index;
 - (CGPoint) alignElementOnIndex: (NSIndexPath*) index radiusDelta: (double) rad marginDelta: (double) marg;
+- (float) getRadiusDeltaForIndex: (NSIndexPath*) index level: (int) level;
 
 @end

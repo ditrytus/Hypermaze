@@ -32,7 +32,6 @@ CCMenuItemSprite * createArrow(NSString* arrowName, id target, SEL selector) {
 		middleScreen = ccp( size.width /2 , size.height/2 );
 		
 		mazeLayer = [[[HPMazeLayer alloc] initWithLogic: logic] retain];
-		
 		[self addChild: mazeLayer];
 		
 		interfaceLayer = [[CCLayer node] retain];
@@ -56,6 +55,9 @@ CCMenuItemSprite * createArrow(NSString* arrowName, id target, SEL selector) {
 		arrowsMenu.position = ccp(0,0);
 		[interfaceLayer	addChild:arrowsMenu];
 		[self addChild: interfaceLayer];
+		
+		radialMenuLayer = [[RadialMenuLayer alloc] init];
+		[self addChild: radialMenuLayer];
 	}
 	return self;
 }

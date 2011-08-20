@@ -11,10 +11,12 @@
 #import "HPLogic.h"
 #import "HPMazeLayer.h"
 #import "FSIsoSystem.h"
+#import "RadialMenuLayer.h"
 
 @interface Game : CCScene {
 	HPLogic* logic;
 	HPMazeLayer* mazeLayer;
+	RadialMenuLayer* radialMenuLayer;
 	CCLayer* interfaceLayer;
 	CGSize size;
 	CGPoint middleScreen;
