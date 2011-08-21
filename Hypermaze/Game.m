@@ -56,7 +56,7 @@ CCMenuItemSprite * createArrow(NSString* arrowName, id target, SEL selector) {
 		[interfaceLayer	addChild:arrowsMenu];
 		[self addChild: interfaceLayer];
 		
-		radialMenuLayer = [[RadialMenuLayer alloc] init];
+		radialMenuLayer = [[RadialMenuLayer alloc] initWithLogic:logic];
 		[self addChild: radialMenuLayer];
 	}
 	return self;

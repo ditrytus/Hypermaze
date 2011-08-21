@@ -7,6 +7,7 @@
 //
 
 #import "RadialMenuLayer.h"
+
 #import <math.h>
 
 @implementation RadialMenuLayer
@@ -30,10 +31,12 @@
 	return toggleItem;
 }
 
-- (id)init
+- (id)initWithLogic: (HPLogic*) innerLogic
 {
     self = [super init];
     if (self) {
+		logic = [innerLogic retain];
+		
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"interface.plist" textureFile: @"interface.png"];
 		
 		menuToggle = [self menuItemFromOnFrameName:@"menu_on.png" offFrameName:@"menu_off.png" target:@selector(onMenuToggle:)];
@@ -137,6 +140,7 @@
 }
 
 - (void) showNodeFromRoot:(CCMenuItem*) node index: (NSIndexPath*) index {
+	[node stopAllActions];
 	[node runAction: [CCSequence actions:
 					  [CCCallBlock actionWithBlock:^{ [node setVisible:YES]; }],
 					  [CCSpawn actions:
@@ -154,6 +158,7 @@
 	} else {
 		position = [aligner alignElementOnIndex:index radiusDelta: [aligner getRadiusDeltaForIndex: index level: level] marginDelta:0];
 	}
+	[item stopAllActions];
 	[item runAction: [CCSequence actions:
 					  [CCSpawn actions:
 					   [CCEaseBounceOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:position]],
@@ -354,7 +359,7 @@
 
 
 - (void) onBreadToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleVisitedTool];
 }
 
 
@@ -397,19 +402,19 @@
 }
 
 - (void) onPlaneXToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleYAxisTool];
 }
 
 - (void) onPlaneYToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleXAxisTool];
 }
 
 - (void) onPlaneZToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleZAxisTool];
 }
 
 - (void) onCrossToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleRecursiveTool];
 }
 
 - (void) onEyeToggle: (CCMenuItemToggle*) item {
@@ -492,10 +497,13 @@
 	
 }
 
-
-
 - (void) onOkRToggle: (CCMenuItemToggle*) item {
 	
+}
+
+-(void) dealloc {
+	[logic release];
+	[super dealloc];
 }
 
 @end

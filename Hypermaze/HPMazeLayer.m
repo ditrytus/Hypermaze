@@ -32,7 +32,8 @@ void loadChamberSet(NSString *colorName) {
 {
     self = [super init];
     if (self) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onViewChanged:) name:EVENT_VIEW_CHANGED object:nil];
 		logic = [newLogic retain];
 		mazeSize = [[logic maze] size];
 		topology = [[logic maze] topology];
@@ -87,18 +88,22 @@ void loadChamberSet(NSString *colorName) {
 
 - (void) redrawMazeTexture {
 	FS3DPoint curPos = [[logic gameState] currentPosition];
+	HPVisibilityMask* visibilityMask = logic.visibilityMask;
 	CCSprite* chamber; 
 	[mazeTexture beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
 	for (int z=0; z<mazeSize; z++) {
 		for (int y=mazeSize-1; y>=0; y--) {
 			for (int x=mazeSize-1; x>=0; x--) {
-				if (curPos.x == x && curPos.y == y && curPos.z == z) {
-					chamber = yellowChamberPrototypes[topology[x][y][z]-1];
-				} else {
-					chamber = pinkChamberPrototypes[topology[x][y][z]-1];
+				if ([[visibilityMask getValue:point3D(x, y, z)] boolValue])
+				{
+					if (curPos.x == x && curPos.y == y && curPos.z == z) {
+						chamber = yellowChamberPrototypes[topology[x][y][z]-1];
+					} else {
+						chamber = pinkChamberPrototypes[topology[x][y][z]-1];
+					}
+					chamber.position = positionCache[x][y][z];
+					[chamber visit];
 				}
-				chamber.position = positionCache[x][y][z];
-				[chamber visit];
 			}
 		}
 	}
@@ -125,6 +130,9 @@ void loadChamberSet(NSString *colorName) {
 	free(greenChamberPrototypes);
 	free(redChamberPrototypes);
 	[super dealloc];
+}
+- (void) onViewChanged: (NSNotification*) notification {
+	[self redrawMazeTexture];
 }
 
 - (void) onPositionChanged: (NSNotification*) notification {

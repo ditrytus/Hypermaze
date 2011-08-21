@@ -131,6 +131,19 @@
 		3B43E35D13D0A71F006AF368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35C13D0A71F006AF368 /* AppDelegate.m */; };
 		3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35F13D0A71F006AF368 /* RootViewController.m */; };
 		3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */; };
+		3B56F542140123D600F99EDF /* HPVisibilityMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F541140123D600F99EDF /* HPVisibilityMask.m */; };
+		3B56F546140124B200F99EDF /* HPArrayMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F545140124B200F99EDF /* HPArrayMask.m */; };
+		3B56F5491401276200F99EDF /* HPVisitedMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F5481401276200F99EDF /* HPVisitedMask.m */; };
+		3B56F54C14012AAB00F99EDF /* HPMaskComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F54B14012AAB00F99EDF /* HPMaskComposite.m */; };
+		3B56F552140134FE00F99EDF /* HPUnionMaskComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F551140134FD00F99EDF /* HPUnionMaskComposite.m */; };
+		3B56F555140135F700F99EDF /* HPIntersectionMaskComposite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F554140135F700F99EDF /* HPIntersectionMaskComposite.m */; };
+		3B56F55814013C4300F99EDF /* HPPositionMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F55714013C4300F99EDF /* HPPositionMask.m */; };
+		3B56F55B14013D8400F99EDF /* HPXAxisMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F55A14013D8300F99EDF /* HPXAxisMask.m */; };
+		3B56F55E14013DD300F99EDF /* HPYAxisMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F55D14013DD200F99EDF /* HPYAxisMask.m */; };
+		3B56F56114013DF800F99EDF /* HPZAxisMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F56014013DF700F99EDF /* HPZAxisMask.m */; };
+		3B56F56414013EF200F99EDF /* HPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F56314013EF100F99EDF /* HPTool.m */; };
+		3B56F567140140C500F99EDF /* HPVisibilityMaskManipulationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F566140140C400F99EDF /* HPVisibilityMaskManipulationTool.m */; };
+		3B56F56E14015CF400F99EDF /* HPRecursiveMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */; };
 		3B69B3BB13D1F08200C38CB1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B69B3BA13D1F08200C38CB1 /* background.png */; };
 		3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */; };
 		3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */; };
@@ -409,6 +422,32 @@
 		3B43E36113D0A71F006AF368 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		3B43E36413D0A71F006AF368 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		3B56F540140123D600F99EDF /* HPVisibilityMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPVisibilityMask.h; sourceTree = "<group>"; };
+		3B56F541140123D600F99EDF /* HPVisibilityMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPVisibilityMask.m; sourceTree = "<group>"; };
+		3B56F544140124B200F99EDF /* HPArrayMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPArrayMask.h; sourceTree = "<group>"; };
+		3B56F545140124B200F99EDF /* HPArrayMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPArrayMask.m; sourceTree = "<group>"; };
+		3B56F5471401276200F99EDF /* HPVisitedMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPVisitedMask.h; sourceTree = "<group>"; };
+		3B56F5481401276200F99EDF /* HPVisitedMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPVisitedMask.m; sourceTree = "<group>"; };
+		3B56F54A14012AAB00F99EDF /* HPMaskComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMaskComposite.h; sourceTree = "<group>"; };
+		3B56F54B14012AAB00F99EDF /* HPMaskComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMaskComposite.m; sourceTree = "<group>"; };
+		3B56F550140134FD00F99EDF /* HPUnionMaskComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPUnionMaskComposite.h; sourceTree = "<group>"; };
+		3B56F551140134FD00F99EDF /* HPUnionMaskComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPUnionMaskComposite.m; sourceTree = "<group>"; };
+		3B56F553140135F600F99EDF /* HPIntersectionMaskComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPIntersectionMaskComposite.h; sourceTree = "<group>"; };
+		3B56F554140135F700F99EDF /* HPIntersectionMaskComposite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPIntersectionMaskComposite.m; sourceTree = "<group>"; };
+		3B56F55614013C4300F99EDF /* HPPositionMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPositionMask.h; sourceTree = "<group>"; };
+		3B56F55714013C4300F99EDF /* HPPositionMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPositionMask.m; sourceTree = "<group>"; };
+		3B56F55914013D8300F99EDF /* HPXAxisMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPXAxisMask.h; sourceTree = "<group>"; };
+		3B56F55A14013D8300F99EDF /* HPXAxisMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPXAxisMask.m; sourceTree = "<group>"; };
+		3B56F55C14013DD200F99EDF /* HPYAxisMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPYAxisMask.h; sourceTree = "<group>"; };
+		3B56F55D14013DD200F99EDF /* HPYAxisMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPYAxisMask.m; sourceTree = "<group>"; };
+		3B56F55F14013DF700F99EDF /* HPZAxisMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPZAxisMask.h; sourceTree = "<group>"; };
+		3B56F56014013DF700F99EDF /* HPZAxisMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPZAxisMask.m; sourceTree = "<group>"; };
+		3B56F56214013EF100F99EDF /* HPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPTool.h; sourceTree = "<group>"; };
+		3B56F56314013EF100F99EDF /* HPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPTool.m; sourceTree = "<group>"; };
+		3B56F565140140C400F99EDF /* HPVisibilityMaskManipulationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPVisibilityMaskManipulationTool.h; sourceTree = "<group>"; };
+		3B56F566140140C400F99EDF /* HPVisibilityMaskManipulationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPVisibilityMaskManipulationTool.m; sourceTree = "<group>"; };
+		3B56F56C14015CF400F99EDF /* HPRecursiveMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPRecursiveMask.h; sourceTree = "<group>"; };
+		3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRecursiveMask.m; sourceTree = "<group>"; };
 		3B69B3BA13D1F08200C38CB1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
@@ -504,6 +543,8 @@
 		3B40C8FE13D9EEDC00C2BEDF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				3B56F56B14015C6B00F99EDF /* Tools */,
+				3B56F56814015C0000F99EDF /* Masks */,
 				3B40C90013D9EF2600C2BEDF /* HPMaze.h */,
 				3B40C90113D9EF2600C2BEDF /* HPMaze.m */,
 				3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */,
@@ -861,6 +902,54 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3B56F56814015C0000F99EDF /* Masks */ = {
+			isa = PBXGroup;
+			children = (
+				3B56F56914015C2C00F99EDF /* Composites */,
+				3B56F540140123D600F99EDF /* HPVisibilityMask.h */,
+				3B56F541140123D600F99EDF /* HPVisibilityMask.m */,
+				3B56F544140124B200F99EDF /* HPArrayMask.h */,
+				3B56F545140124B200F99EDF /* HPArrayMask.m */,
+				3B56F5471401276200F99EDF /* HPVisitedMask.h */,
+				3B56F5481401276200F99EDF /* HPVisitedMask.m */,
+				3B56F55614013C4300F99EDF /* HPPositionMask.h */,
+				3B56F55714013C4300F99EDF /* HPPositionMask.m */,
+				3B56F55914013D8300F99EDF /* HPXAxisMask.h */,
+				3B56F55A14013D8300F99EDF /* HPXAxisMask.m */,
+				3B56F55C14013DD200F99EDF /* HPYAxisMask.h */,
+				3B56F55D14013DD200F99EDF /* HPYAxisMask.m */,
+				3B56F55F14013DF700F99EDF /* HPZAxisMask.h */,
+				3B56F56014013DF700F99EDF /* HPZAxisMask.m */,
+				3B56F56C14015CF400F99EDF /* HPRecursiveMask.h */,
+				3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */,
+			);
+			name = Masks;
+			sourceTree = "<group>";
+		};
+		3B56F56914015C2C00F99EDF /* Composites */ = {
+			isa = PBXGroup;
+			children = (
+				3B56F54A14012AAB00F99EDF /* HPMaskComposite.h */,
+				3B56F54B14012AAB00F99EDF /* HPMaskComposite.m */,
+				3B56F550140134FD00F99EDF /* HPUnionMaskComposite.h */,
+				3B56F551140134FD00F99EDF /* HPUnionMaskComposite.m */,
+				3B56F553140135F600F99EDF /* HPIntersectionMaskComposite.h */,
+				3B56F554140135F700F99EDF /* HPIntersectionMaskComposite.m */,
+			);
+			name = Composites;
+			sourceTree = "<group>";
+		};
+		3B56F56B14015C6B00F99EDF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				3B56F56214013EF100F99EDF /* HPTool.h */,
+				3B56F56314013EF100F99EDF /* HPTool.m */,
+				3B56F565140140C400F99EDF /* HPVisibilityMaskManipulationTool.h */,
+				3B56F566140140C400F99EDF /* HPVisibilityMaskManipulationTool.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		3B793D3813D1B10200DB6EEB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,6 +1191,19 @@
 				3B1075C613FED6AF00F38A4B /* FSRadialAligner.m in Sources */,
 				3BF0799813FEDB4E00B52E65 /* FSTreeNode.m in Sources */,
 				3BF8DBB113FFC949006B16C1 /* RadialMenuLayer.m in Sources */,
+				3B56F542140123D600F99EDF /* HPVisibilityMask.m in Sources */,
+				3B56F546140124B200F99EDF /* HPArrayMask.m in Sources */,
+				3B56F5491401276200F99EDF /* HPVisitedMask.m in Sources */,
+				3B56F54C14012AAB00F99EDF /* HPMaskComposite.m in Sources */,
+				3B56F552140134FE00F99EDF /* HPUnionMaskComposite.m in Sources */,
+				3B56F555140135F700F99EDF /* HPIntersectionMaskComposite.m in Sources */,
+				3B56F55814013C4300F99EDF /* HPPositionMask.m in Sources */,
+				3B56F55B14013D8400F99EDF /* HPXAxisMask.m in Sources */,
+				3B56F55E14013DD300F99EDF /* HPYAxisMask.m in Sources */,
+				3B56F56114013DF800F99EDF /* HPZAxisMask.m in Sources */,
+				3B56F56414013EF200F99EDF /* HPTool.m in Sources */,
+				3B56F567140140C500F99EDF /* HPVisibilityMaskManipulationTool.m in Sources */,
+				3B56F56E14015CF400F99EDF /* HPRecursiveMask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

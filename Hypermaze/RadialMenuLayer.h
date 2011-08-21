@@ -9,8 +9,11 @@
 #import "CCLayer.h"
 #import "cocos2d.h"
 #import "FSRadialAligner.h"
+#import "HPLogic.h"
 
 @interface RadialMenuLayer : CCLayer {
+	HPLogic* logic;
+	
 	CCMenuItemToggle* menuToggle;
 	CCMenuItemToggle* brainToggle;
 	NSIndexPath* brainIndexPath;
@@ -68,6 +71,8 @@
 	FSRadialAligner* aligner;
 	
 }
+
+- (id)initWithLogic: (HPLogic*) innerLogic;
 
 - (void) onMenuToggle: (CCMenuItemToggle*) item;
 - (CCMenuItemToggle*) menuItemFromOnFrameName: (NSString*) onFrameName offFrameName: (NSString*) offFrameName target: (SEL) target;
