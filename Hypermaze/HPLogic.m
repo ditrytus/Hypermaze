@@ -12,6 +12,7 @@
 #import "HPIntersectionMaskComposite.h"
 #import "HPVisibilityMaskManipulationTool.h"
 #import "HPPositionMask.h"
+#import "HPAriadnaMask.h"
 
 @implementation HPLogic
 
@@ -25,22 +26,37 @@
     if (self) {
 		maze = [newMaze retain];
 		gameState = [[HPGameState alloc] init];
+		
 		HPPositionMask* positionMask = [[[HPPositionMask alloc] initWithGameState: gameState] autorelease];
+	
+		HPAriadnaMask* ariadnaMask = [[[HPAriadnaMask alloc] initWithGameState: gameState] autorelease];
 		HPVisitedMask* visitedMask = [[[HPVisitedMask alloc] initWithSize:[maze size] gameState:gameState] autorelease];
+		HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:visitedMask Maze:maze] autorelease];
+		
+		HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, visitedMask, untakenMask, nil] autorelease];
+		
 		HPXAxisMask* xAxisMask = [[[HPXAxisMask alloc] initWithGameState:gameState] autorelease];
 		HPYAxisMask* yAxisMask = [[[HPYAxisMask alloc] initWithGameState:gameState] autorelease];
 		HPZAxisMask* zAxisMask = [[[HPZAxisMask alloc] initWithGameState:gameState] autorelease];
 		HPRecursiveMask* recursiveMask = [[[HPRecursiveMask alloc] initWithGameState:gameState maze:maze depth:5] autorelease];
+		
+		HPVisibilityMask* mazeMask = [[[HPVisibilityMask alloc] init] autorelease];
+		
 		HPUnionMaskComposite* axisComposite = [[[HPUnionMaskComposite alloc] initWithMasks:xAxisMask, yAxisMask, zAxisMask, nil] autorelease];
 		HPIntersectionMaskComposite* planesComposite = [[[HPIntersectionMaskComposite alloc] initWithMasks:axisComposite, recursiveMask,nil] autorelease];
-		HPUnionMaskComposite* composite = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, visitedMask, planesComposite,nil] autorelease];
-		visitedTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:visitedMask composite:composite];
+		
+		HPUnionMaskComposite* composite = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, nil] autorelease];
+		
+		ariadnaTool	= [[HPVisibilityMaskManipulationTool alloc] initWithMask:ariadnaMask composite:brainComposite];
+		visitedTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:visitedMask composite:brainComposite];
+		untakenTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite];
 		xAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite];
 		yAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite];
 		zAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite];
 		recursiveTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:recursiveMask composite:planesComposite];
+		mazeTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:composite];
 		visibilityMask = [composite retain];
-		movementHandlers = [[NSArray arrayWithObjects:gameState, visitedMask, recursiveMask, nil] retain];
+		movementHandlers = [[NSArray arrayWithObjects:gameState, visitedMask, ariadnaMask, recursiveMask, nil] retain];
     }
     return self;
 }
@@ -49,6 +65,9 @@
 	[maze release];
 	[gameState release];
 	[visibilityMask release];
+	[ariadnaTool release];
+	[untakenTool release];
+	[recursiveTool release];
 	[xAxisTool release];
 	[yAxisTool release];
 	[zAxisTool release];
@@ -71,8 +90,18 @@
 	}
 }
 
+- (void) toggleAriadnaTool {
+	[ariadnaTool toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
 - (void) toggleVisitedTool {
 	[visitedTool toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleUntakenTool {
+	[untakenTool toggle];
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
 }
 
@@ -93,6 +122,11 @@
 
 - (void) toggleRecursiveTool {
 	[recursiveTool toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleMazeTool {
+	[mazeTool toggle];
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
 }
 

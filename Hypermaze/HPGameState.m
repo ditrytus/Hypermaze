@@ -22,7 +22,7 @@
         movesMade = 0;
 		lastResume = [NSDate date];
 		hasFinished = NO;
-		currentPosition = point3D(0, 0, 0);
+		currentPosition = BEGIN_POINT;
 		previousTimeElapsed = 0;
     }
     return self;

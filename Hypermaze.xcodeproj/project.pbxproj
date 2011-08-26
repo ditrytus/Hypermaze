@@ -145,6 +145,9 @@
 		3B56F567140140C500F99EDF /* HPVisibilityMaskManipulationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F566140140C400F99EDF /* HPVisibilityMaskManipulationTool.m */; };
 		3B56F56E14015CF400F99EDF /* HPRecursiveMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */; };
 		3B69B3BB13D1F08200C38CB1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B69B3BA13D1F08200C38CB1 /* background.png */; };
+		3B7104921407BDA200D3CCEE /* HPUntakenCrossroadsMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104911407BDA200D3CCEE /* HPUntakenCrossroadsMask.m */; };
+		3B7104961407CAB800D3CCEE /* HPPathMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104951407CAB700D3CCEE /* HPPathMask.m */; };
+		3B7104991407D09E00D3CCEE /* HPAriadnaMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */; };
 		3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */; };
 		3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */; };
 		3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */; };
@@ -449,6 +452,12 @@
 		3B56F56C14015CF400F99EDF /* HPRecursiveMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPRecursiveMask.h; sourceTree = "<group>"; };
 		3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRecursiveMask.m; sourceTree = "<group>"; };
 		3B69B3BA13D1F08200C38CB1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		3B7104901407BDA200D3CCEE /* HPUntakenCrossroadsMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPUntakenCrossroadsMask.h; sourceTree = "<group>"; };
+		3B7104911407BDA200D3CCEE /* HPUntakenCrossroadsMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPUntakenCrossroadsMask.m; sourceTree = "<group>"; };
+		3B7104941407CAB700D3CCEE /* HPPathMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPathMask.h; sourceTree = "<group>"; };
+		3B7104951407CAB700D3CCEE /* HPPathMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPathMask.m; sourceTree = "<group>"; };
+		3B7104971407D09D00D3CCEE /* HPAriadnaMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAriadnaMask.h; sourceTree = "<group>"; };
+		3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAriadnaMask.m; sourceTree = "<group>"; };
 		3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu_spritesheet.plist; sourceTree = "<group>"; };
@@ -922,6 +931,12 @@
 				3B56F56014013DF700F99EDF /* HPZAxisMask.m */,
 				3B56F56C14015CF400F99EDF /* HPRecursiveMask.h */,
 				3B56F56D14015CF400F99EDF /* HPRecursiveMask.m */,
+				3B7104901407BDA200D3CCEE /* HPUntakenCrossroadsMask.h */,
+				3B7104911407BDA200D3CCEE /* HPUntakenCrossroadsMask.m */,
+				3B7104941407CAB700D3CCEE /* HPPathMask.h */,
+				3B7104951407CAB700D3CCEE /* HPPathMask.m */,
+				3B7104971407D09D00D3CCEE /* HPAriadnaMask.h */,
+				3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */,
 			);
 			name = Masks;
 			sourceTree = "<group>";
@@ -1204,6 +1219,9 @@
 				3B56F56414013EF200F99EDF /* HPTool.m in Sources */,
 				3B56F567140140C500F99EDF /* HPVisibilityMaskManipulationTool.m in Sources */,
 				3B56F56E14015CF400F99EDF /* HPRecursiveMask.m in Sources */,
+				3B7104921407BDA200D3CCEE /* HPUntakenCrossroadsMask.m in Sources */,
+				3B7104961407CAB800D3CCEE /* HPPathMask.m in Sources */,
+				3B7104991407D09E00D3CCEE /* HPAriadnaMask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

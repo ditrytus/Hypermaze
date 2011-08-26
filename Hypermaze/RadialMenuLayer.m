@@ -354,7 +354,7 @@
 }
 
 - (void) onWoolToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleAriadnaTool];
 }
 
 
@@ -369,7 +369,7 @@
 
 
 - (void) onSignPostToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleUntakenTool];
 }
 
 
@@ -433,7 +433,7 @@
 }
 
 - (void) onMazeToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleMazeTool];
 }
 
 - (void) onCrosshairToggle: (CCMenuItemToggle*) item {

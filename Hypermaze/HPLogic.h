@@ -15,6 +15,7 @@
 #import "HPYAxisMask.h"
 #import "HPZAxisMask.h"
 #import "HPRecursiveMask.h"
+#import "HPUntakenCrossroadsMask.h"
 
 #define EVENT_MOVEMENT_CANCELED @"hpLogicMovementCanceledEvent"
 #define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
@@ -29,6 +30,9 @@
 	HPTool* yAxisTool;
 	HPTool* zAxisTool;
 	HPTool* recursiveTool;
+	HPTool* untakenTool;
+	HPTool* ariadnaTool;
+	HPTool* mazeTool;
 	NSArray* movementHandlers;
 }
 
@@ -39,10 +43,13 @@
 @property (readonly, nonatomic) HPGameState* gameState;
 @property (readonly, nonatomic) HPVisibilityMask* visibilityMask;
 
+- (void) toggleAriadnaTool;
 - (void) toggleVisitedTool;
+- (void) toggleUntakenTool;
 - (void) toggleXAxisTool;
 - (void) toggleYAxisTool;
 - (void) toggleZAxisTool;
 - (void) toggleRecursiveTool;
+- (void) toggleMazeTool;
 
 @end
