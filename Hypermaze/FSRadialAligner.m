@@ -59,7 +59,7 @@
 		if (isFirst) {
 			marginAngle = angle / (itemsOnLevel - 1);
 		} else {
-			marginAngle = (margin + marg) / currentRadius;
+			marginAngle = (margin + (isLast ? marg : 0)) / currentRadius;
 		}
 		levelAngle = marginAngle * (itemsOnLevel - 1);
 		float beginAngle = resultAngle - levelAngle / 2.0f;

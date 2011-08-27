@@ -10,7 +10,7 @@
 #import "HPMoveHandler.h"
 #import	"FS3DPoint.h"
 
-#define BEGIN_POINT point3D(0, 0, 0)
+
 
 @interface HPGameState : NSObject <HPMoveHandler> {
 	int movesMade;

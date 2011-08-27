@@ -13,12 +13,17 @@
 #import "HPVisibilityMaskManipulationTool.h"
 #import "HPPositionMask.h"
 #import "HPAriadnaMask.h"
+#import "HPCheckpointMask.h"
+#import "HPRangeTool.h"
 
 @implementation HPLogic
 
 @synthesize maze;
 @synthesize gameState;
 @synthesize visibilityMask;
+@synthesize markMask;
+@synthesize checkpointTool;
+@synthesize recursiveTool;
 
 - (id)initWithMaze:(HPMaze*) newMaze;
 {
@@ -32,8 +37,9 @@
 		HPAriadnaMask* ariadnaMask = [[[HPAriadnaMask alloc] initWithGameState: gameState] autorelease];
 		HPVisitedMask* visitedMask = [[[HPVisitedMask alloc] initWithSize:[maze size] gameState:gameState] autorelease];
 		HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:visitedMask Maze:maze] autorelease];
+		HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:maze numOfCheckPoints:3]  autorelease];
 		
-		HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, visitedMask, untakenMask, nil] autorelease];
+		HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, visitedMask, untakenMask, checkPointMask, nil] autorelease];
 		
 		HPXAxisMask* xAxisMask = [[[HPXAxisMask alloc] initWithGameState:gameState] autorelease];
 		HPYAxisMask* yAxisMask = [[[HPYAxisMask alloc] initWithGameState:gameState] autorelease];
@@ -50,12 +56,21 @@
 		ariadnaTool	= [[HPVisibilityMaskManipulationTool alloc] initWithMask:ariadnaMask composite:brainComposite];
 		visitedTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:visitedMask composite:brainComposite];
 		untakenTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite];
+		int maxNumOfCheckpoints = [maze.solution count] / 50;
+		if (maxNumOfCheckpoints > 10) {
+			maxNumOfCheckpoints = 10;
+		}
+		if (maxNumOfCheckpoints < 1) {
+			maxNumOfCheckpoints	= 1;
+		}
+		checkpointTool = [[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:5];
 		xAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite];
 		yAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite];
 		zAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite];
-		recursiveTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:recursiveMask composite:planesComposite];
+		recursiveTool = [[HPRangeTool alloc] initWithMask:recursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:5];
 		mazeTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:composite];
 		visibilityMask = [composite retain];
+		markMask = [[HPMarkMask alloc] initWithUntaken:untakenMask visited:visitedMask ariadna:ariadnaMask checkpoint:checkPointMask];
 		movementHandlers = [[NSArray arrayWithObjects:gameState, visitedMask, ariadnaMask, recursiveMask, nil] retain];
     }
     return self;
@@ -73,6 +88,7 @@
 	[zAxisTool release];
 	[visitedTool release];
 	[movementHandlers release];
+	[markMask release];
 	[super dealloc];
 }
 
@@ -105,6 +121,16 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
 }
 
+- (void) toggleCheckpointTool {
+	[checkpointTool toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleMarkMask {
+	[markMask toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
 - (void) toggleXAxisTool {
 	[xAxisTool toggle];
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
@@ -127,6 +153,11 @@
 
 - (void) toggleMazeTool {
 	[mazeTool toggle];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) setCheckpointNumber: (int) num {
+	[checkpointTool setValue: num];
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
 }
 

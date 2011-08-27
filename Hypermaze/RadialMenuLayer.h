@@ -68,6 +68,8 @@
 	CCMenuItem* okRToggle;
 	NSIndexPath* okRIndexPath;
 	
+	NSMutableArray* flagSliderItems;
+	
 	FSRadialAligner* aligner;
 	
 }
@@ -87,4 +89,6 @@
 - (void) setRHidden;
 - (void) hideRToLevel: (int) level;
 - (void) onRToggle: (CCMenuItemToggle*) item;
+
+- (void) renderFlagSliderValue;
 @end

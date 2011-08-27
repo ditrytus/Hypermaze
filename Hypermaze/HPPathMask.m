@@ -29,7 +29,6 @@
 
 -(void)addToPath:(FS3DPoint) point {
 	if (![self contains: point]) {
-		NSLog(@"%@",[self stringFromPoint:point]);
 		[path addObject: [self stringFromPoint: point]];
 	}
 }

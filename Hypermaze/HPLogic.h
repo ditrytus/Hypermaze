@@ -16,6 +16,8 @@
 #import "HPZAxisMask.h"
 #import "HPRecursiveMask.h"
 #import "HPUntakenCrossroadsMask.h"
+#import "HPMarkMask.h"
+#import "HPRangeTool.h"
 
 #define EVENT_MOVEMENT_CANCELED @"hpLogicMovementCanceledEvent"
 #define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
@@ -25,14 +27,16 @@
 	HPMaze* maze;
 	HPGameState* gameState;
 	HPVisibilityMask* visibilityMask;
+	HPMarkMask* markMask;
 	HPTool* visitedTool;
 	HPTool* xAxisTool;
 	HPTool* yAxisTool;
 	HPTool* zAxisTool;
-	HPTool* recursiveTool;
+	HPRangeTool* recursiveTool;
 	HPTool* untakenTool;
 	HPTool* ariadnaTool;
 	HPTool* mazeTool;
+	HPRangeTool* checkpointTool;
 	NSArray* movementHandlers;
 }
 
@@ -42,14 +46,21 @@
 @property (readonly, nonatomic) HPMaze* maze;
 @property (readonly, nonatomic) HPGameState* gameState;
 @property (readonly, nonatomic) HPVisibilityMask* visibilityMask;
+@property (readonly, nonatomic) HPMarkMask* markMask;
+@property (readonly, nonatomic) HPRangeTool* recursiveTool;
+@property (readonly, nonatomic) HPRangeTool* checkpointTool;
 
 - (void) toggleAriadnaTool;
 - (void) toggleVisitedTool;
+- (void) toggleCheckpointTool;
 - (void) toggleUntakenTool;
+- (void) toggleMarkMask;
 - (void) toggleXAxisTool;
 - (void) toggleYAxisTool;
 - (void) toggleZAxisTool;
 - (void) toggleRecursiveTool;
 - (void) toggleMazeTool;
+
+- (void) setCheckpointNumber: (int) num;
 
 @end

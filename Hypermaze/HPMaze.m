@@ -12,17 +12,20 @@
 
 @synthesize topology;
 @synthesize size;
+@synthesize solution;
 
--(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize {
+-(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize solution: (NSArray*) arraySolution {
 	self = [super init];
     if (self) {
 		topology = arrayWithTopology;
 		size = arraySize;
+		solution = [arraySolution retain];
     }
     return self;
 }
 
 -(void) dealloc {
+	[solution release];
 	for (int i=0; i<size; i++) {
 		topology[i] = (Byte**) malloc(size*sizeof(Byte*));
 		for (int j=0; j<size; j++) {

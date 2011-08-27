@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface HPMaze : NSObject {
-	Byte ***topology;
+	Byte*** topology;
+	NSArray* solution;
 	int size;
 }
 
--(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize ;
+-(id)initWithTopology:(Byte ***) arrayWithTopology size: (int)arraySize solution: (NSArray*) arraySolution;
 
 @property (readonly, nonatomic) Byte*** topology;
 @property (readonly, nonatomic) int size;
+@property (readonly, nonatomic) NSArray* solution;
 
 @end

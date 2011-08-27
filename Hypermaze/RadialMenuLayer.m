@@ -22,6 +22,17 @@
 	toggleItem.position = ccp(0,0);
 	return [toggleItem retain];
 }
+
+- (CCMenuItemToggle*) menuItemFromOnFileName: (NSString*) onFileName offFileName: (NSString*) offFileName target: (SEL) target {
+	CCSprite* onSprite = [CCSprite spriteWithFile:onFileName];
+	CCMenuItemImage* onItem = [CCMenuItemImage itemFromNormalSprite:onSprite selectedSprite:nil];
+	CCSprite* offSprite = [CCSprite spriteWithFile: offFileName];
+	CCMenuItemImage* offItem = [CCMenuItemImage itemFromNormalSprite:offSprite selectedSprite:nil];
+	CCMenuItemToggle* toggleItem = [[CCMenuItemToggle itemWithTarget:self selector:target items:offItem, onItem, nil] retain];
+	toggleItem.selectedIndex = 0;
+	toggleItem.position = ccp(0,0);
+	return [toggleItem retain];
+}
 	
 - (CCMenuItemToggle*) hiddenMenuItemFromOnFrameName: (NSString*) onFrameName offFrameName: (NSString*) offFrameName target: (SEL) target {
 	CCMenuItemToggle* toggleItem = [self menuItemFromOnFrameName:onFrameName offFrameName:offFrameName target:target];
@@ -29,6 +40,20 @@
 	[toggleItem setIsEnabled: NO];
 	[toggleItem setVisible:NO];
 	return toggleItem;
+}
+
+- (CCMenuItemToggle*) hiddenMenuItemFromOnFileName: (NSString*) onFileName offFileName: (NSString*) offFileName target: (SEL) target {
+	CCMenuItemToggle* toggleItem = [self menuItemFromOnFileName: onFileName offFileName:offFileName target:target];
+	[toggleItem setOpacity: 0.0];
+	[toggleItem setIsEnabled: NO];
+	[toggleItem setVisible:NO];
+	return toggleItem;
+}
+
+- (void) renderFlagSliderValue {
+	for (int i=0; i< logic.checkpointTool.maxValue ; i++) {
+		[((CCMenuItemToggle*)[flagSliderItems objectAtIndex:i]) setSelectedIndex: (i < [logic.checkpointTool getValue]) ? 1 : 0];
+	}
 }
 
 - (id)initWithLogic: (HPLogic*) innerLogic
@@ -55,6 +80,15 @@
 		
 		flagToggle = [self hiddenMenuItemFromOnFrameName:@"flag_on.png" offFrameName:@"flag_off.png" target:@selector(onFlagToggle:)];
 		flagIndexPath= [brainIndexPath indexPathByAddingIndex:3];
+		
+		flagSliderItems = [[[NSMutableArray alloc] init] retain];
+		
+		for (int i=0; i< logic.checkpointTool.maxValue ; i++) {
+			CCMenuItemToggle* flagLevelToggle = [[self hiddenMenuItemFromOnFileName:@"slider_on_yellow.png" offFileName:@"slider_off_yellow.png" target:@selector(onFlagLevelToggle:)] autorelease];
+			[flagSliderItems addObject: flagLevelToggle];
+		}
+		
+		[self renderFlagSliderValue];
 		
 		brushToggle = [self hiddenMenuItemFromOnFrameName:@"brush_on.png" offFrameName:@"brush_off.png" target:@selector(onBrushToggle:)];
 		brushIndexPath= [brainIndexPath indexPathByAddingIndex:4];
@@ -118,13 +152,16 @@
 							  speakerToggle, noteToggle, xToggle, rToggle,
 							  brainToggle, planesToggle, eyeToggle, gearToggle,
 							  menuToggle, nil];
+		for (CCMenuItemToggle* flagSliderItem in flagSliderItems) {
+			[radialMenu addChild:flagSliderItem];
+		}
 		[self addChild: radialMenu];
 		
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		[self setPosition: ccp(0,-size.height/2.0 + 100)];
 		aligner	= [[FSRadialAligner alloc] initWithAngle:M_PI/1.2 radius:100 margin:100 root:
 				   [NSMutableArray arrayWithObjects:
-					[NSMutableArray arrayWithObjects:woolToggle, breadToggle, signpostToggle, flagToggle, brushToggle, nil],
+					[NSMutableArray arrayWithObjects:woolToggle, breadToggle, signpostToggle, flagSliderItems, brushToggle, nil],
 					[NSMutableArray arrayWithObjects:planesXToggle, planesYToggle, planesZToggle, crossToggle, nil],
 					[NSMutableArray arrayWithObjects:mazeToggle, crosshairToggle, cubeToggle, compassToggle, nil],
 					[NSMutableArray arrayWithObjects:
@@ -138,25 +175,29 @@
     
     return self;
 }
-
-- (void) showNodeFromRoot:(CCMenuItem*) node index: (NSIndexPath*) index {
+	
+- (void) showNodeFromRoot:(CCMenuItem*) node index: (NSIndexPath*) index radiusDelta: (int) radius marginDelata: (int) margin {
 	[node stopAllActions];
 	[node runAction: [CCSequence actions:
 					  [CCCallBlock actionWithBlock:^{ [node setVisible:YES]; }],
 					  [CCSpawn actions:
-					   [CCEaseBounceOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:[aligner alignElementOnIndex: index]]],
+					   [CCEaseBounceOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:[aligner alignElementOnIndex: index radiusDelta: radius marginDelta:margin]]],
 					   [CCFadeIn actionWithDuration:0.5],
 					   nil],
 					  nil]];
 	[node setIsEnabled:YES];
 }
 
-- (void) hideNode:(CCMenuItem*) item onIndex: (NSIndexPath*) index toLevel: (int) level {
+- (void) showNodeFromRoot:(CCMenuItem*) node index: (NSIndexPath*) index {
+	[self showNodeFromRoot:node index:index radiusDelta:0 marginDelata:0];
+}
+
+- (void) hideNode:(CCMenuItem*) item onIndex: (NSIndexPath*) index toLevel: (int) level radiusDelta: (int) radius marginDelata: (int) margin {
 	CGPoint position;
 	if (level == 0){
 		position = ccp(0,0);
 	} else {
-		position = [aligner alignElementOnIndex:index radiusDelta: [aligner getRadiusDeltaForIndex: index level: level] marginDelta:0];
+		position = [aligner alignElementOnIndex:index radiusDelta: radius + [aligner getRadiusDeltaForIndex: index level: level] marginDelta:margin];
 	}
 	[item stopAllActions];
 	[item runAction: [CCSequence actions:
@@ -169,16 +210,50 @@
 	[item setIsEnabled:NO];
 }
 
-- (void) setHiddenNode: (CCMenuItem*) node onIndex: (NSIndexPath*) index toLevel: (int) level {
-	float radiusDelta = [aligner getRadiusDeltaForIndex: index level: level];
-	node.position = [aligner alignElementOnIndex:index radiusDelta: radiusDelta marginDelta:0];
+- (void) hideNode:(CCMenuItem*) item onIndex: (NSIndexPath*) index toLevel: (int) level  {
+	[self hideNode:item onIndex:index toLevel:level radiusDelta:0 marginDelata:0];
 }
+
+
+- (void) setHiddenNode: (CCMenuItem*) node onIndex: (NSIndexPath*) index toLevel: (int) level radiusDelta: (int) radius marginDelta: (int) margin {
+	float radiusDelta = [aligner getRadiusDeltaForIndex: index level: level] + radius;
+	node.position = [aligner alignElementOnIndex:index radiusDelta: radiusDelta marginDelta:margin];
+}
+
+- (void) setHiddenNode: (CCMenuItem*) node onIndex: (NSIndexPath*) index toLevel: (int) level {
+	[self setHiddenNode:node onIndex:index toLevel:level radiusDelta:0 marginDelta:0];
+}
+
+- (void) showFlag {
+	for(int i=0; i<[flagSliderItems count]; i++) {
+		[self showNodeFromRoot:[flagSliderItems objectAtIndex: i] index: [flagIndexPath indexPathByAddingIndex:i] radiusDelta:-20 marginDelata:-50];
+	}
+}
+
+- (void) setFlagHidden {
+	int level = [flagIndexPath length];
+	for (int i=0; i<[flagSliderItems count]; i++) {
+		[self setHiddenNode:[flagSliderItems objectAtIndex: i] onIndex: [flagIndexPath indexPathByAddingIndex:i] toLevel: level radiusDelta:-20 marginDelta:-50];
+	}
+}
+
+- (void) hideFlagToLevel: (int) level {
+	for(int i=0; i<[flagSliderItems count]; i++) {
+		[self hideNode:[flagSliderItems objectAtIndex: i] onIndex:[flagIndexPath indexPathByAddingIndex:i] toLevel:level radiusDelta:-20 marginDelata:-50];
+	}
+}
+
 
 - (void) showBrain {
 	[self showNodeFromRoot:woolToggle index: woolIndexPath];
 	[self showNodeFromRoot:breadToggle index: breadIndexPath];
 	[self showNodeFromRoot:signpostToggle index: signpostIndexPath];
 	[self showNodeFromRoot:flagToggle index: flagIndexPath];
+	if ([flagToggle selectedIndex] == 0) {
+		[self setFlagHidden];
+	} else {
+		[self showFlag];
+	}
 	[self showNodeFromRoot:brushToggle index: brushIndexPath];
 }
 
@@ -196,9 +271,9 @@
 	[self hideNode:breadToggle onIndex:breadIndexPath toLevel:level];
 	[self hideNode:signpostToggle onIndex:signpostIndexPath toLevel:level];
 	[self hideNode:flagToggle onIndex:flagIndexPath toLevel:level];
+	[self hideFlagToLevel:level];
 	[self hideNode:brushToggle onIndex:brushIndexPath toLevel:level];
 }
-
 
 - (void) showPlanes {
 	[self showNodeFromRoot:planesXToggle index: planesXIndexPath];
@@ -271,7 +346,6 @@
 	[self hideRToLevel: level];
 }
 
-
 - (void) showX {
 	[self showNodeFromRoot:okXToggle index: okXIndexPath];
 }
@@ -297,7 +371,6 @@
 - (void) hideRToLevel: (int) level {
 	[self hideNode:okRToggle onIndex:okRIndexPath toLevel:level];
 }
-
 
 - (void) showMenu {
 	[self showNodeFromRoot:brainToggle index: brainIndexPath];
@@ -364,7 +437,18 @@
 
 
 - (void) onFlagToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleCheckpointTool];
+	int currentLevel = [flagIndexPath length];
+	if ([flagToggle selectedIndex] == 0) {
+		[self hideFlagToLevel: currentLevel];
+	} else {
+		[self showFlag];
+	}
+}
+
+- (void) onFlagLevelToggle: (CCMenuItemToggle*) item {
+	[logic setCheckpointNumber:[flagSliderItems indexOfObject:item] + 1];
+	[self renderFlagSliderValue];
 }
 
 
@@ -374,7 +458,7 @@
 
 
 - (void) onBrushToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleMarkMask];
 }
 
 

@@ -11,6 +11,12 @@
 		3B1DDF9813D194180006E818 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9713D194180006E818 /* app-icon-57.png */; };
 		3B1DDF9A13D194380006E818 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9913D194380006E818 /* app-icon-114.png */; };
 		3B1DDF9C13D194490006E818 /* app-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9B13D194490006E818 /* app-icon-72.png */; };
+		3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DA04B1409293F004AFBCD /* HPMarkMask.m */; };
+		3B3DA05414093646004AFBCD /* slider_off_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05014093646004AFBCD /* slider_off_pink.png */; };
+		3B3DA05514093646004AFBCD /* slider_off_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05114093646004AFBCD /* slider_off_yellow.png */; };
+		3B3DA05614093646004AFBCD /* slider_on_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05214093646004AFBCD /* slider_on_pink.png */; };
+		3B3DA05714093646004AFBCD /* slider_on_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05314093646004AFBCD /* slider_on_yellow.png */; };
+		3B3DA05A140943CF004AFBCD /* HPRangeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DA059140943CF004AFBCD /* HPRangeTool.m */; };
 		3B3EB9EE13E2D4CD001A0DD4 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */; };
 		3B3EB9F113E2D64E001A0DD4 /* HPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */; };
 		3B3EB9F713E306A8001A0DD4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3EB9F613E306A7001A0DD4 /* Game.m */; };
@@ -168,6 +174,8 @@
 		3B92C78613E32A3700C1A395 /* chambers_red.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78213E32A3700C1A395 /* chambers_red.plist */; };
 		3B92C78713E32A3700C1A395 /* chambers_yellow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78313E32A3700C1A395 /* chambers_yellow.plist */; };
 		3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */; };
+		3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */; };
+		3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */; };
 		3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */; };
 		3BF0799813FEDB4E00B52E65 /* FSTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */; };
 		3BF8DBB113FFC949006B16C1 /* RadialMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */; };
@@ -184,6 +192,16 @@
 		3B1DDF9713D194180006E818 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-57.png"; path = "../app-icon-57.png"; sourceTree = "<group>"; };
 		3B1DDF9913D194380006E818 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-114.png"; path = "../app-icon-114.png"; sourceTree = "<group>"; };
 		3B1DDF9B13D194490006E818 /* app-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-72.png"; path = "../app-icon-72.png"; sourceTree = "<group>"; };
+		3B3DA04814092888004AFBCD /* HPChamberMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPChamberMark.h; sourceTree = "<group>"; };
+		3B3DA04A1409293F004AFBCD /* HPMarkMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMarkMask.h; sourceTree = "<group>"; };
+		3B3DA04B1409293F004AFBCD /* HPMarkMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMarkMask.m; sourceTree = "<group>"; };
+		3B3DA05014093646004AFBCD /* slider_off_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_off_pink.png; sourceTree = "<group>"; };
+		3B3DA05114093646004AFBCD /* slider_off_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_off_yellow.png; sourceTree = "<group>"; };
+		3B3DA05214093646004AFBCD /* slider_on_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_on_pink.png; sourceTree = "<group>"; };
+		3B3DA05314093646004AFBCD /* slider_on_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_on_yellow.png; sourceTree = "<group>"; };
+		3B3DA058140943CF004AFBCD /* HPRangeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPRangeTool.h; sourceTree = "<group>"; };
+		3B3DA059140943CF004AFBCD /* HPRangeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPRangeTool.m; sourceTree = "<group>"; };
+		3B3DA05B1409463F004AFBCD /* HPLeveled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLeveled.h; sourceTree = "<group>"; };
 		3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		3B3EB9EF13E2D64E001A0DD4 /* HPConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPConfiguration.h; sourceTree = "<group>"; };
 		3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPConfiguration.m; sourceTree = "<group>"; };
@@ -483,6 +501,11 @@
 		3B92C78313E32A3700C1A395 /* chambers_yellow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = chambers_yellow.plist; sourceTree = "<group>"; };
 		3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIsoSystem.h; sourceTree = "<group>"; };
 		3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIsoSystem.m; sourceTree = "<group>"; };
+		3B9CEEC2140904490089ADF3 /* HPGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGlobals.h; sourceTree = "<group>"; };
+		3B9CEEC4140905E20089ADF3 /* HPPathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPPathFinder.h; path = ../HPPathFinder.h; sourceTree = "<group>"; };
+		3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPPathFinder.m; path = ../HPPathFinder.m; sourceTree = "<group>"; };
+		3B9CEEC71409173B0089ADF3 /* HPCheckpointMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCheckpointMask.h; sourceTree = "<group>"; };
+		3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCheckpointMask.m; sourceTree = "<group>"; };
 		3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeLayer.h; sourceTree = "<group>"; };
 		3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeLayer.m; sourceTree = "<group>"; };
 		3BF0799613FEDB4E00B52E65 /* FSTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTreeNode.h; sourceTree = "<group>"; };
@@ -558,6 +581,8 @@
 				3B40C90113D9EF2600C2BEDF /* HPMaze.m */,
 				3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */,
 				3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */,
+				3B9CEEC4140905E20089ADF3 /* HPPathFinder.h */,
+				3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */,
 				3B40C90613D9FE6900C2BEDF /* HPChamberUtil.h */,
 				3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */,
 				3B40C90913D9FF7700C2BEDF /* HPDirection.h */,
@@ -569,6 +594,8 @@
 				3B7E1BDB13E414A100D80D8F /* HPMoveHandler.h */,
 				3B7E1BDD13E4158400D80D8F /* HPGameState.h */,
 				3B7E1BDE13E4158400D80D8F /* HPGameState.m */,
+				3B9CEEC2140904490089ADF3 /* HPGlobals.h */,
+				3B3DA04814092888004AFBCD /* HPChamberMark.h */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -937,6 +964,11 @@
 				3B7104951407CAB700D3CCEE /* HPPathMask.m */,
 				3B7104971407D09D00D3CCEE /* HPAriadnaMask.h */,
 				3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */,
+				3B9CEEC71409173B0089ADF3 /* HPCheckpointMask.h */,
+				3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */,
+				3B3DA04A1409293F004AFBCD /* HPMarkMask.h */,
+				3B3DA04B1409293F004AFBCD /* HPMarkMask.m */,
+				3B3DA05B1409463F004AFBCD /* HPLeveled.h */,
 			);
 			name = Masks;
 			sourceTree = "<group>";
@@ -961,6 +993,8 @@
 				3B56F56314013EF100F99EDF /* HPTool.m */,
 				3B56F565140140C400F99EDF /* HPVisibilityMaskManipulationTool.h */,
 				3B56F566140140C400F99EDF /* HPVisibilityMaskManipulationTool.m */,
+				3B3DA058140943CF004AFBCD /* HPRangeTool.h */,
+				3B3DA059140943CF004AFBCD /* HPRangeTool.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -978,6 +1012,10 @@
 		3B7E1BE013E44B1D00D80D8F /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				3B3DA05014093646004AFBCD /* slider_off_pink.png */,
+				3B3DA05114093646004AFBCD /* slider_off_yellow.png */,
+				3B3DA05214093646004AFBCD /* slider_on_pink.png */,
+				3B3DA05314093646004AFBCD /* slider_on_yellow.png */,
 				3BF8DBB413FFCE56006B16C1 /* interface.plist */,
 				3BF8DBB513FFCE56006B16C1 /* interface.png */,
 				3B7E1BE113E44B4000D80D8F /* iso_arrow_n.png */,
@@ -1083,6 +1121,10 @@
 				3B7E1BEC13E44B4000D80D8F /* iso_arrow_sw.png in Resources */,
 				3BF8DBB613FFCE56006B16C1 /* interface.plist in Resources */,
 				3BF8DBB713FFCE56006B16C1 /* interface.png in Resources */,
+				3B3DA05414093646004AFBCD /* slider_off_pink.png in Resources */,
+				3B3DA05514093646004AFBCD /* slider_off_yellow.png in Resources */,
+				3B3DA05614093646004AFBCD /* slider_on_pink.png in Resources */,
+				3B3DA05714093646004AFBCD /* slider_on_yellow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1222,6 +1264,10 @@
 				3B7104921407BDA200D3CCEE /* HPUntakenCrossroadsMask.m in Sources */,
 				3B7104961407CAB800D3CCEE /* HPPathMask.m in Sources */,
 				3B7104991407D09E00D3CCEE /* HPAriadnaMask.m in Sources */,
+				3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */,
+				3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */,
+				3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */,
+				3B3DA05A140943CF004AFBCD /* HPRangeTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

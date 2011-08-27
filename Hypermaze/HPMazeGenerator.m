@@ -12,6 +12,8 @@
 #import "HPDirection.h"
 #import "HPDirectionUtil.h"
 #import "HPChamberUtil.h"
+#import "HPGlobals.h"
+#import "HPPathFinder.h"
 
 #define MOLE_MAX_LENGTH 8000
 
@@ -75,7 +77,7 @@ Byte *** initTopology(int size) {
 }
 
 void digEntranceAndExit(Byte ***topology,int size) {
-	crushWallInDirection(topology, point3D(0, 0, 0), dirSouthEast);
+	crushWallInDirection(topology, BEGIN_POINT, dirSouthEast);
 	crushWallInDirection(topology, point3D(size-1, size-1, size-1), dirSouthWest);
 
 }
@@ -86,7 +88,7 @@ void digEntranceAndExit(Byte ***topology,int size) {
 	int totalChambers = (int)pow(size, 3);
 	int diggedChambers = 1;
 	int moleLength = 0;
-	FS3DPoint molePosition = point3D(0, 0, 0);
+	FS3DPoint molePosition = BEGIN_POINT;
 	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
 	do {
 		moleLength++;		
@@ -128,20 +130,8 @@ void digEntranceAndExit(Byte ***topology,int size) {
 		}
 	} while (totalChambers > diggedChambers);
 	digEntranceAndExit(topology,size);
-	maze = [[HPMaze alloc] initWithTopology: topology size: size];
-	
-//	TODO: Do wywalenia
-	
-//	for (int i=0; i<size; i++) {
-//		NSLog(@" ");
-//		for (int j=0; j<size; j++) {
-//			NSMutableString* log = [[NSMutableString alloc] init];
-//			for (int h=0; h<size; h++) {
-//				[log appendFormat:@"%@  ", [NSNumber numberWithChar:topology[i][j][h]]];
-//			}
-//			NSLog(@"%@",log);
-//		}	
-//	}
+	NSArray* solution = [HPPathFinder findPathInTopology:topology size:size from:BEGIN_POINT to:point3D(size-1, size-1, size-1)];
+	maze = [[HPMaze alloc] initWithTopology: topology size: size solution: solution];
 	status = genComplete;
 }
 

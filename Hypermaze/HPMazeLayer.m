@@ -89,17 +89,32 @@ void loadChamberSet(NSString *colorName) {
 - (void) redrawMazeTexture {
 	FS3DPoint curPos = [[logic gameState] currentPosition];
 	HPVisibilityMask* visibilityMask = logic.visibilityMask;
+	HPMarkMask* markMask = logic.markMask;
 	CCSprite* chamber; 
 	[mazeTexture beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
 	for (int z=0; z<mazeSize; z++) {
 		for (int y=mazeSize-1; y>=0; y--) {
 			for (int x=mazeSize-1; x>=0; x--) {
-				if ([[visibilityMask getValue:point3D(x, y, z)] boolValue])
+				FS3DPoint point = point3D(x, y, z);
+				if ([[visibilityMask getValue: point] boolValue])
 				{
 					if (curPos.x == x && curPos.y == y && curPos.z == z) {
 						chamber = yellowChamberPrototypes[topology[x][y][z]-1];
 					} else {
-						chamber = pinkChamberPrototypes[topology[x][y][z]-1];
+						switch ([markMask getValue: point]) {
+							case cmVisited:
+								chamber = yellowChamberPrototypes[topology[x][y][z]-1];
+								break;
+							case cmAriadna:
+								chamber = greenChamberPrototypes[topology[x][y][z]-1];
+								break;
+							case cmUntaken:
+								chamber = redChamberPrototypes[topology[x][y][z]-1];
+								break;
+							default:
+								chamber = pinkChamberPrototypes[topology[x][y][z]-1];
+								break;
+						}
 					}
 					chamber.position = positionCache[x][y][z];
 					[chamber visit];

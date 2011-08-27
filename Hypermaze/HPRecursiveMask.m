@@ -12,8 +12,6 @@
 
 @implementation HPRecursiveMask
 
-@synthesize maxDepth;
-
 - (id)initWithGameState: (HPGameState*) state maze: (HPMaze*) mazeParam depth: (int) d
 {
     self = [super initWithSize: [mazeParam size]];
@@ -29,6 +27,15 @@
 - (void) refresh {
 	[self clearArray];
 	[self visitChamber: gameState.currentPosition depth: 0];
+}
+
+- (void) setLevel: (int) level {
+	maxDepth = level;
+	[self refresh];
+}
+
+- (int) getLevel {
+	return maxDepth;
 }
 
 - (void) visitChamber: (FS3DPoint) position depth: (int) depth {

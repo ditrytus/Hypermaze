@@ -8,6 +8,7 @@
 
 #import "HPGameState.h"
 #import "HPDirectionUtil.h"
+#import "HPGlobals.h"
 
 @implementation HPGameState
 

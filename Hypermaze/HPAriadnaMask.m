@@ -8,6 +8,7 @@
 
 #import "HPAriadnaMask.h"
 #import "HPDirectionUtil.h"
+#import "HPGlobals.h"
 
 @implementation HPAriadnaMask
 

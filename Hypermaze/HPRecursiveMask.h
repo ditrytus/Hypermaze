@@ -9,17 +9,16 @@
 #import "HPArrayMask.h"
 #import "HPGameState.h"
 #import "HPMaze.h"
+#import "HPLeveled.h"
 
-@interface HPRecursiveMask : HPArrayMask <HPMoveHandler> {
+@interface HPRecursiveMask : HPArrayMask <HPMoveHandler, HPLeveled> {
 	HPGameState* gameState;
 	HPMaze* maze;
 	int maxDepth;
 }
 
-@property(nonatomic, readwrite) int maxDepth;
-
 - (void) refresh;
 - (void) visitChamber: (FS3DPoint) position depth: (int) depth;
-- (id)initWithGameState: (HPGameState*) state maze: (HPMaze*) mazeParam depth: (int) d;
+- (id) initWithGameState: (HPGameState*) state maze: (HPMaze*) mazeParam depth: (int) d;
 
 @end
