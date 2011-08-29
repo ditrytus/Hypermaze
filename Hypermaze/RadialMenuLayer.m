@@ -7,7 +7,6 @@
 //
 
 #import "RadialMenuLayer.h"
-
 #import <math.h>
 
 @implementation RadialMenuLayer
@@ -53,6 +52,12 @@
 - (void) renderFlagSliderValue {
 	for (int i=0; i< logic.checkpointTool.maxValue ; i++) {
 		[((CCMenuItemToggle*)[flagSliderItems objectAtIndex:i]) setSelectedIndex: (i < [logic.checkpointTool getValue]) ? 1 : 0];
+	}
+}
+
+- (void) renderCrossSliderValue {
+	for (int i=0; i< logic.recursiveTool.maxValue ; i++) {
+		[((CCMenuItemToggle*)[crossSliderItems objectAtIndex:i]) setSelectedIndex: (i < [logic.recursiveTool getValue]) ? 1 : 0];
 	}
 }
 
@@ -108,6 +113,15 @@
 		crossToggle	= [self hiddenMenuItemFromOnFrameName:@"cross_on.png" offFrameName:@"cross_off.png" target:@selector(onCrossToggle:)];
 		crossIndexPath = [planesIndexPath indexPathByAddingIndex:3];
 		
+		crossSliderItems = [[[NSMutableArray alloc] init] retain];
+		
+		for (int i=0; i < logic.recursiveTool.maxValue ; i++) {
+			CCMenuItemToggle* crossLevelToggle = [[self hiddenMenuItemFromOnFileName:@"slider_on_pink.png" offFileName:@"slider_off_pink.png" target:@selector(onCrossLevelToggle:)] autorelease];
+			[crossSliderItems addObject: crossLevelToggle];
+		}
+		
+		[self renderCrossSliderValue];
+		
 		eyeToggle = [self hiddenMenuItemFromOnFrameName:@"eye_on.png" offFrameName:@"eye_off.png" target:@selector(onEyeToggle:)];
 		eyeIndexPath = [NSIndexPath indexPathWithIndex:2];
 		
@@ -152,8 +166,12 @@
 							  speakerToggle, noteToggle, xToggle, rToggle,
 							  brainToggle, planesToggle, eyeToggle, gearToggle,
 							  menuToggle, nil];
+		
 		for (CCMenuItemToggle* flagSliderItem in flagSliderItems) {
 			[radialMenu addChild:flagSliderItem];
+		}
+		for (CCMenuItemToggle* crossSliderItem in crossSliderItems) {
+			[radialMenu addChild:crossSliderItem];
 		}
 		[self addChild: radialMenu];
 		
@@ -162,7 +180,7 @@
 		aligner	= [[FSRadialAligner alloc] initWithAngle:M_PI/1.2 radius:100 margin:100 root:
 				   [NSMutableArray arrayWithObjects:
 					[NSMutableArray arrayWithObjects:woolToggle, breadToggle, signpostToggle, flagSliderItems, brushToggle, nil],
-					[NSMutableArray arrayWithObjects:planesXToggle, planesYToggle, planesZToggle, crossToggle, nil],
+					[NSMutableArray arrayWithObjects:planesXToggle, planesYToggle, planesZToggle, crossSliderItems, nil],
 					[NSMutableArray arrayWithObjects:mazeToggle, crosshairToggle, cubeToggle, compassToggle, nil],
 					[NSMutableArray arrayWithObjects:
 					 speakerToggle,
@@ -243,7 +261,6 @@
 	}
 }
 
-
 - (void) showBrain {
 	[self showNodeFromRoot:woolToggle index: woolIndexPath];
 	[self showNodeFromRoot:breadToggle index: breadIndexPath];
@@ -275,11 +292,35 @@
 	[self hideNode:brushToggle onIndex:brushIndexPath toLevel:level];
 }
 
+- (void) showCross {
+	for(int i=0; i<[crossSliderItems count]; i++) {
+		[self showNodeFromRoot:[crossSliderItems objectAtIndex: i] index: [crossIndexPath indexPathByAddingIndex:i] radiusDelta:-20 marginDelata:-50];
+	}
+}
+
+- (void) setCrossHidden {
+	int level = [crossIndexPath length];
+	for (int i=0; i<[crossSliderItems count]; i++) {
+		[self setHiddenNode:[crossSliderItems objectAtIndex: i] onIndex: [crossIndexPath indexPathByAddingIndex:i] toLevel: level radiusDelta:-20 marginDelta:-50];
+	}
+}
+
+- (void) hideCrossToLevel: (int) level {
+	for(int i=0; i<[crossSliderItems count]; i++) {
+		[self hideNode:[crossSliderItems objectAtIndex: i] onIndex:[crossIndexPath indexPathByAddingIndex:i] toLevel:level radiusDelta:-20 marginDelata:-50];
+	}
+}
+
 - (void) showPlanes {
 	[self showNodeFromRoot:planesXToggle index: planesXIndexPath];
 	[self showNodeFromRoot:planesYToggle index: planesYIndexPath];
 	[self showNodeFromRoot:planesZToggle index: planesZIndexPath];
 	[self showNodeFromRoot:crossToggle index: crossIndexPath];
+	if ([crossToggle selectedIndex] == 0) {
+		[self setCrossHidden];
+	} else {
+		[self showCross];
+	}
 }
 
 - (void) setPlanesHidden {
@@ -295,8 +336,8 @@
 	[self hideNode:planesYToggle onIndex:planesYIndexPath toLevel:level];
 	[self hideNode:planesZToggle onIndex:planesZIndexPath toLevel:level];
 	[self hideNode:crossToggle onIndex:crossIndexPath toLevel:level];
+	[self hideCrossToLevel:level];
 }
-
 
 - (void) showEye {
 	[self showNodeFromRoot:mazeToggle index: mazeIndexPath];
@@ -499,6 +540,17 @@
 
 - (void) onCrossToggle: (CCMenuItemToggle*) item {
 	[logic toggleRecursiveTool];
+	int currentLevel = [crossIndexPath length];
+	if ([crossToggle selectedIndex] == 0) {
+		[self hideCrossToLevel: currentLevel];
+	} else {
+		[self showCross];
+	}
+}
+
+- (void) onCrossLevelToggle: (CCMenuItemToggle*) item {
+	[logic setRecursionDepth:[crossSliderItems indexOfObject:item] + 1];
+	[self renderCrossSliderValue];
 }
 
 - (void) onEyeToggle: (CCMenuItemToggle*) item {

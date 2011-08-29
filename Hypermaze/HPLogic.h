@@ -62,5 +62,6 @@
 - (void) toggleMazeTool;
 
 - (void) setCheckpointNumber: (int) num;
+- (void) setRecursionDepth: (int) num;
 
 @end

@@ -137,6 +137,7 @@
 		3B43E35D13D0A71F006AF368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35C13D0A71F006AF368 /* AppDelegate.m */; };
 		3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35F13D0A71F006AF368 /* RootViewController.m */; };
 		3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */; };
+		3B472F4C140A4D1A00545739 /* grass_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B472F4B140A4D1A00545739 /* grass_tile.png */; };
 		3B56F542140123D600F99EDF /* HPVisibilityMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F541140123D600F99EDF /* HPVisibilityMask.m */; };
 		3B56F546140124B200F99EDF /* HPArrayMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F545140124B200F99EDF /* HPArrayMask.m */; };
 		3B56F5491401276200F99EDF /* HPVisitedMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F5481401276200F99EDF /* HPVisitedMask.m */; };
@@ -443,6 +444,7 @@
 		3B43E36113D0A71F006AF368 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		3B43E36413D0A71F006AF368 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
+		3B472F4B140A4D1A00545739 /* grass_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass_tile.png; sourceTree = "<group>"; };
 		3B56F540140123D600F99EDF /* HPVisibilityMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPVisibilityMask.h; sourceTree = "<group>"; };
 		3B56F541140123D600F99EDF /* HPVisibilityMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPVisibilityMask.m; sourceTree = "<group>"; };
 		3B56F544140124B200F99EDF /* HPArrayMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPArrayMask.h; sourceTree = "<group>"; };
@@ -1031,6 +1033,7 @@
 		3B92C5DD13E3283000C1A395 /* MazeElements */ = {
 			isa = PBXGroup;
 			children = (
+				3B472F4B140A4D1A00545739 /* grass_tile.png */,
 				3B92C78013E32A3700C1A395 /* chambers_green.plist */,
 				3B92C78113E32A3700C1A395 /* chambers_pink.plist */,
 				3B92C78213E32A3700C1A395 /* chambers_red.plist */,
@@ -1125,6 +1128,7 @@
 				3B3DA05514093646004AFBCD /* slider_off_yellow.png in Resources */,
 				3B3DA05614093646004AFBCD /* slider_on_pink.png in Resources */,
 				3B3DA05714093646004AFBCD /* slider_on_yellow.png in Resources */,
+				3B472F4C140A4D1A00545739 /* grass_tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

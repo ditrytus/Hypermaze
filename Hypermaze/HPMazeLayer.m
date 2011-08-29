@@ -28,6 +28,28 @@ void loadChamberSet(NSString *colorName) {
 															 textureFile: [NSString stringWithFormat: @"chambers_%@.png", colorName]];
 }
 
+- (CCSprite*) grassBackgroundWidth: (int) width height: (int) height {
+	CCSprite* grassTile = [CCSprite spriteWithFile:@"grass_tile.png"];
+	int logicWidth = (width / grassTile.textureRect.size.width) + 1;
+	int logicHeigth = (height / grassTile.textureRect.size.height) + 1;
+	CCRenderTexture* grassBackground = [CCRenderTexture renderTextureWithWidth: grassTile.textureRect.size.width * logicWidth height:grassTile.textureRect.size.height * logicHeigth];
+	FSIsoSystem* grassIso = [[FSIsoSystem alloc] initWithTileSize:grassTile.textureRect.size mapSize:CGSizeMake(logicWidth+logicHeigth-1, logicWidth+logicHeigth-1)];
+	CGPoint viewDelta = [grassIso getTileRealPosition:ccp(0,logicWidth - 1)];
+	[grassBackground beginWithClear:0 g:0 b:0 a:1];
+	for (int i=0; i<2*logicHeigth-1; i++) {
+		int x = logicWidth-1+i/2;
+		int y = (i+1)/2;
+		int jLimit = i%2==0?logicWidth:logicWidth-1;
+		for (int j=0; j<jLimit; j++) {
+			CGPoint isoPosition = [grassIso getTileRealPosition:ccp(x-j,y+j)];
+			grassTile.position = ccpSub(isoPosition, viewDelta);
+			[grassTile visit];
+		}
+	}
+	[grassBackground end];
+	return [CCSprite spriteWithTexture:grassBackground.sprite.texture];
+}
+
 - (id)initWithLogic: (HPLogic*) newLogic
 {
     self = [super init];
@@ -38,6 +60,14 @@ void loadChamberSet(NSString *colorName) {
 		mazeSize = [[logic maze] size];
 		topology = [[logic maze] topology];
 		isoSys = [[[FSIsoSystem alloc] initWithTileSize: TILE_SIZE mapSize:CGSizeMake(mazeSize,mazeSize)] retain];
+		CGSize size = [[CCDirector sharedDirector] winSize];
+		CGPoint middleScreen = ccp( size.width /2 , size.height/2 );
+		CGPoint firstChamberPos = [self getChamberPos:point3D(0, 0, 0)];
+		
+		CCSprite* backgroud = [self grassBackgroundWidth:1024 height:1024];
+		backgroud.position = middleScreen;
+		[self addChild: backgroud];
+		
 		loadChamberSet(PINK);
 		pinkChamberPrototypes = malloc(sizeof(CCSprite*)*64);
 		loadChamberSet(YELLOW);
@@ -62,9 +92,7 @@ void loadChamberSet(NSString *colorName) {
 		}
 		CGSize mazeTextureSize = CGSizeMake(mazeSize*(CHAMBER_TEXTURE_SIZE.width+30),(CHAMBER_TEXTURE_SIZE.height+25)*mazeSize);
 		mazeTexture = [CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height];
-		CGSize size = [[CCDirector sharedDirector] winSize];
-		CGPoint middleScreen = ccp( size.width /2 , size.height/2 );
-		CGPoint firstChamberPos = [self getChamberPos:point3D(0, 0, 0)];
+		[mazeTexture.sprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
 		mazeTexture.sprite.anchorPoint = ccp((double)firstChamberPos.x/(double)mazeTextureSize.width,1.0-((double)firstChamberPos.y/(double)mazeTextureSize.height));
 		mazeTexture.sprite.position = middleScreen;
 		positionCache = malloc(sizeof(CGPoint**)*mazeSize);
@@ -80,7 +108,9 @@ void loadChamberSet(NSString *colorName) {
 				}
 			}
 		}
+		
 		[self redrawMazeTexture];
+		
 		[self addChild: mazeTexture];
     }
     return self;
@@ -90,8 +120,9 @@ void loadChamberSet(NSString *colorName) {
 	FS3DPoint curPos = [[logic gameState] currentPosition];
 	HPVisibilityMask* visibilityMask = logic.visibilityMask;
 	HPMarkMask* markMask = logic.markMask;
-	CCSprite* chamber; 
-	[mazeTexture beginWithClear:0.0f g:0.0f b:0.0f a:1.0f];
+	CCSprite* chamber;
+	[mazeTexture clear:0.0f g:0.0f b:0.0f a:0.0f];
+	[mazeTexture begin];
 	for (int z=0; z<mazeSize; z++) {
 		for (int y=mazeSize-1; y>=0; y--) {
 			for (int x=mazeSize-1; x>=0; x--) {

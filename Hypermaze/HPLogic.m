@@ -161,4 +161,9 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
 }
 
+- (void) setRecursionDepth: (int) num {
+	[recursiveTool setValue: num];
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
 @end

@@ -69,6 +69,7 @@
 	NSIndexPath* okRIndexPath;
 	
 	NSMutableArray* flagSliderItems;
+	NSMutableArray* crossSliderItems;
 	
 	FSRadialAligner* aligner;
 	
