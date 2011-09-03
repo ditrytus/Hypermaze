@@ -10,8 +10,11 @@
 #import "cocos2d.h"
 #import "FSRadialAligner.h"
 #import "HPLogic.h"
+#import "RadialMenuParticleSystem.h"
 
 @interface RadialMenuLayer : CCLayer {
+	bool isMenuDisplayed;
+	
 	HPLogic* logic;
 	
 	CCMenuItemToggle* menuToggle;
@@ -71,8 +74,9 @@
 	NSMutableArray* flagSliderItems;
 	NSMutableArray* crossSliderItems;
 	
-	FSRadialAligner* aligner;
+	CCSprite* background;
 	
+	FSRadialAligner* aligner;
 }
 
 - (id)initWithLogic: (HPLogic*) innerLogic;

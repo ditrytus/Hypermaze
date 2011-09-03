@@ -20,9 +20,12 @@
 	CCLayer* interfaceLayer;
 	CGSize size;
 	CGPoint middleScreen;
-	
+	CCSprite* compassArrow;
 }
 
 - (id) initWithLogic: (HPLogic*) newLogic;
+
+- (void) onViewChanged: (NSNotification*) notification;
+- (void) onPositionChanged: (NSNotification*) notification;
 
 @end

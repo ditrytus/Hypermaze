@@ -17,5 +17,6 @@ BOOL isPositionValid(FS3DPoint position, int size);
 + (BOOL) canGoInDirection: (HPDirection) direction fromChamber: (Byte) chamber;
 + (BOOL) canGoInDirection: (HPDirection) direction fromChamber: (Byte) chamber currentPosition: (FS3DPoint) pos size: (int) size;
 + (Byte) createPassageInDirection: (HPDirection) direction chamber: (Byte) chamber;
++ (Byte) rotateChamber: (Byte) chamber by: (int) rot;
 
 @end

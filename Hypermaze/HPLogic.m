@@ -24,11 +24,19 @@
 @synthesize markMask;
 @synthesize checkpointTool;
 @synthesize recursiveTool;
+@synthesize showBorders;
+@synthesize showCompass;
+@synthesize showTarget;
+@synthesize rotation;
 
 - (id)initWithMaze:(HPMaze*) newMaze;
 {
     self = [super init];
     if (self) {
+		showBorders = false;
+		showCompass = false;
+		showTarget = false;
+		
 		maze = [newMaze retain];
 		gameState = [[HPGameState alloc] init];
 		
@@ -92,6 +100,10 @@
 	[super dealloc];
 }
 
+- (void)raisePostionChangedEvent:(FS3DPoint)currentPosition previousPosition:(FS3DPoint)previousPosition  {
+	NSDictionary* eventData = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithBytes: &previousPosition length:sizeof(previousPosition)] ,@"previousPosition", [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)],@"currentPosition", nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:EVENT_POSITION_CHANGED object:self userInfo: eventData];
+}
 - (void) moveInDirection: (HPDirection) dir {
 	if ([HPChamberUtil canGoInDirection:dir fromChamber:maze.topology[gameState.currentPosition.x][gameState.currentPosition.y][gameState.currentPosition.z] currentPosition:gameState.currentPosition size: maze.size]) {
 		FS3DPoint previousPosition = [gameState currentPosition];
@@ -99,8 +111,8 @@
 			[((id<HPMoveHandler>)[movementHandlers objectAtIndex:i]) handleMove:dir];
 		}
 		FS3DPoint currentPosition = [gameState currentPosition];
-		NSDictionary* eventData = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithBytes: &previousPosition length:sizeof(previousPosition)] ,@"previousPosition", [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)],@"currentPosition", nil];
-		[[NSNotificationCenter defaultCenter] postNotificationName:EVENT_POSITION_CHANGED object:self userInfo: eventData];
+		[self raisePostionChangedEvent: currentPosition previousPosition: previousPosition];
+
 	} else {
 		[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_MOVEMENT_CANCELED object:self];
 	}
@@ -164,6 +176,36 @@
 - (void) setRecursionDepth: (int) num {
 	[recursiveTool setValue: num];
 	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleBorders {
+	showBorders = !showBorders;
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleCompass {
+	showCompass = !showCompass;
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) toggleTarget {
+	showTarget = !showTarget;
+	[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_VIEW_CHANGED object:self];
+}
+
+- (void) rotateClockwise {
+	rotation = (rotation - 1) % 4;
+	if (rotation < 0) {
+		rotation = rotation + 4;
+	}
+	FS3DPoint currentPosition = [gameState currentPosition];
+	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
+}
+
+- (void) rotateCounterclockwise {
+	rotation = (rotation + 1) % 4;
+	FS3DPoint currentPosition = [gameState currentPosition];
+	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
 }
 
 @end

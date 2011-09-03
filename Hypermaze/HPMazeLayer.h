@@ -19,13 +19,27 @@
 	CCSprite** yellowChamberPrototypes;
 	CCSprite** greenChamberPrototypes;
 	CCSprite** redChamberPrototypes;
+	
+	CCSprite* outerNEWiredPrototype;
+	CCSprite* outerNEFilledPrototype;
+	
+	CCSprite* outerNWWiredPrototype;
+	CCSprite* outerNWFilledPrototype;
+	
+	CCSprite* outerSWiredPrototype;
+	CCSprite* outerSFilledPrototype;
+	
+	CCSprite* mark;
+	
 	CCRenderTexture* mazeTexture;
 	int mazeSize;
 	Byte*** topology;
 	CGPoint*** positionCache;
+	Byte** chamberRotationCache;
 }
 
 -(CGPoint) getChamberPos: (FS3DPoint) coords;
 -(void) redrawMazeTexture;
 - (void) onPositionChanged: (NSNotification*) notification;
+-(double) getCompassAngle;
 @end

@@ -24,4 +24,27 @@
 	return (direction | chamber);
 }
 
++ (Byte) rotateChamber: (Byte) chamber by: (int) rot {
+	bool northBit = chamber & dirNorth;
+	bool northWestBit = chamber & dirNorthWest;
+	bool northEastBit = chamber & dirNorthEast;
+	bool southWestBit = chamber & dirSouthWest;
+	bool southEastBit = chamber & dirSouthEast;
+	bool southBit = chamber & dirSouth;
+	
+	Byte rotatedNorthComponent = (northBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirNorth by:rot];
+	Byte rotatedNorthWestComponent = (northWestBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirNorthWest by:rot];
+	Byte rotatedNorthEastComponent = (northEastBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirNorthEast by:rot];
+	Byte rotatedSouthWestComponent = (southWestBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirSouthWest by:rot];
+	Byte rotatedSouthEastComponent = (southEastBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirSouthEast by:rot];
+	Byte rotatedSouthComponent = (southBit ? 1 : 0) * [HPDirectionUtil rotateDirection:dirSouth by:rot];
+	
+	return rotatedNorthComponent +
+		rotatedNorthEastComponent +
+		rotatedNorthWestComponent +
+		rotatedSouthComponent +
+		rotatedSouthEastComponent +
+		rotatedSouthWestComponent;
+}
+
 @end

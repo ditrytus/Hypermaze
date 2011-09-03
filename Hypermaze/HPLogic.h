@@ -37,6 +37,10 @@
 	HPTool* ariadnaTool;
 	HPTool* mazeTool;
 	HPRangeTool* checkpointTool;
+	bool showBorders;
+	bool showCompass;
+	bool showTarget;
+	int rotation;
 	NSArray* movementHandlers;
 }
 
@@ -50,6 +54,11 @@
 @property (readonly, nonatomic) HPRangeTool* recursiveTool;
 @property (readonly, nonatomic) HPRangeTool* checkpointTool;
 
+@property (readonly, nonatomic) bool showBorders;
+@property (readonly, nonatomic) bool showCompass;
+@property (readonly, nonatomic) bool showTarget;
+@property (readonly, nonatomic) int rotation;
+
 - (void) toggleAriadnaTool;
 - (void) toggleVisitedTool;
 - (void) toggleCheckpointTool;
@@ -61,7 +70,14 @@
 - (void) toggleRecursiveTool;
 - (void) toggleMazeTool;
 
+- (void) toggleBorders;
+- (void) toggleCompass;
+- (void) toggleTarget;
+
 - (void) setCheckpointNumber: (int) num;
 - (void) setRecursionDepth: (int) num;
+
+- (void) rotateClockwise;
+- (void) rotateCounterclockwise;
 
 @end

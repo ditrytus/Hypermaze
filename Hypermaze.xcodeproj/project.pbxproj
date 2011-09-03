@@ -11,6 +11,12 @@
 		3B1DDF9813D194180006E818 /* app-icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9713D194180006E818 /* app-icon-57.png */; };
 		3B1DDF9A13D194380006E818 /* app-icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9913D194380006E818 /* app-icon-114.png */; };
 		3B1DDF9C13D194490006E818 /* app-icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1DDF9B13D194490006E818 /* app-icon-72.png */; };
+		3B301F0A140BEA9800AC3A0F /* outer-NE-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F04140BEA9800AC3A0F /* outer-NE-filled.png */; };
+		3B301F0B140BEA9800AC3A0F /* outer-NE-wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F05140BEA9800AC3A0F /* outer-NE-wire.png */; };
+		3B301F0C140BEA9800AC3A0F /* outer-NW-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F06140BEA9800AC3A0F /* outer-NW-filled.png */; };
+		3B301F0D140BEA9800AC3A0F /* outer-NW-wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F07140BEA9800AC3A0F /* outer-NW-wire.png */; };
+		3B301F0E140BEA9800AC3A0F /* outer-S-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F08140BEA9800AC3A0F /* outer-S-filled.png */; };
+		3B301F0F140BEA9800AC3A0F /* outer-S-wire.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B301F09140BEA9800AC3A0F /* outer-S-wire.png */; };
 		3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3DA04B1409293F004AFBCD /* HPMarkMask.m */; };
 		3B3DA05414093646004AFBCD /* slider_off_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05014093646004AFBCD /* slider_off_pink.png */; };
 		3B3DA05514093646004AFBCD /* slider_off_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3DA05114093646004AFBCD /* slider_off_yellow.png */; };
@@ -138,6 +144,12 @@
 		3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35F13D0A71F006AF368 /* RootViewController.m */; };
 		3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */; };
 		3B472F4C140A4D1A00545739 /* grass_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B472F4B140A4D1A00545739 /* grass_tile.png */; };
+		3B47C49D14122FC500FBC3F7 /* HPPositionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B47C49C14122FC500FBC3F7 /* HPPositionUtil.m */; };
+		3B47C4A014123FD300FBC3F7 /* rotateArrowClockwise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B47C49E14123FD300FBC3F7 /* rotateArrowClockwise.png */; };
+		3B47C4A114123FD300FBC3F7 /* rotateArrowCounterclockwise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B47C49F14123FD300FBC3F7 /* rotateArrowCounterclockwise.png */; };
+		3B47C4A31412645000FBC3F7 /* compass_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B47C4A21412645000FBC3F7 /* compass_arrow.png */; };
+		3B4B6B53140D19F4008F7464 /* mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B6B52140D19F4008F7464 /* mark.png */; };
+		3B4B6B56140D42A7008F7464 /* menu_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B6B55140D42A7008F7464 /* menu_bkg.png */; };
 		3B56F542140123D600F99EDF /* HPVisibilityMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F541140123D600F99EDF /* HPVisibilityMask.m */; };
 		3B56F546140124B200F99EDF /* HPArrayMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F545140124B200F99EDF /* HPArrayMask.m */; };
 		3B56F5491401276200F99EDF /* HPVisitedMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56F5481401276200F99EDF /* HPVisitedMask.m */; };
@@ -193,6 +205,12 @@
 		3B1DDF9713D194180006E818 /* app-icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-57.png"; path = "../app-icon-57.png"; sourceTree = "<group>"; };
 		3B1DDF9913D194380006E818 /* app-icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-114.png"; path = "../app-icon-114.png"; sourceTree = "<group>"; };
 		3B1DDF9B13D194490006E818 /* app-icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-icon-72.png"; path = "../app-icon-72.png"; sourceTree = "<group>"; };
+		3B301F04140BEA9800AC3A0F /* outer-NE-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-NE-filled.png"; sourceTree = "<group>"; };
+		3B301F05140BEA9800AC3A0F /* outer-NE-wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-NE-wire.png"; sourceTree = "<group>"; };
+		3B301F06140BEA9800AC3A0F /* outer-NW-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-NW-filled.png"; sourceTree = "<group>"; };
+		3B301F07140BEA9800AC3A0F /* outer-NW-wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-NW-wire.png"; sourceTree = "<group>"; };
+		3B301F08140BEA9800AC3A0F /* outer-S-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-S-filled.png"; sourceTree = "<group>"; };
+		3B301F09140BEA9800AC3A0F /* outer-S-wire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outer-S-wire.png"; sourceTree = "<group>"; };
 		3B3DA04814092888004AFBCD /* HPChamberMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPChamberMark.h; sourceTree = "<group>"; };
 		3B3DA04A1409293F004AFBCD /* HPMarkMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMarkMask.h; sourceTree = "<group>"; };
 		3B3DA04B1409293F004AFBCD /* HPMarkMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMarkMask.m; sourceTree = "<group>"; };
@@ -445,6 +463,13 @@
 		3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		3B43E36413D0A71F006AF368 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		3B472F4B140A4D1A00545739 /* grass_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass_tile.png; sourceTree = "<group>"; };
+		3B47C49B14122FC400FBC3F7 /* HPPositionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPositionUtil.h; sourceTree = "<group>"; };
+		3B47C49C14122FC500FBC3F7 /* HPPositionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPositionUtil.m; sourceTree = "<group>"; };
+		3B47C49E14123FD300FBC3F7 /* rotateArrowClockwise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotateArrowClockwise.png; sourceTree = "<group>"; };
+		3B47C49F14123FD300FBC3F7 /* rotateArrowCounterclockwise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotateArrowCounterclockwise.png; sourceTree = "<group>"; };
+		3B47C4A21412645000FBC3F7 /* compass_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass_arrow.png; sourceTree = "<group>"; };
+		3B4B6B52140D19F4008F7464 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
+		3B4B6B55140D42A7008F7464 /* menu_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_bkg.png; sourceTree = "<group>"; };
 		3B56F540140123D600F99EDF /* HPVisibilityMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPVisibilityMask.h; sourceTree = "<group>"; };
 		3B56F541140123D600F99EDF /* HPVisibilityMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPVisibilityMask.m; sourceTree = "<group>"; };
 		3B56F544140124B200F99EDF /* HPArrayMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPArrayMask.h; sourceTree = "<group>"; };
@@ -598,6 +623,8 @@
 				3B7E1BDE13E4158400D80D8F /* HPGameState.m */,
 				3B9CEEC2140904490089ADF3 /* HPGlobals.h */,
 				3B3DA04814092888004AFBCD /* HPChamberMark.h */,
+				3B47C49B14122FC400FBC3F7 /* HPPositionUtil.h */,
+				3B47C49C14122FC500FBC3F7 /* HPPositionUtil.m */,
 			);
 			name = Logic;
 			sourceTree = "<group>";
@@ -1004,6 +1031,7 @@
 		3B793D3813D1B10200DB6EEB /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				3B4B6B52140D19F4008F7464 /* mark.png */,
 				3B69B3BA13D1F08200C38CB1 /* background.png */,
 				3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */,
 				3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */,
@@ -1014,6 +1042,10 @@
 		3B7E1BE013E44B1D00D80D8F /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				3B47C4A21412645000FBC3F7 /* compass_arrow.png */,
+				3B47C49E14123FD300FBC3F7 /* rotateArrowClockwise.png */,
+				3B47C49F14123FD300FBC3F7 /* rotateArrowCounterclockwise.png */,
+				3B4B6B55140D42A7008F7464 /* menu_bkg.png */,
 				3B3DA05014093646004AFBCD /* slider_off_pink.png */,
 				3B3DA05114093646004AFBCD /* slider_off_yellow.png */,
 				3B3DA05214093646004AFBCD /* slider_on_pink.png */,
@@ -1033,6 +1065,12 @@
 		3B92C5DD13E3283000C1A395 /* MazeElements */ = {
 			isa = PBXGroup;
 			children = (
+				3B301F04140BEA9800AC3A0F /* outer-NE-filled.png */,
+				3B301F05140BEA9800AC3A0F /* outer-NE-wire.png */,
+				3B301F06140BEA9800AC3A0F /* outer-NW-filled.png */,
+				3B301F07140BEA9800AC3A0F /* outer-NW-wire.png */,
+				3B301F08140BEA9800AC3A0F /* outer-S-filled.png */,
+				3B301F09140BEA9800AC3A0F /* outer-S-wire.png */,
 				3B472F4B140A4D1A00545739 /* grass_tile.png */,
 				3B92C78013E32A3700C1A395 /* chambers_green.plist */,
 				3B92C78113E32A3700C1A395 /* chambers_pink.plist */,
@@ -1129,6 +1167,17 @@
 				3B3DA05614093646004AFBCD /* slider_on_pink.png in Resources */,
 				3B3DA05714093646004AFBCD /* slider_on_yellow.png in Resources */,
 				3B472F4C140A4D1A00545739 /* grass_tile.png in Resources */,
+				3B301F0A140BEA9800AC3A0F /* outer-NE-filled.png in Resources */,
+				3B301F0B140BEA9800AC3A0F /* outer-NE-wire.png in Resources */,
+				3B301F0C140BEA9800AC3A0F /* outer-NW-filled.png in Resources */,
+				3B301F0D140BEA9800AC3A0F /* outer-NW-wire.png in Resources */,
+				3B301F0E140BEA9800AC3A0F /* outer-S-filled.png in Resources */,
+				3B301F0F140BEA9800AC3A0F /* outer-S-wire.png in Resources */,
+				3B4B6B53140D19F4008F7464 /* mark.png in Resources */,
+				3B4B6B56140D42A7008F7464 /* menu_bkg.png in Resources */,
+				3B47C4A014123FD300FBC3F7 /* rotateArrowClockwise.png in Resources */,
+				3B47C4A114123FD300FBC3F7 /* rotateArrowCounterclockwise.png in Resources */,
+				3B47C4A31412645000FBC3F7 /* compass_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1272,6 +1321,7 @@
 				3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */,
 				3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */,
 				3B3DA05A140943CF004AFBCD /* HPRangeTool.m in Sources */,
+				3B47C49D14122FC500FBC3F7 /* HPPositionUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

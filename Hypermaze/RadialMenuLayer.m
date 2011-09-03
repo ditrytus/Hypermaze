@@ -6,6 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "CCTouchDispatcher.h"
 #import "RadialMenuLayer.h"
 #import <math.h>
 
@@ -65,6 +66,7 @@
 {
     self = [super init];
     if (self) {
+		isMenuDisplayed = false;
 		logic = [innerLogic retain];
 		
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"interface.plist" textureFile: @"interface.png"];
@@ -173,9 +175,17 @@
 		for (CCMenuItemToggle* crossSliderItem in crossSliderItems) {
 			[radialMenu addChild:crossSliderItem];
 		}
-		[self addChild: radialMenu];
 		
 		CGSize size = [[CCDirector sharedDirector] winSize];
+		
+		background = [[CCSprite spriteWithFile:@"menu_bkg.png"] retain];
+		background.position = ccp(size.width / 2.0 ,size.height/2.0+150);
+		background.scale = 2.0;
+		background.visible = NO;		
+		[self addChild: background];
+		
+		[self addChild: radialMenu];
+		
 		[self setPosition: ccp(0,-size.height/2.0 + 100)];
 		aligner	= [[FSRadialAligner alloc] initWithAngle:M_PI/1.2 radius:100 margin:100 root:
 				   [NSMutableArray arrayWithObjects:
@@ -189,6 +199,8 @@
 					 [NSMutableArray arrayWithObjects:okRIndexPath, nil],
 					 nil],
 					nil]];
+		
+		[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     }
     
     return self;
@@ -414,6 +426,16 @@
 }
 
 - (void) showMenu {
+	isMenuDisplayed = true;
+	[background runAction:[CCSequence actions:
+						   [CCCallBlock actionWithBlock:^{ [background setVisible:YES]; }],
+						   [CCFadeIn actionWithDuration:0.25],
+						   nil]];
+	//[particleSystem resumeSchedulerAndActions];
+//	[particleSystem runAction:[CCSequence actions:
+//							   [CCCallBlock actionWithBlock:^{ [particleSystem setVisible:YES]; }],
+//							   [CCFadeIn actionWithDuration:0.25],
+//							   nil]];
 	[self showNodeFromRoot:brainToggle index: brainIndexPath];
 	if ([brainToggle selectedIndex] == 0) {
 		[self setBrainHidden];
@@ -441,6 +463,18 @@
 }
 
 - (void) hideMenu {
+	isMenuDisplayed = false;
+	[background runAction:[CCSequence actions:						   
+						   [CCFadeOut actionWithDuration:0.25],
+						   [CCCallBlock actionWithBlock:^{ [background setVisible:NO]; }],
+						   nil]];
+//	[particleSystem runAction:[CCSequence actions:						   
+//							 [CCFadeOut actionWithDuration:0.25],
+//							 [CCCallBlock actionWithBlock:^{
+//								[particleSystem setVisible:NO];
+//								//[particleSystem pauseSchedulerAndActions];
+//							 }],
+//							 nil]];
 	[self hideNode:brainToggle onIndex:brainIndexPath toLevel:0];
 	[self hideBrainToLevel: 0];
 	[self hideNode:planesToggle onIndex:planesIndexPath toLevel:0];
@@ -573,15 +607,15 @@
 }
 
 - (void) onCrosshairToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleTarget];
 }
 
 - (void) onCubeToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleBorders];
 }
 
 - (void) onCompassToggle: (CCMenuItemToggle*) item {
-	
+	[logic toggleCompass];
 }
 
 - (void) onGearToggle: (CCMenuItemToggle*) item {
@@ -640,6 +674,16 @@
 -(void) dealloc {
 	[logic release];
 	[super dealloc];
+}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+	if (isMenuDisplayed) {
+		[menuToggle setSelectedIndex:0];
+		[self onMenuToggle:menuToggle];
+		return true;
+	} else {
+		return false;
+	}
 }
 
 @end

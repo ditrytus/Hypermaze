@@ -52,4 +52,22 @@
 	return INVALID_POINT;
 }
 
++ (HPDirection) rotateDirection: (HPDirection) dir by: (int) rot {
+	rot = rot % 4;
+	if (rot == 0) {
+		return dir;
+	} else {
+		HPDirection rotatedDir;
+		switch (dir) {
+			case dirNorth: rotatedDir = dirNorth; break;
+			case dirSouth: rotatedDir = dirSouth; break;
+			case dirSouthEast: rotatedDir = dirNorthEast; break;
+			case dirSouthWest: rotatedDir = dirSouthEast; break;
+			case dirNorthEast: rotatedDir = dirNorthWest; break;
+			case dirNorthWest: rotatedDir = dirSouthWest; break;
+		}
+		return [self rotateDirection:rotatedDir by:rot-1];
+	}
+}
+
 @end
