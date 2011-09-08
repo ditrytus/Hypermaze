@@ -49,4 +49,17 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject:masks forKey:@"masks"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	masks = [[decoder decodeObjectForKey:@"masks"] retain];
+	return self;
+}
+
+
+
 @end
