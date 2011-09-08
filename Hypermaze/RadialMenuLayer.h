@@ -12,6 +12,8 @@
 #import "HPLogic.h"
 #import "RadialMenuParticleSystem.h"
 
+@class Game;
+
 @interface RadialMenuLayer : CCLayer {
 	bool isMenuDisplayed;
 	
@@ -75,11 +77,12 @@
 	NSMutableArray* crossSliderItems;
 	
 	CCSprite* background;
-	
 	FSRadialAligner* aligner;
+	
+	Game* game;
 }
 
-- (id)initWithLogic: (HPLogic*) innerLogic;
+- (id)initWithLogic: (HPLogic*) innerLogic game: (Game*) newGame;
 
 - (void) onMenuToggle: (CCMenuItemToggle*) item;
 - (CCMenuItemToggle*) menuItemFromOnFrameName: (NSString*) onFrameName offFrameName: (NSString*) offFrameName target: (SEL) target;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HPTool : NSObject {
+@interface HPTool : NSObject<NSCoding> {
 	bool isEnabled;
 }
 

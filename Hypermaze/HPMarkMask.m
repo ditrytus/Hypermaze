@@ -10,17 +10,33 @@
 
 @implementation HPMarkMask
 
-- (id)initWithUntaken: (HPVisibilityMask*) untaken visited: (HPVisibilityMask*) visited ariadna: (HPVisibilityMask*)  ariadna checkpoint: (HPVisibilityMask*) checkpoint
+- (id)initWithIsEnabled: (BOOL) enabled
+				Untaken: (HPVisibilityMask*) untaken
+				visited: (HPVisibilityMask*) visited
+				ariadna: (HPVisibilityMask*) ariadna
+			 checkpoint: (HPVisibilityMask*) checkpoint
 {
     self = [super init];
     if (self) {
-		isEnabled = false;
+		isEnabled = enabled;
         untakenMask = [untaken retain];
 		visitedMask = [visited retain];
 		ariadnaMask = [ariadna retain];
 		checkpointMask = [checkpoint retain];
     }
     return self;
+}
+
+- (id)initWithUntaken: (HPVisibilityMask*) untaken
+			  visited: (HPVisibilityMask*) visited
+			  ariadna: (HPVisibilityMask*) ariadna
+		   checkpoint: (HPVisibilityMask*) checkpoint
+{
+    return [self initWithIsEnabled: false
+						   Untaken: untaken
+						   visited: visited
+						   ariadna: ariadna
+						checkpoint: checkpoint];
 }
 
 - (HPChamberMark) getValue: (FS3DPoint) position {
@@ -51,6 +67,22 @@
 	[ariadnaMask release];
 	[checkpointMask release];
 	[super dealloc];
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[encoder encodeBool:isEnabled forKey:@"isEnabled"];
+	[encoder encodeObject:untakenMask forKey:@"untakenMask"];
+	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
+	[encoder encodeObject:ariadnaMask forKey:@"ariadnaMask"];
+	[encoder encodeObject:checkpointMask forKey:@"checkpointMask"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	return [self initWithIsEnabled:[decoder decodeBoolForKey:@"isEnabled"]
+						   Untaken:[[decoder decodeObjectForKey:@"untakenMask"] autorelease]
+						   visited:[[decoder decodeObjectForKey:@"visitedMask"] autorelease]
+						   ariadna:[[decoder decodeObjectForKey:@"ariadnaMask"] autorelease]
+						checkpoint:[[decoder decodeObjectForKey:@"checkpointMask"] autorelease]];
 }
 
 @end

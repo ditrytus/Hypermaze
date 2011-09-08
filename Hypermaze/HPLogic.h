@@ -23,11 +23,16 @@
 #define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
 #define EVENT_VIEW_CHANGED @"hpLogicviewChangedEvent"
 
-@interface HPLogic : NSObject {
+@interface HPLogic : NSObject<NSCoding> {
+	NSDate* beginDate;
+	
 	HPMaze* maze;
 	HPGameState* gameState;
+	
 	HPVisibilityMask* visibilityMask;
 	HPMarkMask* markMask;
+	HPVisitedMask* visitedMask;
+	
 	HPTool* visitedTool;
 	HPTool* xAxisTool;
 	HPTool* yAxisTool;
@@ -37,15 +42,19 @@
 	HPTool* ariadnaTool;
 	HPTool* mazeTool;
 	HPRangeTool* checkpointTool;
+	
 	bool showBorders;
 	bool showCompass;
 	bool showTarget;
 	int rotation;
+	
 	NSArray* movementHandlers;
 }
 
 - (id) initWithMaze:(HPMaze*) newMaze;
 - (void) moveInDirection: (HPDirection) dir;
+
+@property (readonly, nonatomic) NSDate* beginDate;
 
 @property (readonly, nonatomic) HPMaze* maze;
 @property (readonly, nonatomic) HPGameState* gameState;
@@ -79,5 +88,8 @@
 
 - (void) rotateClockwise;
 - (void) rotateCounterclockwise;
+
+- (int) getNumOfVisited;
+- (int) getTotalChambers;
 
 @end

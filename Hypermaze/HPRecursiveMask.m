@@ -63,4 +63,20 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject:gameState forKey:@"gameState"];
+	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeInt32:maxDepth forKey:@"maxDepth"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
+	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	maxDepth = [decoder decodeInt32ForKey:@"maxDepth"];
+	return self;
+}
+
+
 @end

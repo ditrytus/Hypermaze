@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FS3DPoint.h"
 
-@interface HPVisibilityMask : NSObject
+@interface HPVisibilityMask : NSObject<NSCoding>
 
 - (NSNumber*) getValue: (FS3DPoint) position;
 

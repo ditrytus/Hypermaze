@@ -48,4 +48,18 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
+	[encoder encodeObject:maze forKey:@"maze"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	visitedMask = [[decoder decodeObjectForKey:@"visitedMask"] retain];
+	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	return self;
+}
+
+
 @end

@@ -37,4 +37,42 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[encoder encodeInt32:size forKey:@"size"];
+	[encoder encodeObject:solution forKey:@"solution"];
+	NSMutableArray* xPlaneTopology = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+	for (int i=0; i<size; i++) {
+		NSMutableArray* yPlaneTopology = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+		for (int j=0; j<size; j++) {
+			NSMutableArray* zPlaneTopology = [[[NSMutableArray alloc] initWithCapacity:size] autorelease];
+			for (int h=0; h<size; h++) {
+				[zPlaneTopology addObject:[NSNumber numberWithChar:topology[i][j][h]]];
+			}
+			[yPlaneTopology addObject:yPlaneTopology];
+		}
+		[xPlaneTopology addObject: yPlaneTopology];
+	}
+	[encoder encodeObject:xPlaneTopology forKey:@"topology"];
+}
+	
+- (id) initWithCoder:(NSCoder *)decoder {
+	int decodedSize = [decoder decodeInt32ForKey:@"size"];
+	NSMutableArray* xPlaneTopology = [[decoder decodeObjectForKey:@"topology"] autorelease];
+	Byte*** arrayWithTopology = malloc(decodedSize*sizeof(Byte**));
+	for (int i=0; i<size; i++) {
+		NSMutableArray* yPlaneTopology = [xPlaneTopology objectAtIndex:i];
+		arrayWithTopology[i] = malloc(decodedSize*sizeof(Byte*));
+		for (int j=0; j<size; j++) {
+			NSMutableArray* zPlaneTopology = [yPlaneTopology objectAtIndex:i];
+			arrayWithTopology[i][j] = malloc(decodedSize*sizeof(Byte));
+			for (int h=0; h<size; h++) {
+				arrayWithTopology[i][j][h] = [((NSNumber*)[zPlaneTopology objectAtIndex:h]) charValue];
+			}
+		}
+	}
+	return [self initWithTopology: arrayWithTopology
+							 size: decodedSize
+						 solution: [decoder decodeObjectForKey:@"solution"]];
+}
+
 @end

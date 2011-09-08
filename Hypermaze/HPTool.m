@@ -12,13 +12,17 @@
 
 @synthesize isEnabled;
 
-- (id)init
-{
-    self = [super init];
+- (id) initWithIsEnabled: (BOOL) enabled {
+	self = [super init];
     if (self) {
-        isEnabled = false;
+        isEnabled = enabled;
     }    
     return self;
+}
+
+- (id)init
+{
+    return [self initWithIsEnabled:false];
 }
 
 - (void) toggle {
@@ -41,5 +45,14 @@
 								   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
 								 userInfo:nil];
 }
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[encoder encodeBool:isEnabled forKey:@"isEnabled"];
+}
+	
+- (id) initWithCoder:(NSCoder *)decoder {
+	return [self initWithIsEnabled:[decoder decodeBoolForKey:@"isEnabled"]];
+}
+
 
 @end

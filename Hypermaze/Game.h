@@ -21,9 +21,14 @@
 	CGSize size;
 	CGPoint middleScreen;
 	CCSprite* compassArrow;
+	CCLabelTTF* timeElapsedLabel;
+	CCLabelTTF* movesMadeLabel;
+	CCLabelTTF* visitedLabel;
+	CCLabelTTF* unvisitedLabel;
 }
 
 - (id) initWithLogic: (HPLogic*) newLogic;
+- (void) saveGame;
 
 - (void) onViewChanged: (NSNotification*) notification;
 - (void) onPositionChanged: (NSNotification*) notification;

@@ -190,6 +190,12 @@
 		3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */; };
 		3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */; };
 		3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */; };
+		3BDF15911418F5D700E112EB /* FSGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF15901418F5D700E112EB /* FSGuid.m */; };
+		3BE72D0B14138E3B00F9DA84 /* clock_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0714138E3B00F9DA84 /* clock_info.png */; };
+		3BE72D0C14138E3B00F9DA84 /* door_open_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0814138E3B00F9DA84 /* door_open_info.png */; };
+		3BE72D0D14138E3B00F9DA84 /* door_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0914138E3B00F9DA84 /* door_info.png */; };
+		3BE72D0E14138E3B00F9DA84 /* foot_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0A14138E3B00F9DA84 /* foot_info.png */; };
+		3BE72D1014138E4700F9DA84 /* info_panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0F14138E4700F9DA84 /* info_panel.png */; };
 		3BF0799813FEDB4E00B52E65 /* FSTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */; };
 		3BF8DBB113FFC949006B16C1 /* RadialMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */; };
 		3BF8DBB613FFCE56006B16C1 /* interface.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB413FFCE56006B16C1 /* interface.plist */; };
@@ -535,6 +541,13 @@
 		3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCheckpointMask.m; sourceTree = "<group>"; };
 		3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeLayer.h; sourceTree = "<group>"; };
 		3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeLayer.m; sourceTree = "<group>"; };
+		3BDF158F1418F5D700E112EB /* FSGuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGuid.h; sourceTree = "<group>"; };
+		3BDF15901418F5D700E112EB /* FSGuid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGuid.m; sourceTree = "<group>"; };
+		3BE72D0714138E3B00F9DA84 /* clock_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_info.png; sourceTree = "<group>"; };
+		3BE72D0814138E3B00F9DA84 /* door_open_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = door_open_info.png; sourceTree = "<group>"; };
+		3BE72D0914138E3B00F9DA84 /* door_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = door_info.png; sourceTree = "<group>"; };
+		3BE72D0A14138E3B00F9DA84 /* foot_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foot_info.png; sourceTree = "<group>"; };
+		3BE72D0F14138E4700F9DA84 /* info_panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_panel.png; sourceTree = "<group>"; };
 		3BF0799613FEDB4E00B52E65 /* FSTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTreeNode.h; sourceTree = "<group>"; };
 		3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTreeNode.m; sourceTree = "<group>"; };
 		3BF8DBAF13FFC948006B16C1 /* RadialMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadialMenuLayer.h; sourceTree = "<group>"; };
@@ -568,6 +581,7 @@
 		3B1DDF9513D185440006E818 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3BE72D0514138E1800F9DA84 /* Infopanel */,
 				3B7E1BE013E44B1D00D80D8F /* Interface */,
 				3B92C5DD13E3283000C1A395 /* MazeElements */,
 				3B40C92513DB1F7400C2BEDF /* Loading */,
@@ -645,6 +659,8 @@
 				3B1075C513FED6AF00F38A4B /* FSRadialAligner.m */,
 				3BF0799613FEDB4E00B52E65 /* FSTreeNode.h */,
 				3BF0799713FEDB4E00B52E65 /* FSTreeNode.m */,
+				3BDF158F1418F5D700E112EB /* FSGuid.h */,
+				3BDF15901418F5D700E112EB /* FSGuid.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1084,6 +1100,18 @@
 			name = MazeElements;
 			sourceTree = "<group>";
 		};
+		3BE72D0514138E1800F9DA84 /* Infopanel */ = {
+			isa = PBXGroup;
+			children = (
+				3BE72D0F14138E4700F9DA84 /* info_panel.png */,
+				3BE72D0714138E3B00F9DA84 /* clock_info.png */,
+				3BE72D0814138E3B00F9DA84 /* door_open_info.png */,
+				3BE72D0914138E3B00F9DA84 /* door_info.png */,
+				3BE72D0A14138E3B00F9DA84 /* foot_info.png */,
+			);
+			name = Infopanel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1178,6 +1206,11 @@
 				3B47C4A014123FD300FBC3F7 /* rotateArrowClockwise.png in Resources */,
 				3B47C4A114123FD300FBC3F7 /* rotateArrowCounterclockwise.png in Resources */,
 				3B47C4A31412645000FBC3F7 /* compass_arrow.png in Resources */,
+				3BE72D0B14138E3B00F9DA84 /* clock_info.png in Resources */,
+				3BE72D0C14138E3B00F9DA84 /* door_open_info.png in Resources */,
+				3BE72D0D14138E3B00F9DA84 /* door_info.png in Resources */,
+				3BE72D0E14138E3B00F9DA84 /* foot_info.png in Resources */,
+				3BE72D1014138E4700F9DA84 /* info_panel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,6 +1355,7 @@
 				3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */,
 				3B3DA05A140943CF004AFBCD /* HPRangeTool.m in Sources */,
 				3B47C49D14122FC500FBC3F7 /* HPPositionUtil.m in Sources */,
+				3BDF15911418F5D700E112EB /* FSGuid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

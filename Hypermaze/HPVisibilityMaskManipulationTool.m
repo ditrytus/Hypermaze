@@ -34,4 +34,17 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject: mask forKey: @"mask"];
+	[encoder encodeObject: composite forKey:@"composite"];
+}
+	
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	mask = [[decoder decodeObjectForKey:@"mask"] retain];
+	composite = [[decoder decodeObjectForKey:@"composite"] retain];
+	return self;
+}
+
 @end

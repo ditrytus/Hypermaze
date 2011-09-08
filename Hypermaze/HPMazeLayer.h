@@ -42,4 +42,6 @@
 -(void) redrawMazeTexture;
 - (void) onPositionChanged: (NSNotification*) notification;
 -(double) getCompassAngle;
+- (CGPoint) getDestination;
+- (CGPoint) getTranslation;
 @end

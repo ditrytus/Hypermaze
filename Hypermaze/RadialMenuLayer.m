@@ -8,6 +8,7 @@
 
 #import "CCTouchDispatcher.h"
 #import "RadialMenuLayer.h"
+#import "MainMenuLayer.h"
 #import <math.h>
 
 @implementation RadialMenuLayer
@@ -62,10 +63,12 @@
 	}
 }
 
-- (id)initWithLogic: (HPLogic*) innerLogic
+- (id)initWithLogic: (HPLogic*) innerLogic game: (Game*) newGame
 {
     self = [super init];
     if (self) {
+		game = [newGame retain];
+		
 		isMenuDisplayed = false;
 		logic = [innerLogic retain];
 		
@@ -664,7 +667,9 @@
 }
 
 - (void) onOkXToggle: (CCMenuItemToggle*) item {
+	[game saveGame];
 	
+	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void) onOkRToggle: (CCMenuItemToggle*) item {

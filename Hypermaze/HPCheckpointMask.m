@@ -49,4 +49,17 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeInt32:numOfCheckPoints forKey:@"numOfCheckPoints"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	numOfCheckPoints = [decoder decodeInt32ForKey:@"numOfCheckPoints"];
+	return self;
+}
+
 @end

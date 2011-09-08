@@ -245,7 +245,9 @@ void loadChamberSet(NSString *colorName) {
 	FS3DPoint rotCurPos = [HPPositionUtil rotatePoint:logic.gameState.currentPosition by:logic.rotation withSize:mazeSize];
 	FS3DPoint rotEnd = [HPPositionUtil rotatePoint:point3D(mazeSize-1, mazeSize-1, mazeSize-1) by:logic.rotation withSize:mazeSize];
 	CGPoint position = ccpAdd(positionCache[rotCurPos.x][rotCurPos.y][rotCurPos.z],ccp(35, 35));
-	return CC_RADIANS_TO_DEGREES(-ccpAngle(ccp(0,1), ccpSub(ccpAdd(positionCache[rotEnd.x][rotEnd.y][rotEnd.z],ccp(35, 35)),position)));
+	CGPoint vector = ccpSub(ccpAdd(positionCache[rotEnd.x][rotEnd.y][rotEnd.z],ccp(35, 35)),position);
+	int corrector = (vector.x < 0) ? -1 : 1;
+	return CC_RADIANS_TO_DEGREES(corrector * ccpAngle(ccp(0,1), vector));
 }
 
 -(CGPoint) getChamberPos: (FS3DPoint) coords {
@@ -284,25 +286,28 @@ void loadChamberSet(NSString *colorName) {
 	[self redrawMazeTexture];
 }
 
-- (void) onPositionChanged: (NSNotification*) notification {
-	NSDictionary* dict = notification.userInfo;
-	
-	NSData* previousPositionData = [dict objectForKey:@"previousPosition"];
-	FS3DPoint previousPosition;
-	[previousPositionData getBytes: &previousPosition length:sizeof(FS3DPoint)];
-	
-	NSData* currentPositionData = [dict objectForKey:@"currentPosition"];
-	FS3DPoint currentPosition;
-	[currentPositionData getBytes: &currentPosition length:sizeof(FS3DPoint)];
-	
-	[self redrawMazeTexture];
-	
+- (CGPoint) getTranslation {
 	CGPoint beginPos = [self getChamberPos: point3D(0, 0, 0)];
-	CGPoint newPos = [self getChamberPos: [HPPositionUtil rotatePoint: currentPosition by: logic.rotation withSize:mazeSize]];
-	
-	[self stopAllActions];
-	CGPoint destination = ccpAdd(ccpSub(newPos,beginPos),ccp(80,85));
+	CGPoint newPos = [self getChamberPos: [HPPositionUtil rotatePoint: logic.gameState.currentPosition by: logic.rotation withSize:mazeSize]];
+	CGPoint translation = ccpSub(newPos,beginPos);
+	return translation;
+}
+
+- (CGPoint) getDestination {
+	CGPoint translation;
+  translation = [self getTranslation];
+
+	CGPoint destination = ccpAdd(translation,ccp(80,85));
 	destination = ccp(-destination.x, -destination.y);
+	return destination;
+}
+
+- (void) onPositionChanged: (NSNotification*) notification {	
+	CGPoint destination = [self getDestination];
+
+	[self redrawMazeTexture];
+	[self stopAllActions];
+	
 	[self runAction: [CCEaseOut actionWithAction:
 									   [CCMoveTo actionWithDuration: 1
 														   position: destination]

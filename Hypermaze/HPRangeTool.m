@@ -43,4 +43,19 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeInt32:minValue forKey:@"minValue"];
+	[encoder encodeInt32:maxValue forKey:@"maxValue"];
+	[encoder encodeObject:refreshableMask forKey:@"refreshableMask"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	minValue = [decoder decodeInt32ForKey:@"minValue"];
+	maxValue = [decoder decodeInt32ForKey:@"maxValue"];
+	refreshableMask = [[decoder decodeObjectForKey:@"refreshableMask"] retain];
+	return self;
+}
+
 @end

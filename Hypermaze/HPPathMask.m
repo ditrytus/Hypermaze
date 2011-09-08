@@ -49,4 +49,16 @@
 	[super dealloc];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeObject:path forKey:@"path"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	path = [decoder decodeObjectForKey:@"path"];
+	return self;
+}
+
+
 @end

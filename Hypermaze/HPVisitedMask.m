@@ -10,24 +10,48 @@
 
 @implementation HPVisitedMask
 
+@synthesize  numOfVisited;
+
+- (void) markPositionAsVisited {
+	if (array[gameState.currentPosition.x][gameState.currentPosition.y][gameState.currentPosition.z] == false) {
+		numOfVisited++;
+	}
+	array[gameState.currentPosition.x][gameState.currentPosition.y][gameState.currentPosition.z] = true;
+}
+
 - (id)initWithSize: (int) size gameState:(HPGameState*) state
 {
     self = [super initWithSize:size];
     if (self) {
-        array[0][0][0] = true;
+		numOfVisited = 0;
 		gameState = [state retain];
+		[self markPositionAsVisited];
     }
     
     return self;
 }
 
 - (void) handleMove: (HPDirection) dir {
-	array[gameState.currentPosition.x][gameState.currentPosition.y][gameState.currentPosition.z] = true;
+	[self markPositionAsVisited];
 }
 
 -(void) dealloc {
 	[gameState release];
 	[super dealloc];
 }
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[super encodeWithCoder:encoder];
+	[encoder encodeInt32:numOfVisited forKey:@"numOfVisited"];
+	[encoder encodeObject:gameState forKey:@"gameState"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	self = [super initWithCoder:decoder];
+	numOfVisited = [decoder decodeInt32ForKey:@"numOfVisited"];
+	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
+	return self;
+}
+
 
 @end

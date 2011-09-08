@@ -10,9 +10,7 @@
 #import "HPMoveHandler.h"
 #import	"FS3DPoint.h"
 
-
-
-@interface HPGameState : NSObject <HPMoveHandler> {
+@interface HPGameState : NSObject <HPMoveHandler,NSCoding> {
 	int movesMade;
 	NSDate* lastResume;
 	NSTimeInterval previousTimeElapsed;

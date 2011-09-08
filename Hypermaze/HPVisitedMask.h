@@ -12,7 +12,10 @@
 
 @interface HPVisitedMask : HPArrayMask <HPMoveHandler> {
 	HPGameState* gameState;
+	int numOfVisited;
 }
+
+@property(nonatomic, readonly) int numOfVisited;
 
 - (id)initWithSize: (int) size gameState:(HPGameState*) state;
 

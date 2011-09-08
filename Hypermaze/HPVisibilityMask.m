@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+
     }
     return self;
 }
@@ -22,5 +22,13 @@
 - (NSNumber*) getValue: (FS3DPoint) position {
 	return [NSNumber numberWithBool: true];
 }
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+}
+	
+- (id) initWithCoder:(NSCoder *)decoder {
+	return [self init];
+}
+
 
 @end

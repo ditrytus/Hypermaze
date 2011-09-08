@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HPMaze : NSObject {
+@interface HPMaze : NSObject<NSCoding> {
 	Byte*** topology;
 	NSArray* solution;
 	int size;

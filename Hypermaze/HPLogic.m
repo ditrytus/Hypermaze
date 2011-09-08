@@ -18,6 +18,7 @@
 
 @implementation HPLogic
 
+@synthesize beginDate;
 @synthesize maze;
 @synthesize gameState;
 @synthesize visibilityMask;
@@ -29,59 +30,105 @@
 @synthesize showTarget;
 @synthesize rotation;
 
-- (id)initWithMaze:(HPMaze*) newMaze;
-{
-    self = [super init];
+- (id)initWithBeginDate: (NSDate*) newBeginDate
+				   maze: (HPMaze *) newMaze
+			  gameState: (HPGameState*) newGameState
+		 visibilityMask: (HPVisibilityMask*) newVisibilityMask
+			   markMask: (HPMarkMask*) newMarkMask
+			visitedMask: (HPVisitedMask*) newVisitedMask
+			visitedTool: (HPTool*) newVisitedTool
+			  xAxisTool: (HPTool*) newXAxisTool
+			  yAxisTool: (HPTool*) newYAxisTool
+			  zAxisTool: (HPTool*) newZAxisTool
+		  recursiveTool: (HPRangeTool*) newRecursiveTool	
+			untakenTool: (HPTool*) newUntakenTool
+			ariadnaTool: (HPTool*) newAriadnaTool
+			   mazeTool: (HPTool*) newMazeTool
+		 checkpointTool: (HPRangeTool*) newCheckpointTool
+			showBorders: (bool) newShowBorders
+			showCompass: (bool) newShowCompass
+			 showTarget: (bool) newShowTarget
+			   rotation: (int) newRotation 
+	   movementHandlers: (NSArray*) newMovementHandlers {
+	self = [super init];
     if (self) {
-		showBorders = false;
-		showCompass = false;
-		showTarget = false;
-		
+		beginDate = [newBeginDate retain];
 		maze = [newMaze retain];
-		gameState = [[HPGameState alloc] init];
-		
-		HPPositionMask* positionMask = [[[HPPositionMask alloc] initWithGameState: gameState] autorelease];
+		gameState = [newGameState retain];
+		visibilityMask = [newVisibilityMask retain];
+		markMask = [newMarkMask retain];
+		visitedMask = [newVisitedMask retain];
+		visitedTool = [newVisitedTool retain];
+		xAxisTool = [newXAxisTool retain];
+		yAxisTool = [newYAxisTool retain];
+		zAxisTool = [newZAxisTool retain];
+		recursiveTool = [newRecursiveTool retain];
+		untakenTool = [newUntakenTool retain];
+		ariadnaTool = [newAriadnaTool retain];
+		mazeTool = [newMazeTool retain];
+		checkpointTool = [newCheckpointTool retain];
+		showBorders = newShowBorders;
+		showCompass	= newShowCompass;
+		showTarget = newShowTarget;
+		rotation = newRotation;
+		movementHandlers = [newMovementHandlers retain];
+	}
+	return self;
+}
+
+- (id)initWithMaze:(HPMaze*) newMaze {
 	
-		HPAriadnaMask* ariadnaMask = [[[HPAriadnaMask alloc] initWithGameState: gameState] autorelease];
-		HPVisitedMask* visitedMask = [[[HPVisitedMask alloc] initWithSize:[maze size] gameState:gameState] autorelease];
-		HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:visitedMask Maze:maze] autorelease];
-		HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:maze numOfCheckPoints:3]  autorelease];
-		
-		HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, visitedMask, untakenMask, checkPointMask, nil] autorelease];
-		
-		HPXAxisMask* xAxisMask = [[[HPXAxisMask alloc] initWithGameState:gameState] autorelease];
-		HPYAxisMask* yAxisMask = [[[HPYAxisMask alloc] initWithGameState:gameState] autorelease];
-		HPZAxisMask* zAxisMask = [[[HPZAxisMask alloc] initWithGameState:gameState] autorelease];
-		HPRecursiveMask* recursiveMask = [[[HPRecursiveMask alloc] initWithGameState:gameState maze:maze depth:5] autorelease];
-		
-		HPVisibilityMask* mazeMask = [[[HPVisibilityMask alloc] init] autorelease];
-		
-		HPUnionMaskComposite* axisComposite = [[[HPUnionMaskComposite alloc] initWithMasks:xAxisMask, yAxisMask, zAxisMask, nil] autorelease];
-		HPIntersectionMaskComposite* planesComposite = [[[HPIntersectionMaskComposite alloc] initWithMasks:axisComposite, recursiveMask,nil] autorelease];
-		
-		HPUnionMaskComposite* composite = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, nil] autorelease];
-		
-		ariadnaTool	= [[HPVisibilityMaskManipulationTool alloc] initWithMask:ariadnaMask composite:brainComposite];
-		visitedTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:visitedMask composite:brainComposite];
-		untakenTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite];
-		int maxNumOfCheckpoints = [maze.solution count] / 50;
-		if (maxNumOfCheckpoints > 10) {
-			maxNumOfCheckpoints = 10;
-		}
-		if (maxNumOfCheckpoints < 1) {
-			maxNumOfCheckpoints	= 1;
-		}
-		checkpointTool = [[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:5];
-		xAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite];
-		yAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite];
-		zAxisTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite];
-		recursiveTool = [[HPRangeTool alloc] initWithMask:recursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:5];
-		mazeTool = [[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:composite];
-		visibilityMask = [composite retain];
-		markMask = [[HPMarkMask alloc] initWithUntaken:untakenMask visited:visitedMask ariadna:ariadnaMask checkpoint:checkPointMask];
-		movementHandlers = [[NSArray arrayWithObjects:gameState, visitedMask, ariadnaMask, recursiveMask, nil] retain];
-    }
-    return self;
+	HPGameState* newGameState = [[[HPGameState alloc] init] autorelease];
+	
+	HPPositionMask* positionMask = [[[HPPositionMask alloc] initWithGameState: newGameState] autorelease];
+	
+	HPAriadnaMask* ariadnaMask = [[[HPAriadnaMask alloc] initWithGameState: newGameState] autorelease];
+	HPVisitedMask* newVisitedMask = [[[HPVisitedMask alloc] initWithSize:[newMaze size] gameState:newGameState] autorelease];
+	HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:newVisitedMask Maze:newMaze] autorelease];
+	HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:newMaze numOfCheckPoints:3]  autorelease];
+	
+	HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, newVisitedMask, untakenMask, checkPointMask, nil] autorelease];
+	
+	HPXAxisMask* xAxisMask = [[[HPXAxisMask alloc] initWithGameState:newGameState] autorelease];
+	HPYAxisMask* yAxisMask = [[[HPYAxisMask alloc] initWithGameState:newGameState] autorelease];
+	HPZAxisMask* zAxisMask = [[[HPZAxisMask alloc] initWithGameState:newGameState] autorelease];
+	HPRecursiveMask* recursiveMask = [[[HPRecursiveMask alloc] initWithGameState: newGameState maze:newMaze depth:5] autorelease];
+	
+	HPVisibilityMask* mazeMask = [[[HPVisibilityMask alloc] init] autorelease];
+	
+	HPUnionMaskComposite* axisComposite = [[[HPUnionMaskComposite alloc] initWithMasks:xAxisMask, yAxisMask, zAxisMask, nil] autorelease];
+	HPIntersectionMaskComposite* planesComposite = [[[HPIntersectionMaskComposite alloc] initWithMasks:axisComposite, recursiveMask,nil] autorelease];
+	
+	HPUnionMaskComposite* newVisibilityMask = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, nil] autorelease];
+
+	int maxNumOfCheckpoints = [newMaze.solution count] / 50;
+	if (maxNumOfCheckpoints > 10) {
+		maxNumOfCheckpoints = 10;
+	}
+	if (maxNumOfCheckpoints < 1) {
+		maxNumOfCheckpoints	= 1;
+	}
+	
+	return [self initWithBeginDate: [NSDate date]
+							  maze: newMaze 
+						 gameState: newGameState
+					visibilityMask: newVisibilityMask 
+						  markMask: [[[HPMarkMask alloc] initWithUntaken:untakenMask visited:newVisitedMask ariadna:ariadnaMask checkpoint:checkPointMask] autorelease] 
+					   visitedMask: newVisitedMask 
+					   visitedTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:newVisitedMask composite:brainComposite] autorelease] 
+						 xAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite] autorelease] 
+						 yAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite] autorelease] 
+						 zAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite] autorelease] 
+					 recursiveTool: [[[HPRangeTool alloc] initWithMask:recursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:5] autorelease] 
+					   untakenTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite] autorelease]
+					   ariadnaTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:ariadnaMask composite:brainComposite] autorelease] 
+						  mazeTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:newVisibilityMask] autorelease]
+					checkpointTool: [[[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:5] autorelease] 
+					   showBorders: false 
+					   showCompass: false 
+						showTarget: false 
+						  rotation: 0 
+			 movementHandlers:[NSArray arrayWithObjects:newGameState, newVisitedMask, ariadnaMask, recursiveMask, nil]];
 }
 
 - (void) dealloc {
@@ -97,6 +144,7 @@
 	[visitedTool release];
 	[movementHandlers release];
 	[markMask release];
+	[visitedMask release];
 	[super dealloc];
 }
 
@@ -116,6 +164,14 @@
 	} else {
 		[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_MOVEMENT_CANCELED object:self];
 	}
+}
+
+- (int) getNumOfVisited {
+	return visitedMask.numOfVisited;
+}
+
+- (int) getTotalChambers {
+	return pow(maze.size, 3);
 }
 
 - (void) toggleAriadnaTool {
@@ -206,6 +262,57 @@
 	rotation = (rotation + 1) % 4;
 	FS3DPoint currentPosition = [gameState currentPosition];
 	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+	[encoder encodeObject:beginDate forKey:@"beginDate"];
+	
+	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeObject:gameState forKey:@"gameState"];
+	
+	[encoder encodeObject:visibilityMask forKey:@"visibilityMask"];
+	[encoder encodeObject:markMask forKey:@"markMask"];
+	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
+	
+	[encoder encodeObject:visitedTool forKey:@"visitedTool"];
+	[encoder encodeObject:xAxisTool forKey:@"xAxisTool"];
+	[encoder encodeObject:yAxisTool forKey:@"yAxisTool"];
+	[encoder encodeObject:zAxisTool forKey:@"zAxisTool"];
+	[encoder encodeObject:recursiveTool forKey:@"recursiveTool"];
+	[encoder encodeObject:untakenTool forKey:@"untakenTool"];
+	[encoder encodeObject:ariadnaTool forKey:@"ariadnaTool"];
+	[encoder encodeObject:mazeTool forKey:@"mazeTool"];
+	[encoder encodeObject:checkpointTool forKey:@"checkpointTool"];
+	
+	[encoder encodeBool:showBorders forKey:@"showBorders"];
+	[encoder encodeBool:showCompass forKey:@"showCompass"];
+	[encoder encodeBool:showTarget forKey:@"showTarget"];
+	[encoder encodeInt32:rotation forKey:@"rotation"];
+	
+	[encoder encodeObject:movementHandlers forKey:@"movementHandlers"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+	return [self initWithBeginDate: [[decoder decodeObjectForKey:@"beginDate"] autorelease]
+							  maze: [[decoder decodeObjectForKey:@"maze"] autorelease]
+						 gameState: [[decoder decodeObjectForKey:@"gameState"] autorelease]
+					visibilityMask: [[decoder decodeObjectForKey:@"visibilityMask"] autorelease] 
+						  markMask: [[decoder decodeObjectForKey:@"markMask"] autorelease]
+					   visitedMask: [[decoder decodeObjectForKey:@"visitedMask"] autorelease] 
+					   visitedTool: [[decoder decodeObjectForKey:@"visitedTool"] autorelease] 
+						 xAxisTool: [[decoder decodeObjectForKey:@"xAxisTool"] autorelease] 
+						 yAxisTool: [[decoder decodeObjectForKey:@"yAxisTool"] autorelease] 
+						 zAxisTool: [[decoder decodeObjectForKey:@"zAxisTool"] autorelease] 
+					 recursiveTool: [[decoder decodeObjectForKey:@"recursiveTool"] autorelease] 
+					   untakenTool: [[decoder decodeObjectForKey:@"untakenTool"] autorelease] 
+					   ariadnaTool: [[decoder decodeObjectForKey:@"ariadnaTool"] autorelease] 
+						  mazeTool: [[decoder decodeObjectForKey:@"mazeTool"] autorelease] 
+					checkpointTool: [[decoder decodeObjectForKey:@"checkpointTool"] autorelease] 
+					   showBorders: [decoder decodeBoolForKey:@"showBorders"] 
+					   showCompass: [decoder decodeBoolForKey:@"showCompass"]  
+						showTarget: [decoder decodeBoolForKey:@"showTarget"]  
+						  rotation: [decoder decodeInt32ForKey:@"rotation"] 
+				  movementHandlers: [[decoder decodeObjectForKey:@"movementHandlers"] autorelease]];
 }
 
 @end
