@@ -43,6 +43,12 @@ for(id *__arr__ = __array__->data->arr, *end = __array__->data->arr + __array__-
 	__arr__ <= end && ((__object__ = *__arr__) != nil || true);										\
 	__arr__++)
 
+#define CCARRAY_FOREACH_BACKWARDS(__array__, __object__)												\
+if (__array__ && __array__->data->num > 0)													\
+for(id *__arr__ = __array__->data->arr + __array__->data->num-1, *end = __array__->data->arr;	\
+__arr__ >= end && ((__object__ = *__arr__) != nil || true);										\
+__arr__--)
+
 @interface CCArray : NSObject <NSFastEnumeration, NSCoding, NSCopying>
 {
 	@public ccArray *data;

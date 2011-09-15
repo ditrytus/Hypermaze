@@ -7,6 +7,7 @@
 //
 
 #import "HPConfiguration.h"
+#import "PathBuilder.h"
 
 @implementation HPConfiguration
 
@@ -36,10 +37,7 @@ static HPConfiguration *sharedConfiguration;
     if (self) {
         NSString *errorDesc = nil;
         NSPropertyListFormat format;
-        NSString *plistPath;
-        NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-																  NSUserDomainMask, YES) objectAtIndex:0];
-        plistPath = [rootPath stringByAppendingPathComponent:@"Settings.plist"];
+        NSString *plistPath = [PathBuilder settingsFile];
         if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
             plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
         }
@@ -62,8 +60,7 @@ static HPConfiguration *sharedConfiguration;
 
 - (void) save {
 	NSString *error;
-    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [rootPath stringByAppendingPathComponent:@"Settings.plist"];
+    NSString *plistPath = [PathBuilder settingsFile];
     NSDictionary *plistDict = [NSDictionary dictionaryWithObjects:
 							   [NSArray arrayWithObjects: music, sound, difficulty, nil]
 														  forKeys:[NSArray arrayWithObjects: @"Music", @"Sound", @"Difficulty", nil]];

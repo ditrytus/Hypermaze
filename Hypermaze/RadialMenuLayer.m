@@ -673,7 +673,8 @@
 }
 
 - (void) onOkRToggle: (CCMenuItemToggle*) item {
-	
+	[logic reset];
+	[self hideMenu];
 }
 
 -(void) dealloc {

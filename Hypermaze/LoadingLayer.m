@@ -79,13 +79,13 @@
 - (void) onEnterTransitionDidFinish {
 	aQueue = [[[NSOperationQueue alloc] init] retain];
 	[aQueue addOperationWithBlock:^{
+		completePerformed = NO;
 		[generator generateMazeInSize: [[HPConfiguration sharedConfiguration].difficulty intValue]];
 	}];
 }
 
 -(void) update:(ccTime)deltaTime
 {
-	static bool completePerformed = NO;
 	switch([generator getStatus])
 	{
 		case genWorking: {

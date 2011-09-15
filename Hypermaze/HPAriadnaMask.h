@@ -14,4 +14,6 @@
 	HPGameState* gameState;
 }
 
+- (void) reset;
+
 @end

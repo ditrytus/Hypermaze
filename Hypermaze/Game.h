@@ -12,19 +12,18 @@
 #import "HPMazeLayer.h"
 #import "FSIsoSystem.h"
 #import "RadialMenuLayer.h"
+#import "InfoPanel.h"
 
 @interface Game : CCScene {
 	HPLogic* logic;
 	HPMazeLayer* mazeLayer;
+	InfoPanel* infoPanel;
 	RadialMenuLayer* radialMenuLayer;
 	CCLayer* interfaceLayer;
 	CGSize size;
 	CGPoint middleScreen;
 	CCSprite* compassArrow;
-	CCLabelTTF* timeElapsedLabel;
-	CCLabelTTF* movesMadeLabel;
-	CCLabelTTF* visitedLabel;
-	CCLabelTTF* unvisitedLabel;
+	
 }
 
 - (id) initWithLogic: (HPLogic*) newLogic;
@@ -32,5 +31,7 @@
 
 - (void) onViewChanged: (NSNotification*) notification;
 - (void) onPositionChanged: (NSNotification*) notification;
+
++ (CCMenuItemSprite*) createArrowWithName: (NSString*) arrowName target: (id) target selector: (SEL) selector;
 
 @end

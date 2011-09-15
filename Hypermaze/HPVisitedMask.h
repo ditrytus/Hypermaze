@@ -18,5 +18,6 @@
 @property(nonatomic, readonly) int numOfVisited;
 
 - (id)initWithSize: (int) size gameState:(HPGameState*) state;
+- (void) reset;
 
 @end

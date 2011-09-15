@@ -23,5 +23,6 @@
 @property(readonly, nonatomic) BOOL hasFinished;
 
 - (NSTimeInterval) getTimeElapsed;
+- (void) reset;
 
 @end

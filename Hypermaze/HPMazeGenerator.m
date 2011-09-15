@@ -91,7 +91,8 @@ void digEntranceAndExit(Byte ***topology,int size) {
 	FS3DPoint molePosition = BEGIN_POINT;
 	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
 	do {
-		moleLength++;		
+		moleLength++;
+		[NSThread sleepForTimeInterval:0.00005]; 
 		if (!firstMole && moleLength==1) {
 			HPDirection dirToExisting;
 			for (int i=0; i<DIR_TOTAL_DIRECTIONS; i++) {

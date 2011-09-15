@@ -154,7 +154,7 @@ enum {
 	touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
 	
 	CCMenuItem* item;
-	CCARRAY_FOREACH(children_, item){
+	CCARRAY_FOREACH_BACKWARDS(children_, item){
 		// ignore invisible and disabled items: issue #779, #866
 		if ( [item visible] && [item isEnabled] ) {
 			

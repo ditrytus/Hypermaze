@@ -18,6 +18,7 @@
 #import "HPUntakenCrossroadsMask.h"
 #import "HPMarkMask.h"
 #import "HPRangeTool.h"
+#import "HPAriadnaMask.h"
 
 #define EVENT_MOVEMENT_CANCELED @"hpLogicMovementCanceledEvent"
 #define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
@@ -32,6 +33,7 @@
 	HPVisibilityMask* visibilityMask;
 	HPMarkMask* markMask;
 	HPVisitedMask* visitedMask;
+	HPAriadnaMask* ariadnaMask;
 	
 	HPTool* visitedTool;
 	HPTool* xAxisTool;
@@ -88,6 +90,8 @@
 
 - (void) rotateClockwise;
 - (void) rotateCounterclockwise;
+
+- (void) reset;
 
 - (int) getNumOfVisited;
 - (int) getTotalChambers;

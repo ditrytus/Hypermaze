@@ -53,5 +53,10 @@
 	return self;
 }
 
+- (void) reset {
+	[self clearArray];
+	numOfVisited = 0;
+	[self markPositionAsVisited];
+}
 
 @end

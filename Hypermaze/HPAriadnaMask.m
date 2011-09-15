@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
 		gameState = [state retain];
-		[self addToPath:BEGIN_POINT];
+		[self addToPath: gameState.currentPosition];
     }
     
     return self;
@@ -45,6 +45,11 @@
 	self = [super initWithCoder:decoder];
 	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
 	return self;
+}
+
+- (void) reset {
+	[path removeAllObjects];
+	[self addToPath: gameState.currentPosition];
 }
 
 @end

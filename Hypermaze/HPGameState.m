@@ -74,4 +74,8 @@
 							  previousTimeElapsed: [decoder decodeDoubleForKey:@"previousTimeElapsed"]];
 }
 
+- (void) reset {
+	currentPosition = BEGIN_POINT;
+}
+
 @end

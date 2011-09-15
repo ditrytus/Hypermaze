@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CCScrollLayer.h"
 
 
 @interface MainMenuLayer : CCLayer {
 	BOOL isInTrasition;
+	bool hasSavedGames;
+	int resumeGameMenuPos;
+	NSMutableArray* savedGames;
+	NSMutableArray* resumeItems;
 	CCAction *showFromRightAndFadeIn;
 	CCAction *hideToRightAndFadeOut;
 	CCAction *showFromLeftAndFadeIn;
@@ -20,18 +25,26 @@
 	CCAction *moveRightWithEasing;
 	CCAction *fadeInWithEasing;
 	CCAction *fadeOutWithEasing;
+	CCAction *moveUpWithEasing;
+	CCAction *moveDownWithEasing;
+	CCAction *pushUp;
+	CCAction *pushDown;
+	CCAction *jumpUp;
+	CCAction *jumpDown;
 	CCMenu *mainMenu;
 	CCMenu *optionsMenu;
 	CCMenu *newGameMenu;
 	CCMenu *gameSettingsMenu;
+	CCLayer *resumeGameLayer;
+	CCMenu *resumeGameMenu;
 	CCSprite *title;
 	CCSprite *background;
 	CCMenuItemToggle *sizeItem;
+	CCMenuItemSprite* resumeButton;
 	
 	CGPoint menuBeginLocation;
 	CGPoint middleScreen;
 	CGPoint titleLocation;
-	
 }
 
 +(CCScene *) scene;

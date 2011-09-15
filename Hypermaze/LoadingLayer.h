@@ -14,6 +14,7 @@
 	HPMazeGenerator* generator;
 	NSOperationQueue* aQueue;
 	CCSprite *fill;
+	bool completePerformed;
 }
 
 +(CCScene *) scene;

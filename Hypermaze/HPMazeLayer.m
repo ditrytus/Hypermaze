@@ -280,6 +280,8 @@ void loadChamberSet(NSString *colorName) {
 	[outerSFilledPrototype release];
 	[outerSWiredPrototype release];
 	[mark release];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
 	[super dealloc];
 }
 - (void) onViewChanged: (NSNotification*) notification {

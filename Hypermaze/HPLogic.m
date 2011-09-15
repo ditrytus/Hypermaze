@@ -36,6 +36,7 @@
 		 visibilityMask: (HPVisibilityMask*) newVisibilityMask
 			   markMask: (HPMarkMask*) newMarkMask
 			visitedMask: (HPVisitedMask*) newVisitedMask
+			ariadnaMask: (HPAriadnaMask*) newAriadnaMask
 			visitedTool: (HPTool*) newVisitedTool
 			  xAxisTool: (HPTool*) newXAxisTool
 			  yAxisTool: (HPTool*) newYAxisTool
@@ -58,6 +59,7 @@
 		visibilityMask = [newVisibilityMask retain];
 		markMask = [newMarkMask retain];
 		visitedMask = [newVisitedMask retain];
+		ariadnaMask = [newAriadnaMask retain];
 		visitedTool = [newVisitedTool retain];
 		xAxisTool = [newXAxisTool retain];
 		yAxisTool = [newYAxisTool retain];
@@ -82,12 +84,12 @@
 	
 	HPPositionMask* positionMask = [[[HPPositionMask alloc] initWithGameState: newGameState] autorelease];
 	
-	HPAriadnaMask* ariadnaMask = [[[HPAriadnaMask alloc] initWithGameState: newGameState] autorelease];
+	HPAriadnaMask* newAriadnaMask = [[[HPAriadnaMask alloc] initWithGameState: newGameState] autorelease];
 	HPVisitedMask* newVisitedMask = [[[HPVisitedMask alloc] initWithSize:[newMaze size] gameState:newGameState] autorelease];
 	HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:newVisitedMask Maze:newMaze] autorelease];
 	HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:newMaze numOfCheckPoints:3]  autorelease];
 	
-	HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: ariadnaMask, newVisitedMask, untakenMask, checkPointMask, nil] autorelease];
+	HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: newAriadnaMask, newVisitedMask, untakenMask, checkPointMask, nil] autorelease];
 	
 	HPXAxisMask* xAxisMask = [[[HPXAxisMask alloc] initWithGameState:newGameState] autorelease];
 	HPYAxisMask* yAxisMask = [[[HPYAxisMask alloc] initWithGameState:newGameState] autorelease];
@@ -115,20 +117,21 @@
 					visibilityMask: newVisibilityMask 
 						  markMask: [[[HPMarkMask alloc] initWithUntaken:untakenMask visited:newVisitedMask ariadna:ariadnaMask checkpoint:checkPointMask] autorelease] 
 					   visitedMask: newVisitedMask 
+					   ariadnaMask: newAriadnaMask
 					   visitedTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:newVisitedMask composite:brainComposite] autorelease] 
 						 xAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite] autorelease] 
 						 yAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite] autorelease] 
 						 zAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite] autorelease] 
 					 recursiveTool: [[[HPRangeTool alloc] initWithMask:recursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:5] autorelease] 
 					   untakenTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite] autorelease]
-					   ariadnaTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:ariadnaMask composite:brainComposite] autorelease] 
+					   ariadnaTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:newAriadnaMask composite:brainComposite] autorelease] 
 						  mazeTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:newVisibilityMask] autorelease]
 					checkpointTool: [[[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:5] autorelease] 
 					   showBorders: false 
 					   showCompass: false 
 						showTarget: false 
 						  rotation: 0 
-			 movementHandlers:[NSArray arrayWithObjects:newGameState, newVisitedMask, ariadnaMask, recursiveMask, nil]];
+			 movementHandlers:[NSArray arrayWithObjects:newGameState, newVisitedMask, newAriadnaMask, recursiveMask, nil]];
 }
 
 - (void) dealloc {
@@ -145,6 +148,7 @@
 	[movementHandlers release];
 	[markMask release];
 	[visitedMask release];
+	[ariadnaMask release];
 	[super dealloc];
 }
 
@@ -264,6 +268,15 @@
 	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
 }
 
+- (void) reset {
+	FS3DPoint prevPos = gameState.currentPosition;
+	[gameState reset];
+	FS3DPoint curPos = gameState.currentPosition;
+	[visitedMask reset];
+	[ariadnaMask reset];
+	[self raisePostionChangedEvent: curPos previousPosition:prevPos];
+}
+
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeObject:beginDate forKey:@"beginDate"];
 	
@@ -273,6 +286,7 @@
 	[encoder encodeObject:visibilityMask forKey:@"visibilityMask"];
 	[encoder encodeObject:markMask forKey:@"markMask"];
 	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
+	[encoder encodeObject:ariadnaMask forKey:@"ariadnaMask"];
 	
 	[encoder encodeObject:visitedTool forKey:@"visitedTool"];
 	[encoder encodeObject:xAxisTool forKey:@"xAxisTool"];
@@ -299,6 +313,7 @@
 					visibilityMask: [[decoder decodeObjectForKey:@"visibilityMask"] autorelease] 
 						  markMask: [[decoder decodeObjectForKey:@"markMask"] autorelease]
 					   visitedMask: [[decoder decodeObjectForKey:@"visitedMask"] autorelease] 
+					   ariadnaMask: [[decoder decodeObjectForKey:@"ariadnaMask"] autorelease] 
 					   visitedTool: [[decoder decodeObjectForKey:@"visitedTool"] autorelease] 
 						 xAxisTool: [[decoder decodeObjectForKey:@"xAxisTool"] autorelease] 
 						 yAxisTool: [[decoder decodeObjectForKey:@"yAxisTool"] autorelease] 
