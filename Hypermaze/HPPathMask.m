@@ -56,7 +56,8 @@
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	path = [decoder decodeObjectForKey:@"path"];
+	path = [[decoder decodeObjectForKey:@"path"] retain];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

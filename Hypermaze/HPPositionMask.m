@@ -32,6 +32,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
 	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

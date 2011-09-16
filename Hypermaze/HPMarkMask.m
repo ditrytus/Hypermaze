@@ -78,11 +78,17 @@
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
-	return [self initWithIsEnabled:[decoder decodeBoolForKey:@"isEnabled"]
-						   Untaken:[[decoder decodeObjectForKey:@"untakenMask"] autorelease]
-						   visited:[[decoder decodeObjectForKey:@"visitedMask"] autorelease]
-						   ariadna:[[decoder decodeObjectForKey:@"ariadnaMask"] autorelease]
-						checkpoint:[[decoder decodeObjectForKey:@"checkpointMask"] autorelease]];
+	bool decodedIsEnabled = [decoder decodeBoolForKey:@"isEnabled"];
+	id decodedUntaken = [[decoder decodeObjectForKey:@"untakenMask"] autorelease];
+	id decodedVisited = [[decoder decodeObjectForKey:@"visitedMask"] autorelease];
+	id decodedAriadna = [[decoder decodeObjectForKey:@"ariadnaMask"] autorelease];
+	id decodedCheckpoint = [[decoder decodeObjectForKey:@"checkpointMask"] autorelease];
+	NSLog(@"%@",[[self class] description]);
+	return [self initWithIsEnabled: decodedIsEnabled
+						   Untaken: decodedUntaken
+						   visited: decodedVisited
+						   ariadna: decodedAriadna
+						checkpoint: decodedCheckpoint];
 }
 
 @end

@@ -75,6 +75,7 @@
 	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
 	maze = [[decoder decodeObjectForKey:@"maze"] retain];
 	maxDepth = [decoder decodeInt32ForKey:@"maxDepth"];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

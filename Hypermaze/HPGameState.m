@@ -60,13 +60,14 @@
 	[encoder encodeInt32:movesMade forKey:@"movesMade"];
 	[encoder encodeDouble:previousTimeElapsed forKey:@"previousTimeElapsed"];
 	[encoder encodeObject:
-	 [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)]
+	[NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)]
 				   forKey:@"currentPosition"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	FS3DPoint position;
-	[((NSData*)[decoder decodeObjectForKey:@"currentPosition"]) getBytes:&position];
+	[[((NSData*)[decoder decodeObjectForKey:@"currentPosition"]) autorelease] getBytes:&position];
+	NSLog(@"%@",[[self class] description]);
 	return [[HPGameState alloc] initWithMovesMade: [decoder decodeInt32ForKey:@"movesMade"]
 									   lastResume: [NSDate date]
 									  hasFinished: NO

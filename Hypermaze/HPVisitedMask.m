@@ -50,6 +50,7 @@
 	self = [super initWithCoder:decoder];
 	numOfVisited = [decoder decodeInt32ForKey:@"numOfVisited"];
 	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

@@ -55,6 +55,7 @@
 	minValue = [decoder decodeInt32ForKey:@"minValue"];
 	maxValue = [decoder decodeInt32ForKey:@"maxValue"];
 	refreshableMask = [[decoder decodeObjectForKey:@"refreshableMask"] retain];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

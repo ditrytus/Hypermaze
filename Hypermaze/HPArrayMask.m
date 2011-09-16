@@ -63,9 +63,9 @@
 		for (int j=0; j<arraySize; j++) {
 			NSMutableArray* zPlane = [[[NSMutableArray alloc] initWithCapacity:arraySize] autorelease];
 			for (int h=0; h<arraySize; h++) {
-				[zPlane addObject:[NSNumber numberWithChar:array[i][j][h]]];
+				[zPlane addObject:[NSNumber numberWithBool:array[i][j][h]]];
 			}
-			[yPlane addObject:yPlane];
+			[yPlane addObject:zPlane];
 		}
 		[xPlane addObject: yPlane];
 	}
@@ -75,7 +75,7 @@
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
 	arraySize = [decoder decodeInt32ForKey:@"arraySize"];
-	NSMutableArray* xPlane= [[decoder decodeObjectForKey:@"array"] autorelease];
+	NSMutableArray* xPlane = [[decoder decodeObjectForKey:@"array"] autorelease];
 	array = malloc(arraySize*sizeof(bool**));
 	for (int i=0; i<arraySize; i++) {
 		NSMutableArray* yPlane = [xPlane objectAtIndex:i];

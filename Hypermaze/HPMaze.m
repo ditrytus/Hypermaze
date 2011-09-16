@@ -48,7 +48,7 @@
 			for (int h=0; h<size; h++) {
 				[zPlaneTopology addObject:[NSNumber numberWithChar:topology[i][j][h]]];
 			}
-			[yPlaneTopology addObject:yPlaneTopology];
+			[yPlaneTopology addObject:zPlaneTopology];
 		}
 		[xPlaneTopology addObject: yPlaneTopology];
 	}
@@ -70,9 +70,10 @@
 			}
 		}
 	}
+	NSLog(@"%@",[[self class] description]);
 	return [self initWithTopology: arrayWithTopology
 							 size: decodedSize
-						 solution: [decoder decodeObjectForKey:@"solution"]];
+						 solution: [[decoder decodeObjectForKey:@"solution"] autorelease]];
 }
 
 @end

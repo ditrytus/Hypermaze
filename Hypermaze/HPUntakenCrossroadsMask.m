@@ -58,6 +58,7 @@
 	self = [super initWithCoder:decoder];
 	visitedMask = [[decoder decodeObjectForKey:@"visitedMask"] retain];
 	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

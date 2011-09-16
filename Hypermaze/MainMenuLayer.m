@@ -171,7 +171,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	leftPanelItem.anchorPoint = ccp(0,0);
 	leftPanelItem.position = ccp(0,0);
 	
-	CCMenuItemSprite* rightPanelItem = [CCMenuItemSprite itemFromNormalSprite: resumeRightPanel selectedSprite:nil];
+	CCMenuItemSprite* rightPanelItem = [CCMenuItemSprite itemFromNormalSprite: resumeRightPanel selectedSprite:nil target:self selector:@selector(onResumePlay:)];
 	rightPanelItem.userData = [savedGameFolder retain];
 	rightPanelItem.anchorPoint = ccp(1,0);
 	rightPanelItem.position = ccp(screenshot.textureRect.size.width,0);
@@ -740,6 +740,14 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	[dialog openInScene: (CCScene*)[self parent]];
 }
 
+- (void) onResumePlay: (CCMenuItem*) item {
+	NSString* filePath = [((NSString*)item.userData) stringByAppendingPathComponent:SAVE_DATA_FILE];
+	HPLogic* logic = [[NSKeyedUnarchiver unarchiveObjectWithFile: filePath] autorelease];
+	[[CCDirector sharedDirector] replaceScene:
+	 [[CCTransitionCrossFade transitionWithDuration: 0.5
+											  scene: [[Game alloc] initWithLogic: logic]] retain]];
+}
+
 - (void) onBackFromResumeGame: (CCMenuItem  *) menuItem {
 	[self goBackTo:mainMenu from:resumeGameMenu];
 	if ([resumeItems count] > 0) {
@@ -815,7 +823,6 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 			 mainMenu.visible = NO;
 		  }],
 		  nil]];
-		
 		[optionsMenu runAction:
 		 [CCSequence actions:
 		  [CCCallBlock actionWithBlock:^{

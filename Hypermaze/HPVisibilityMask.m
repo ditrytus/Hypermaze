@@ -27,6 +27,7 @@
 }
 	
 - (id) initWithCoder:(NSCoder *)decoder {
+	NSLog(@"%@",[[self class] description]);
 	return [self init];
 }
 

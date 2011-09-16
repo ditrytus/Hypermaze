@@ -59,6 +59,7 @@
 	self = [super initWithCoder:decoder];
 	maze = [[decoder decodeObjectForKey:@"maze"] retain];
 	numOfCheckPoints = [decoder decodeInt32ForKey:@"numOfCheckPoints"];
+	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 
