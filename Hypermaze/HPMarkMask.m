@@ -10,6 +10,8 @@
 
 @implementation HPMarkMask
 
+@synthesize isEnabled;
+
 - (id)initWithIsEnabled: (BOOL) enabled
 				Untaken: (HPVisibilityMask*) untaken
 				visited: (HPVisibilityMask*) visited
@@ -79,10 +81,10 @@
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	bool decodedIsEnabled = [decoder decodeBoolForKey:@"isEnabled"];
-	id decodedUntaken = [[decoder decodeObjectForKey:@"untakenMask"] autorelease];
-	id decodedVisited = [[decoder decodeObjectForKey:@"visitedMask"] autorelease];
-	id decodedAriadna = [[decoder decodeObjectForKey:@"ariadnaMask"] autorelease];
-	id decodedCheckpoint = [[decoder decodeObjectForKey:@"checkpointMask"] autorelease];
+	id decodedUntaken = [decoder decodeObjectForKey:@"untakenMask"];
+	id decodedVisited = [decoder decodeObjectForKey:@"visitedMask"];
+	id decodedAriadna = [decoder decodeObjectForKey:@"ariadnaMask"];
+	id decodedCheckpoint = [decoder decodeObjectForKey:@"checkpointMask"];
 	NSLog(@"%@",[[self class] description]);
 	return [self initWithIsEnabled: decodedIsEnabled
 						   Untaken: decodedUntaken

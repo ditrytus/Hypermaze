@@ -19,6 +19,8 @@
 	bool isEnabled;
 }
 
+@property(nonatomic, readonly) bool isEnabled;
+
 - (id)initWithUntaken: (HPVisibilityMask*) untaken visited: (HPVisibilityMask*) visited ariadna: (HPVisibilityMask*)  ariadna checkpoint: (HPVisibilityMask*) checkpoint;
 - (HPChamberMark) getValue: (FS3DPoint) position;
 - (void) toggle;

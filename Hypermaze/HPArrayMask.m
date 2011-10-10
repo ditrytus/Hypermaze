@@ -75,13 +75,13 @@
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
 	arraySize = [decoder decodeInt32ForKey:@"arraySize"];
-	NSMutableArray* xPlane = [[decoder decodeObjectForKey:@"array"] autorelease];
+	NSMutableArray* xPlane = [decoder decodeObjectForKey:@"array"];
 	array = malloc(arraySize*sizeof(bool**));
 	for (int i=0; i<arraySize; i++) {
 		NSMutableArray* yPlane = [xPlane objectAtIndex:i];
 		array[i] = malloc(arraySize*sizeof(bool*));
 		for (int j=0; j<arraySize; j++) {
-			NSMutableArray* zPlane = [yPlane objectAtIndex:i];
+			NSMutableArray* zPlane = [yPlane objectAtIndex:j];
 			array[i][j] = malloc(arraySize*sizeof(bool));
 			for (int h=0; h<arraySize; h++) {
 				array[i][j][h] = [((NSNumber*)[zPlane objectAtIndex:h]) boolValue];
