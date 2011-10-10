@@ -13,6 +13,7 @@
 #import "FSIsoSystem.h"
 #import "RadialMenuLayer.h"
 #import "InfoPanel.h"
+#import "FinishLayer.h"
 
 @interface Game : CCScene {
 	HPLogic* logic;

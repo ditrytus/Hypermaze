@@ -23,6 +23,7 @@
 #define EVENT_MOVEMENT_CANCELED @"hpLogicMovementCanceledEvent"
 #define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
 #define EVENT_VIEW_CHANGED @"hpLogicviewChangedEvent"
+#define EVENT_MAZE_FINISHED @"hpLogicMazeFinished"
 
 @interface HPLogic : NSObject<NSCoding> {
 	NSDate* beginDate;
@@ -34,6 +35,7 @@
 	HPMarkMask* markMask;
 	HPVisitedMask* visitedMask;
 	HPAriadnaMask* ariadnaMask;
+	HPRecursiveMask* recursiveMask;
 	
 	HPTool* visitedTool;
 	HPTool* xAxisTool;
@@ -62,7 +64,15 @@
 @property (readonly, nonatomic) HPGameState* gameState;
 @property (readonly, nonatomic) HPVisibilityMask* visibilityMask;
 @property (readonly, nonatomic) HPMarkMask* markMask;
+
+@property (readonly, nonatomic) HPTool* visitedTool;
+@property (readonly, nonatomic) HPTool* xAxisTool;
+@property (readonly, nonatomic) HPTool* yAxisTool;
+@property (readonly, nonatomic) HPTool* zAxisTool;
 @property (readonly, nonatomic) HPRangeTool* recursiveTool;
+@property (readonly, nonatomic) HPTool* untakenTool;
+@property (readonly, nonatomic) HPTool* ariadnaTool;
+@property (readonly, nonatomic) HPTool* mazeTool;
 @property (readonly, nonatomic) HPRangeTool* checkpointTool;
 
 @property (readonly, nonatomic) bool showBorders;
@@ -95,5 +105,7 @@
 
 - (int) getNumOfVisited;
 - (int) getTotalChambers;
+
+- (int) getScore;
 
 @end

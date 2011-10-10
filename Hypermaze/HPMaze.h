@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FS3DPoint.h"
 
 @interface HPMaze : NSObject<NSCoding> {
 	Byte*** topology;
@@ -19,5 +20,7 @@
 @property (readonly, nonatomic) Byte*** topology;
 @property (readonly, nonatomic) int size;
 @property (readonly, nonatomic) NSArray* solution;
+
+- (FS3DPoint) getFinishPosition;
 
 @end

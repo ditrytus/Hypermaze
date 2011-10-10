@@ -9,6 +9,7 @@
 #import "CCTouchDispatcher.h"
 #import "RadialMenuLayer.h"
 #import "MainMenuLayer.h"
+#import "HPConfiguration.h"
 #import <math.h>
 
 @implementation RadialMenuLayer
@@ -81,15 +82,19 @@
 		
 		woolToggle = [self hiddenMenuItemFromOnFrameName:@"wool_on.png" offFrameName:@"wool_off.png" target:@selector(onWoolToggle:)];
 		woolIndexPath= [brainIndexPath indexPathByAddingIndex:0];
+		woolToggle.selectedIndex = logic.ariadnaTool.isEnabled ? 1 : 0;
 		
 		breadToggle = [self hiddenMenuItemFromOnFrameName:@"bread_on.png" offFrameName:@"bread_off.png" target:@selector(onBreadToggle:)];
 		breadIndexPath= [brainIndexPath indexPathByAddingIndex:1];
-			
+		breadToggle.selectedIndex = logic.visitedTool.isEnabled ? 1 : 0;
+		
 		signpostToggle = [self hiddenMenuItemFromOnFrameName:@"signpost_on.png" offFrameName:@"signpost_off.png" target:@selector(onSignPostToggle:)];
 		signpostIndexPath= [brainIndexPath indexPathByAddingIndex:2];
+		signpostToggle.selectedIndex = logic.untakenTool.isEnabled ? 1 : 0;
 		
 		flagToggle = [self hiddenMenuItemFromOnFrameName:@"flag_on.png" offFrameName:@"flag_off.png" target:@selector(onFlagToggle:)];
 		flagIndexPath= [brainIndexPath indexPathByAddingIndex:3];
+		flagToggle.selectedIndex = logic.checkpointTool.isEnabled ? 1 : 0;
 		
 		flagSliderItems = [[[NSMutableArray alloc] init] retain];
 		
@@ -102,21 +107,26 @@
 		
 		brushToggle = [self hiddenMenuItemFromOnFrameName:@"brush_on.png" offFrameName:@"brush_off.png" target:@selector(onBrushToggle:)];
 		brushIndexPath= [brainIndexPath indexPathByAddingIndex:4];
+		brushToggle.selectedIndex = logic.markMask.isEnabled ? 1 : 0;
 		
 		planesToggle = [self hiddenMenuItemFromOnFrameName:@"planes_on.png" offFrameName:@"planes_off.png" target:@selector(onPlanesToggle:)];
 		planesIndexPath = [NSIndexPath indexPathWithIndex:1];
 		
 		planesXToggle = [self hiddenMenuItemFromOnFrameName:@"plane_x_on.png" offFrameName:@"plane_x_off.png" target:@selector(onPlaneXToggle:)];
 		planesXIndexPath= [planesIndexPath indexPathByAddingIndex:0];
+		planesXToggle.selectedIndex = logic.xAxisTool.isEnabled ? 1 : 0;
 		
 		planesYToggle = [self hiddenMenuItemFromOnFrameName:@"plane_y_on.png" offFrameName:@"plane_y_off.png" target:@selector(onPlaneYToggle:)];
 		planesYIndexPath= [planesIndexPath indexPathByAddingIndex:1];
+		planesYToggle.selectedIndex = logic.yAxisTool.isEnabled ? 1 : 0;
 		
 		planesZToggle = [self hiddenMenuItemFromOnFrameName:@"plane_z_on.png" offFrameName:@"plane_z_off.png" target:@selector(onPlaneZToggle:)];
 		planesZIndexPath= [planesIndexPath indexPathByAddingIndex:2];
+		planesZToggle.selectedIndex = logic.zAxisTool.isEnabled ? 1 : 0;
 		
 		crossToggle	= [self hiddenMenuItemFromOnFrameName:@"cross_on.png" offFrameName:@"cross_off.png" target:@selector(onCrossToggle:)];
 		crossIndexPath = [planesIndexPath indexPathByAddingIndex:3];
+		crossToggle.selectedIndex = logic.recursiveTool.isEnabled ? 1 : 0;
 		
 		crossSliderItems = [[[NSMutableArray alloc] init] retain];
 		
@@ -132,24 +142,30 @@
 		
 		mazeToggle = [self hiddenMenuItemFromOnFrameName:@"maze_on.png" offFrameName:@"maze_off.png" target:@selector(onMazeToggle:)];
 		mazeIndexPath= [eyeIndexPath indexPathByAddingIndex:0];
+		mazeToggle.selectedIndex = logic.mazeTool.isEnabled ? 1 : 0;
 		
 		crosshairToggle = [self hiddenMenuItemFromOnFrameName:@"crosshair_on.png" offFrameName:@"crosshair_off.png" target:@selector(onCrosshairToggle:)];
 		crosshairIndexPath = [eyeIndexPath indexPathByAddingIndex:1];
+		crosshairToggle.selectedIndex = logic.showTarget ? 1 : 0;
 		
 		cubeToggle = [self hiddenMenuItemFromOnFrameName:@"cube_on.png" offFrameName:@"cube_off.png" target:@selector(onCubeToggle:)];
 		cubeIndexPath= [eyeIndexPath indexPathByAddingIndex:2];
+		cubeToggle.selectedIndex = logic.showBorders ? 1 : 0;
 		
 		compassToggle = [self hiddenMenuItemFromOnFrameName:@"compass_on.png" offFrameName:@"compass_off.png" target:@selector(onCompassToggle:)];
 		compassIndexPath = [eyeIndexPath indexPathByAddingIndex:3];
+		compassToggle.selectedIndex = logic.showCompass ? 1 : 0;
 				
 		gearToggle = [self hiddenMenuItemFromOnFrameName:@"gear_on.png" offFrameName:@"gear_off.png" target:@selector(onGearToggle:)];
 		gearIndexPath = [NSIndexPath indexPathWithIndex:3];
 		
 		speakerToggle = [self hiddenMenuItemFromOnFrameName:@"speaker_on.png" offFrameName:@"speaker_off.png" target:@selector(onSpeakerToggle:)];
 		speakerIndexPath = [gearIndexPath indexPathByAddingIndex:0];
+		speakerToggle.selectedIndex = [[HPConfiguration sharedConfiguration].sound boolValue] ? 1 : 0;
 		
 		noteToggle = [self hiddenMenuItemFromOnFrameName:@"note_on.png" offFrameName:@"note_off.png" target:@selector(onNoteToggle:)];
 		noteIndexPath = [gearIndexPath indexPathByAddingIndex:1];
+		noteToggle.selectedIndex = [[HPConfiguration sharedConfiguration].music boolValue] ? 1 : 0;
 		
 		xToggle	= [self hiddenMenuItemFromOnFrameName:@"x_on.png" offFrameName:@"x_off.png" target:@selector(onXToggle:)];
 		xIndexPath = [gearIndexPath indexPathByAddingIndex:2];
@@ -277,10 +293,10 @@
 }
 
 - (void) showBrain {
-	[self showNodeFromRoot:woolToggle index: woolIndexPath];
-	[self showNodeFromRoot:breadToggle index: breadIndexPath];
-	[self showNodeFromRoot:signpostToggle index: signpostIndexPath];
-	[self showNodeFromRoot:flagToggle index: flagIndexPath];
+	[self showNodeFromRoot: woolToggle index: woolIndexPath];
+	[self showNodeFromRoot: breadToggle index: breadIndexPath];
+	[self showNodeFromRoot: signpostToggle index: signpostIndexPath];
+	[self showNodeFromRoot: flagToggle index: flagIndexPath];
 	if ([flagToggle selectedIndex] == 0) {
 		[self setFlagHidden];
 	} else {
@@ -500,7 +516,6 @@
 		[self onEyeToggle:nil];
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
-
 	}
 }
 
@@ -668,7 +683,6 @@
 
 - (void) onOkXToggle: (CCMenuItemToggle*) item {
 	[game saveGame];
-	
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 

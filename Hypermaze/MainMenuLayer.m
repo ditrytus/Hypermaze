@@ -97,16 +97,18 @@ const int RESUME_ITEMS_MARGIN = 40;
 		[currentMenu runAction:
 		 [CCSequence actions:
 		  [[hideToLeftAndFadeOut copy] autorelease],
-		  [CCCallBlock actionWithBlock:^{
-			 currentMenu.visible = NO;
-		  }],
+		  [CCCallBlock actionWithBlock:
+		   ^(){
+			   currentMenu.visible = NO;
+		   }],
 		  nil]];
 		
 		[destinationMenu runAction:
 		 [CCSequence actions:
-		  [CCCallBlock actionWithBlock:^{
-			 destinationMenu.visible = YES;
-		  }],
+		  [CCCallBlock actionWithBlock:
+		   ^(){
+			   destinationMenu.visible = YES;
+		   }],
 		  [[showFromRightAndFadeIn copy] autorelease],
 		  [CCCallBlock actionWithBlock:^{
 			 isInTrasition = NO;
@@ -115,7 +117,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	}
 }
 
-- (CCMenu*)resumeItemFromString:(NSString *)savedGame {
+- (CCMenu*) resumeItemFromString: (NSString *) savedGame {
 	int resumeItemHeight;
 	NSString* savedGameFolder = [PathBuilder savedGameDirectory:savedGame];
 	NSLog(@"%@", savedGameFolder,nil);
@@ -155,7 +157,9 @@ const int RESUME_ITEMS_MARGIN = 40;
 	playIcon.position = ccp(resumeRightPanel.textureRect.size.width*(3.0/4.0), resumeRightPanel.textureRect.size.height/2.0);
 	[resumeRightPanel addChild:playIcon];
 	
-	CCSprite* screenshot = [CCSprite spriteWithFile:[savedGameFolder stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE]];
+	NSString* savedGameScreenshotFilePath = [savedGameFolder stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE];
+	[[CCTextureCache sharedTextureCache] removeTextureForKey:savedGameScreenshotFilePath];
+	CCSprite* screenshot = [CCSprite spriteWithFile: savedGameScreenshotFilePath];
 	
 	resumeItemHeight = screenshot.textureRect.size.height;
 	
@@ -229,7 +233,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	totalChambersLabel.position = ccpAdd(ccp(doorOpenIcon.position.x+10,0), resumePanelLeftMiddlePoint);
 	totalChambersLabel.color = ccBLACK;
 	
-	CCMenu* menu = [CCMenu menuWithItems: nil]; //[CCMenu menuWithItems:screenshotMenuItem, topPanelItem, rightPanelItem, leftPanelItem, dateLabel, sizeLabel, timeElapsedLabel, movesMadeLabel, totalChambersLabel, numOfVisitedLabel, nil];
+	CCMenu* menu = [CCMenu menuWithItems: nil];
 	[menu addChild:numOfVisitedLabel z:9];
 	[menu addChild:totalChambersLabel z:8];
 	[menu addChild:movesMadeLabel z:7];
@@ -350,21 +354,14 @@ const int RESUME_ITEMS_MARGIN = 40;
 	} else {
 		[soundToggle setSelectedIndex:0];
 	}
-	CCMenuItemSprite* facebookItem = [self menuItemSpriteFromNormalFrameName:@"facebook_off_en.png"
-															selectedFameName:@"facebook_on_en.png"
-																	selector:@selector(onFacebookClick:)];
-	CCMenuItemSprite* twitterItem = [self menuItemSpriteFromNormalFrameName:@"twitter_off_en.png"
-														   selectedFameName:@"twitter_on_en.png"
-																   selector:@selector(onTwitterClick:)];
 	CCMenuItemSprite* backItem = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
 														selectedFameName:@"back_on_en.png"
 																selector:@selector(onBackFromOptionsClick:)];
-	optionsMenu = [[CCMenu menuWithItems: musicLabel, musicToggle, soundLabel, soundToggle, facebookItem, twitterItem, backItem, nil] retain];
+	optionsMenu = [[CCMenu menuWithItems: musicLabel, musicToggle, soundLabel, soundToggle, backItem, nil] retain];
 	optionsMenu.position = menuBeginLocation;
 	[optionsMenu setOpacity: 0];
 	optionsMenu.visible = YES;
 	[optionsMenu alignItemsInColumns: 
-	 [NSNumber numberWithInt:2],
 	 [NSNumber numberWithInt:2],
 	 [NSNumber numberWithInt:2],
 	 [NSNumber numberWithInt:1],
@@ -607,12 +604,11 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onBackFromGameSettingsClick: (CCMenuItem  *) menuItem 
 {
-	[self goBackTo: newGameMenu from: gameSettingsMenu];
+	[self goBackTo: mainMenu from: gameSettingsMenu];
 }
 
 - (void) onOnePlayerClick: (CCMenuItem  *) menuItem 
 {
-	[self goTo: gameSettingsMenu from: newGameMenu];
 }
 
 - (void) onTwoPlayersClick: (CCMenuItem  *) menuItem 
@@ -805,7 +801,8 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onNewGameClick: (CCMenuItem  *) menuItem 
 {
-	[self goTo: newGameMenu from: mainMenu];
+	//[self goTo: newGameMenu from: mainMenu];
+	[self goTo: gameSettingsMenu from: mainMenu];
 }
 
 - (void) onTutorialClick: (CCMenuItem  *) menuItem 

@@ -57,6 +57,7 @@
 	if (self) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onViewChanged:) name:EVENT_VIEW_CHANGED object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMazeFinished:) name:EVENT_MAZE_FINISHED object:nil];
 		
 		logic = [newLogic retain];
 		
@@ -181,6 +182,14 @@
 	  [CCRotateTo actionWithDuration:1
 							   angle:[mazeLayer getCompassAngle]]
 						   rate:2]];
+}
+
+- (void) onMazeFinished: (NSNotification*) notification {
+	compassArrow.visible = NO;
+	infoPanel.visible = NO;
+	radialMenuLayer.visible = NO;
+	interfaceLayer.visible = NO;
+	[self addChild: [[FinishLayer alloc] initWithLogic: logic]];
 }
 
 -(void) dealloc {

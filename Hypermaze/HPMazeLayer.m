@@ -58,6 +58,7 @@ void loadChamberSet(NSString *colorName) {
     if (self) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onViewChanged:) name:EVENT_VIEW_CHANGED object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMazeFinished:) name:EVENT_MAZE_FINISHED object:nil];
 		
 		mark = [[CCSprite spriteWithFile:@"mark.png"] retain];
 		mark.anchorPoint = ccp(0,0);
@@ -145,6 +146,7 @@ void loadChamberSet(NSString *colorName) {
 		[self redrawMazeTexture];
 		[self addChild: mazeTexture];
     }
+	[self onPositionChanged:nil];
     return self;
 }
 
@@ -241,9 +243,53 @@ void loadChamberSet(NSString *colorName) {
 	[mazeTexture end];
 }
 
+- (void)launchFireworkAfterRandomTime {
+  [[CCScheduler sharedScheduler] scheduleSelector:@selector(firework) forTarget:self interval:(double)(arc4random()%10)/5.0 paused:NO];
+
+}
+- (void) onMazeFinished: (NSNotification*) notification {
+	CCSprite* chamber;
+	[mazeTexture clear:0.0f g:0.5f b:0.0f a:0.5f];
+	[mazeTexture begin];
+	for (int z=0; z<mazeSize; z++) {
+		for (int y=mazeSize-1; y>=0; y--) {
+			for (int x=mazeSize-1; x>=0; x--) {
+				FS3DPoint point = point3D(x,y,z);
+				FS3DPoint rotPoint = [HPPositionUtil rotatePoint: point3D(x,y,z) by:-logic.rotation withSize:mazeSize];
+				mark.position = ccpAdd(positionCache[point.x][point.y][point.z],ccp(35, 35));
+				[mark visit];
+				chamber = yellowChamberPrototypes[chamberRotationCache[topology[rotPoint.x][rotPoint.y][rotPoint.z]][logic.rotation]-1];
+				chamber.position = ccpAdd(positionCache[point.x][point.y][point.z],ccp(50, 50));
+				[chamber visit];
+			}
+		}
+	}
+	[mazeTexture end];
+	CGPoint destination = ccpSub([self convertToNodeSpace:ccp(-80,-80)], ccpSub(ccpAdd(positionCache[0][0][mazeSize-1],ccp(35, 35)), ccpAdd(positionCache[0][0][0],ccp(35, 35))));
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+	destination = ccpAdd(destination, ccp(winSize.width * 0.5, winSize.height * 0.5));
+	[self launchFireworkAfterRandomTime];
+	[mazeTexture.sprite runAction:
+	 [CCEaseInOut actionWithAction:
+	  [CCSpawn actions:
+	   [CCMoveTo actionWithDuration:3 position:destination],
+	   [CCScaleBy actionWithDuration:3 scale:1],
+	   nil]
+							  rate: 4.0]];
+}
+
+- (void) firework {
+	[[CCScheduler sharedScheduler] unscheduleSelector:@selector(firework) forTarget:self];
+	CCParticleSystem* particleSystem = [CCParticleSystemQuad particleWithFile:@"Firework.plist"];
+	particleSystem.position = ccp(arc4random()%1024, arc4random()%768+300);
+	[self addChild: particleSystem];
+	[self launchFireworkAfterRandomTime];
+}
+
+
 -(double) getCompassAngle {
 	FS3DPoint rotCurPos = [HPPositionUtil rotatePoint:logic.gameState.currentPosition by:logic.rotation withSize:mazeSize];
-	FS3DPoint rotEnd = [HPPositionUtil rotatePoint:point3D(mazeSize-1, mazeSize-1, mazeSize-1) by:logic.rotation withSize:mazeSize];
+	FS3DPoint rotEnd = [HPPositionUtil rotatePoint:[logic.maze getFinishPosition] by:logic.rotation withSize:mazeSize];
 	CGPoint position = ccpAdd(positionCache[rotCurPos.x][rotCurPos.y][rotCurPos.z],ccp(35, 35));
 	CGPoint vector = ccpSub(ccpAdd(positionCache[rotEnd.x][rotEnd.y][rotEnd.z],ccp(35, 35)),position);
 	int corrector = (vector.x < 0) ? -1 : 1;
@@ -297,7 +343,7 @@ void loadChamberSet(NSString *colorName) {
 
 - (CGPoint) getDestination {
 	CGPoint translation;
-  translation = [self getTranslation];
+	translation = [self getTranslation];
 
 	CGPoint destination = ccpAdd(translation,ccp(80,85));
 	destination = ccp(-destination.x, -destination.y);

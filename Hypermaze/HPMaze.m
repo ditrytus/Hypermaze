@@ -57,15 +57,15 @@
 	
 - (id) initWithCoder:(NSCoder *)decoder {
 	int decodedSize = [decoder decodeInt32ForKey:@"size"];
-	NSMutableArray* xPlaneTopology = [[decoder decodeObjectForKey:@"topology"] autorelease];
+	NSMutableArray* xPlaneTopology = [decoder decodeObjectForKey:@"topology"];
 	Byte*** arrayWithTopology = malloc(decodedSize*sizeof(Byte**));
-	for (int i=0; i<size; i++) {
+	for (int i=0; i<decodedSize; i++) {
 		NSMutableArray* yPlaneTopology = [xPlaneTopology objectAtIndex:i];
 		arrayWithTopology[i] = malloc(decodedSize*sizeof(Byte*));
-		for (int j=0; j<size; j++) {
-			NSMutableArray* zPlaneTopology = [yPlaneTopology objectAtIndex:i];
+		for (int j=0; j<decodedSize; j++) {
+			NSMutableArray* zPlaneTopology = [yPlaneTopology objectAtIndex:j];
 			arrayWithTopology[i][j] = malloc(decodedSize*sizeof(Byte));
-			for (int h=0; h<size; h++) {
+			for (int h=0; h<decodedSize; h++) {
 				arrayWithTopology[i][j][h] = [((NSNumber*)[zPlaneTopology objectAtIndex:h]) charValue];
 			}
 		}
@@ -73,7 +73,12 @@
 	NSLog(@"%@",[[self class] description]);
 	return [self initWithTopology: arrayWithTopology
 							 size: decodedSize
-						 solution: [[decoder decodeObjectForKey:@"solution"] autorelease]];
+						 solution: [decoder decodeObjectForKey:@"solution"]];
+}
+
+- (FS3DPoint) getFinishPosition  {
+	//return point3D(size-1, size-1, size-1);
+	return point3D(0, 0, 0);
 }
 
 @end
