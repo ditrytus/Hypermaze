@@ -1,0 +1,95 @@
+/* 
+ Localizable.strings
+ Hypermaze
+ 
+ Created by Jakub Gruszecki on 20.10.2011.
+ Copyright 2011 __MyCompanyName__. All rights reserved.
+ */
+"TutorialStep1" = "Welcome in Hypermaze. The goal of the game is to find a way out of a three-dimensional maze by finding your way through the chamers.";
+"TutorialStep2" = "Maze is shaped like a cube. Entrance is always at its lower corner, while the exit is always in the opposite upper corner.";
+"TutorialStep3" = "Currently, all chambers are hidden. The only visible chamber is the one where you are. This chamber is always marked and highlighted in yellow.";
+"TutorialStep4" = "An additional tip that will help you determine the current position, is contained in the frame of the maze. Yellow squares on each wall indicates your current position in space.";
+"TutorialStep5" = "Because maze is three-dimensional, you can move in 6 directions.";
+"TutorialStep6" = "Look at the arrows located on both sides of the screen.";
+"TutorialStep7" = "There are two identical sets of arrows to enable you a comfortable play with one or two hands.";
+"TutorialStep8" = "Individual arrows let you move respectively up,";
+"TutorialStep9" = "down,";
+"TutorialStep10" = "left,";
+"TutorialStep11" = "right,";
+"TutorialStep12" = "forward";
+"TutorialStep13" = "and backward.";
+"TutorialStep14" = "Direction in which you can go from the current chamber you can see by the corridors running out of it. From the current room you can go forward and right. The corridor leading backward from this chamber is the entrance to the maze and you can not follow it.";
+"TutorialStep15" = "Try to go forward by pressing the appropriate arrow.";
+"TutorialStep16" = "Very good! Go forward again.";
+"TutorialStep17" = "Go up.";
+"TutorialStep18" = "Go to the right.";
+"TutorialStep19" = "Go down.";
+"TutorialStep20" = "Using a twisted arrows you can rotate a maze in both directions. Try to see the maze from all sides.";
+"TutorialStep21" = "On the top bar you will find informations about current game.";
+"TutorialStep22" = "From the left, you can see the amount of time you have spent in the maze.";
+"TutorialStep23" = "Number of moves you have done so far.";
+"TutorialStep24" = "The number of chambers in the maze, which you have not yet visited.";
+"TutorialStep25" = "The number of chambers in the maze, which you have already visited.";
+"TutorialStep26" = "A large button on the bottom of the screen opens the game menu. Press it.";
+"TutorialStep27" = "You can close game menu at any time, using the lower button, or touching the dark area around.";
+"TutorialStep28" = "In the game menu you have access to many features that will help you explore the maze.";
+
+/* Widok */
+
+"TutorialStep29" = "Under the eye icon, there are options that allow you to configure the display of the maze.";
+"TutorialStep30" = "Touch the eye icon.";
+"TutorialStep31" = "Maze icon allows you to see all the chambers. Press it now.";
+"TutorialStep32" = "In some settings, view of your current position can be overridden by another chamber, like now. Pressing the crosshair icon will make the current room always visible. Press it now.";
+"TutorialStep33" = "Crosshair icon lets you preview the directions in which you can go from the current room, but hinders the orientation in space.";
+"TutorialStep34" = "Press the crosshair icon again.";
+"TutorialStep35" = "Icon border, allows you to show and hide the border of the maze. Hide the border by deselecting the border icon.";
+"TutorialStep36" = "Touch the icon of the border again to show the border of the maze.";
+"TutorialStep37" = "Compass icon, allows you to show and hide the arrow that will always be pointed to the exit. Turn the compass icon now.";
+"TutorialStep38" = "Touch the compass icon again to hide the arrow.";
+"TutorialStep39" = "Displaying the whole maze is not very convenient, because the internal chamber are not visible.";
+"TutorialStep40" = "Press the icon of the maze to turn off the display of all chambers.";
+
+/*  Płaszczyzny X,Y,Z */
+
+"TutorialStep41" = "Under the icon representing the three planes, there are other options to customize the display of rooms. Press it now.";
+"TutorialStep42" = "Icons of three planes allow you to display all the chambers located on the same plane as the current room.";
+"TutorialStep43" = "Try to display all three planes by pressing the appropriate icon.";
+"TutorialStep44" = "Note that you can display 1, 2 or 3 planes simultaneously.";
+"TutorialStep45" = "Turn off all 3 planes by pressing the appropriate icons.";
+"TutorialStep46" = "The button with the adjacent squares allows you to show all the chambers, adjacent to the current. Turn it on now.";
+"TutorialStep47" = "You can adjust the number of chambers are displayed using the buttons at the top. Try to increase the number of displayed adjacent chambers.";
+"TutorialStep48" = "View of adjacent chambers can be combined with views of the planes. In such case only those adjacent chambers will be visible, which are on the appropriate plane.";
+"TutorialStep49" = "Press the icon with the plane X.";
+"TutorialStep50" = "Now turn off the view of plane X, and a view of neighboring chambers.";
+
+/* Mózg */
+
+"TutorialStep51" = "Under the icon of the brain there are other options that can help you find the exit of the maze. Press it now.";
+"TutorialStep52" = "Yarn icon lets you see all the chambers on the path from the beginning of the maze to the current position. With this option, you can always go back towards the beginning of the maze.";
+"TutorialStep53" = "Turn on the yarn icon now.";
+"TutorialStep54" = "Turn off the yarn icon now.";
+"TutorialStep55" = "Icon of bread allows you to display all chamber visited so far.";
+"TutorialStep56" = "Turn the bread icon now.";
+"TutorialStep57" = "Because, you did come to the actual room straight from the entrance to the maze, it now displays the same chambers as the yarn icon. Turn the bread icon off now.";
+"TutorialStep58" = "Signpost icon allows you to view all the chambers, where you were, but from which you didn't followed all possible corridors. In other words, it shows all the unused crossroads.";
+"TutorialStep59" = "Turn on the signpost icon now.";
+"TutorialStep60" = "Turn off the signpost icon now.";
+"TutorialStep61" = "Flag icon allows you to expose a small number of chambers, which are on the path leading from the entrance, the exit of the maze. Finding  wayout of the maze, you'll have to go through all these chambers. They therefore represent the check points, which can be used to assess whether you are going the right way or not.";
+"TutorialStep62" = "Turn on the flag icon now.";
+"TutorialStep63" = "You can adjust the number of control points displayed using the buttons at the top. The number of possible points to display depends on the size of the maze.";
+"TutorialStep64" = "Turn the flag now.";
+"TutorialStep65" = "Brush icon lets you mark a visible chambers in different colors.";
+"TutorialStep66" = "Green - chambers on the current path to the entrance and control points.
+Yellow - current position and visited chambers.
+Red - unused crossroads.
+Purple - unvisited chambers.";
+"TutorialStep67" = "Turn on the icon of the bread and brush now.";
+"TutorialStep68" = "Turn the bread and brush icons off now.";
+"TutorialStep69" = "Under the gear icon are game options.";
+"TutorialStep70" = "Note and speaker icons allows you to turn on and off the sound and music.";
+"TutorialStep71" = "If, at some point you feel completely lost, you can restart the game from by using the icon of R. The game will be reset. Only the clock will continue to measure time unchanged.";
+"TutorialStep72" = "Icon X allows you to leave the game and return to the main menu. Any interrupted game is automatically saved and can be resumed in the main menu.";
+
+/* 1. Koniec */
+
+"TutorialStep73" = "This is the end of the tutorial! Have fun!";

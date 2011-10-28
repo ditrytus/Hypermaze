@@ -17,7 +17,7 @@
 	CGSize winSize = [[CCDirector sharedDirector] winSize];
 	CGPoint middle = ccp(winSize.width/2.0, winSize.height/2.0);
 	CGSize dialogSize = CGSizeMake(320, 140);
-    self = [super initWithSize: dialogSize position: middle closeButton:NO showOverlay:YES closeOnOverlayTouch:NO];
+    self = [super initWithSize: dialogSize position: middle closeButton:NO showOverlay:YES closeOnOverlayTouch:NO isModal:YES isDraggable:YES];
     if (self) {
 		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
 														block:^(id sender){

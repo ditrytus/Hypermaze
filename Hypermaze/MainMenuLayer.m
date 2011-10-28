@@ -807,6 +807,9 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onTutorialClick: (CCMenuItem  *) menuItem 
 {
+	[[CCDirector sharedDirector] replaceScene:
+	 [[CCTransitionCrossFade transitionWithDuration: 0.5
+											  scene: [[Game alloc] initTutorial]] retain]];
 }
 
 - (void) onOptionsClick: (CCMenuItem  *) menuItem 

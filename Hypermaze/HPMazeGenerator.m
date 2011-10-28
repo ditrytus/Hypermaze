@@ -15,7 +15,7 @@
 #import "HPGlobals.h"
 #import "HPPathFinder.h"
 
-#define MOLE_MAX_LENGTH 8000
+#define MOLE_MAX_LENGTH 3
 
 FS3DPoint getNextFreeChamber(Byte ***topology, int size) {
 	for (int i=0; i<size; i++) {

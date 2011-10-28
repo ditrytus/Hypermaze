@@ -1,0 +1,95 @@
+/* 
+ Localizable.strings
+ Hypermaze
+ 
+ Created by Jakub Gruszecki on 20.10.2011.
+ Copyright 2011 __MyCompanyName__. All rights reserved.
+ */
+"TutorialStep1" = "Witaj w Hypermaze. Celem gry jest odnalezienie wyjścia z trójwymiarowego labiryntu odnajdując drogę przez kolejne komnaty.";
+"TutorialStep2" = "Labirynt ma kształt sześcianu. Wejście znajduje się zawsze w jego dolnym narożniku, natomiast wyjście znajduje się zawsze w przeciwległym, górnym narożniku.";
+"TutorialStep3" = "Obecnie wszystkie komnaty są ukryte. Widoczna jest jedynie komnata, w której się znajdujesz. Komnata ta zawsze jest oznaczona żółtym kolorem i podświetlona.";
+"TutorialStep4" = "Dodatkowa wskazówka która pomoże Ci ustalić aktualne położenie, zawiera się w obramowaniu labiryntu. Żółte kwadraty na każdej ze ścian wskazują położenie aktualnej komnaty w przestrzeni.";
+"TutorialStep5" = "Ponieważ labirynt jest trójwymiarowy, poruszać możesz się w 6 kierunkach.";
+"TutorialStep6" = "Służą do tego strzałki rozmieszczone po obu stronach ekranu.";
+"TutorialStep7" = "Do dyspozycji masz dwa identyczne zestawy strzałek, aby móc wygodnie grać zarówno jedną, jak i dwiema rękami.";
+"TutorialStep8" = "Poszczególne strzałki pozwolą Ci przejść odpowiednio: w górę, ";
+"TutorialStep9" = "w dół,";
+"TutorialStep10" = "w lewo,";
+"TutorialStep11" = "w prawo,";
+"TutorialStep12" = "w przód";
+"TutorialStep13" = "i w tył.";
+"TutorialStep14" = "To, w którym kierunku można przejść z aktualnej komnaty widać po korytarzach wybiegających. Z aktualnej komnaty możesz przejść do przodu i w prawo. Korytarz prowadzący do tyłu to tak na prawdę wejście do labiryntu i nie możesz nim iść.";
+"TutorialStep15" = "Spróbuj przejść teraz do przodu. Naciskając odpowiednią strzałkę.";
+"TutorialStep16" = "Bardzo dobrze! Przejdź jeszcze raz do przodu.";
+"TutorialStep17" = "Przejdź do góry.";
+"TutorialStep18" = "Przejdź w prawo.";
+"TutorialStep19" = "Przejdź w dół.";
+"TutorialStep20" = "Używając zakręconych strzałek możesz obracać labirynt w obu kierunkach. Spróbuj obejrzeć labirynt ze wszystkich stron.";
+"TutorialStep21" = "Na górnej belce znajduje się informacje dotyczące aktualnej gry.";
+"TutorialStep22" = "Od lewej mamy widoczny czas jaki już spędziłeś w labiryncie.";
+"TutorialStep23" = "Liczbę ruchów jakie wykonałeś do tej pory.";
+"TutorialStep24" = "Liczbę komnat w labiryncie, których jeszcze nie odwiedziłeś.";
+"TutorialStep25" = "Liczbę komnat w labiryncie, w których już byłeś.";
+"TutorialStep26" = "Duży guzik na dole ekranu otwiera menu gry. Naciśnij go.";
+"TutorialStep27" = "Menu można w każdej chwili zamknąć, używając dolnego przycisku, lub dotykając ciemnego obszaru wokoło.";
+"TutorialStep28" = "W menu gry masz dostęp do wielu opcji, które pomogą Ci w eksploracji labiryntu.";
+
+/* Widok */
+
+"TutorialStep29" = "Pod ikoną oka, znajdują się opcje, które pozwalają na konfigurowanie wyświetlania labiryntu.";
+"TutorialStep30" = "Kliknij ikonę oka.";
+"TutorialStep31" = "Ikona labiryntu pozwala zobaczyć wszystkie komnaty. Naciśnij ją teraz.";
+"TutorialStep32" = "W niektórych ustawieniach widoku, twoja aktualna pozycja może być przesłonięta przez inne komnaty, tak jak teraz. Naciśnięcie ikony celownika sprawi, że aktualna komnata, będzie zawsze widoczna. Naciśnij ją teraz.";
+"TutorialStep33" = "Ikona celownika pozwala podejrzeć kierunki, w jakie możemy się udać z aktualnej komnaty, ale utrudnia orientację w przestrzeni.";
+"TutorialStep34" = "Naciśnij ikonę celownika jeszcze raz.";
+"TutorialStep35" = "Ikona obramowania, pozwala pokazać i ukryć obramowanie labiryntu. Ukryj obramowanie labiryntu naciskają na tę ikonę.";
+"TutorialStep36" = "Naciśnij na ikonę obramowania jeszcze raz aby ponownie pokazać obramowanie labiryntu.";
+"TutorialStep37" = "Ikona kompasu, pozwala pokazać i ukryć strzałkę, która zawsze będzie wskazywała wyjście z labiryntu. Włącz ikonę kompasu teraz.";
+"TutorialStep38" = "Naciśnij na ikonę kompasu jeszcze raz aby ukryć strzałkę.";
+"TutorialStep39" = "Wyświetlanie całego labiryntu jest mało wygodne, ponieważ wewnętrzne komnaty się stają niewidoczne.";
+"TutorialStep40" = "Naciśnij ikonę labiryntu, aby wyłączyć wyświetlanie wszystkich komnat.";
+
+/*  Płaszczyzny X,Y,Z */
+
+"TutorialStep41" = "Pod ikoną przedstawiającą 3 płaszczyzny, znajdują się inne opcje związane z wyświetlaniem komnat. Naciśnij ją teraz.";
+"TutorialStep42" = "Ikony przedstawiające 3 płaszczyzny pozwalają wyświetlić wszystkie komnaty znajdujące się na tej samej płaszczyźnie co aktualna komnata.";
+"TutorialStep43" = "Spróbuj włączyć wszystkie 3 płaszczyzny, naciskając odpowiednie ikony.";
+"TutorialStep44" = "Zauważ, że można wyświetlać 1, 2 lub 3 płaszczyzny jednocześnie.";
+"TutorialStep45" = "Wyłącz teraz wszystkie 3 płaszczyzny, naciskając odpowiednie ikony.";
+"TutorialStep46" = "Przycisk z przylegającymi kwadratami pozwala Ci pokazać wszystkie komnaty, sąsiadujące z aktualną. Włącz go teraz.";
+"TutorialStep47" = "Możesz regulować liczbę wyświetlanych komnat używając przycisków u góry. Spróbuj zwiększyć liczbę wyświetlanych sąsiadujących komnat.";
+"TutorialStep48" = "Widok sąsiadujących komnat można łączyć z widokami płaszczyzn. Wówczas wyświetlane będą tylko te spośród sąsiadujących komnaty, które znajdują się na danej płaszczyźnie.";
+"TutorialStep49" = "Naciśnij ikonę z płaszczyzną X.";
+"TutorialStep50" = "Teraz wyłącz widok płaszczyzny, oraz widok sąsiadujących komnat.";
+
+/* Mózg */
+
+"TutorialStep51" = "Pod ikoną mózgu znajdują się inne opcje, które mogą Ci pomóc w odnalezieniu wyjścia z labiryntu. Naciśnij ją teraz.";
+"TutorialStep52" = "Ikona kłębka pozwala wyświetlić wszystkie komnaty na ścieżce od początku labiryntu do aktualnej komnaty. Dzięki tej opcji zawsze możesz się cofnąć w kierunku początku labiryntu.";
+"TutorialStep53" = "Włącz ikonę kłębka teraz.";
+"TutorialStep54" = "Wyłącz ikonę kłębka teraz.";
+"TutorialStep55" = "Ikona chleba pozwala wyświetlić wszystkie odwiedzone do tej pory komnaty.";
+"TutorialStep56" = "Włącz ikonę chleba teraz.";
+"TutorialStep57" = "Ponieważ, do aktualnej komnaty doszedłeś prosto od wejścia do labiryntu, to wyświetlane teraz komnaty są identyczne jak te wyświetlane przez ikonę kłębka. Wyłącz ikonę chleba teraz.";
+"TutorialStep58" = "Ikona drogowskazu pozwala wyświetlić wszystkie komnaty, w których byłeś, ale z których nie podążyłeś jeszcze we wszystkich możliwych kierunkach. Innymi słowy, pokazuje wszystkie niewykorzystane skrzyżowania.";
+"TutorialStep59" = "Włącz ikonę drogowskazu teraz.";
+"TutorialStep60" = "Wyłącz ikonę drogowskazu teraz.";
+"TutorialStep61" = "Ikona flagi pozwala odsłonić pewną niewielką liczbę komnat, które znajdują się na ścieżce wiodącej od wejścia, do wyjścia z labiryntu. Odnajdując wyjście z labiryntu, będziesz musiał przejść przez wszystkie te komnaty. Stanowią one zatem punkty kontrolne, którymi możesz się posłużyć, by ocenić, czy idziesz dobrą drogą, czy nie.";
+"TutorialStep62" = "Włącz ikonę flagi teraz.";
+"TutorialStep63" = "Możesz regulować ilość wyświetlanych punktów kontrolnych używając przycisków znajdujących się u góry. Ilość możliwych punktów do wyświetlenia zależy wielkości labiryntu.";
+"TutorialStep64" = "Wyłącz flagę teraz.";
+"TutorialStep65" = "Ikona pędzla pozwala oznaczyć widoczne komnaty różnymi kolorami.";
+"TutorialStep66" = "Zielony - zaznaczona jest ścieżka od aktualnej komnaty do wejścia i punkty kontrolne.
+Żółty - aktualna pozycja i odwiedzone komnaty.
+Czerwony - niewykorzystane skrzyżowania.
+Fioletowy - nieodwiedzone komnaty.";
+"TutorialStep67" = "Włącz ikonę chleba i pędzla teraz.";
+"TutorialStep68" = "Wyłącz ikonę chleba i pędzla teraz.";
+"TutorialStep69" = "Pod ikoną koła zębatego znajdują się opcje gry.";
+"TutorialStep70" = "Ikony głośnika i nutki pozwalają, w każdej chwili włączyć i wyłączyć dźwięk i muzykę.";
+"TutorialStep71" = "Jeżeli, w którymś momencie poczujesz, że zupełnie się zgubiłeś, to możesz rozpocząć grę od początku używając ikony R. Gra zostanie zresetowana. Jedynie zegar będzie bił dalej.";
+"TutorialStep72" = "Ikona X pozwala na opuszczenie gry i powrót do menu głównego. Każda przerwana gra jest zapisywana automatycznie i może zostać wznowiona w menu głównym.";
+
+/* 1. Koniec */
+
+"TutorialStep73" = "To już koniec samouczka! Dobrej zabawy!";

@@ -14,6 +14,34 @@
 
 @implementation RadialMenuLayer
 
+@synthesize menuToggle;
+@synthesize brainToggle;
+@synthesize planesToggle;
+@synthesize eyeToggle;
+@synthesize gearToggle;
+@synthesize flagToggle;
+@synthesize woolToggle;
+@synthesize breadToggle;
+@synthesize signpostToggle;
+@synthesize brushToggle;
+@synthesize planesXToggle;
+@synthesize planesYToggle;
+@synthesize planesZToggle;
+@synthesize crossToggle;
+@synthesize mazeToggle;
+@synthesize crosshairToggle;
+@synthesize cubeToggle;
+@synthesize compassToggle;
+@synthesize speakerToggle;
+@synthesize noteToggle;
+@synthesize xToggle;
+@synthesize rToggle;
+@synthesize okXToggle;
+@synthesize okRToggle;
+
+@synthesize flagSliderItems;
+@synthesize crossSliderItems;
+
 - (CCMenuItemToggle*) menuItemFromOnFrameName: (NSString*) onFrameName offFrameName: (NSString*) offFrameName target: (SEL) target {
 	CCSprite* onSprite = [CCSprite spriteWithSpriteFrameName:onFrameName];
 	CCMenuItemImage* onItem = [CCMenuItemImage itemFromNormalSprite:onSprite selectedSprite:nil];
@@ -64,13 +92,262 @@
 	}
 }
 
-- (id)initWithLogic: (HPLogic*) innerLogic game: (Game*) newGame
+- (void)storeItemsEnability:(CCMenuItem *)item  {
+	[enabilityMap setValue:[NSNumber numberWithBool: item.isEnabled] forKey:item.description];	
+}
+
+- (void) wireupTutorialEvents {
+  [[NSNotificationCenter defaultCenter] addObserverForName: TUT_DISABLE_ALL_EVENT
+														  object: nil
+														   queue: nil
+													  usingBlock: ^(NSNotification* notification){
+														  NSMutableArray* keys = [NSMutableArray array];
+														  for (NSString* key in enabilityMap) {
+															  [keys addObject: key];
+														  }
+														  for (NSString* key in keys) {
+															  [enabilityMap setValue: [NSNumber numberWithBool:NO] forKey:key];
+														  }
+														  isEnabled = NO;
+														  menuToggle.isEnabled = NO;
+														  brainToggle.isEnabled = NO;
+														  planesToggle.isEnabled = NO;
+														  eyeToggle.isEnabled = NO;
+														  gearToggle.isEnabled = NO;
+														  flagToggle.isEnabled = NO;
+														  woolToggle.isEnabled = NO;
+														  breadToggle.isEnabled = NO;
+														  signpostToggle.isEnabled = NO;
+														  brushToggle.isEnabled = NO;
+														  planesXToggle.isEnabled = NO;
+														  planesYToggle.isEnabled = NO;
+														  planesZToggle.isEnabled = NO;
+														  crossToggle.isEnabled = NO;
+														  mazeToggle.isEnabled = NO;
+														  crosshairToggle.isEnabled = NO;
+														  cubeToggle.isEnabled = NO;
+														  compassToggle.isEnabled = NO;
+														  speakerToggle.isEnabled = NO;
+														  noteToggle.isEnabled = NO;
+														  xToggle.isEnabled = NO;
+														  rToggle.isEnabled = NO;
+														  okXToggle.isEnabled = NO;
+														  okRToggle.isEnabled = NO;
+														  for (CCMenuItem* item in flagSliderItems) {
+															  item.isEnabled = NO;
+														  }
+														  for (CCMenuItem* item in crossSliderItems) {
+															  item.isEnabled = NO;
+														  }
+													  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_BRAIN_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  brainToggle.isEnabled = YES;
+													  [self storeItemsEnability:brainToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_MENU_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  menuToggle.isEnabled = YES;
+													  [self storeItemsEnability:menuToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_PLANES_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  planesToggle.isEnabled = YES;
+													  [self storeItemsEnability:planesToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_EYE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  eyeToggle.isEnabled = YES;
+													  [self storeItemsEnability:eyeToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_GEAR_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  gearToggle.isEnabled = YES;
+													  [self storeItemsEnability:gearToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_FLAG_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  flagToggle.isEnabled = YES;
+													  [self storeItemsEnability:flagToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_WOOL_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  woolToggle.isEnabled = YES;
+													  [self storeItemsEnability:woolToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_BREAD_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  breadToggle.isEnabled = YES;
+													  [self storeItemsEnability:breadToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SIGNPOST_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  signpostToggle.isEnabled = YES;
+													  [self storeItemsEnability:signpostToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_BRUSH_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  brushToggle.isEnabled = YES;
+													  [self storeItemsEnability:brushToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_PLANES_X_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  planesXToggle.isEnabled = YES;
+													  [self storeItemsEnability:planesXToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_PLANES_Y_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  planesYToggle.isEnabled = YES;
+													  [self storeItemsEnability:planesYToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_PLANES_Z_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  planesZToggle.isEnabled = YES;
+													  [self storeItemsEnability:planesZToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_CROSS_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  crossToggle.isEnabled = YES;
+													  [self storeItemsEnability:crossToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_MAZE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  mazeToggle.isEnabled = YES;
+													  [self storeItemsEnability:mazeToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_CROSSHAIR_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  crosshairToggle.isEnabled = YES;
+													  [self storeItemsEnability:crosshairToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_CUBE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  cubeToggle.isEnabled = YES;
+													  [self storeItemsEnability:cubeToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_COMPASS_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  compassToggle.isEnabled = YES;
+													  [self storeItemsEnability:compassToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SPEAKER_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  speakerToggle.isEnabled = YES;
+													  [self storeItemsEnability:speakerToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_NOTE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  noteToggle.isEnabled = YES;
+													  [self storeItemsEnability:noteToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_X_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  xToggle.isEnabled = YES;
+													  [self storeItemsEnability:xToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_R_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  rToggle.isEnabled = YES;
+													  [self storeItemsEnability:rToggle];
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_FLAG_SLIDER_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  for (CCMenuItem* item in flagSliderItems) {
+														  item.isEnabled = YES;
+														  [self storeItemsEnability:item];
+													  }
+													  isEnabled = YES;
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_CROSS_SLIDER_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  for (CCMenuItem* item in crossSliderItems) {
+														  item.isEnabled = YES;
+														  [self storeItemsEnability:item];
+													  }
+													  isEnabled = YES;
+												  }];
+
+}
+- (id)initWithLogic: (HPLogic*) innerLogic game: (Game*) newGame isInTutorial: (BOOL) isInTutorial
 {
     self = [super init];
     if (self) {
+		[self wireupTutorialEvents];
+
+			
 		game = [newGame retain];
 		
-		isMenuDisplayed = false;
+		isMenuOpened = false;
 		logic = [innerLogic retain];
 		
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile: @"interface.plist" textureFile: @"interface.png"];
@@ -219,6 +496,40 @@
 					 nil],
 					nil]];
 		
+		enabilityMap = [[NSMutableDictionary dictionaryWithObjectsAndKeys:
+						[NSNumber numberWithBool:!isInTutorial], menuToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], brainToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], planesToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], eyeToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], gearToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], flagToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], woolToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], breadToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], signpostToggle.description, 
+						[NSNumber numberWithBool:!isInTutorial], brushToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], planesXToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], planesYToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], planesZToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], crossToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], mazeToggle.description,
+						[NSNumber numberWithBool:!isInTutorial], crosshairToggle.description,
+						[NSNumber numberWithBool:!isInTutorial], cubeToggle.description,		
+						[NSNumber numberWithBool:!isInTutorial], compassToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], speakerToggle.description,	
+						[NSNumber numberWithBool:!isInTutorial], noteToggle.description,		
+						[NSNumber numberWithBool:!isInTutorial], xToggle.description,		
+						[NSNumber numberWithBool:!isInTutorial], rToggle.description,		
+						[NSNumber numberWithBool:!isInTutorial], okXToggle.description,		
+						[NSNumber numberWithBool:!isInTutorial], okRToggle.description,		
+						 nil] retain];
+		
+		for (CCMenuItem* item in flagSliderItems) {
+			[enabilityMap setObject:[NSNumber numberWithBool:!isInTutorial] forKey:item.description];
+		}
+		for (CCMenuItem* item in crossSliderItems) {
+			[enabilityMap setObject:[NSNumber numberWithBool:!isInTutorial] forKey:item.description];
+		}
+		
 		[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
     }
     
@@ -234,7 +545,7 @@
 					   [CCFadeIn actionWithDuration:0.5],
 					   nil],
 					  nil]];
-	[node setIsEnabled:YES];
+	[node setIsEnabled: [((NSNumber*)[enabilityMap objectForKey: node.description]) boolValue]];
 }
 
 - (void) showNodeFromRoot:(CCMenuItem*) node index: (NSIndexPath*) index {
@@ -445,16 +756,11 @@
 }
 
 - (void) showMenu {
-	isMenuDisplayed = true;
+	isMenuOpened = true;
 	[background runAction:[CCSequence actions:
 						   [CCCallBlock actionWithBlock:^{ [background setVisible:YES]; }],
 						   [CCFadeIn actionWithDuration:0.25],
 						   nil]];
-	//[particleSystem resumeSchedulerAndActions];
-//	[particleSystem runAction:[CCSequence actions:
-//							   [CCCallBlock actionWithBlock:^{ [particleSystem setVisible:YES]; }],
-//							   [CCFadeIn actionWithDuration:0.25],
-//							   nil]];
 	[self showNodeFromRoot:brainToggle index: brainIndexPath];
 	if ([brainToggle selectedIndex] == 0) {
 		[self setBrainHidden];
@@ -482,18 +788,11 @@
 }
 
 - (void) hideMenu {
-	isMenuDisplayed = false;
+	isMenuOpened = false;
 	[background runAction:[CCSequence actions:						   
 						   [CCFadeOut actionWithDuration:0.25],
 						   [CCCallBlock actionWithBlock:^{ [background setVisible:NO]; }],
 						   nil]];
-//	[particleSystem runAction:[CCSequence actions:						   
-//							 [CCFadeOut actionWithDuration:0.25],
-//							 [CCCallBlock actionWithBlock:^{
-//								[particleSystem setVisible:NO];
-//								//[particleSystem pauseSchedulerAndActions];
-//							 }],
-//							 nil]];
 	[self hideNode:brainToggle onIndex:brainIndexPath toLevel:0];
 	[self hideBrainToLevel: 0];
 	[self hideNode:planesToggle onIndex:planesIndexPath toLevel:0];
@@ -504,6 +803,12 @@
 	[self hideGearToLevel: 0];
 }
 
+- (void)raiseChangeEvent:(CCMenuItemToggle *)item  {
+	if (item != nil) {
+		[[NSNotificationCenter defaultCenter] postNotificationName: RAD_CHANGE_EVENT object: self userInfo: [NSDictionary dictionaryWithObject: item forKey: RAD_CHANGE_USER_INFO ]];
+	}
+
+}
 - (void) onBrainToggle: (CCMenuItemToggle*) item {
 	int currentLevel = [brainIndexPath length];
 	if ([brainToggle selectedIndex] == 0) {
@@ -517,15 +822,18 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onWoolToggle: (CCMenuItemToggle*) item {
 	[logic toggleAriadnaTool];
+	[self raiseChangeEvent: item];
 }
 
 
 - (void) onBreadToggle: (CCMenuItemToggle*) item {
 	[logic toggleVisitedTool];
+	[self raiseChangeEvent: item];
 }
 
 
@@ -537,21 +845,24 @@
 	} else {
 		[self showFlag];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onFlagLevelToggle: (CCMenuItemToggle*) item {
 	[logic setCheckpointNumber:[flagSliderItems indexOfObject:item] + 1];
 	[self renderFlagSliderValue];
+	[self raiseChangeEvent: item];
 }
 
 
 - (void) onSignPostToggle: (CCMenuItemToggle*) item {
 	[logic toggleUntakenTool];
+	[self raiseChangeEvent: item];
 }
-
 
 - (void) onBrushToggle: (CCMenuItemToggle*) item {
 	[logic toggleMarkMask];
+	[self raiseChangeEvent: item];
 }
 
 
@@ -561,6 +872,7 @@
 	} else {
 		[self hideMenu];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onPlanesToggle: (CCMenuItemToggle*) item {
@@ -576,18 +888,22 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onPlaneXToggle: (CCMenuItemToggle*) item {
 	[logic toggleYAxisTool];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onPlaneYToggle: (CCMenuItemToggle*) item {
 	[logic toggleXAxisTool];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onPlaneZToggle: (CCMenuItemToggle*) item {
 	[logic toggleZAxisTool];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onCrossToggle: (CCMenuItemToggle*) item {
@@ -598,11 +914,13 @@
 	} else {
 		[self showCross];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onCrossLevelToggle: (CCMenuItemToggle*) item {
 	[logic setRecursionDepth:[crossSliderItems indexOfObject:item] + 1];
 	[self renderCrossSliderValue];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onEyeToggle: (CCMenuItemToggle*) item {
@@ -618,22 +936,27 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onMazeToggle: (CCMenuItemToggle*) item {
 	[logic toggleMazeTool];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onCrosshairToggle: (CCMenuItemToggle*) item {
 	[logic toggleTarget];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onCubeToggle: (CCMenuItemToggle*) item {
 	[logic toggleBorders];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onCompassToggle: (CCMenuItemToggle*) item {
 	[logic toggleCompass];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onGearToggle: (CCMenuItemToggle*) item {
@@ -649,14 +972,15 @@
 		[eyeToggle setSelectedIndex:0];
 		[self onEyeToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onSpeakerToggle: (CCMenuItemToggle*) item {
-	
+	[self raiseChangeEvent: item];
 }
 
 - (void) onNoteToggle: (CCMenuItemToggle*) item {
-	
+	[self raiseChangeEvent: item];
 }
 
 - (void) onXToggle: (CCMenuItemToggle*) item {
@@ -668,6 +992,7 @@
 		[rToggle setSelectedIndex:0];
 		[self onRToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onRToggle: (CCMenuItemToggle*) item {
@@ -679,25 +1004,29 @@
 		[xToggle setSelectedIndex:0];
 		[self onXToggle:nil];
 	}
+	[self raiseChangeEvent: item];
 }
 
 - (void) onOkXToggle: (CCMenuItemToggle*) item {
 	[game saveGame];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+	[self raiseChangeEvent: item];
 }
 
 - (void) onOkRToggle: (CCMenuItemToggle*) item {
 	[logic reset];
 	[self hideMenu];
+	[self raiseChangeEvent: item];
 }
 
 -(void) dealloc {
 	[logic release];
+	[enabilityMap release];
 	[super dealloc];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if (isMenuDisplayed) {
+	if (isMenuOpened && isEnabled) {
 		[menuToggle setSelectedIndex:0];
 		[self onMenuToggle:menuToggle];
 		return true;

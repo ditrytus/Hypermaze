@@ -10,13 +10,19 @@
 
 @implementation PathBuilder
 
-+ (NSString*) baseDirectory {
-	NSString* baseDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	return baseDirectory;
+
++ (NSString*) resourceDirectory {
+	NSString* documentDirectory = [[NSBundle mainBundle] resourcePath];
+	return documentDirectory;
+}
+
++ (NSString*) documentDirectory {
+	NSString* documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+	return documentDirectory;
 }
 
 + (NSString*) saveDirectory {
-	return [[PathBuilder baseDirectory] stringByAppendingPathComponent:@"Save"];
+	return [[PathBuilder documentDirectory] stringByAppendingPathComponent:@"Save"];
 }
 
 + (NSString*) savedGameDirectory: (NSString*) date {
@@ -24,7 +30,7 @@
 }
 
 + (NSString*) settingsFile {
-	return [[PathBuilder baseDirectory] stringByAppendingPathComponent:SETTINGS_FILE];
+	return [[PathBuilder documentDirectory] stringByAppendingPathComponent:SETTINGS_FILE];
 }
 
 @end

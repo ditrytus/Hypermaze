@@ -16,12 +16,21 @@
 	bool isTouchingWindow;
 	bool isModal;
 	bool closeOnTouch;
+	bool isDraggable;
 	CGPoint previousTouchPosition;
 	CCMenu* closeMenu;
 	NSMutableDictionary* enabilityCache;
 }
 
-- (id)initWithSize: (CGSize) size position: (CGPoint) point closeButton: (bool) showCloseButton showOverlay: (bool) showOverlay closeOnOverlayTouch: (bool) closeOverlay;
+@property(nonatomic,readonly) CCSprite* dialogWindow;
+
+- (id)initWithSize: (CGSize) size
+		  position: (CGPoint) point
+	   closeButton: (bool) showCloseButton
+	   showOverlay: (bool) showOverlay
+closeOnOverlayTouch: (bool) closeOverlay
+		   isModal: (bool) isModalVal
+	   isDraggable: (bool) isDraggableVal;
 - (void) openInScene: (CCScene*) scene;
 - (void) close;
 

@@ -16,6 +16,70 @@
 
 @implementation Game
 
+- (CCMenuItem*) getLeftNArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]);
+}
+
+- (CCMenuItem*) getLeftNWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]);
+}
+
+- (CCMenuItem*) getLeftNEArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]);
+}
+
+- (CCMenuItem*) getLeftSWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]);
+}
+
+- (CCMenuItem*) getLeftSEArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]);
+}
+
+- (CCMenuItem*) getLeftSArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]);
+}
+
+- (CCMenuItem*) getLeftCWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]);
+}
+
+- (CCMenuItem*) getLeftCCWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]);
+}
+
+- (CCMenuItem*) getRightNArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]);
+}
+
+- (CCMenuItem*) getRightNWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]);
+}
+
+- (CCMenuItem*) getRightNEArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]);
+}
+
+- (CCMenuItem*) getRightSWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]);
+}
+
+- (CCMenuItem*) getRightSEArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]);
+}
+
+- (CCMenuItem*) getRightSArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]);
+}
+
+- (CCMenuItem*) getRightCWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]);
+}
+
+- (CCMenuItem*) getRightCCWArrow {
+	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]);
+}
+
 + (CCMenuItemSprite*) createArrowWithName: (NSString*) arrowName target: (id) target selector: (SEL) selector {
 	CCSprite* arrowOn = [CCSprite spriteWithFile:arrowName];
 	arrowOn.opacity = 128;
@@ -85,87 +149,197 @@
 		arrowsLeftMenu.position = ccp(0,0);
 		[interfaceLayer	addChild:arrowsLeftMenu];
 		
-		
 		CCMenu *arrowsRightMenu = [self createArrowSet];
 		arrowsRightMenu.position = ccp(size.width - ARROW_SIZE.width*3,0);
 		[interfaceLayer	addChild:arrowsRightMenu];
 		
 		[self addChild: interfaceLayer];
 		
-		radialMenuLayer = [[RadialMenuLayer alloc] initWithLogic:logic game:self];
+		radialMenuLayer = [[RadialMenuLayer alloc] initWithLogic:logic game:self isInTutorial: isTutorial];
 		[self addChild: radialMenuLayer];
+		
+		if (isTutorial) {
+			tutorialLayer = [[TutorialLayer alloc] initWithGame:self radialMenu:radialMenuLayer];
+			[self addChild: tutorialLayer];
+			[tutorialLayer openDialog:self];
+		}
 	}
 	return self;
 }
 
+- (void)wireUpTutorialEvents {
+  [[NSNotificationCenter defaultCenter] addObserverForName: TUT_DISABLE_ALL_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  //LEFT
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = NO; //N
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = NO; //NW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = NO; //NE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = NO; //SW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = NO; //SE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = NO; //S
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = NO; //CW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = NO; //CCW
+													  
+													  //RIGHT
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = NO; //N
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = NO; //NW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = NO; //NE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = NO; //SW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = NO; //SE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = NO; //S
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = NO; //CW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = NO; //CCW
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_N_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = YES; //N
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = YES; //N
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_NE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = YES; //NE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = YES; //NE
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_NW_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = YES; //NW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = YES; //NW
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_S_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = YES; //S
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = YES; //S
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SW_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = YES; //SW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = YES; //SW
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SE_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = YES; //SE
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = YES; //SE
+												  }];
+	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_ROTATIONS_EVENT
+													  object: nil
+													   queue: nil
+												  usingBlock: ^(NSNotification* noification){
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = YES; //CW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = YES; //CCW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = YES; //CW
+													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = YES; //CCW
+												  }];
+
+}
+- (id) initTutorial {
+	[self wireUpTutorialEvents];
+	NSString* filePath = [[PathBuilder resourceDirectory] stringByAppendingPathComponent: TUTORIAL_DATA_FILE];
+	NSLog(@"%@", filePath);
+	HPLogic* tutorialLogic = [[NSKeyedUnarchiver unarchiveObjectWithFile: filePath] autorelease];
+	isTutorial = true;
+	return [self initWithLogic: tutorialLogic];
+}
+
 - (void) saveGame {
-	NSFileManager *fileManager= [NSFileManager defaultManager];
-	NSString* saveGameDir = [PathBuilder savedGameDirectory:[logic.beginDate description]];
-	if (![fileManager fileExistsAtPath:saveGameDir]) {
-		NSError* error;
-		if(![fileManager createDirectoryAtPath:saveGameDir withIntermediateDirectories:YES attributes:nil error:&error]) {
-			NSLog(@"%@", [error description], nil);
+	if (!isTutorial) {
+		NSFileManager *fileManager= [NSFileManager defaultManager];
+		NSString* saveGameDir = [PathBuilder savedGameDirectory:[logic.beginDate description]];
+		if (![fileManager fileExistsAtPath:saveGameDir]) {
+			NSError* error;
+			if(![fileManager createDirectoryAtPath:saveGameDir withIntermediateDirectories:YES attributes:nil error:&error]) {
+				NSLog(@"%@", [error description], nil);
+			}
 		}
-	}
-	
-	if ([NSKeyedArchiver archiveRootObject:logic
-									toFile:[saveGameDir stringByAppendingPathComponent:SAVE_DATA_FILE]]) {
-		NSLog(@"Save OK");
-	} else {
-		NSLog(@"Save ERROR");
-	}
-	
-	NSDictionary* metadata = [NSDictionary dictionaryWithObjectsAndKeys:
-							  logic.beginDate, @"beginDate",
-							  [NSNumber numberWithInt: logic.maze.size], @"size",
-							  [NSNumber numberWithDouble: [logic.gameState getTimeElapsed]], @"timeElapsed",
-							  [NSNumber numberWithInt: logic.gameState.movesMade], @"movesMade",
-							  [NSNumber numberWithInt: [logic getNumOfVisited]], @"numOfVisited",
-							  [NSNumber numberWithInt: [logic getTotalChambers]], @"totalChambers",
-							  nil];
-	
-	CGSize screenshotSize = CGSizeMake(790, 130);
-	CCRenderTexture* screenshot = [CCRenderTexture renderTextureWithWidth:screenshotSize.width height:screenshotSize.height];
-	[screenshot begin];
-	mazeLayer.position = ccpSub(ccpAdd(ccpSub(ccp(screenshotSize.width/2.0,screenshotSize.height/2.0),middleScreen),ccp(-80,-85)),[mazeLayer getTranslation]);
-	[mazeLayer visit];
-	[screenshot end];
-	[screenshot saveBuffer:[saveGameDir stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE] format:kCCImageFormatJPG];
-	if (![metadata writeToFile:[saveGameDir stringByAppendingPathComponent:SAVE_METADATA_FILE] atomically:YES]) {
-		NSLog(@"METADATA ERROR");
+		
+		if ([NSKeyedArchiver archiveRootObject:logic
+										toFile:[saveGameDir stringByAppendingPathComponent:SAVE_DATA_FILE]]) {
+			NSLog(@"Save OK");
+		} else {
+			NSLog(@"Save ERROR");
+		}
+		
+		NSDictionary* metadata = [NSDictionary dictionaryWithObjectsAndKeys:
+								  logic.beginDate, @"beginDate",
+								  [NSNumber numberWithInt: logic.maze.size], @"size",
+								  [NSNumber numberWithDouble: [logic.gameState getTimeElapsed]], @"timeElapsed",
+								  [NSNumber numberWithInt: logic.gameState.movesMade], @"movesMade",
+								  [NSNumber numberWithInt: [logic getNumOfVisited]], @"numOfVisited",
+								  [NSNumber numberWithInt: [logic getTotalChambers]], @"totalChambers",
+								  nil];
+		
+		CGSize screenshotSize = CGSizeMake(790, 130);
+		CCRenderTexture* screenshot = [CCRenderTexture renderTextureWithWidth:screenshotSize.width height:screenshotSize.height];
+		[screenshot begin];
+		mazeLayer.position = ccpSub(ccpAdd(ccpSub(ccp(screenshotSize.width/2.0,screenshotSize.height/2.0),middleScreen),ccp(-80,-85)),[mazeLayer getTranslation]);
+		[mazeLayer visit];
+		[screenshot end];
+		[screenshot saveBuffer:[saveGameDir stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE] format:kCCImageFormatJPG];
+		if (![metadata writeToFile:[saveGameDir stringByAppendingPathComponent:SAVE_METADATA_FILE] atomically:YES]) {
+			NSLog(@"METADATA ERROR");
+		}
 	}
 }
 
+- (void)raiseArrowClickEvent:(CCMenuItem *)menuItem  {
+  [[NSNotificationCenter defaultCenter] postNotificationName: INTF_ARROW_CLICK_EVENT
+														object: self
+													  userInfo: [NSDictionary dictionaryWithObject:menuItem
+																							forKey:INTF_ARROW_CLICK_USER_INFO]];
+
+}
 - (void) onN: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirNorth by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
+
 }
 
 - (void) onNW: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirNorthWest by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onNE: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirNorthEast by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onSW: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirSouthWest by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onSE: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirSouthEast by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onS: (CCMenuItem  *) menuItem {
 	[logic moveInDirection: [HPDirectionUtil rotateDirection: dirSouth by: -logic.rotation]];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onClockwise: (CCMenuItem  *) menuItem {
 	[logic rotateClockwise];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onCounterclockwise: (CCMenuItem  *) menuItem {
 	[logic rotateCounterclockwise];
+	[self raiseArrowClickEvent: menuItem];
 }
 
 - (void) onViewChanged: (NSNotification*) notification {
@@ -196,6 +370,7 @@
 	[mazeLayer release];
 	[logic release];
 	[interfaceLayer release];
+	[tutorialLayer release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
 	[super dealloc];

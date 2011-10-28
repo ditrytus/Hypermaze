@@ -13,10 +13,20 @@
 
 @implementation CCDialog
 
-- (id)initWithSize: (CGSize) size position: (CGPoint) point closeButton: (bool) showCloseButton showOverlay: (bool) showOverlay closeOnOverlayTouch: (bool) closeOverlay
+@synthesize dialogWindow;
+
+- (id)initWithSize: (CGSize) size
+		  position: (CGPoint) point
+	   closeButton: (bool) showCloseButton
+	   showOverlay: (bool) showOverlay
+closeOnOverlayTouch: (bool) closeOverlay
+		   isModal: (bool) isModalVal
+	   isDraggable: (bool) isDraggableVal
 {
     self = [super init];
     if (self) {
+		isModal = isModalVal;
+		isDraggable = isDraggableVal;
 		enabilityCache = [[NSMutableDictionary alloc] init];
 		if (showOverlay) {
 			CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -104,7 +114,9 @@
 }
 
 - (void) openInScene: (CCScene*) scene {
-	[self menuStatus:NO node:scene];
+	if (isModal) {
+		[self menuStatus:NO node:scene];
+	}
 	[scene addChild: self];
 	[overlay runAction: [CCFadeIn actionWithDuration:ANIMATION_DURATION]];
 	[dialogWindow runAction:
@@ -126,13 +138,15 @@
 	  [CCCallBlock actionWithBlock:^(){
 		 CCNode* parent = self.parent;
 		 [parent removeChild: self cleanup:NO];
-	     [self menuStatus:YES node:parent];
+		 if (isModal) {
+			 [self menuStatus:YES node:parent];
+		 }
 	  }],
 	  nil]];
 }
 
 - (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-	if (primaryTouch == nil) {
+	if (primaryTouch == nil && isDraggable) {
 		primaryTouch = [touch retain];
 		CGPoint touchLocation = [touch locationInView: [touch view]];
 		touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];

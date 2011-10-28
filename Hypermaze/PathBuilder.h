@@ -12,10 +12,12 @@
 #define SAVE_SCREENSHOT_FILE	@"screenshot.jpg"
 #define SAVE_METADATA_FILE		@"metadata.hmz"
 #define SAVE_DATA_FILE			@"data.hmz"
+#define TUTORIAL_METADATA_FILE	@"tutorial_metadata.hmz"
+#define TUTORIAL_DATA_FILE		@"tutorial_data.hmz"
 
 @interface PathBuilder : NSObject
 
-+ (NSString*) baseDirectory;
++ (NSString*) resourceDirectory;
 + (NSString*) saveDirectory;
 + (NSString*) savedGameDirectory: (NSString*) date;
 + (NSString*) settingsFile;

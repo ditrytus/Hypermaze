@@ -166,70 +166,77 @@
 				   compassArrow, xPlaneArrow, yPlaneArrow, zPlaneArrow, recursiveArrow, recursiveLevelsArrow,
 				   woolArrow, breadArrow, signArrow, flagArrow, flagLevelsArrow, brushArrow, nil] retain];
 		
-		NSLog(@"%@", [startArrow description]);
-		NSLog(@"%@", [endArrow description]);
-		
 		arrowButtonTree = [[NSDictionary dictionaryWithObjectsAndKeys:
-						   [NSDictionary dictionary], [startArrow description],
-						   [NSDictionary dictionary], [endArrow description],
-						   [NSDictionary dictionary], [menuArrow description],
+						   [NSArray array], [startArrow description],
+						   [NSArray array], [endArrow description],
+						   [NSArray array], [menuArrow description],
 						   
-						   [NSDictionary dictionary], [borderTopArrow description],
-						   [NSDictionary dictionary], [borderLeftArrow description],
-						   [NSDictionary dictionary], [borderRightArrow description],
+						   [NSArray array], [borderTopArrow description],
+						   [NSArray array], [borderLeftArrow description],
+						   [NSArray array], [borderRightArrow description],
 						   
-						   [NSDictionary dictionary], [NWArrowL description],
-						   [NSDictionary dictionary], [SWArrowL description],
-						   [NSDictionary dictionary], [NArrowL description],
-						   [NSDictionary dictionary], [SArrowL description],
-						   [NSDictionary dictionary], [NEArrowL description],
-						   [NSDictionary dictionary], [SEArrowL description],
+						   [NSArray array], [NWArrowL description],
+						   [NSArray array], [SWArrowL description],
+						   [NSArray array], [NArrowL description],
+						   [NSArray array], [SArrowL description],
+						   [NSArray array], [NEArrowL description],
+						   [NSArray array], [SEArrowL description],
 						   
-						   [NSDictionary dictionary], [NWArrowR description],
-						   [NSDictionary dictionary], [SWArrowR description],
-						   [NSDictionary dictionary], [NArrowR description],
-						   [NSDictionary dictionary], [SArrowR description],
-						   [NSDictionary dictionary], [NEArrowR description],
-						   [NSDictionary dictionary], [SEArrowR description],
+						   [NSArray array], [NWArrowR description],
+						   [NSArray array], [SWArrowR description],
+						   [NSArray array], [NArrowR description],
+						   [NSArray array], [SArrowR description],
+						   [NSArray array], [NEArrowR description],
+						   [NSArray array], [SEArrowR description],
 						   
-						   [NSDictionary dictionary], [clockwiseArrowL description],
-						   [NSDictionary dictionary], [countercolckwiseArrowL description],
-						   [NSDictionary dictionary], [clockwiseArrowR description],
-						   [NSDictionary dictionary], [countercolckwiseArrowR description],
+						   [NSArray array], [clockwiseArrowL description],
+						   [NSArray array], [countercolckwiseArrowL description],
+						   [NSArray array], [clockwiseArrowR description],
+						   [NSArray array], [countercolckwiseArrowR description],
 						   
-						   [NSDictionary dictionary], [clockArrow description],
-						   [NSDictionary dictionary], [movesArrow description],
-						   [NSDictionary dictionary], [unvisitedArrow description],
-						   [NSDictionary dictionary], [visitedArrow description],
+						   [NSArray array], [clockArrow description],
+						   [NSArray array], [movesArrow description],
+						   [NSArray array], [unvisitedArrow description],
+						   [NSArray array], [visitedArrow description],
 						   
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], nil], [brainArrow  description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], nil], [planesArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], nil], [eyeArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], nil], [gearArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, nil], [brainArrow  description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, nil], [planesArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, nil], [eyeArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, nil], [gearArrow description],
 						   
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.gearToggle, [gearArrow description], nil], [speakerArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.gearToggle, [gearArrow description], nil], [noteArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.gearToggle, [gearArrow description], nil], [xArrow description],
-   						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.gearToggle, [gearArrow description], nil], [rArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.gearToggle, nil], [speakerArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.gearToggle, nil], [noteArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.gearToggle, nil], [xArrow description],
+   						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.gearToggle, nil], [rArrow description],
 						   
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.eyeToggle, [eyeArrow description], nil], [mazeArrow description],
-   						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.eyeToggle, [eyeArrow description], nil], [crosshairArrow description],
-  						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.eyeToggle, [eyeArrow description], nil], [bordersArrow description],
-   						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.eyeToggle, [eyeArrow description], nil], [compassArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.eyeToggle, nil], [mazeArrow description],
+   						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.eyeToggle, nil], [crosshairArrow description],
+  						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.eyeToggle, nil], [bordersArrow description],
+   						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.eyeToggle, nil], [compassArrow description],
 						   
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.planesToggle, [eyeArrow description], nil], [xPlaneArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.planesToggle, [eyeArrow description], nil], [yPlaneArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.planesToggle, [eyeArrow description], nil], [zPlaneArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.planesToggle, [eyeArrow description], nil], [recursiveArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.planesToggle, [eyeArrow description], radialMenu.crossToggle, [recursiveArrow description], nil], [recursiveLevelsArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.planesToggle, nil], [xPlaneArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.planesToggle, nil], [yPlaneArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.planesToggle, nil], [zPlaneArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.planesToggle, nil], [recursiveArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.planesToggle, radialMenu.crossToggle, nil], [recursiveLevelsArrow description],
 						   
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], nil], [woolArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], nil], [breadArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], nil], [signArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], nil], [flagArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], radialMenu.flagToggle, [flagArrow description], nil], [flagLevelsArrow description],
-						   [NSDictionary dictionaryWithObjectsAndKeys: radialMenu.menuToggle, [menuArrow description], radialMenu.brainToggle, [brainArrow description], nil], [brushArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, nil], [woolArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, nil], [breadArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, nil], [signArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, nil], [flagArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, radialMenu.flagToggle, nil], [flagLevelsArrow description],
+						   [NSArray arrayWithObjects: radialMenu.menuToggle, radialMenu.brainToggle, nil], [brushArrow description],
 							
+						   nil] retain];
+		
+		toggleArrowDict = [[NSDictionary dictionaryWithObjectsAndKeys:
+						   menuArrow, radialMenu.menuToggle.description,
+						   gearArrow, radialMenu.gearToggle.description,
+						   eyeArrow, radialMenu.eyeToggle.description,
+						   planesArrow, radialMenu.planesToggle.description,
+						   brainArrow, radialMenu.brainToggle.description,
+						   recursiveArrow, radialMenu.crossToggle.description,
+						   flagArrow, radialMenu.flagToggle.description,
 						   nil] retain];
 		
 		visibleArrows = [[NSMutableSet set] retain];
@@ -248,9 +255,51 @@
 		CCMenu* navigationMenu = [CCMenu menuWithItems:nextButton, nil];
 		navigationMenu.position = ccp(210,-65);
 		[dialog.dialogWindow addChild: navigationMenu];
+		
+		endDialog = [[CCDialog alloc] initWithSize:CGSizeMake(100, 50) position:ccp(1004,728) closeButton:NO showOverlay:NO closeOnOverlayTouch:NO isModal:NO isDraggable:NO];
+		endDialog.dialogWindow.anchorPoint = ccp(1,1);
+		CCMenuItemLabel* endButton = [[CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"END TUTORIAL" dimensions:CGSizeMake(100, 60) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:15] target:self selector:@selector(endTutorial)] retain];
+		endButton.color = ccRED;
+		endButton.anchorPoint = ccp(0.5,0.5);
+		endButton.position = ccp(50,30);
+		CCMenu* endMenu = [CCMenu menuWithItems:endButton, nil];
+		endMenu.position = ccp(0,-20);
+		[endDialog.dialogWindow addChild: endMenu];
+		
+		CGSize winSize = [[CCDirector sharedDirector] winSize];
+		CGPoint middle = ccp(winSize.width/2.0, winSize.height/2.0);
+		CGSize dialogSize = CGSizeMake(320, 140);
+		confirmEnd = [[CCDialog alloc] initWithSize: dialogSize position: middle closeButton:NO showOverlay:YES closeOnOverlayTouch:NO isModal:YES isDraggable:YES];
+		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
+														block:^(id sender){
+															[confirmEnd close];
+																		[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+														}];
+		yes.color = ccBLACK;
+		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
+													   block:^(id sender) {
+														   [confirmEnd close];
+													   }];
+		no.color = ccBLACK;
+		CCMenu* promptMenu = [CCMenu menuWithItems:yes, no, nil];
+		[promptMenu alignItemsHorizontallyWithPadding:20];
+		promptMenu.anchorPoint = ccp(0.5,0.5);
+		promptMenu.position = ccp(dialogSize.width/2.0,dialogSize.height/2.0-50);
+		[confirmEnd.dialogWindow addChild:promptMenu];
+		
+		CCLabelTTF* endMessage = [CCLabelTTF labelWithString:@"Are you sure you want to end tutorial and go back to main menu?" dimensions:CGSizeMake(280, 100) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap fontName:@"Arial" fontSize:20];
+		endMessage.color = ccBLACK;
+		endMessage.anchorPoint = ccp(0.5,0.5);
+		endMessage.position = ccp(dialogSize.width/2.0,dialogSize.height/2.0);
+		[confirmEnd.dialogWindow addChild:endMessage];
+		
 		[self nextStep];
 	}
     return self;
+}
+
+-(void) endTutorial {
+	[confirmEnd openInScene: game];
 }
 
 - (void) hideAllArrows {
@@ -263,10 +312,10 @@
 	[self hideAllArrows];
 	 for (CCSprite* arrow in visibleArrows) {
 		 bool canShow = YES;
-		 for (CCMenuItemToggle* toggle in [arrowButtonTree objectForKey: arrow]) {
+		 for (CCMenuItemToggle* toggle in [arrowButtonTree objectForKey: arrow.description]) {
 			 if (toggle.selectedIndex == 0) {
 				 canShow = NO;
-				 [((CCSprite*)[[arrowButtonTree objectForKey: arrow] objectForKey: toggle]) setVisible: YES];
+				 [((CCSprite*)[toggleArrowDict objectForKey: toggle.description]) setVisible: YES];
 				 break;
 			 }
 		 }
@@ -320,14 +369,14 @@
 				}
 				break;
 			case 35:
-				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 1) {
+				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 0) {
 					[visibleArrows removeObject: bordersArrow];
 					[nextButton setVisible: YES];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
 			case 36:
-				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 0) {
+				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: bordersArrow];
 					[nextButton setVisible: YES];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
@@ -366,7 +415,7 @@
 				if (toggledItem == radialMenu.planesXToggle) {
 					if (toggledItem.selectedIndex == 0) {
 						planesState--;
-						xPlaneArrow.visible = YES;
+						[visibleArrows addObject: xPlaneArrow];
 					} else {
 						planesState++;
 						[visibleArrows removeObject: xPlaneArrow];
@@ -375,7 +424,7 @@
 				if (toggledItem == radialMenu.planesYToggle) {
 					if (toggledItem.selectedIndex == 0) {
 						planesState--;
-						yPlaneArrow.visible = YES;
+						[visibleArrows addObject: yPlaneArrow];
 					} else {
 						planesState++;
 						[visibleArrows removeObject: yPlaneArrow];
@@ -384,7 +433,7 @@
 				if (toggledItem == radialMenu.planesZToggle) {
 					if (toggledItem.selectedIndex == 0) {
 						planesState--;
-						zPlaneArrow.visible = YES;
+						[visibleArrows addObject: zPlaneArrow];
 					} else {
 						planesState++;
 						[visibleArrows removeObject: zPlaneArrow];
@@ -402,7 +451,7 @@
 						[visibleArrows removeObject: xPlaneArrow];
 					} else {
 						planesState++;
-						xPlaneArrow.visible = YES;
+						[visibleArrows addObject: xPlaneArrow];
 					}
 				}
 				if (toggledItem == radialMenu.planesYToggle) {
@@ -411,7 +460,7 @@
 						[visibleArrows removeObject: yPlaneArrow];
 					} else {
 						planesState++;
-						yPlaneArrow.visible = YES;
+						[visibleArrows addObject: yPlaneArrow];
 					}
 				}
 				if (toggledItem == radialMenu.planesZToggle) {
@@ -420,7 +469,7 @@
 						[visibleArrows removeObject: zPlaneArrow];
 					} else {
 						planesState++;
-						zPlaneArrow.visible = YES;
+						[visibleArrows addObject: zPlaneArrow];
 					}
 				}
 				if (planesState == 0) {
@@ -435,17 +484,35 @@
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
+			case 47:
+				if ([radialMenu.crossSliderItems containsObject: toggledItem] && toggledItem.selectedIndex == 1) {
+					[visibleArrows removeObject: recursiveLevelsArrow];
+					[nextButton setVisible: YES];
+					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+				}
 			case 49:
-				if (toggledItem == radialMenu.xToggle && toggledItem.selectedIndex == 1) {
+				if (toggledItem == radialMenu.planesXToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: xPlaneArrow];
 					[nextButton setVisible: YES];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
 			case 50:
-				if (radialMenu.xToggle.selectedIndex == 0 && radialMenu.crossToggle.selectedIndex == 0) {
-					[visibleArrows removeObject: recursiveArrow];
-					[visibleArrows removeObject: xPlaneArrow];
+				if (toggledItem == radialMenu.planesXToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows removeObject: xPlaneArrow];
+					} else {
+						[visibleArrows addObject: xPlaneArrow];
+					}
+				}
+				if (toggledItem == radialMenu.crossToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows removeObject: recursiveArrow];
+					} else {
+						[visibleArrows addObject: recursiveArrow];
+					}
+				}
+				if (radialMenu.planesXToggle.selectedIndex == 0 && radialMenu.crossToggle.selectedIndex == 0) {
 					[nextButton setVisible: YES];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
@@ -514,7 +581,21 @@
 				}
 				break;
 			case 67:
-				if (radialMenu.flagToggle.selectedIndex == 1 && radialMenu.brushToggle.selectedIndex == 1) {
+				if (toggledItem == radialMenu.breadToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows addObject: breadArrow];
+					} else {
+						[visibleArrows removeObject: breadArrow];
+					}
+				}
+				if (toggledItem == radialMenu.brushToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows addObject: brushArrow];
+					} else {
+						[visibleArrows removeObject: brushArrow];
+					}
+				}
+				if (radialMenu.breadToggle.selectedIndex == 1 && radialMenu.brushToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: breadArrow];
 					[visibleArrows removeObject: brushArrow];
 					[nextButton setVisible: YES];
@@ -522,9 +603,21 @@
 				}
 				break;
 			case 68:
-				if (radialMenu.flagToggle.selectedIndex == 0 && radialMenu.brushToggle.selectedIndex == 0) {
-					[visibleArrows removeObject: breadArrow];
-					[visibleArrows removeObject: brushArrow];
+				if (toggledItem == radialMenu.breadToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows removeObject: breadArrow];
+					} else {
+						[visibleArrows addObject: breadArrow];
+					}
+				}
+				if (toggledItem == radialMenu.brushToggle) {
+					if (toggledItem.selectedIndex == 0) {
+						[visibleArrows removeObject: brushArrow];
+					} else {
+						[visibleArrows addObject: brushArrow];
+					}
+				}
+				if (radialMenu.breadToggle.selectedIndex == 0 && radialMenu.brushToggle.selectedIndex == 0) {
 					[nextButton setVisible: YES];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
@@ -844,6 +937,7 @@
 			[self raiseEvenet: TUT_ENABLE_CROSS_EVENT];
 			[self raiseEvenet: TUT_ENABLE_CROSS_SLIDER_EVENT];
 			[visibleArrows addObject: recursiveLevelsArrow];
+			[nextButton setVisible: NO];
 			break;
 		case 48:
 			[self raiseEvenet: TUT_ENABLE_MENU_EVENT];
@@ -893,7 +987,7 @@
 		case 55:
 			[self raiseEvenet: TUT_ENABLE_MENU_EVENT];
 			[self raiseEvenet: TUT_ENABLE_BRAIN_EVENT];
-			[visibleArrows addObject: woolArrow];
+			[visibleArrows addObject: breadArrow];
 			break;
 		case 56:
 			[self raiseEvenet: TUT_ENABLE_MENU_EVENT];
@@ -1089,12 +1183,17 @@
 	
 	[arrowButtonTree release];
 	[visibleArrows release];
+	[toggleArrowDict release];
+	
+	[confirmEnd release];
+	[endDialog release];
 	
 	[super dealloc];
 }
 
 - (void) openDialog: (CCScene*) scene {
 	[dialog openInScene: scene];
+	[endDialog openInScene: scene];
 }
 
 @end

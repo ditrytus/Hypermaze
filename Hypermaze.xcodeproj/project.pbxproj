@@ -192,6 +192,8 @@
 		3B7E1BEB13E44B4000D80D8F /* iso_arrow_se.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE513E44B4000D80D8F /* iso_arrow_se.png */; };
 		3B7E1BEC13E44B4000D80D8F /* iso_arrow_sw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE613E44B4000D80D8F /* iso_arrow_sw.png */; };
 		3B85D2F9141B53C7002CCCFA /* InfoPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B85D2F8141B53C7002CCCFA /* InfoPanel.m */; };
+		3B89FAA51449A322001A08B1 /* TutorialLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B89FAA41449A322001A08B1 /* TutorialLayer.m */; };
+		3B89FAA91449A883001A08B1 /* tutorial_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B89FAA81449A883001A08B1 /* tutorial_arrow.png */; };
 		3B92C5DB13E3201100C1A395 /* HPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C5DA13E3201100C1A395 /* HPLogic.m */; };
 		3B92C77B13E328C100C1A395 /* chambers_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77613E328C100C1A395 /* chambers_green.png */; };
 		3B92C77C13E328C100C1A395 /* chambers_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C77713E328C100C1A395 /* chambers_pink.png */; };
@@ -207,6 +209,10 @@
 		3BA55998144341DE00ED02D3 /* back_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55995144341DE00ED02D3 /* back_cloud.png */; };
 		3BA55999144341DE00ED02D3 /* summary_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55996144341DE00ED02D3 /* summary_cloud.png */; };
 		3BA5599A144341DE00ED02D3 /* congratulation_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55997144341DE00ED02D3 /* congratulation_cloud.png */; };
+		3BAADD0D1450071600BE7048 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BAADD0F1450071600BE7048 /* Localizable.strings */; };
+		3BAADD1514501BE000BE7048 /* tutorial_data.hmz in Resources */ = {isa = PBXBuildFile; fileRef = 3BAADD1214501BE000BE7048 /* tutorial_data.hmz */; };
+		3BAADD1614501BE000BE7048 /* tutorial_metadata.hmz in Resources */ = {isa = PBXBuildFile; fileRef = 3BAADD1314501BE000BE7048 /* tutorial_metadata.hmz */; };
+		3BAADD1714501BE000BE7048 /* screenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BAADD1414501BE000BE7048 /* screenshot.jpg */; };
 		3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */; };
 		3BDF15911418F5D700E112EB /* FSGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF15901418F5D700E112EB /* FSGuid.m */; };
 		3BE72D0B14138E3B00F9DA84 /* clock_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0714138E3B00F9DA84 /* clock_info.png */; };
@@ -571,6 +577,9 @@
 		3B7E1BE613E44B4000D80D8F /* iso_arrow_sw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iso_arrow_sw.png; sourceTree = "<group>"; };
 		3B85D2F7141B53C7002CCCFA /* InfoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPanel.h; sourceTree = "<group>"; };
 		3B85D2F8141B53C7002CCCFA /* InfoPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPanel.m; sourceTree = "<group>"; };
+		3B89FAA31449A321001A08B1 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
+		3B89FAA41449A322001A08B1 /* TutorialLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialLayer.m; sourceTree = "<group>"; };
+		3B89FAA81449A883001A08B1 /* tutorial_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_arrow.png; sourceTree = "<group>"; };
 		3B92C5D913E3201100C1A395 /* HPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLogic.h; sourceTree = "<group>"; };
 		3B92C5DA13E3201100C1A395 /* HPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLogic.m; sourceTree = "<group>"; };
 		3B92C77613E328C100C1A395 /* chambers_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chambers_green.png; sourceTree = "<group>"; };
@@ -591,6 +600,11 @@
 		3BA55995144341DE00ED02D3 /* back_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_cloud.png; sourceTree = "<group>"; };
 		3BA55996144341DE00ED02D3 /* summary_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary_cloud.png; sourceTree = "<group>"; };
 		3BA55997144341DE00ED02D3 /* congratulation_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = congratulation_cloud.png; sourceTree = "<group>"; };
+		3BAADD0E1450071600BE7048 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; wrapsLines = 0; };
+		3BAADD101450073600BE7048 /* pl-PL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pl-PL"; path = "pl-PL.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3BAADD1214501BE000BE7048 /* tutorial_data.hmz */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = tutorial_data.hmz; sourceTree = "<group>"; };
+		3BAADD1314501BE000BE7048 /* tutorial_metadata.hmz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tutorial_metadata.hmz; sourceTree = "<group>"; };
+		3BAADD1414501BE000BE7048 /* screenshot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = screenshot.jpg; sourceTree = "<group>"; };
 		3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMazeLayer.h; sourceTree = "<group>"; };
 		3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeLayer.m; sourceTree = "<group>"; };
 		3BDF158F1418F5D700E112EB /* FSGuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGuid.h; sourceTree = "<group>"; };
@@ -648,6 +662,7 @@
 		3B1DDF9513D185440006E818 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3B89FAA71449A86B001A08B1 /* Tutorial */,
 				3BA55993144341A700ED02D3 /* Finish */,
 				3B31A2501421FFB0002CC5D3 /* Dialog */,
 				3BE72D0514138E1800F9DA84 /* Infopanel */,
@@ -855,6 +870,8 @@
 				3B31A26814224868002CC5D3 /* DeleteConfirmDialog.m */,
 				3B4D179F144316F800F100E2 /* FinishLayer.h */,
 				3B4D17A0144316F800F100E2 /* FinishLayer.m */,
+				3B89FAA31449A321001A08B1 /* TutorialLayer.h */,
+				3B89FAA41449A322001A08B1 /* TutorialLayer.m */,
 			);
 			path = Hypermaze;
 			sourceTree = "<group>";
@@ -862,12 +879,14 @@
 		3B43E21013D0A71D006AF368 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3BAADD1114501BE000BE7048 /* Tutorial */,
 				3B2076D11423894600D3B70E /* Emiters */,
 				3B1DDF9513D185440006E818 /* Images */,
 				3B43E21313D0A71D006AF368 /* fps_images.png */,
 				3B43E22113D0A71D006AF368 /* Info.plist */,
 				3B43E22213D0A71D006AF368 /* iTunesArtwork */,
 				3B3EB9ED13E2D4CD001A0DD4 /* Settings.plist */,
+				3BAADD0F1450071600BE7048 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1197,6 +1216,14 @@
 			name = Interface;
 			sourceTree = "<group>";
 		};
+		3B89FAA71449A86B001A08B1 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				3B89FAA81449A883001A08B1 /* tutorial_arrow.png */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 		3B92C5DD13E3283000C1A395 /* MazeElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -1227,6 +1254,16 @@
 				3BA55997144341DE00ED02D3 /* congratulation_cloud.png */,
 			);
 			name = Finish;
+			sourceTree = "<group>";
+		};
+		3BAADD1114501BE000BE7048 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				3BAADD1214501BE000BE7048 /* tutorial_data.hmz */,
+				3BAADD1314501BE000BE7048 /* tutorial_metadata.hmz */,
+				3BAADD1414501BE000BE7048 /* screenshot.jpg */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		3BE72D0514138E1800F9DA84 /* Infopanel */ = {
@@ -1288,6 +1325,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"pl-PL",
 			);
 			mainGroup = 3B43E1F013D0A71D006AF368;
 			productRefGroup = 3B43E1FC13D0A71D006AF368 /* Products */;
@@ -1376,6 +1414,11 @@
 				3BA55998144341DE00ED02D3 /* back_cloud.png in Resources */,
 				3BA55999144341DE00ED02D3 /* summary_cloud.png in Resources */,
 				3BA5599A144341DE00ED02D3 /* congratulation_cloud.png in Resources */,
+				3B89FAA91449A883001A08B1 /* tutorial_arrow.png in Resources */,
+				3BAADD0D1450071600BE7048 /* Localizable.strings in Resources */,
+				3BAADD1514501BE000BE7048 /* tutorial_data.hmz in Resources */,
+				3BAADD1614501BE000BE7048 /* tutorial_metadata.hmz in Resources */,
+				3BAADD1714501BE000BE7048 /* screenshot.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1530,10 +1573,23 @@
 				3B31A26514222B02002CC5D3 /* CCNode+Scaling.m in Sources */,
 				3B31A26914224868002CC5D3 /* DeleteConfirmDialog.m in Sources */,
 				3B4D17A1144316F800F100E2 /* FinishLayer.m in Sources */,
+				3B89FAA51449A322001A08B1 /* TutorialLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3BAADD0F1450071600BE7048 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BAADD0E1450071600BE7048 /* en */,
+				3BAADD101450073600BE7048 /* pl-PL */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3B43E36513D0A71F006AF368 /* Debug */ = {

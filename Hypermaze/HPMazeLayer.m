@@ -249,7 +249,7 @@ void loadChamberSet(NSString *colorName) {
 }
 - (void) onMazeFinished: (NSNotification*) notification {
 	CCSprite* chamber;
-	[mazeTexture clear:0.0f g:0.5f b:0.0f a:0.5f];
+	[mazeTexture clear:0.0f g:0.0f b:0.0f a:0.0f];
 	[mazeTexture begin];
 	for (int z=0; z<mazeSize; z++) {
 		for (int y=mazeSize-1; y>=0; y--) {
