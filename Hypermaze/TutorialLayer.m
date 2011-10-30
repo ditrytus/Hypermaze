@@ -273,12 +273,13 @@
 		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
 														block:^(id sender){
 															[confirmEnd close];
-																		[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+															[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 														}];
 		yes.color = ccBLACK;
 		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
 													   block:^(id sender) {
 														   [confirmEnd close];
+														   [[HPSound sharedSound] playSound:SOUND_TICK];
 													   }];
 		no.color = ccBLACK;
 		CCMenu* promptMenu = [CCMenu menuWithItems:yes, no, nil];
@@ -299,6 +300,7 @@
 }
 
 -(void) endTutorial {
+	[[HPSound sharedSound] playSound:SOUND_TICK];
 	[confirmEnd openInScene: game];
 }
 
@@ -329,6 +331,12 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:event object:self userInfo: nil];
 }
 
+- (void)enableNextStep {
+	[nextButton setVisible: YES];
+	[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
+	[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+
+}
 - (void) oInterfaceChanged: (NSNotification*) notification {
 	if ([[notification.object class] isSubclassOfClass: [RadialMenuLayer class]]) {
 		CCMenuItemToggle* toggledItem = [notification.userInfo objectForKey: RAD_CHANGE_USER_INFO];
@@ -336,79 +344,67 @@
 			case 26:
 				if (toggledItem == radialMenu.menuToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: menuArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 30:
 				if (toggledItem == radialMenu.eyeToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: eyeArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 31:
 				if (toggledItem == radialMenu.mazeToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: mazeArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 32:
 				if (toggledItem == radialMenu.crosshairToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: crosshairArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 34:
 				if (toggledItem == radialMenu.crosshairToggle && toggledItem.selectedIndex == 0) {
 					[visibleArrows removeObject: crosshairArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 35:
 				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 0) {
 					[visibleArrows removeObject: bordersArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 36:
 				if (toggledItem == radialMenu.cubeToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: bordersArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 37:
 				if (toggledItem == radialMenu.compassToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: menuArrow];
-					compassArrow.visible = NO;
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 38:
 				if (toggledItem == radialMenu.compassToggle && toggledItem.selectedIndex == 0) {
 					[visibleArrows removeObject: compassArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 40:
 				if (toggledItem == radialMenu.mazeToggle && toggledItem.selectedIndex == 0) {
 					[visibleArrows removeObject: mazeArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 41:
 				if (toggledItem == radialMenu.planesToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: planesArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 43:
@@ -440,8 +436,7 @@
 					}
 				}
 				if (planesState == 3) {
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 45:
@@ -473,28 +468,24 @@
 					}
 				}
 				if (planesState == 0) {
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 46:
 				if (toggledItem == radialMenu.crossToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: recursiveArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 47:
 				if ([radialMenu.crossSliderItems containsObject: toggledItem] && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: recursiveLevelsArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 			case 49:
 				if (toggledItem == radialMenu.planesXToggle && toggledItem.selectedIndex == 1) {
 					[visibleArrows removeObject: xPlaneArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 50:
@@ -513,71 +504,60 @@
 					}
 				}
 				if (radialMenu.planesXToggle.selectedIndex == 0 && radialMenu.crossToggle.selectedIndex == 0) {
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 51:
 				if (radialMenu.brainToggle.selectedIndex == 1) {
-					[visibleArrows removeObject: brainArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 53:
 				if (radialMenu.woolToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: woolArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 54:
 				if (radialMenu.woolToggle.selectedIndex == 0) {
 					[visibleArrows removeObject: woolArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 56:
 				if (radialMenu.breadToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: breadArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 57:
 				if (radialMenu.breadToggle.selectedIndex == 0) {
 					[visibleArrows removeObject: breadArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 59:
 				if (radialMenu.signpostToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: signArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 60:
 				if (radialMenu.signpostToggle.selectedIndex == 0) {
 					[visibleArrows removeObject: signArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 62:
 				if (radialMenu.flagToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: flagArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 64:
 				if (radialMenu.flagToggle.selectedIndex == 0) {
 					[visibleArrows removeObject: flagArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 67:
@@ -598,8 +578,7 @@
 				if (radialMenu.breadToggle.selectedIndex == 1 && radialMenu.brushToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: breadArrow];
 					[visibleArrows removeObject: brushArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 68:
@@ -618,15 +597,13 @@
 					}
 				}
 				if (radialMenu.breadToggle.selectedIndex == 0 && radialMenu.brushToggle.selectedIndex == 0) {
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 			case 69:
 				if (radialMenu.gearToggle.selectedIndex == 1) {
 					[visibleArrows removeObject: gearArrow];
-					[nextButton setVisible: YES];
-					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
+					[self enableNextStep];
 				}
 				break;
 		}
@@ -638,6 +615,7 @@
 					[visibleArrows removeObject: NWArrowL];
 					[visibleArrows removeObject: NWArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -646,6 +624,7 @@
 					[visibleArrows removeObject: NWArrowL];
 					[visibleArrows removeObject: NWArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -654,6 +633,7 @@
 					[visibleArrows removeObject: NArrowL];
 					[visibleArrows removeObject: NArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -662,6 +642,7 @@
 					[visibleArrows removeObject: NEArrowL];
 					[visibleArrows removeObject: NEArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -670,6 +651,7 @@
 					[visibleArrows removeObject: SArrowL];
 					[visibleArrows removeObject: SArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -685,6 +667,7 @@
 					[visibleArrows removeObject: clockwiseArrowR];
 					[visibleArrows removeObject: countercolckwiseArrowR];
 					[nextButton setVisible: YES];
+					[[HPSound sharedSound] playSound: SOUND_WINE_GLASS];
 					[self raiseEvenet: TUT_DISABLE_ALL_EVENT];
 				}
 				break;
@@ -1101,6 +1084,7 @@
 			[visibleArrows addObject: xArrow];
 			break;
 		case 73:
+			[[HPSound sharedSound] playSound: SOUND_APPLAUSE];
 			[nextButton.label setString: @"End tutorial"];
 			break;
 		case 74:
@@ -1116,6 +1100,7 @@
 	stepNum++;
 	[self hideAllArrows];
 	[self refreshTutotial];
+	[[HPSound sharedSound] playSound:SOUND_TICK];
 }
 
 - (void) dealloc {

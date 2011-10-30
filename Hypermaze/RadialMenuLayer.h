@@ -12,6 +12,7 @@
 #import "HPLogic.h"
 #import "RadialMenuParticleSystem.h"
 #import "TutorialLayer.h"
+#import "HPSound.h"
 
 #define RAD_CHANGE_EVENT @"RAD_CHANGE_EVENT"
 #define RAD_CHANGE_USER_INFO @"toggledItem"
@@ -85,8 +86,10 @@
 	FSRadialAligner* aligner;
 	
 	Game* game;
+	CCLabelTTF* tooltipLabel;
 	
 	NSMutableDictionary* enabilityMap;
+	NSMutableDictionary* itemsTooltipMap;
 }
 
 @property(readonly, nonatomic) CCMenuItemToggle* menuToggle;

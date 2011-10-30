@@ -120,6 +120,7 @@
 	self = [super init];
 	if (self) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRotated:) name:EVENT_ROTATED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onViewChanged:) name:EVENT_VIEW_CHANGED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMazeFinished:) name:EVENT_MAZE_FINISHED object:nil];
 		
@@ -335,11 +336,13 @@
 - (void) onClockwise: (CCMenuItem  *) menuItem {
 	[logic rotateClockwise];
 	[self raiseArrowClickEvent: menuItem];
+	[[HPSound sharedSound] playSound: SOUND_DOUBLE_TICK];
 }
 
 - (void) onCounterclockwise: (CCMenuItem  *) menuItem {
 	[logic rotateCounterclockwise];
 	[self raiseArrowClickEvent: menuItem];
+	[[HPSound sharedSound] playSound: SOUND_DOUBLE_TICK];
 }
 
 - (void) onViewChanged: (NSNotification*) notification {
@@ -350,15 +353,25 @@
 	}
 }
 
-- (void) onPositionChanged: (NSNotification*) notification {
-	[compassArrow runAction:
+- (void)updateCompassArrow {
+  [compassArrow runAction:
 	 [CCEaseOut actionWithAction:
 	  [CCRotateTo actionWithDuration:1
 							   angle:[mazeLayer getCompassAngle]]
 						   rate:2]];
+
+}
+- (void) onPositionChanged: (NSNotification*) notification {
+	[[HPSound sharedSound] playFootstep];
+	[self updateCompassArrow];
+}
+
+- (void) onRotated: (NSNotification*) notification {
+	[self updateCompassArrow];
 }
 
 - (void) onMazeFinished: (NSNotification*) notification {
+	[[HPSound sharedSound] playSound: SOUND_APPLAUSE];
 	compassArrow.visible = NO;
 	infoPanel.visible = NO;
 	radialMenuLayer.visible = NO;
@@ -372,6 +385,7 @@
 	[interfaceLayer release];
 	[tutorialLayer release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_ROTATED object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
 	[super dealloc];
 }

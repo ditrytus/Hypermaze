@@ -21,7 +21,8 @@
 #import "HPAriadnaMask.h"
 
 #define EVENT_MOVEMENT_CANCELED @"hpLogicMovementCanceledEvent"
-#define EVENT_POSITION_CHANGED @"hpLogicpositionChangedEvent"
+#define EVENT_ROTATED @"hpLogicRotatedEvent"
+#define EVENT_POSITION_CHANGED @"hpLogicPositionChangedEvent"
 #define EVENT_VIEW_CHANGED @"hpLogicviewChangedEvent"
 #define EVENT_MAZE_FINISHED @"hpLogicMazeFinished"
 

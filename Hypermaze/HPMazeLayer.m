@@ -57,6 +57,7 @@ void loadChamberSet(NSString *colorName) {
     self = [super init];
     if (self) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_POSITION_CHANGED object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPositionChanged:) name:EVENT_ROTATED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onViewChanged:) name:EVENT_VIEW_CHANGED object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMazeFinished:) name:EVENT_MAZE_FINISHED object:nil];
 		
@@ -283,6 +284,7 @@ void loadChamberSet(NSString *colorName) {
 	CCParticleSystem* particleSystem = [CCParticleSystemQuad particleWithFile:@"Firework.plist"];
 	particleSystem.position = ccp(arc4random()%1024, arc4random()%768+300);
 	[self addChild: particleSystem];
+	[[HPSound sharedSound] playSound: SOUND_FIREWORKS];
 	[self launchFireworkAfterRandomTime];
 }
 
@@ -327,6 +329,7 @@ void loadChamberSet(NSString *colorName) {
 	[outerSWiredPrototype release];
 	[mark release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_ROTATED object:nil]; 
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
 	[super dealloc];
 }

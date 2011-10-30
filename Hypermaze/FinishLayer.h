@@ -11,6 +11,7 @@
 #import "InfoPanel.h"
 #import "MainMenuLayer.h"
 #import "PathBuilder.h"
+#import "HPSound.h"
 
 @interface FinishLayer : CCLayer {
 	int score;

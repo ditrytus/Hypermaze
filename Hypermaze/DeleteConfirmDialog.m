@@ -7,6 +7,8 @@
 //
 
 #import "DeleteConfirmDialog.h"
+#import "MainMenuLayer.h"
+#import "HPSound.h"
 
 
 @implementation DeleteConfirmDialog
@@ -27,6 +29,7 @@
 		yes.color = ccBLACK;
 		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
 													   block:^(id sender) {
+														   [[HPSound sharedSound] playSound: SOUND_TICK];
 														   [self close];
 													   }];
 		no.color = ccBLACK;

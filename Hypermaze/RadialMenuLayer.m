@@ -338,6 +338,7 @@
 												  }];
 
 }
+
 - (id)initWithLogic: (HPLogic*) innerLogic game: (Game*) newGame isInTutorial: (BOOL) isInTutorial
 {
     self = [super init];
@@ -346,7 +347,7 @@
 
 			
 		game = [newGame retain];
-		
+		isEnabled = !isInTutorial;
 		isMenuOpened = false;
 		logic = [innerLogic retain];
 		
@@ -438,11 +439,11 @@
 		
 		speakerToggle = [self hiddenMenuItemFromOnFrameName:@"speaker_on.png" offFrameName:@"speaker_off.png" target:@selector(onSpeakerToggle:)];
 		speakerIndexPath = [gearIndexPath indexPathByAddingIndex:0];
-		speakerToggle.selectedIndex = [[HPConfiguration sharedConfiguration].sound boolValue] ? 1 : 0;
+		speakerToggle.selectedIndex = [[HPConfiguration sharedConfiguration].sound boolValue] ? 0 : 1;
 		
 		noteToggle = [self hiddenMenuItemFromOnFrameName:@"note_on.png" offFrameName:@"note_off.png" target:@selector(onNoteToggle:)];
 		noteIndexPath = [gearIndexPath indexPathByAddingIndex:1];
-		noteToggle.selectedIndex = [[HPConfiguration sharedConfiguration].music boolValue] ? 1 : 0;
+		noteToggle.selectedIndex = [[HPConfiguration sharedConfiguration].music boolValue] ? 0 : 1;
 		
 		xToggle	= [self hiddenMenuItemFromOnFrameName:@"x_on.png" offFrameName:@"x_off.png" target:@selector(onXToggle:)];
 		xIndexPath = [gearIndexPath indexPathByAddingIndex:2];
@@ -481,6 +482,39 @@
 		[self addChild: background];
 		
 		[self addChild: radialMenu];
+		
+		tooltipLabel = [[CCLabelTTF labelWithString:@"TooltipLabel" fontName:@"Arial" fontSize:12] retain];
+		tooltipLabel.color = ccWHITE;
+		tooltipLabel.position = ccp(size.width / 2.0 ,size.height/2.0-65);
+		tooltipLabel.visible = NO;
+		[self addChild: tooltipLabel];
+		
+		itemsTooltipMap = [[NSMutableDictionary dictionaryWithObjectsAndKeys:
+							@"Game menu", menuToggle.description, 
+							@"Hints menu", brainToggle.description, 
+							@"Planes menu", planesToggle.description, 
+							@"View menu", eyeToggle.description, 
+							@"Settings menu", gearToggle.description, 
+							@"Checkpoints", flagToggle.description, 
+							@"Path from the current position to the entrance", woolToggle.description, 
+							@"All visited chambers", breadToggle.description, 
+							@"Unused crossroads", signpostToggle.description, 
+							@"Mark chambers with different colors", brushToggle.description,	
+							@"Chambers on the same plane as the current chamber", planesXToggle.description,	
+							@"Chambers on the same plane as the current chamber", planesYToggle.description,	
+							@"Chambers on the same plane as the current chamber", planesZToggle.description,	
+							@"Chambers adjustent to the current chamber", crossToggle.description,	
+							@"Entire maze", mazeToggle.description,
+							@"Current chamber on top", crosshairToggle.description,
+							@"Borders of the maze", cubeToggle.description,		
+							@"Compass", compassToggle.description,	
+							@"Sound", speakerToggle.description,	
+							@"Music", noteToggle.description,		
+							@"Back to main menu", xToggle.description,		
+							@"Reset game", rToggle.description,		
+							@"Confirm", okXToggle.description,		
+							@"Confirm", okRToggle.description,
+							nil] retain];
 		
 		[self setPosition: ccp(0,-size.height/2.0 + 100)];
 		aligner	= [[FSRadialAligner alloc] initWithAngle:M_PI/1.2 radius:100 margin:100 root:
@@ -525,9 +559,11 @@
 		
 		for (CCMenuItem* item in flagSliderItems) {
 			[enabilityMap setObject:[NSNumber numberWithBool:!isInTutorial] forKey:item.description];
+			[itemsTooltipMap setObject:@"Number of checkpoints being displayed" forKey:item.description];
 		}
 		for (CCMenuItem* item in crossSliderItems) {
 			[enabilityMap setObject:[NSNumber numberWithBool:!isInTutorial] forKey:item.description];
+			[itemsTooltipMap setObject:@"Number of adjustent chambers being displayed" forKey:item.description];
 		}
 		
 		[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -761,6 +797,10 @@
 						   [CCCallBlock actionWithBlock:^{ [background setVisible:YES]; }],
 						   [CCFadeIn actionWithDuration:0.25],
 						   nil]];
+	[tooltipLabel runAction:[CCSequence actions:
+						   [CCCallBlock actionWithBlock:^{ [tooltipLabel setVisible:YES]; }],
+						   [CCFadeIn actionWithDuration:0.25],
+						   nil]];
 	[self showNodeFromRoot:brainToggle index: brainIndexPath];
 	if ([brainToggle selectedIndex] == 0) {
 		[self setBrainHidden];
@@ -793,6 +833,10 @@
 						   [CCFadeOut actionWithDuration:0.25],
 						   [CCCallBlock actionWithBlock:^{ [background setVisible:NO]; }],
 						   nil]];
+	[tooltipLabel runAction:[CCSequence actions:						   
+						   [CCFadeOut actionWithDuration:0.25],
+						   [CCCallBlock actionWithBlock:^{ [tooltipLabel setVisible:NO]; }],
+						   nil]];
 	[self hideNode:brainToggle onIndex:brainIndexPath toLevel:0];
 	[self hideBrainToLevel: 0];
 	[self hideNode:planesToggle onIndex:planesIndexPath toLevel:0];
@@ -809,6 +853,25 @@
 	}
 
 }
+- (void)updateTooltipWithItem:(CCMenuItemToggle *)item  {
+	NSString* string = [itemsTooltipMap objectForKey: item.description];
+	if (string != nil) {
+		tooltipLabel.string = string; 
+	}
+}
+
+- (void)playTickIfNotNull:(CCMenuItemToggle *)item  {
+	if (item!=nil) {
+		[[HPSound sharedSound] playSound: SOUND_TICK];
+	}
+}
+
+- (void)doCommonToggleStuff:(CCMenuItemToggle *)item  {
+  [self playTickIfNotNull: item];
+	[self updateTooltipWithItem: item];
+	[self raiseChangeEvent: item];
+
+}
 - (void) onBrainToggle: (CCMenuItemToggle*) item {
 	int currentLevel = [brainIndexPath length];
 	if ([brainToggle selectedIndex] == 0) {
@@ -822,18 +885,18 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onWoolToggle: (CCMenuItemToggle*) item {
 	[logic toggleAriadnaTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 
 - (void) onBreadToggle: (CCMenuItemToggle*) item {
 	[logic toggleVisitedTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 
@@ -845,24 +908,24 @@
 	} else {
 		[self showFlag];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onFlagLevelToggle: (CCMenuItemToggle*) item {
 	[logic setCheckpointNumber:[flagSliderItems indexOfObject:item] + 1];
 	[self renderFlagSliderValue];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 
 - (void) onSignPostToggle: (CCMenuItemToggle*) item {
 	[logic toggleUntakenTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onBrushToggle: (CCMenuItemToggle*) item {
 	[logic toggleMarkMask];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 
@@ -872,7 +935,7 @@
 	} else {
 		[self hideMenu];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onPlanesToggle: (CCMenuItemToggle*) item {
@@ -888,22 +951,22 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onPlaneXToggle: (CCMenuItemToggle*) item {
 	[logic toggleYAxisTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onPlaneYToggle: (CCMenuItemToggle*) item {
 	[logic toggleXAxisTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onPlaneZToggle: (CCMenuItemToggle*) item {
 	[logic toggleZAxisTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onCrossToggle: (CCMenuItemToggle*) item {
@@ -914,13 +977,13 @@
 	} else {
 		[self showCross];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onCrossLevelToggle: (CCMenuItemToggle*) item {
 	[logic setRecursionDepth:[crossSliderItems indexOfObject:item] + 1];
 	[self renderCrossSliderValue];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onEyeToggle: (CCMenuItemToggle*) item {
@@ -936,27 +999,27 @@
 		[gearToggle setSelectedIndex:0];
 		[self onGearToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onMazeToggle: (CCMenuItemToggle*) item {
 	[logic toggleMazeTool];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onCrosshairToggle: (CCMenuItemToggle*) item {
 	[logic toggleTarget];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onCubeToggle: (CCMenuItemToggle*) item {
 	[logic toggleBorders];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onCompassToggle: (CCMenuItemToggle*) item {
 	[logic toggleCompass];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onGearToggle: (CCMenuItemToggle*) item {
@@ -972,15 +1035,21 @@
 		[eyeToggle setSelectedIndex:0];
 		[self onEyeToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onSpeakerToggle: (CCMenuItemToggle*) item {
-	[self raiseChangeEvent: item];
+	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	configuration.sound = [NSNumber numberWithInteger: 1-[item selectedIndex]];
+	[configuration save];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onNoteToggle: (CCMenuItemToggle*) item {
-	[self raiseChangeEvent: item];
+	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
+	configuration.music = [NSNumber numberWithInteger: 1-[item selectedIndex]];
+	[configuration save];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onXToggle: (CCMenuItemToggle*) item {
@@ -992,7 +1061,7 @@
 		[rToggle setSelectedIndex:0];
 		[self onRToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onRToggle: (CCMenuItemToggle*) item {
@@ -1004,19 +1073,20 @@
 		[xToggle setSelectedIndex:0];
 		[self onXToggle:nil];
 	}
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onOkXToggle: (CCMenuItemToggle*) item {
 	[game saveGame];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
 }
 
 - (void) onOkRToggle: (CCMenuItemToggle*) item {
 	[logic reset];
 	[self hideMenu];
-	[self raiseChangeEvent: item];
+	[self doCommonToggleStuff: item];
+	[[HPSound sharedSound] playSound: SOUND_GONG];
 }
 
 -(void) dealloc {

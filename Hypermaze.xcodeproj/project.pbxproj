@@ -181,6 +181,12 @@
 		3B7104921407BDA200D3CCEE /* HPUntakenCrossroadsMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104911407BDA200D3CCEE /* HPUntakenCrossroadsMask.m */; };
 		3B7104961407CAB800D3CCEE /* HPPathMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104951407CAB700D3CCEE /* HPPathMask.m */; };
 		3B7104991407D09E00D3CCEE /* HPAriadnaMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */; };
+		3B760D24145D629900410F0E /* HPSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B760D23145D629900410F0E /* HPSound.m */; };
+		3B760D27145D693200410F0E /* button-49.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D26145D693200410F0E /* button-49.wav */; };
+		3B760D2B145D6A8B00410F0E /* applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D28145D6A8B00410F0E /* applause.wav */; };
+		3B760D2C145D6A8B00410F0E /* fireworks.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D29145D6A8B00410F0E /* fireworks.wav */; };
+		3B760D2D145D6A8B00410F0E /* gong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D2A145D6A8B00410F0E /* gong.wav */; };
+		3B760D2F145D83A500410F0E /* wine-glass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D2E145D83A500410F0E /* wine-glass.wav */; };
 		3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */; };
 		3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */; };
 		3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */; };
@@ -215,6 +221,27 @@
 		3BAADD1714501BE000BE7048 /* screenshot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BAADD1414501BE000BE7048 /* screenshot.jpg */; };
 		3BAF89D113FE4BF7002356BF /* HPMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */; };
 		3BDF15911418F5D700E112EB /* FSGuid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF15901418F5D700E112EB /* FSGuid.m */; };
+		3BE5E2D2145C5E6200E23C35 /* CDAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5E2CA145C5E6200E23C35 /* CDAudioManager.m */; };
+		3BE5E2D3145C5E6200E23C35 /* CDOpenALSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5E2CD145C5E6200E23C35 /* CDOpenALSupport.m */; };
+		3BE5E2D4145C5E6200E23C35 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5E2CF145C5E6200E23C35 /* CocosDenshion.m */; };
+		3BE5E2D5145C5E6200E23C35 /* SimpleAudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5E2D1145C5E6200E23C35 /* SimpleAudioEngine.m */; };
+		3BE5E310145C5F8A00E23C35 /* footsteps-1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2ED145C5F8A00E23C35 /* footsteps-1.wav */; };
+		3BE5E311145C5F8A00E23C35 /* footsteps-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2EE145C5F8A00E23C35 /* footsteps-2.wav */; };
+		3BE5E312145C5F8A00E23C35 /* footsteps-3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2EF145C5F8A00E23C35 /* footsteps-3.wav */; };
+		3BE5E313145C5F8A00E23C35 /* footsteps-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F0145C5F8A00E23C35 /* footsteps-4.wav */; };
+		3BE5E314145C5F8A00E23C35 /* footsteps-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F1145C5F8A00E23C35 /* footsteps-5.wav */; };
+		3BE5E315145C5F8A00E23C35 /* footsteps-6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F2145C5F8A00E23C35 /* footsteps-6.wav */; };
+		3BE5E316145C5F8A00E23C35 /* footsteps-7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F3145C5F8A00E23C35 /* footsteps-7.wav */; };
+		3BE5E317145C5F8A00E23C35 /* footsteps-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F4145C5F8A00E23C35 /* footsteps-8.wav */; };
+		3BE5E318145C5F8A00E23C35 /* footsteps-9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F5145C5F8A00E23C35 /* footsteps-9.wav */; };
+		3BE5E319145C5F8A00E23C35 /* footsteps-10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F6145C5F8A00E23C35 /* footsteps-10.wav */; };
+		3BE5E31A145C5F8A00E23C35 /* footsteps-11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F7145C5F8A00E23C35 /* footsteps-11.wav */; };
+		3BE5E31B145C5F8A00E23C35 /* footsteps-12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F8145C5F8A00E23C35 /* footsteps-12.wav */; };
+		3BE5E31C145C5F8A00E23C35 /* footsteps-13.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2F9145C5F8A00E23C35 /* footsteps-13.wav */; };
+		3BE5E31D145C5F8A00E23C35 /* footsteps-14.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E2FA145C5F8A00E23C35 /* footsteps-14.wav */; };
+		3BE5E320145C641B00E23C35 /* button-30.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E31E145C641A00E23C35 /* button-30.wav */; };
+		3BE5E321145C641B00E23C35 /* button-46.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E31F145C641B00E23C35 /* button-46.wav */; };
+		3BE5E323145C64E900E23C35 /* button-50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BE5E322145C64E900E23C35 /* button-50.wav */; };
 		3BE72D0B14138E3B00F9DA84 /* clock_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0714138E3B00F9DA84 /* clock_info.png */; };
 		3BE72D0C14138E3B00F9DA84 /* door_open_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0814138E3B00F9DA84 /* door_open_info.png */; };
 		3BE72D0D14138E3B00F9DA84 /* door_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE72D0914138E3B00F9DA84 /* door_info.png */; };
@@ -562,6 +589,13 @@
 		3B7104951407CAB700D3CCEE /* HPPathMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPathMask.m; sourceTree = "<group>"; };
 		3B7104971407D09D00D3CCEE /* HPAriadnaMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAriadnaMask.h; sourceTree = "<group>"; };
 		3B7104981407D09E00D3CCEE /* HPAriadnaMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAriadnaMask.m; sourceTree = "<group>"; };
+		3B760D22145D629900410F0E /* HPSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPSound.h; sourceTree = "<group>"; };
+		3B760D23145D629900410F0E /* HPSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPSound.m; sourceTree = "<group>"; };
+		3B760D26145D693200410F0E /* button-49.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-49.wav"; sourceTree = "<group>"; };
+		3B760D28145D6A8B00410F0E /* applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applause.wav; sourceTree = "<group>"; };
+		3B760D29145D6A8B00410F0E /* fireworks.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fireworks.wav; sourceTree = "<group>"; };
+		3B760D2A145D6A8B00410F0E /* gong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gong.wav; sourceTree = "<group>"; };
+		3B760D2E145D83A500410F0E /* wine-glass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wine-glass.wav"; sourceTree = "<group>"; };
 		3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu_spritesheet.plist; sourceTree = "<group>"; };
@@ -609,6 +643,32 @@
 		3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPMazeLayer.m; sourceTree = "<group>"; };
 		3BDF158F1418F5D700E112EB /* FSGuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGuid.h; sourceTree = "<group>"; };
 		3BDF15901418F5D700E112EB /* FSGuid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGuid.m; sourceTree = "<group>"; };
+		3BE5E2C9145C5E6200E23C35 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
+		3BE5E2CA145C5E6200E23C35 /* CDAudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDAudioManager.m; sourceTree = "<group>"; };
+		3BE5E2CB145C5E6200E23C35 /* CDConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDConfig.h; sourceTree = "<group>"; };
+		3BE5E2CC145C5E6200E23C35 /* CDOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDOpenALSupport.h; sourceTree = "<group>"; };
+		3BE5E2CD145C5E6200E23C35 /* CDOpenALSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDOpenALSupport.m; sourceTree = "<group>"; };
+		3BE5E2CE145C5E6200E23C35 /* CocosDenshion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosDenshion.h; sourceTree = "<group>"; };
+		3BE5E2CF145C5E6200E23C35 /* CocosDenshion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocosDenshion.m; sourceTree = "<group>"; };
+		3BE5E2D0145C5E6200E23C35 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
+		3BE5E2D1145C5E6200E23C35 /* SimpleAudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleAudioEngine.m; sourceTree = "<group>"; };
+		3BE5E2ED145C5F8A00E23C35 /* footsteps-1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-1.wav"; sourceTree = "<group>"; };
+		3BE5E2EE145C5F8A00E23C35 /* footsteps-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-2.wav"; sourceTree = "<group>"; };
+		3BE5E2EF145C5F8A00E23C35 /* footsteps-3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-3.wav"; sourceTree = "<group>"; };
+		3BE5E2F0145C5F8A00E23C35 /* footsteps-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-4.wav"; sourceTree = "<group>"; };
+		3BE5E2F1145C5F8A00E23C35 /* footsteps-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-5.wav"; sourceTree = "<group>"; };
+		3BE5E2F2145C5F8A00E23C35 /* footsteps-6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-6.wav"; sourceTree = "<group>"; };
+		3BE5E2F3145C5F8A00E23C35 /* footsteps-7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-7.wav"; sourceTree = "<group>"; };
+		3BE5E2F4145C5F8A00E23C35 /* footsteps-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-8.wav"; sourceTree = "<group>"; };
+		3BE5E2F5145C5F8A00E23C35 /* footsteps-9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-9.wav"; sourceTree = "<group>"; };
+		3BE5E2F6145C5F8A00E23C35 /* footsteps-10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-10.wav"; sourceTree = "<group>"; };
+		3BE5E2F7145C5F8A00E23C35 /* footsteps-11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-11.wav"; sourceTree = "<group>"; };
+		3BE5E2F8145C5F8A00E23C35 /* footsteps-12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-12.wav"; sourceTree = "<group>"; };
+		3BE5E2F9145C5F8A00E23C35 /* footsteps-13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-13.wav"; sourceTree = "<group>"; };
+		3BE5E2FA145C5F8A00E23C35 /* footsteps-14.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "footsteps-14.wav"; sourceTree = "<group>"; };
+		3BE5E31E145C641A00E23C35 /* button-30.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-30.wav"; sourceTree = "<group>"; };
+		3BE5E31F145C641B00E23C35 /* button-46.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-46.wav"; sourceTree = "<group>"; };
+		3BE5E322145C64E900E23C35 /* button-50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "button-50.wav"; sourceTree = "<group>"; };
 		3BE72D0714138E3B00F9DA84 /* clock_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_info.png; sourceTree = "<group>"; };
 		3BE72D0814138E3B00F9DA84 /* door_open_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = door_open_info.png; sourceTree = "<group>"; };
 		3BE72D0914138E3B00F9DA84 /* door_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = door_info.png; sourceTree = "<group>"; };
@@ -831,6 +891,7 @@
 		3B43E20F13D0A71D006AF368 /* Hypermaze */ = {
 			isa = PBXGroup;
 			children = (
+				3BE5E2C8145C5E6200E23C35 /* CocosDenshion */,
 				3B31A26114222B02002CC5D3 /* CCNode+Scaling */,
 				3BF7FB71141A3E7100F90A6B /* CCScrollLayer */,
 				3B40C91213DAC1ED00C2BEDF /* Helpers */,
@@ -872,6 +933,8 @@
 				3B4D17A0144316F800F100E2 /* FinishLayer.m */,
 				3B89FAA31449A321001A08B1 /* TutorialLayer.h */,
 				3B89FAA41449A322001A08B1 /* TutorialLayer.m */,
+				3B760D22145D629900410F0E /* HPSound.h */,
+				3B760D23145D629900410F0E /* HPSound.m */,
 			);
 			path = Hypermaze;
 			sourceTree = "<group>";
@@ -879,6 +942,7 @@
 		3B43E21013D0A71D006AF368 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3BE5E2D7145C5F4800E23C35 /* Sounds */,
 				3BAADD1114501BE000BE7048 /* Tutorial */,
 				3B2076D11423894600D3B70E /* Emiters */,
 				3B1DDF9513D185440006E818 /* Images */,
@@ -1266,6 +1330,51 @@
 			path = Tutorial;
 			sourceTree = "<group>";
 		};
+		3BE5E2C8145C5E6200E23C35 /* CocosDenshion */ = {
+			isa = PBXGroup;
+			children = (
+				3BE5E2C9145C5E6200E23C35 /* CDAudioManager.h */,
+				3BE5E2CA145C5E6200E23C35 /* CDAudioManager.m */,
+				3BE5E2CB145C5E6200E23C35 /* CDConfig.h */,
+				3BE5E2CC145C5E6200E23C35 /* CDOpenALSupport.h */,
+				3BE5E2CD145C5E6200E23C35 /* CDOpenALSupport.m */,
+				3BE5E2CE145C5E6200E23C35 /* CocosDenshion.h */,
+				3BE5E2CF145C5E6200E23C35 /* CocosDenshion.m */,
+				3BE5E2D0145C5E6200E23C35 /* SimpleAudioEngine.h */,
+				3BE5E2D1145C5E6200E23C35 /* SimpleAudioEngine.m */,
+			);
+			path = CocosDenshion;
+			sourceTree = "<group>";
+		};
+		3BE5E2D7145C5F4800E23C35 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3B760D2E145D83A500410F0E /* wine-glass.wav */,
+				3B760D28145D6A8B00410F0E /* applause.wav */,
+				3B760D29145D6A8B00410F0E /* fireworks.wav */,
+				3B760D2A145D6A8B00410F0E /* gong.wav */,
+				3B760D26145D693200410F0E /* button-49.wav */,
+				3BE5E322145C64E900E23C35 /* button-50.wav */,
+				3BE5E31E145C641A00E23C35 /* button-30.wav */,
+				3BE5E31F145C641B00E23C35 /* button-46.wav */,
+				3BE5E2ED145C5F8A00E23C35 /* footsteps-1.wav */,
+				3BE5E2EE145C5F8A00E23C35 /* footsteps-2.wav */,
+				3BE5E2EF145C5F8A00E23C35 /* footsteps-3.wav */,
+				3BE5E2F0145C5F8A00E23C35 /* footsteps-4.wav */,
+				3BE5E2F1145C5F8A00E23C35 /* footsteps-5.wav */,
+				3BE5E2F2145C5F8A00E23C35 /* footsteps-6.wav */,
+				3BE5E2F3145C5F8A00E23C35 /* footsteps-7.wav */,
+				3BE5E2F4145C5F8A00E23C35 /* footsteps-8.wav */,
+				3BE5E2F5145C5F8A00E23C35 /* footsteps-9.wav */,
+				3BE5E2F6145C5F8A00E23C35 /* footsteps-10.wav */,
+				3BE5E2F7145C5F8A00E23C35 /* footsteps-11.wav */,
+				3BE5E2F8145C5F8A00E23C35 /* footsteps-12.wav */,
+				3BE5E2F9145C5F8A00E23C35 /* footsteps-13.wav */,
+				3BE5E2FA145C5F8A00E23C35 /* footsteps-14.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		3BE72D0514138E1800F9DA84 /* Infopanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1419,6 +1528,28 @@
 				3BAADD1514501BE000BE7048 /* tutorial_data.hmz in Resources */,
 				3BAADD1614501BE000BE7048 /* tutorial_metadata.hmz in Resources */,
 				3BAADD1714501BE000BE7048 /* screenshot.jpg in Resources */,
+				3BE5E310145C5F8A00E23C35 /* footsteps-1.wav in Resources */,
+				3BE5E311145C5F8A00E23C35 /* footsteps-2.wav in Resources */,
+				3BE5E312145C5F8A00E23C35 /* footsteps-3.wav in Resources */,
+				3BE5E313145C5F8A00E23C35 /* footsteps-4.wav in Resources */,
+				3BE5E314145C5F8A00E23C35 /* footsteps-5.wav in Resources */,
+				3BE5E315145C5F8A00E23C35 /* footsteps-6.wav in Resources */,
+				3BE5E316145C5F8A00E23C35 /* footsteps-7.wav in Resources */,
+				3BE5E317145C5F8A00E23C35 /* footsteps-8.wav in Resources */,
+				3BE5E318145C5F8A00E23C35 /* footsteps-9.wav in Resources */,
+				3BE5E319145C5F8A00E23C35 /* footsteps-10.wav in Resources */,
+				3BE5E31A145C5F8A00E23C35 /* footsteps-11.wav in Resources */,
+				3BE5E31B145C5F8A00E23C35 /* footsteps-12.wav in Resources */,
+				3BE5E31C145C5F8A00E23C35 /* footsteps-13.wav in Resources */,
+				3BE5E31D145C5F8A00E23C35 /* footsteps-14.wav in Resources */,
+				3BE5E320145C641B00E23C35 /* button-30.wav in Resources */,
+				3BE5E321145C641B00E23C35 /* button-46.wav in Resources */,
+				3BE5E323145C64E900E23C35 /* button-50.wav in Resources */,
+				3B760D27145D693200410F0E /* button-49.wav in Resources */,
+				3B760D2B145D6A8B00410F0E /* applause.wav in Resources */,
+				3B760D2C145D6A8B00410F0E /* fireworks.wav in Resources */,
+				3B760D2D145D6A8B00410F0E /* gong.wav in Resources */,
+				3B760D2F145D83A500410F0E /* wine-glass.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,6 +1705,11 @@
 				3B31A26914224868002CC5D3 /* DeleteConfirmDialog.m in Sources */,
 				3B4D17A1144316F800F100E2 /* FinishLayer.m in Sources */,
 				3B89FAA51449A322001A08B1 /* TutorialLayer.m in Sources */,
+				3BE5E2D2145C5E6200E23C35 /* CDAudioManager.m in Sources */,
+				3BE5E2D3145C5E6200E23C35 /* CDOpenALSupport.m in Sources */,
+				3BE5E2D4145C5E6200E23C35 /* CocosDenshion.m in Sources */,
+				3BE5E2D5145C5E6200E23C35 /* SimpleAudioEngine.m in Sources */,
+				3B760D24145D629900410F0E /* HPSound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

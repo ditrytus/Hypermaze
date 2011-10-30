@@ -30,6 +30,7 @@
 	CGPoint middleScreen;
 	CCSprite* compassArrow;
 	bool isTutorial;
+	int stepNum;
 }
 
 - (CCMenuItem*) getLeftNArrow;

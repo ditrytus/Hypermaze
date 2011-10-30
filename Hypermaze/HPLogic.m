@@ -166,6 +166,12 @@
 	NSDictionary* eventData = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithBytes: &previousPosition length:sizeof(previousPosition)] ,@"previousPosition", [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)],@"currentPosition", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:EVENT_POSITION_CHANGED object:self userInfo: eventData];
 }
+
+- (void)raiseRotatedEvent:(FS3DPoint)currentPosition previousPosition:(FS3DPoint)previousPosition  {
+	NSDictionary* eventData = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithBytes: &previousPosition length:sizeof(previousPosition)] ,@"previousPosition", [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)],@"currentPosition", nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:EVENT_ROTATED object:self userInfo: eventData];
+}
+
 - (void) moveInDirection: (HPDirection) dir {
 	if ([HPChamberUtil canGoInDirection:dir fromChamber:maze.topology[gameState.currentPosition.x][gameState.currentPosition.y][gameState.currentPosition.z] currentPosition:gameState.currentPosition size: maze.size]) {
 		FS3DPoint previousPosition = [gameState currentPosition];
@@ -273,13 +279,13 @@
 		rotation = rotation + 4;
 	}
 	FS3DPoint currentPosition = [gameState currentPosition];
-	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
+	[self raiseRotatedEvent: currentPosition previousPosition: currentPosition];
 }
 
 - (void) rotateCounterclockwise {
 	rotation = (rotation + 1) % 4;
 	FS3DPoint currentPosition = [gameState currentPosition];
-	[self raisePostionChangedEvent: currentPosition previousPosition: currentPosition];
+	[self raiseRotatedEvent: currentPosition previousPosition: currentPosition];
 }
 
 - (void) reset {

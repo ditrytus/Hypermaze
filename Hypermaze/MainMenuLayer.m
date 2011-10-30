@@ -19,6 +19,8 @@
 #import "CCDialog.h"
 #import "DeleteConfirmDialog.h"
 
+
+
 const int MENU_MOVE_DISTANCE = 1000;
 const float MENU_TRANSITION_DURATION = 0.5;
 const int MENU_TRANSTITION_EASING_RATE = 4;
@@ -68,6 +70,8 @@ const int RESUME_ITEMS_MARGIN = 40;
 
 - (void)goBackTo: (CCMenu*) destinationMenu from: (CCMenu*) currentMenu {
 	if (!isInTrasition) {
+		isInTrasition = YES;
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		[destinationMenu runAction:
 		 [CCSequence actions:
 		  [CCCallBlock actionWithBlock:^{
@@ -94,6 +98,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 - (void)goTo: (CCNode*)destinationMenu from: (CCNode*)currentMenu {
 	if(!isInTrasition) {
 		isInTrasition = YES;
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		[currentMenu runAction:
 		 [CCSequence actions:
 		  [[hideToLeftAndFadeOut copy] autorelease],
@@ -558,6 +563,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 -(id) init
 {
 	if((self=[super init])) {
+		[[HPSound sharedSound] preloadSounds];
 		[self initActions];	
 		[self initPoints];
 		[self loadFrameCache];
@@ -581,6 +587,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 }
 - (void) onIncreaseSizeClick: (CCMenuItem  *) menuItem 
 {
+	[[HPSound sharedSound] playSound: SOUND_TICK];
 	int currentSizeIndex = [sizeItem selectedIndex];
 	if (currentSizeIndex < MAX_MAZE_SIZE - MIN_MAZE_SIZE) {
 		[sizeItem setSelectedIndex: currentSizeIndex + 1];
@@ -590,6 +597,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onDecreaseSizeClick: (CCMenuItem  *) menuItem 
 {
+	[[HPSound sharedSound] playSound: SOUND_TICK];
 	int currentSizeIndex = [sizeItem selectedIndex];
 	if (currentSizeIndex > MIN_MAZE_SIZE - MIN_MAZE_SIZE) {
 		[sizeItem setSelectedIndex: currentSizeIndex - 1];
@@ -632,6 +640,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 - (void) onUp: (CCMenuItem *) menuItem
 {
 	if (!isInTrasition) {
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		if (resumeGameMenuPos > 0) {
 			for (int i=MAX(resumeGameMenuPos-1,0); i<= MIN(resumeGameMenuPos + RESUME_ITEMS_ON_PAGE - 1, [resumeItems count]-1); i++) {
 				if (i==resumeGameMenuPos-1) {
@@ -683,6 +692,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 - (void) onDown: (CCMenuItem *) menuItem
 {
 	if (!isInTrasition) {
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		int x = ([resumeItems count]-RESUME_ITEMS_ON_PAGE);
 		if (resumeGameMenuPos < x) {
 			for (int i=resumeGameMenuPos; i<= MIN(resumeGameMenuPos + RESUME_ITEMS_ON_PAGE, [resumeItems count]-1); i++) {
@@ -732,6 +742,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 }
 
 - (void) onResumeDelete: (CCMenuItem*) item {
+	[[HPSound sharedSound] playSound: SOUND_TICK];
 	CCDialog* dialog = [[DeleteConfirmDialog alloc] initWithSavedGame: item.userData];
 	[dialog openInScene: (CCScene*)[self parent]];
 }
@@ -755,6 +766,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 }
 
 - (void) onGameDeleteConfirm: (NSNotification*) notification {
+	[[HPSound sharedSound] playSound: SOUND_TICK];
 	NSString* savedGame = [notification.userInfo objectForKey: @"savedGame"];
 	int deletedIndex = INT_MAX;
 	for (int i=resumeGameMenuPos; i<= MIN(resumeGameMenuPos + RESUME_ITEMS_ON_PAGE, [resumeItems count]-1); i++) {
@@ -816,6 +828,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 {
 	if(!isInTrasition) {
 		isInTrasition = YES;
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		[mainMenu runAction:
 		 [CCSequence actions:
 		  [[hideToLeftAndFadeOut copy] autorelease],
@@ -838,6 +851,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onMusicToggle: (CCMenuItemToggle *) menuItem
 {
+	[[HPSound sharedSound] playSound: SOUND_TOGGLE];
 	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
 	configuration.music = [NSNumber numberWithInteger: [menuItem selectedIndex]];
 	[configuration save];
@@ -845,6 +859,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onSoundToggle: (CCMenuItemToggle *) menuItem
 {
+	[[HPSound sharedSound] playSound: SOUND_TOGGLE];
 	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
 	configuration.sound = [NSNumber numberWithInteger: [menuItem selectedIndex]];
 	[configuration save];
@@ -861,6 +876,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 - (void) onBackFromOptionsClick: (CCMenuItem *) menuItem
 {
 	if (!isInTrasition) {
+		[[HPSound sharedSound] playSound: SOUND_MENU_SILDE];
 		[mainMenu runAction:
 		 [CCSequence actions:
 		  [CCCallBlock actionWithBlock:^{

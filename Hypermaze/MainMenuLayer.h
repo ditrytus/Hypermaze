@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "SimpleAudioEngine.h"
 #import "CCScrollLayer.h"
-
 
 @interface MainMenuLayer : CCLayer {
 	BOOL isInTrasition;

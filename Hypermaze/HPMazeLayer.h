@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "HPLogic.h"
 #import "FSIsoSystem.h"
+#import "HPSound.h"
 
 @interface HPMazeLayer : CCLayer {
 	HPLogic* logic;
