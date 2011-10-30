@@ -560,10 +560,16 @@ const int RESUME_ITEMS_MARGIN = 40;
 	  nil]];
 }
 
+- (void) changeMusicTrack {
+	[[HPSound sharedSound] playMusic];
+}
+
 -(id) init
 {
 	if((self=[super init])) {
 		[[HPSound sharedSound] preloadSounds];
+		[[HPSound sharedSound] playMainMenuPlaylist];
+		[self schedule:@selector(changeMusicTrack) interval:2];
 		[self initActions];	
 		[self initPoints];
 		[self loadFrameCache];
@@ -855,6 +861,11 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
 	configuration.music = [NSNumber numberWithInteger: [menuItem selectedIndex]];
 	[configuration save];
+	if ([[configuration music] boolValue]) {
+		[[HPSound sharedSound] stopMusic];
+	} else {
+		[[HPSound sharedSound] playMusic];
+	}
 }
 
 - (void) onSoundToggle: (CCMenuItemToggle *) menuItem

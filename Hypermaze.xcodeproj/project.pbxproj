@@ -187,6 +187,11 @@
 		3B760D2C145D6A8B00410F0E /* fireworks.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D29145D6A8B00410F0E /* fireworks.wav */; };
 		3B760D2D145D6A8B00410F0E /* gong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D2A145D6A8B00410F0E /* gong.wav */; };
 		3B760D2F145D83A500410F0E /* wine-glass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D2E145D83A500410F0E /* wine-glass.wav */; };
+		3B760D36145D925600410F0E /* skin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D31145D925600410F0E /* skin.mp3 */; };
+		3B760D37145D925600410F0E /* airspace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D32145D925600410F0E /* airspace.mp3 */; };
+		3B760D38145D925600410F0E /* romantic-sunset.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D33145D925600410F0E /* romantic-sunset.mp3 */; };
+		3B760D39145D925600410F0E /* drifting-away.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D34145D925600410F0E /* drifting-away.mp3 */; };
+		3B760D3A145D925600410F0E /* remote-feelings.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3B760D35145D925600410F0E /* remote-feelings.mp3 */; };
 		3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */; };
 		3B793D3B13D1B15C00DB6EEB /* menu_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */; };
 		3B793D3C13D1B15C00DB6EEB /* menu_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B793D3A13D1B15C00DB6EEB /* menu_spritesheet.png */; };
@@ -596,6 +601,11 @@
 		3B760D29145D6A8B00410F0E /* fireworks.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fireworks.wav; sourceTree = "<group>"; };
 		3B760D2A145D6A8B00410F0E /* gong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gong.wav; sourceTree = "<group>"; };
 		3B760D2E145D83A500410F0E /* wine-glass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wine-glass.wav"; sourceTree = "<group>"; };
+		3B760D31145D925600410F0E /* skin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skin.mp3; sourceTree = "<group>"; };
+		3B760D32145D925600410F0E /* airspace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airspace.mp3; sourceTree = "<group>"; };
+		3B760D33145D925600410F0E /* romantic-sunset.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "romantic-sunset.mp3"; sourceTree = "<group>"; };
+		3B760D34145D925600410F0E /* drifting-away.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "drifting-away.mp3"; sourceTree = "<group>"; };
+		3B760D35145D925600410F0E /* remote-feelings.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "remote-feelings.mp3"; sourceTree = "<group>"; };
 		3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
 		3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuLayer.m; sourceTree = "<group>"; };
 		3B793D3913D1B15C00DB6EEB /* menu_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menu_spritesheet.plist; sourceTree = "<group>"; };
@@ -942,6 +952,7 @@
 		3B43E21013D0A71D006AF368 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B760D30145D924600410F0E /* Music */,
 				3BE5E2D7145C5F4800E23C35 /* Sounds */,
 				3BAADD1114501BE000BE7048 /* Tutorial */,
 				3B2076D11423894600D3B70E /* Emiters */,
@@ -1244,6 +1255,18 @@
 				3B3DA059140943CF004AFBCD /* HPRangeTool.m */,
 			);
 			name = Tools;
+			sourceTree = "<group>";
+		};
+		3B760D30145D924600410F0E /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				3B760D31145D925600410F0E /* skin.mp3 */,
+				3B760D32145D925600410F0E /* airspace.mp3 */,
+				3B760D33145D925600410F0E /* romantic-sunset.mp3 */,
+				3B760D34145D925600410F0E /* drifting-away.mp3 */,
+				3B760D35145D925600410F0E /* remote-feelings.mp3 */,
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 		3B793D3813D1B10200DB6EEB /* MainMenu */ = {
@@ -1550,6 +1573,11 @@
 				3B760D2C145D6A8B00410F0E /* fireworks.wav in Resources */,
 				3B760D2D145D6A8B00410F0E /* gong.wav in Resources */,
 				3B760D2F145D83A500410F0E /* wine-glass.wav in Resources */,
+				3B760D36145D925600410F0E /* skin.mp3 in Resources */,
+				3B760D37145D925600410F0E /* airspace.mp3 in Resources */,
+				3B760D38145D925600410F0E /* romantic-sunset.mp3 in Resources */,
+				3B760D39145D925600410F0E /* drifting-away.mp3 in Resources */,
+				3B760D3A145D925600410F0E /* remote-feelings.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

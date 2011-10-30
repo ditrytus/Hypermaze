@@ -7,7 +7,7 @@
 //
 
 #import "HPSound.h"
-#import "SimpleAudioEngine.h"
+
 #import "HPConfiguration.h"
 
 @implementation HPSound
@@ -32,22 +32,26 @@ static HPSound *sharedSound;
 {
     self = [super init];
     if (self) {
+		stepNum = 0;
+		currentTrack = 0;
+		engine = [SimpleAudioEngine sharedEngine];
+		engine.backgroundMusicVolume = 0.25f;
     }
     return self;
 }
 
 - (void) preloadSounds {
 	for (int i=1; i<=TOTAL_STEPS; i++) {
-		[[SimpleAudioEngine sharedEngine] preloadEffect:[NSString stringWithFormat:SOUND_FOOTSTEP_TEMPLATE, i]];
+		[engine preloadEffect:[NSString stringWithFormat:SOUND_FOOTSTEP_TEMPLATE, i]];
 	}
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_MENU_SILDE];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_TOGGLE];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_TICK];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_DOUBLE_TICK];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_APPLAUSE];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_GONG];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_FIREWORKS];
-	[[SimpleAudioEngine sharedEngine] preloadEffect: SOUND_WINE_GLASS];
+	[engine preloadEffect: SOUND_MENU_SILDE];
+	[engine preloadEffect: SOUND_TOGGLE];
+	[engine preloadEffect: SOUND_TICK];
+	[engine preloadEffect: SOUND_DOUBLE_TICK];
+	[engine preloadEffect: SOUND_APPLAUSE];
+	[engine preloadEffect: SOUND_GONG];
+	[engine preloadEffect: SOUND_FIREWORKS];
+	[engine preloadEffect: SOUND_WINE_GLASS];
 }
 
 - (void) playFootstep {
@@ -57,8 +61,45 @@ static HPSound *sharedSound;
 
 - (void) playSound: (NSString*) soundName {
 	if (![[[HPConfiguration sharedConfiguration] sound] boolValue]) {
-		[[SimpleAudioEngine sharedEngine] playEffect: soundName];
+		[engine playEffect: soundName];
 	}
+}
+
+- (void) playMusic {
+	if (![engine isBackgroundMusicPlaying] && ![[[HPConfiguration sharedConfiguration] music] boolValue]) {
+		[engine playBackgroundMusic: [playlist objectAtIndex: currentTrack++] loop: NO];
+		currentTrack %= [playlist count];
+	}
+}
+
+- (void) stopMusic {
+	[engine stopBackgroundMusic];
+}
+
+- (void) playMainMenuPlaylist {
+	[engine stopBackgroundMusic];
+	currentTrack = 0;
+	[playlist release];
+	playlist = [[NSArray arrayWithObjects:MUSIC_SKIN, nil] retain];
+	[self playMusic];
+}
+
+- (void) playGamePlaylist {
+	[engine stopBackgroundMusic];
+	currentTrack = 0;
+	[playlist release];
+	NSMutableArray* tempPlaylist = [NSMutableArray arrayWithObjects: MUSIC_AIRSPACE, MUSIC_DRIFTING_AWAY, MUSIC_REMOTE_FEELINGS, MUSIC_ROMANTIC_SUNSET, nil];
+	for (int i=0; i<[tempPlaylist count]; i++) {
+		int index1 = arc4random() % [tempPlaylist count];
+		int index2 = arc4random() % [tempPlaylist count];
+		NSString* helpString = [tempPlaylist objectAtIndex: index1];
+		[tempPlaylist replaceObjectAtIndex: index1
+								withObject: [tempPlaylist objectAtIndex:index2]];
+		[tempPlaylist replaceObjectAtIndex: index2
+							   withObject : helpString];
+	}
+	playlist = [tempPlaylist retain];
+	[self playMusic];
 }
 
 @end

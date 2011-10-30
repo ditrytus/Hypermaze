@@ -1049,6 +1049,11 @@
 	HPConfiguration* configuration = [HPConfiguration sharedConfiguration];
 	configuration.music = [NSNumber numberWithInteger: 1-[item selectedIndex]];
 	[configuration save];
+	if ([[configuration music] boolValue]) {
+		[[HPSound sharedSound] stopMusic];
+	} else {
+		[[HPSound sharedSound] playMusic];
+	}
 	[self doCommonToggleStuff: item];
 }
 

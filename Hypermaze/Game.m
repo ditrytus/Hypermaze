@@ -116,6 +116,10 @@
 	return arrowsMenu;
 }
 
+- (void) changeMusicTrack {
+	[[HPSound sharedSound] playMusic];
+}
+
 -(id)initWithLogic: (HPLogic*) newLogic {
 	self = [super init];
 	if (self) {
@@ -164,6 +168,9 @@
 			[self addChild: tutorialLayer];
 			[tutorialLayer openDialog:self];
 		}
+		
+		[[HPSound sharedSound] playGamePlaylist];
+		[self schedule:@selector(changeMusicTrack) interval:2];
 	}
 	return self;
 }
