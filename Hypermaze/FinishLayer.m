@@ -17,8 +17,6 @@
 		score = [newLogic getScore];
 		currentScoreCounter = 0;
 		
-		saveGameFolder = [[PathBuilder savedGameDirectory:[newLogic.beginDate description]] retain];
-		
 		CGSize winSize = [[CCDirector sharedDirector] winSize];
 		
 		CCSprite* congratulationsCloud = [CCSprite spriteWithFile:@"congratulation_cloud.png"];
@@ -71,18 +69,6 @@
 		movesValueLabel.anchorPoint = ccp(0,0.5);
 		movesValueLabel.position = ccp(winSize.width, 398);
 		[self addChild: movesValueLabel];
-		
-		CCLabelTTF* scoreLabel = [CCLabelTTF labelWithString:@"SCORE" fontName:@"Arial" fontSize:48];
-		scoreLabel.color = ccBLACK;
-		scoreLabel.anchorPoint = ccp(1,0.5);
-		scoreLabel.position = ccp(0, 340);
-		[self addChild: scoreLabel];
-		
-		scoreValueLabel = [[CCLabelTTF labelWithString: [NSString stringWithFormat: @"%d", currentScoreCounter, nil] fontName:@"Arial" fontSize:48] retain];
-		scoreValueLabel.color = ccBLACK;
-		scoreValueLabel.anchorPoint = ccp(0,0.5);
-		scoreValueLabel.position = ccp(winSize.width, 340);
-		[self addChild: scoreValueLabel];
 		
 		CCLabelTTF* backLabel = [CCLabelTTF labelWithString:@"BACK TO MENU" fontName:@"Arial" fontSize:48];
 		backLabel.color = ccBLACK;
@@ -145,35 +131,6 @@
 		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, 398)]
 								rate:4],
 		  nil]];
-		
-		[scoreLabel runAction:
-		 [CCSequence actions:
-		  [CCDelayTime actionWithDuration:4],
-		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0-12, 340)]
-								rate:4],
-		  nil]];
-		
-		[scoreValueLabel runAction:
-		 [CCSequence actions:
-		  [CCDelayTime actionWithDuration:4],
-		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, 340)]
-								rate:4],
-		  [CCCallBlock actionWithBlock:^(){
-			[self schedule:@selector(updateScoreCounter) interval:0.01];
-		  }],
-		  nil]];
-		
-    }
-    return self;
-}
-		 
-- (void) updateScoreCounter {
-	currentScoreCounter += (double)score / 300.0;
-	if (currentScoreCounter > score) {
-		[self unschedule:@selector(updateScoreCounter)];
-		currentScoreCounter = score;
 		[backCloud runAction:
 		 [CCFadeIn actionWithDuration:1]];
 		[backItem runAction:
@@ -187,24 +144,17 @@
 			[CCScaleTo actionWithDuration:1 scale:1],
 			nil] rate:4],
 		  nil]];
-	}
-	[scoreValueLabel setString:
-	 [NSString stringWithFormat:@"%d", currentScoreCounter]];	
+    }
+    return self;
 }
 
 - (void) onBack {
-	NSError* error;
-	if (![[NSFileManager defaultManager] removeItemAtPath:saveGameFolder error: &error]) {
-		NSLog(@"%@", error);
-	}
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void) dealloc {
-	[scoreValueLabel release];
 	[backItem release];
 	[backMenu release];
-	[saveGameFolder release];
 	[super dealloc];
 }
 

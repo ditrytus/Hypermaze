@@ -15,6 +15,7 @@
 #import "InfoPanel.h"
 #import "FinishLayer.h"
 #import "TutorialLayer.h"
+#import "HPAchievementsManager.h"
 
 #define INTF_ARROW_CLICK_EVENT @"onArrowClick"
 #define INTF_ARROW_CLICK_USER_INFO @"arrowClicked"

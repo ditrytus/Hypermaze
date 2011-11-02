@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define SETTINGS_FILE			@"Settings.plist"
+#define ACHIEVEMENTS_FILE		@"achievements.hmz"
 #define SAVE_SCREENSHOT_FILE	@"screenshot.jpg"
 #define SAVE_METADATA_FILE		@"metadata.hmz"
 #define SAVE_DATA_FILE			@"data.hmz"
@@ -21,5 +22,6 @@
 + (NSString*) saveDirectory;
 + (NSString*) savedGameDirectory: (NSString*) date;
 + (NSString*) settingsFile;
++ (NSString*) achievementsArchiveFile;
 
 @end

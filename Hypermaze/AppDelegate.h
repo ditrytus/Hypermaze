@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HPGameCenter.h"
+#import "HPAchievementsManager.h"
+#import "HPConfiguration.h"
+#import "HPSound.h"
 
 @class RootViewController;
 

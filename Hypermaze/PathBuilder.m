@@ -33,4 +33,8 @@
 	return [[PathBuilder documentDirectory] stringByAppendingPathComponent:SETTINGS_FILE];
 }
 
++ (NSString*) achievementsArchiveFile {
+	return [[PathBuilder documentDirectory] stringByAppendingPathComponent:ACHIEVEMENTS_FILE];
+}
+
 @end

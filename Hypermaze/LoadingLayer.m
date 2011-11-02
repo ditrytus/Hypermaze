@@ -88,6 +88,7 @@
 {
 	switch([generator getStatus])
 	{
+		case genBegin: break;
 		case genWorking: {
 			[fill setTextureRect:CGRectMake(0, 0, 794 * [generator getProgress], 166)];
 		} break;

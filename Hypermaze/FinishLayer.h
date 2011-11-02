@@ -16,11 +16,9 @@
 @interface FinishLayer : CCLayer {
 	int score;
 	int currentScoreCounter;
-	CCLabelTTF* scoreValueLabel;
 	CCMenuItemLabel* backItem;
 	CCMenu* backMenu;
 	CCSprite* backCloud;
-	NSString* saveGameFolder;
 }
 
 - (id) initWithLogic: (HPLogic*) newLogic;

@@ -39,10 +39,11 @@
 	Byte** chamberRotationCache;
 }
 
--(CGPoint) getChamberPos: (FS3DPoint) coords;
--(void) redrawMazeTexture;
+- (id)initWithLogic: (HPLogic*) newLogic;
+- (CGPoint) getChamberPos: (FS3DPoint) coords;
+- (void) redrawMazeTexture;
 - (void) onPositionChanged: (NSNotification*) notification;
--(double) getCompassAngle;
+- (double) getCompassAngle;
 - (CGPoint) getDestination;
 - (CGPoint) getTranslation;
 @end

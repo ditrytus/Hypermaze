@@ -269,7 +269,7 @@
 		if (![fileManager fileExistsAtPath:saveGameDir]) {
 			NSError* error;
 			if(![fileManager createDirectoryAtPath:saveGameDir withIntermediateDirectories:YES attributes:nil error:&error]) {
-				NSLog(@"%@", [error description], nil);
+				NSLog(@"%@", [error description]);
 			}
 		}
 		
@@ -384,6 +384,13 @@
 	radialMenuLayer.visible = NO;
 	interfaceLayer.visible = NO;
 	[self addChild: [[FinishLayer alloc] initWithLogic: logic]];
+	NSError* error;
+	if (![[NSFileManager defaultManager] removeItemAtPath:[PathBuilder savedGameDirectory:[logic.beginDate description]] error: &error]) {
+		NSLog(@"%@", error);
+	}
+	if ([[HPGameCenter sharedGameCenter] isGameCenterAvailable]) {
+		[[HPAchievementsManager sharedAchievementsManager] increaseWinCountForMazeSize: logic.maze.size];
+	}
 }
 
 -(void) dealloc {

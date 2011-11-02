@@ -15,5 +15,6 @@
 }
 
 - (void) reset;
+- (id) initWithGameState: (HPGameState*) state;
 
 @end
