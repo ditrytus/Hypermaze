@@ -25,13 +25,11 @@
 - (void) refresh {
 	[path removeAllObjects];
 	int solutionLength = [[maze solution] count];
-	int step = solutionLength / (numOfCheckPoints + 1);
-	for (int i=0; i<solutionLength; i++) {
-		if (i%step==0) {
-			FS3DPoint point;
-			[[[maze solution] objectAtIndex:i] getBytes:&point length:sizeof(FS3DPoint)];
-			[self addToPath: point];
-		}
+	int step = ceil((double)solutionLength / (double)(numOfCheckPoints+1));
+	for (int i=step; i<solutionLength; i+=step) {
+		FS3DPoint point;
+		[[[maze solution] objectAtIndex:i] getBytes:&point length:sizeof(FS3DPoint)];
+		[self addToPath: point];
 	}
 }
 
