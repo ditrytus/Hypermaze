@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        gameState = state;
+        gameState = [state retain];
     }
     return self;
 }
@@ -34,6 +34,11 @@
 	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
 	NSLog(@"%@",[[self class] description]);
 	return self;
+}
+
+- (void) dealloc {
+	[gameState release];
+	[super dealloc];
 }
 
 
