@@ -26,15 +26,20 @@
 #define MUSIC_DRIFTING_AWAY		@"drifting-away.mp3"
 #define MUSIC_REMOTE_FEELINGS	@"remote-feelings.mp3"
 
-#define MAIN_MENU_PLAYLIST	
+#define MUSIC_SKIN_DURATION				10
+#define MUSIC_AIRSPACE_DURATION			10
+#define MUSIC_ROMANTIC_SUNSET_DURATION	10
+#define MUSIC_DRIFTING_AWAY_DURATION	10
+#define MUSIC_REMOTE_FEELINGS_DURATION	10
 
 #define TOTAL_STEPS 14
 
-@interface HPSound : NSObject {
+@interface HPSound : NSObject<CDLongAudioSourceDelegate> {
 	int stepNum;
 	NSArray* playlist;
 	int currentTrack;
 	SimpleAudioEngine* engine;
+	CDLongAudioSource* currentMusic;
 }
 
 + (HPSound*) sharedSound;

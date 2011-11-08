@@ -273,6 +273,22 @@ const int RESUME_ITEMS_MARGIN = 40;
 	hasSavedGames = false;
 	savedGames = [[NSMutableArray arrayWithArray: [[[NSFileManager arrayOfFoldersInFolder:[PathBuilder saveDirectory]]
 							sortedArrayUsingSelector:@selector(compare:)] reversedArray]] retain];
+	for (NSString* savedGame in savedGames) {
+		NSFileManager* manager = [NSFileManager defaultManager];
+		NSString* saveGameDir = [PathBuilder savedGameDirectory:savedGame];
+		if (![manager fileExistsAtPath:[saveGameDir stringByAppendingPathComponent:SAVE_DATA_FILE]] ||
+			![manager fileExistsAtPath:[saveGameDir stringByAppendingPathComponent:SAVE_METADATA_FILE]] ||
+			![manager fileExistsAtPath:[saveGameDir stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE]]) {
+			NSError* error;
+			[manager removeItemAtPath: saveGameDir error:&error];
+			if (error!=nil) {
+				NSLog(@"Corrupted save folder remove error: %@", [error description]);
+			}
+		}
+	}
+	[savedGames release];
+	savedGames = [[NSMutableArray arrayWithArray: [[[NSFileManager arrayOfFoldersInFolder:[PathBuilder saveDirectory]]
+													sortedArrayUsingSelector:@selector(compare:)] reversedArray]] retain];
 	resumeItems = [[NSMutableArray arrayWithCapacity:[savedGames count]] retain];
 	resumeGameMenu = [[CCMenu menuWithItems: nil] retain];
 	
@@ -429,17 +445,18 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite *decreaseSizeButton = [self menuItemSpriteFromNormalFrameName:@"minus_off_en.png"
 																  selectedFameName:@"minus_on_en.png"
 																		  selector:@selector(onDecreaseSizeClick:)];
-	sizeItem = [[CCMenuItemToggle itemWithTarget:nil selector:nil] retain];
-	NSMutableArray *numbers = [NSMutableArray array];
 	for(int i=MIN_MAZE_SIZE; i<=MAX_MAZE_SIZE; i++) {
 		CCSprite *sprite = [CCSprite spriteWithSpriteFrameName:
 							[NSString stringWithFormat:@"%@%@",
 							 [NSString stringWithFormat:@"%d",i],
 							 @".png"]];
 		CCMenuItemImage *spriteItem = [CCMenuItemImage itemFromNormalSprite:sprite selectedSprite:nil];
-		[numbers addObject: spriteItem];
+		if (sizeItem==nil) {
+			sizeItem = [[CCMenuItemToggle itemWithTarget:nil selector:nil items: spriteItem,nil] retain];
+		} else {
+			[sizeItem.subItems addObject: spriteItem];
+		}
 	}
-	[sizeItem setSubItems: numbers];
 	[sizeItem setSelectedIndex: [[HPConfiguration sharedConfiguration].difficulty integerValue] - MIN_MAZE_SIZE];
 	[sizeItem setIsEnabled:NO];
 	CCMenuItemSprite* playButton = [self menuItemSpriteFromNormalFrameName:@"play_off_en.png"
@@ -593,7 +610,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 }
 
 - (void) changeMusicTrack {
-	[[HPSound sharedSound] playMusic];
+	//[[HPSound sharedSound] playMusic];
 }
 
 - (void) onLocalPlayerAuthorised: (NSNotification*) notification {
@@ -1005,6 +1022,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) dealloc
 {
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[showFromRightAndFadeIn release];
 	[hideToRightAndFadeOut release];
 	[showFromLeftAndFadeIn release];

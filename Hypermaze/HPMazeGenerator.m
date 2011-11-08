@@ -15,7 +15,7 @@
 #import "HPGlobals.h"
 #import "HPPathFinder.h"
 
-#define MOLE_MAX_LENGTH 3
+#define MOLE_MAX_LENGTH 20
 
 FS3DPoint getNextFreeChamber(Byte ***topology, int size) {
 	for (int i=0; i<size; i++) {
@@ -78,7 +78,7 @@ Byte *** initTopology(int size) {
 
 void digEntranceAndExit(Byte ***topology,int size) {
 	crushWallInDirection(topology, BEGIN_POINT, dirSouthEast);
-	crushWallInDirection(topology, point3D(size-1, size-1, size-1), dirSouthWest);
+	crushWallInDirection(topology, point3D(size-1, size-1, size-1), dirNorthWest);
 
 }
 - (void) generateMazeInSize: (int) size {
@@ -90,6 +90,7 @@ void digEntranceAndExit(Byte ***topology,int size) {
 	int moleLength = 0;
 	FS3DPoint molePosition = BEGIN_POINT;
 	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
+	int moleMax = arc4random() % MOLE_MAX_LENGTH;
 	do {
 		moleLength++;
 		[NSThread sleepForTimeInterval:0.00005]; 
@@ -121,13 +122,14 @@ void digEntranceAndExit(Byte ***topology,int size) {
 			FS3DPoint nextMolePosition = [HPDirectionUtil moveInDirection: moleDirection fromPoint: molePosition];
 			canDigIntoChamber = isPositionValid(nextMolePosition, size) && isChamberFree(topology, nextMolePosition);
 		} while (!(canDigIntoChamber || checkedAllDirections));
-		if (canDigIntoChamber && moleLength < MOLE_MAX_LENGTH) {
+		if (canDigIntoChamber && moleLength < moleMax) {
 			molePosition = digIntoChamber(topology, molePosition, moleDirection);
 			diggedChambers++;
 			progress = (double)diggedChambers/(double)totalChambers;
 		} else {
 			molePosition = getNextFreeChamber(topology, size);
 			moleLength = 0;
+			moleMax = arc4random() % MOLE_MAX_LENGTH;
 		}
 	} while (totalChambers > diggedChambers);
 	digEntranceAndExit(topology,size);

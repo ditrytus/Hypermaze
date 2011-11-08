@@ -89,8 +89,8 @@ void loadChamberSet(NSString *colorName) {
 		CGSize mazeTextureSize = CGSizeMake(mazeSize*(CHAMBER_TEXTURE_SIZE.width+30)+100,(CHAMBER_TEXTURE_SIZE.height+25)*mazeSize+100);
 		
 		CCSprite* backgroud = [self grassBackgroundWidth: TILE_SIZE.width * 10 height: TILE_SIZE.height * 10];
-		for (int i=0; i<5; i++) {
-			for (int j=0; j<5; j++) {
+		for (int i=0; i<6; i++) {
+			for (int j=0; j<7; j++) {
 				CCSprite* bkg = [CCSprite spriteWithTexture:backgroud.texture];
 				bkg.position = ccpAdd(middleScreen, ccp(bkg.textureRect.size.width * (i-3) - 9, bkg.textureRect.size.height*(j-1)+14));
 				[self addChild: bkg];
@@ -120,10 +120,11 @@ void loadChamberSet(NSString *colorName) {
 			redChamberPrototypes[index].anchorPoint = ccp(0,0);
 		}
 		
-		mazeTexture = [CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height];
+		mazeTexture = [[CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height] retain];
 		[mazeTexture.sprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
 		mazeTexture.sprite.anchorPoint = ccp((double)firstChamberPos.x/(double)mazeTextureSize.width,1.0-((double)firstChamberPos.y/(double)mazeTextureSize.height));
 		mazeTexture.sprite.position = middleScreen;
+		
 		positionCache = malloc(sizeof(CGPoint**)*mazeSize);
 		for (int x=0; x<mazeSize; x++) {
 			positionCache[x] = malloc(sizeof(CGPoint*)*mazeSize);
@@ -144,7 +145,35 @@ void loadChamberSet(NSString *colorName) {
 				chamberRotationCache[i][j] = [HPChamberUtil rotateChamber:i by:j];
 			}
 		}
+		
+		borderTexture = [[CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height] retain];
+		[borderTexture.sprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
+		borderTexture.sprite.anchorPoint = ccp((double)firstChamberPos.x/(double)mazeTextureSize.width,1.0-((double)firstChamberPos.y/(double)mazeTextureSize.height));
+		borderTexture.sprite.position = middleScreen;
+		[borderTexture begin];
+		for (int y=mazeSize-1; y>=0; y--) {
+			for (int x=mazeSize-1; x>=0; x--) {
+				outerSWiredPrototype.position = ccpAdd(positionCache[x][y][0],BORDER_S_CORRECTION_POINT);
+				[outerSWiredPrototype visit];
+			}
+		}
+		for (int z=0; z<mazeSize; z++) {
+			for (int x=mazeSize-1; x>=0; x--) {
+				outerNWWiredPrototype.position = ccpAdd(positionCache[x][mazeSize-1][z],BORDER_NW_CORRECTION_POINT);
+				[outerNWWiredPrototype visit];
+			}
+		}
+		for (int z=0; z<mazeSize; z++) {
+			for (int y=mazeSize-1; y>=0; y--) {
+				outerNEWiredPrototype.position = ccpAdd(positionCache[mazeSize-1][y][z],BORDER_NE_CORRECTION_POINT);
+				[outerNEWiredPrototype visit];
+			}
+		}
+		[borderTexture end];
+		borderTexture.visible = logic.showBorders;
+		
 		[self redrawMazeTexture];
+		[self addChild: borderTexture];
 		[self addChild: mazeTexture];
     }
 	[self onPositionChanged:nil];
@@ -152,6 +181,7 @@ void loadChamberSet(NSString *colorName) {
 }
 
 - (void) redrawMazeTexture {
+	borderTexture.visible = logic.showBorders;
 	FS3DPoint curPos = [[logic gameState] currentPosition];
 	FS3DPoint rotCurPos = [HPPositionUtil rotatePoint:curPos by:logic.rotation withSize:mazeSize];
 	HPVisibilityMask* visibilityMask = logic.visibilityMask;
@@ -160,42 +190,12 @@ void loadChamberSet(NSString *colorName) {
 	[mazeTexture clear:0.0f g:0.0f b:0.0f a:0.0f];
 	[mazeTexture begin];
 	if (logic.showBorders) {
-		CGPoint correctionPoint = ccp(50-16,50-12);
-		for (int y=mazeSize-1; y>=0; y--) {
-			for (int x=mazeSize-1; x>=0; x--) {
-				if (y == rotCurPos.y && x == rotCurPos.x) {
-					outerSFilledPrototype.position = ccpAdd(positionCache[x][y][0],correctionPoint);
-					[outerSFilledPrototype visit];
-				} else {
-					outerSWiredPrototype.position = ccpAdd(positionCache[x][y][0],correctionPoint);
-					[outerSWiredPrototype visit];
-				}
-			}
-		}
-		correctionPoint = ccp(50-16+3,50-12-1);
-		for (int z=0; z<mazeSize; z++) {
-			for (int x=mazeSize-1; x>=0; x--) {
-				if (x == rotCurPos.x && z == rotCurPos.z) {
-					outerNWFilledPrototype.position = ccpAdd(positionCache[x][mazeSize-1][z],correctionPoint);
-					[outerNWFilledPrototype visit];
-				} else {
-					outerNWWiredPrototype.position = ccpAdd(positionCache[x][mazeSize-1][z],correctionPoint);
-					[outerNWWiredPrototype visit];
-				}
-			}
-		}
-		correctionPoint = ccp(50-16-2,50-12-1);
-		for (int z=0; z<mazeSize; z++) {
-			for (int y=mazeSize-1; y>=0; y--) {
-				if (y == rotCurPos.y && z == rotCurPos.z) {
-					outerNEFilledPrototype.position = ccpAdd(positionCache[mazeSize-1][y][z],correctionPoint);
-					[outerNEFilledPrototype visit];
-				} else {
-					outerNEWiredPrototype.position = ccpAdd(positionCache[mazeSize-1][y][z],correctionPoint);
-					[outerNEWiredPrototype visit];
-				}
-			}
-		}
+		outerSFilledPrototype.position = ccpAdd(positionCache[rotCurPos.x][rotCurPos.y][0],BORDER_S_CORRECTION_POINT);
+		[outerSFilledPrototype visit];
+		outerNWFilledPrototype.position = ccpAdd(positionCache[rotCurPos.x][mazeSize-1][rotCurPos.z],BORDER_NW_CORRECTION_POINT);
+		[outerNWFilledPrototype visit];
+		outerNEFilledPrototype.position = ccpAdd(positionCache[mazeSize-1][rotCurPos.y][rotCurPos.z],BORDER_NE_CORRECTION_POINT);
+		[outerNEFilledPrototype visit];
 	}
 	for (int z=0; z<mazeSize; z++) {
 		for (int y=mazeSize-1; y>=0; y--) {
@@ -245,8 +245,7 @@ void loadChamberSet(NSString *colorName) {
 }
 
 - (void)launchFireworkAfterRandomTime {
-  [[CCScheduler sharedScheduler] scheduleSelector:@selector(firework) forTarget:self interval:(double)(arc4random()%10)/5.0 paused:NO];
-
+	[[CCScheduler sharedScheduler] scheduleSelector:@selector(firework) forTarget:self interval:(double)(arc4random()%10)/5.0 paused:NO];
 }
 - (void) onMazeFinished: (NSNotification*) notification {
 	CCSprite* chamber;
@@ -305,6 +304,7 @@ void loadChamberSet(NSString *colorName) {
 }
 
 - (void) dealloc {
+	[self unscheduleAllSelectors];
 	[logic release];
 	for (int x=0; x<mazeSize; x++) {
 		free(positionCache[x]);
@@ -328,6 +328,8 @@ void loadChamberSet(NSString *colorName) {
 	[outerSFilledPrototype release];
 	[outerSWiredPrototype release];
 	[mark release];
+	[mazeTexture release];
+	[borderTexture release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_ROTATED object:nil]; 
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];

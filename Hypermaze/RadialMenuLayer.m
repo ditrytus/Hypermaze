@@ -762,8 +762,10 @@
 	[self hideNode:noteToggle onIndex:noteIndexPath toLevel:level];
 	[self hideNode:xToggle onIndex:xIndexPath toLevel:level];
 	[self hideXToLevel: level];
+	xToggle.selectedIndex = 0;
 	[self hideNode:rToggle onIndex:rIndexPath toLevel:level];
 	[self hideRToLevel: level];
+	rToggle.selectedIndex = 0;
 }
 
 - (void) showX {
@@ -1091,13 +1093,78 @@
 - (void) onOkRToggle: (CCMenuItemToggle*) item {
 	[logic reset];
 	[self hideMenu];
+	menuToggle.selectedIndex = 0;
 	[self doCommonToggleStuff: item];
 	[[HPSound sharedSound] playSound: SOUND_GONG];
 }
 
 -(void) dealloc {
 	[logic release];
+	[menuToggle release];
+	[brainToggle release];
+	[brainIndexPath release];
+	[planesToggle release];
+	[planesIndexPath release];
+	[eyeToggle release];
+	[eyeIndexPath release];
+	[gearToggle release];
+	[gearIndexPath release];
+	
+	[flagToggle release];
+	[flagIndexPath release];
+	[woolToggle release];
+	[woolIndexPath release];
+	[breadToggle release];
+	[breadIndexPath release];
+	[signpostToggle release];
+	[signpostIndexPath release];
+	[brushToggle release];
+	[brushIndexPath release];
+	
+	[planesXToggle release];
+	[planesXIndexPath release];
+	[planesYToggle release];
+	[planesYIndexPath release];
+	[planesZToggle release];
+	[planesZIndexPath release];
+	[crossToggle release];
+	[crossIndexPath release];
+	
+	[mazeToggle release];
+	[mazeIndexPath release];
+	[crosshairToggle release];
+	[crosshairIndexPath release];
+	[cubeToggle release];
+	[cubeIndexPath release];
+	[compassToggle release];
+	[compassIndexPath release];
+	
+	[speakerToggle release];
+	[speakerIndexPath release];
+	[noteToggle release];
+	[noteIndexPath release];
+	[xToggle release];
+	[xIndexPath release];
+	[rToggle release];
+	[rIndexPath release];
+	
+	[okXToggle release];
+	[okXIndexPath release];
+	
+	[okRToggle release];
+	[okRIndexPath release];
+	
+	[flagSliderItems release];
+	[crossSliderItems release];
+	
+	[background release];
+	[aligner release];
+	
+	[game release];
+	[tooltipLabel release];
+	
 	[enabilityMap release];
+	[itemsTooltipMap release];
 	[super dealloc];
 }
 

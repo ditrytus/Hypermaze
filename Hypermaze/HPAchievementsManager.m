@@ -21,22 +21,15 @@ static HPAchievementsManager* sharedAchievementsManager;
     static BOOL initialized = NO;
     if(!initialized)
     {
-		NSFileManager *fileManager= [NSFileManager defaultManager];
-		NSString* achievementsArchiveFilePath = [PathBuilder achievementsArchiveFile];
-		if ([fileManager fileExistsAtPath:achievementsArchiveFilePath]) {
-			sharedAchievementsManager = [[NSKeyedUnarchiver unarchiveObjectWithFile: achievementsArchiveFilePath] autorelease];
-		} else {
-			sharedAchievementsManager = [[HPAchievementsManager alloc] init];
-		}
+		sharedAchievementsManager = [[HPAchievementsManager alloc] init];
 		initialized = YES;
     }
 }
 
 @synthesize achievementsDict;
 
-- (id) initWithDictnionary: (NSMutableDictionary*) dict {
+- (id) init {
 	if (self = [super init]) {
-		postQueue = [dict retain];
 		achievementsDict = [[NSMutableDictionary dictionary] retain];
 		[[NSNotificationCenter defaultCenter] addObserver: self
 												 selector: @selector(onPlayerAuthorised:)
@@ -48,18 +41,6 @@ static HPAchievementsManager* sharedAchievementsManager;
 												   object: [HPGameCenter sharedGameCenter]];
 	}
 	return self;
-}
-
-- (id) init {
-	return [self initWithDictnionary:[NSMutableDictionary dictionary]];
-}
-
-- (id) initWithCoder:(NSCoder *)aDecoder {
-	return [self initWithDictnionary:[aDecoder decodeObjectForKey:@"postQueue"]];
-}
-
-- (void) encodeWithCoder:(NSCoder *)aCoder {
-	[aCoder encodeObject:postQueue forKey:@"postQueue"];
 }
 
 - (void) onPlayerAuthorised: (NSNotification*) notification {
@@ -93,19 +74,12 @@ static HPAchievementsManager* sharedAchievementsManager;
 - (void) reportAchievement: (GKAchievement*) achievement {
 	if (achievement)
     {
-		GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
-		if (![[postQueue allKeys] containsObject: localPlayer.playerID]) {
-			[postQueue setObject: [NSMutableDictionary dictionary] forKey: localPlayer.playerID];
-		}
-		[[postQueue objectForKey: localPlayer.playerID] setObject:achievement forKey:achievement.identifier];
 		[achievement reportAchievementWithCompletionHandler:^(NSError *error) {
 			 if (error != nil)
 			 {
-				 NSLog(@"%@", error);
-			 } else {
-				 [[postQueue objectForKey: localPlayer.playerID] removeObjectForKey: achievement.identifier];
+				 NSLog(@"Report achievement failure: %@", [error localizedDescription]);
 			 }
-		 }];
+		}];
     }
 }
 
@@ -117,14 +91,8 @@ static HPAchievementsManager* sharedAchievementsManager;
 	}
 }
 
-- (void) retryPostAchievements {
-	for (int i=0; i<[postQueue count]; i++) {
-		[self reportAchievement:[postQueue objectForKey:[[postQueue allKeys] objectAtIndex:i]]];
-	}
-}
-
 - (void) increaseWinCountForMazeSize: (int) mazeSize {
-	if (areAchievementsLoaded) {
+	if ([[HPGameCenter sharedGameCenter] isGameCenterAvailable]) {
 		NSString* achievementMazeSizeId = [NSString stringWithFormat: ACHIEVEMENT_ID_MAZE_SIZE_TEMPLATE, mazeSize];
 		GKAchievement* achievementMazeSize = [self getAchievementForIdentifier: achievementMazeSizeId];
 		if (achievementMazeSize.percentComplete < 100.0) {
@@ -176,18 +144,19 @@ static HPAchievementsManager* sharedAchievementsManager;
 }
 
 - (void) save {
-	if ([NSKeyedArchiver archiveRootObject:self
-									toFile:[PathBuilder achievementsArchiveFile]]) {
-		NSLog(@"Save OK");
-	} else {
-		NSLog(@"Save ERROR");
+	if ([[HPGameCenter sharedGameCenter] isGameCenterAvailable]) {
+		if ([NSKeyedArchiver archiveRootObject:self
+										toFile:[PathBuilder achievementsArchiveFile]]) {
+			NSLog(@"Save OK");
+		} else {
+			NSLog(@"Save ERROR");
+		}
 	}
 }
 
 - (void) dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[achievementsDict release];
-	[postQueue release];
 	[super dealloc];
 }
 

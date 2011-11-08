@@ -32,7 +32,7 @@
 		summaryCloud.scale = 2;
 		[self addChild: summaryCloud];
 		
-		backCloud = [CCSprite spriteWithFile:@"back_cloud.png"];
+		backCloud = [[CCSprite spriteWithFile:@"back_cloud.png"] retain];
 		backCloud.opacity = 0;
 		backCloud.anchorPoint = ccp(0.5,0.5);
 		backCloud.position = ccp(winSize.width/2.0, 150);
@@ -49,25 +49,25 @@
 		CCLabelTTF* timeLabel = [CCLabelTTF labelWithString:@"TIME" fontName:@"Arial" fontSize:48];
 		timeLabel.color = ccBLACK;
 		timeLabel.anchorPoint = ccp(1,0.5);
-		timeLabel.position = ccp(0, 456);
+		timeLabel.position = ccp(0, winSize.height/2.0 + 29);
 		[self addChild: timeLabel];
 		
 		CCLabelTTF* timeValueLabel = [CCLabelTTF labelWithString:[InfoPanel getTimeLabelText: [newLogic.gameState getTimeElapsed]] fontName:@"Arial" fontSize:48];
 		timeValueLabel.color = ccBLACK;
 		timeValueLabel.anchorPoint = ccp(0,0.5);
-		timeValueLabel.position = ccp(winSize.width, 456);
+		timeValueLabel.position = ccp(winSize.width, winSize.height/2.0 + 29);
 		[self addChild: timeValueLabel];
 		
 		CCLabelTTF* movesLabel = [CCLabelTTF labelWithString:@"MOVES" fontName:@"Arial" fontSize:48];
 		movesLabel.color = ccBLACK;
 		movesLabel.anchorPoint = ccp(1,0.5);
-		movesLabel.position = ccp(0, 398);
+		movesLabel.position = ccp(0, winSize.height/2.0 - 29);
 		[self addChild: movesLabel];
 		
 		CCLabelTTF* movesValueLabel = [CCLabelTTF labelWithString: [NSString stringWithFormat: @"%d", newLogic.gameState.movesMade, nil] fontName:@"Arial" fontSize:48];
 		movesValueLabel.color = ccBLACK;
 		movesValueLabel.anchorPoint = ccp(0,0.5);
-		movesValueLabel.position = ccp(winSize.width, 398);
+		movesValueLabel.position = ccp(winSize.width, winSize.height/2.0 - 29);
 		[self addChild: movesValueLabel];
 		
 		CCLabelTTF* backLabel = [CCLabelTTF labelWithString:@"BACK TO MENU" fontName:@"Arial" fontSize:48];
@@ -104,7 +104,7 @@
 		 [CCSequence actions:
 		  [CCDelayTime actionWithDuration:2],
 		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0-12, 456)]
+		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0-12, winSize.height/2.0 + 29)]
 								rate:4],
 		  nil]];
 		
@@ -112,7 +112,7 @@
 		 [CCSequence actions:
 		  [CCDelayTime actionWithDuration:2],
 		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, 456)]
+		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, winSize.height/2.0 + 29)]
 								rate:4],
 		  nil]];
 		
@@ -120,7 +120,7 @@
 		 [CCSequence actions:
 		  [CCDelayTime actionWithDuration:3],
 		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0-12, 398)]
+		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0-12, winSize.height/2.0 - 29)]
 								rate:4],
 		  nil]];
 		
@@ -128,7 +128,7 @@
 		 [CCSequence actions:
 		  [CCDelayTime actionWithDuration:3],
 		  [CCEaseIn actionWithAction:
-		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, 398)]
+		   [CCMoveTo actionWithDuration:1 position:ccp(winSize.width/2.0+12, winSize.height/2.0 - 29)]
 								rate:4],
 		  nil]];
 		[backCloud runAction:
@@ -155,6 +155,7 @@
 - (void) dealloc {
 	[backItem release];
 	[backMenu release];
+	[backCloud release];
 	[super dealloc];
 }
 

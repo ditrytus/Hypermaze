@@ -19,6 +19,7 @@
 	BOOL hasFinished;
 	FS3DPoint currentPosition;
 	HPMaze* maze;
+	bool isPaused;
 }
 
 @property(readonly, nonatomic) int movesMade;
@@ -28,5 +29,7 @@
 - (id)initWithMaze: (HPMaze*) _maze;
 - (NSTimeInterval) getTimeElapsed;
 - (void) reset;
+- (void) pause;
+- (void) resume;
 
 @end

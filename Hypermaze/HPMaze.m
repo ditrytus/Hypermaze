@@ -77,8 +77,8 @@
 }
 
 - (FS3DPoint) getFinishPosition  {
-	//return point3D(size-1, size-1, size-1);
-	return point3D(0, 0, 0);
+	return point3D(size-1, size-1, size-1);
+	//return point3D(0, 0, 0);
 }
 
 @end

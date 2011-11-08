@@ -66,14 +66,21 @@ static HPSound *sharedSound;
 }
 
 - (void) playMusic {
-	if (![engine isBackgroundMusicPlaying] && ![[[HPConfiguration sharedConfiguration] music] boolValue]) {
-		[engine playBackgroundMusic: [playlist objectAtIndex: currentTrack++] loop: NO];
+	if (![[[HPConfiguration sharedConfiguration] music] boolValue]) {
+		currentMusic = [[CDAudioManager sharedManager] audioSourceLoad:[playlist objectAtIndex: currentTrack] channel:kASC_Right];
+		currentMusic.delegate = self;
+		[currentMusic play];
+		currentTrack++;
 		currentTrack %= [playlist count];
 	}
 }
 
+- (void) cdAudioSourceDidFinishPlaying:(CDLongAudioSource *) audioSource {
+	[self playMusic];
+}
+
 - (void) stopMusic {
-	[engine stopBackgroundMusic];
+	[currentMusic pause];
 }
 
 - (void) playMainMenuPlaylist {

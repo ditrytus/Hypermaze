@@ -35,9 +35,8 @@
 #define ACHIEVEMENT_ID_THINKER @"hypermaze_achievement_thinker"
 #define ACHIEVEMENT_ID_MAZE_MASTER_2000 @"hypermaze_achievement_maze_master_2000"
 
-@interface HPAchievementsManager : NSObject<NSCoding> {
+@interface HPAchievementsManager : NSObject {
 	NSMutableDictionary* achievementsDict;
-	NSMutableDictionary* postQueue;
 	bool areAchievementsLoaded;
 }
 
@@ -46,6 +45,5 @@
 @property(nonatomic, readonly) NSMutableDictionary* achievementsDict;
 
 - (void) increaseWinCountForMazeSize: (int) mazeSize;
-- (void) retryPostAchievements;
 
 @end

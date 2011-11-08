@@ -16,6 +16,7 @@
 #import "FinishLayer.h"
 #import "TutorialLayer.h"
 #import "HPAchievementsManager.h"
+#import "HPLeaderboardsManager.h"
 
 #define INTF_ARROW_CLICK_EVENT @"onArrowClick"
 #define INTF_ARROW_CLICK_USER_INFO @"arrowClicked"
@@ -55,6 +56,8 @@
 - (id) initWithLogic: (HPLogic*) newLogic;
 - (id) initTutorial;
 - (void) saveGame;
+- (void) pause;
+- (void) resume;
 
 - (void) onViewChanged: (NSNotification*) notification;
 - (void) onPositionChanged: (NSNotification*) notification;

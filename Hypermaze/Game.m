@@ -117,7 +117,7 @@
 }
 
 - (void) changeMusicTrack {
-	[[HPSound sharedSound] playMusic];
+	//[[HPSound sharedSound] playMusic];
 }
 
 -(id)initWithLogic: (HPLogic*) newLogic {
@@ -142,7 +142,7 @@
 		compassArrow.anchorPoint = ccp(0.5, (-200.0+116.0/2.0)/116.0);
 		compassArrow.position = middleScreen;
 		compassArrow.rotation = [mazeLayer getCompassAngle];
-		compassArrow.visible = NO;
+		compassArrow.visible = logic.showCompass;
 		[self addChild:compassArrow];
 		
 		infoPanel = [[InfoPanel alloc] initWithLogic:logic];
@@ -292,8 +292,10 @@
 		CGSize screenshotSize = CGSizeMake(790, 130);
 		CCRenderTexture* screenshot = [CCRenderTexture renderTextureWithWidth:screenshotSize.width height:screenshotSize.height];
 		[screenshot begin];
+		CGPoint mazeLayerPosition = mazeLayer.position;
 		mazeLayer.position = ccpSub(ccpAdd(ccpSub(ccp(screenshotSize.width/2.0,screenshotSize.height/2.0),middleScreen),ccp(-80,-85)),[mazeLayer getTranslation]);
 		[mazeLayer visit];
+		mazeLayer.position = mazeLayerPosition;
 		[screenshot end];
 		[screenshot saveBuffer:[saveGameDir stringByAppendingPathComponent:SAVE_SCREENSHOT_FILE] format:kCCImageFormatJPG];
 		if (![metadata writeToFile:[saveGameDir stringByAppendingPathComponent:SAVE_METADATA_FILE] atomically:YES]) {
@@ -388,9 +390,16 @@
 	if (![[NSFileManager defaultManager] removeItemAtPath:[PathBuilder savedGameDirectory:[logic.beginDate description]] error: &error]) {
 		NSLog(@"%@", error);
 	}
-	if ([[HPGameCenter sharedGameCenter] isGameCenterAvailable]) {
-		[[HPAchievementsManager sharedAchievementsManager] increaseWinCountForMazeSize: logic.maze.size];
-	}
+	[[HPAchievementsManager sharedAchievementsManager] increaseWinCountForMazeSize: logic.maze.size];
+	[[HPLeaderboardsManager sharedLeaderboardsManager] postTime:[logic.gameState getTimeElapsed] forMaze:logic.maze.size];
+}
+
+- (void) pause {
+	[logic.gameState pause];
+}
+
+- (void) resume {
+	[logic.gameState resume];
 }
 
 -(void) dealloc {

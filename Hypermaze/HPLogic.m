@@ -96,7 +96,7 @@
 	HPAriadnaMask* newAriadnaMask = [[[HPAriadnaMask alloc] initWithGameState: newGameState] autorelease];
 	HPVisitedMask* newVisitedMask = [[[HPVisitedMask alloc] initWithSize:[newMaze size] gameState:newGameState] autorelease];
 	HPUntakenCrossroadsMask* untakenMask = [[[HPUntakenCrossroadsMask alloc] initWithVisted:newVisitedMask Maze:newMaze] autorelease];
-	HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:newMaze numOfCheckPoints:3]  autorelease];
+	HPCheckpointMask* checkPointMask = [[[HPCheckpointMask alloc] initWithMaze:newMaze numOfCheckPoints: 1]  autorelease];
 	
 	HPUnionMaskComposite* brainComposite = [[[HPUnionMaskComposite alloc] initWithMasks: newAriadnaMask, newVisitedMask, untakenMask, checkPointMask, nil] autorelease];
 	
@@ -110,7 +110,9 @@
 	HPUnionMaskComposite* axisComposite = [[[HPUnionMaskComposite alloc] initWithMasks:xAxisMask, yAxisMask, zAxisMask, nil] autorelease];
 	HPIntersectionMaskComposite* planesComposite = [[[HPIntersectionMaskComposite alloc] initWithMasks:axisComposite, newRecursiveMask,nil] autorelease];
 	
-	HPUnionMaskComposite* newVisibilityMask = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, nil] autorelease];
+	HPPathMask* finishMask = [[HPPathMask alloc] init];
+	[finishMask addToPath:[newMaze getFinishPosition]];
+	HPUnionMaskComposite* newVisibilityMask = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, finishMask, nil] autorelease];
 
 	int maxNumOfCheckpoints = [newMaze.solution count] / 50;
 	if (maxNumOfCheckpoints > 10) {
@@ -132,13 +134,13 @@
 						 xAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:xAxisMask composite:axisComposite] autorelease] 
 						 yAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:yAxisMask composite:axisComposite] autorelease] 
 						 zAxisTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:zAxisMask composite:axisComposite] autorelease] 
-					 recursiveTool: [[[HPRangeTool alloc] initWithMask:newRecursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:5] autorelease] 
+					 recursiveTool: [[[HPRangeTool alloc] initWithMask:newRecursiveMask composite:planesComposite minValue:1 maxValue:10 initialValue:1] autorelease] 
 					   untakenTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:untakenMask composite:brainComposite] autorelease]
 					   ariadnaTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:newAriadnaMask composite:brainComposite] autorelease] 
 						  mazeTool: [[[HPVisibilityMaskManipulationTool alloc] initWithMask:mazeMask composite:newVisibilityMask] autorelease]
-					checkpointTool: [[[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:5] autorelease] 
-					   showBorders: false 
-					   showCompass: false 
+					checkpointTool: [[[HPRangeTool alloc] initWithMask:checkPointMask composite:brainComposite minValue:1 maxValue:maxNumOfCheckpoints initialValue:1] autorelease] 
+					   showBorders: true 
+					   showCompass: true 
 						showTarget: false 
 						  rotation: 0 
 			 movementHandlers:[NSArray arrayWithObjects:newGameState, newVisitedMask, newAriadnaMask, newRecursiveMask, nil]];

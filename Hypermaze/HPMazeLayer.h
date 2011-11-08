@@ -13,6 +13,10 @@
 #import "FSIsoSystem.h"
 #import "HPSound.h"
 
+#define BORDER_S_CORRECTION_POINT ccp(50-16,50-12)
+#define BORDER_NW_CORRECTION_POINT ccp(50-16+3,50-12-1)
+#define BORDER_NE_CORRECTION_POINT ccp(50-16-2,50-12-1)
+
 @interface HPMazeLayer : CCLayer {
 	HPLogic* logic;
 	FSIsoSystem* isoSys;
@@ -33,6 +37,7 @@
 	CCSprite* mark;
 	
 	CCRenderTexture* mazeTexture;
+	CCRenderTexture* borderTexture;
 	int mazeSize;
 	Byte*** topology;
 	CGPoint*** positionCache;

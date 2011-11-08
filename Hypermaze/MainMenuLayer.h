@@ -11,6 +11,7 @@
 #import "SimpleAudioEngine.h"
 #import "CCScrollLayer.h"
 #import "HPGameCenter.h"
+#import "PathBuilder.h"
 
 @interface MainMenuLayer : CCLayer {
 	BOOL isInTrasition;

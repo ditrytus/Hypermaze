@@ -34,6 +34,10 @@
 	return [NSString stringWithFormat:@"%d (%d%%)", total - visited, ((total - visited)*100)/total, nil];
 }
 
+- (void) updateTimeLabel {
+	timeElapsedLabel.string = [InfoPanel getTimeLabelText:[logic.gameState getTimeElapsed]];
+}
+
 - (id)initWithLogic: (HPLogic*) newLogic
 {
     self = [super init];
@@ -90,14 +94,11 @@
 		[self addChild:visitedLabel];
 		
 		[self updateLabels];
-		[self schedule:@selector(updateTimeLabel:) interval:1];
+		[self updateTimeLabel];
+		[self schedule:@selector(updateTimeLabel) interval:1];
     }
     
     return self;
-}
-
-- (void) updateTimeLabel: (ccTime) time {
-	timeElapsedLabel.string = [InfoPanel getTimeLabelText:[logic.gameState getTimeElapsed]];
 }
 
 - (void) onPositionChanged: (NSNotification*) notification {

@@ -111,9 +111,8 @@
 	
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [MainMenuLayer scene]];
-	HPAchievementsManager* achievementsManager = [HPAchievementsManager sharedAchievementsManager];
+	[HPAchievementsManager sharedAchievementsManager];
 	[[HPGameCenter sharedGameCenter] initGameCenter:viewController];
-	[achievementsManager retryPostAchievements];
 }
 
 
@@ -131,11 +130,20 @@
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
-	[[CCDirector sharedDirector] stopAnimation];
+	CCDirector *director = [CCDirector sharedDirector];
+	[director stopAnimation];
+	if ([[director.runningScene class] isSubclassOfClass:[Game class]]) {
+		[((Game*) director.runningScene) pause];
+		[((Game*) director.runningScene) saveGame];
+	}
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
-	[[CCDirector sharedDirector] startAnimation];
+	CCDirector *director = [CCDirector sharedDirector];
+	[director startAnimation];
+	if ([[director.runningScene class] isSubclassOfClass:[Game class]]) {
+		[((Game*) director.runningScene) resume];
+	}
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -157,6 +165,7 @@
 - (void)dealloc {
 	[[CCDirector sharedDirector] release];
 	[[HPAchievementsManager sharedAchievementsManager] release];
+	[[HPLeaderboardsManager sharedLeaderboardsManager] release];
 	[[HPGameCenter sharedGameCenter] release];
 	[[HPConfiguration sharedConfiguration] release];
 	[[HPSound sharedSound] release];

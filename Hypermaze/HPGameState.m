@@ -46,8 +46,8 @@ previousTimeElapsed: (int) prevElapsed {
 }
 
 - (NSTimeInterval) getTimeElapsed {
-	if (hasFinished) {
-		return previousTimeElapsed - [lastResume timeIntervalSinceNow];
+	if (!hasFinished) {
+		return previousTimeElapsed - (isPaused ? 0:[lastResume timeIntervalSinceNow]);
 	} else {
 		return finishTimeElapsed;
 	}
@@ -94,6 +94,17 @@ previousTimeElapsed: (int) prevElapsed {
 
 - (void) reset {
 	currentPosition = BEGIN_POINT;
+}
+
+- (void) pause {
+	previousTimeElapsed = [self getTimeElapsed];
+	isPaused = YES;
+}
+
+- (void) resume {
+	[lastResume release];
+	lastResume = [[NSDate date] retain];
+	isPaused = NO;
 }
 
 @end
