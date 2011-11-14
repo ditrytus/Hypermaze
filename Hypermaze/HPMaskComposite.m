@@ -57,7 +57,6 @@
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
 	masks = [[decoder decodeObjectForKey:@"masks"] retain];
-	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 
