@@ -16,8 +16,8 @@
 {
     self = [super initWithSize: [mazeParam size]];
     if (self) {
-        gameState = [state retain];
-		maze = [mazeParam retain];
+        gameState = state;
+		maze = mazeParam;
 		maxDepth = d;
 		[self refresh];
     }
@@ -58,24 +58,21 @@
 }
 
 - (void) dealloc {
-	[gameState release];
-	[maze release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[super encodeWithCoder:encoder];
-	[encoder encodeObject:gameState forKey:@"gameState"];
-	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeConditionalObject: gameState forKey:@"gameState"];
+	[encoder encodeConditionalObject: maze forKey:@"maze"];
 	[encoder encodeInt32:maxDepth forKey:@"maxDepth"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
-	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	gameState = [decoder decodeObjectForKey:@"gameState"];
+	maze = [decoder decodeObjectForKey:@"maze"];
 	maxDepth = [decoder decodeInt32ForKey:@"maxDepth"];
-	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

@@ -110,7 +110,7 @@
 	HPUnionMaskComposite* axisComposite = [[[HPUnionMaskComposite alloc] initWithMasks:xAxisMask, yAxisMask, zAxisMask, nil] autorelease];
 	HPIntersectionMaskComposite* planesComposite = [[[HPIntersectionMaskComposite alloc] initWithMasks:axisComposite, newRecursiveMask,nil] autorelease];
 	
-	HPPathMask* finishMask = [[HPPathMask alloc] init];
+	HPPathMask* finishMask = [[[HPPathMask alloc] init] autorelease];
 	[finishMask addToPath:[newMaze getFinishPosition]];
 	HPUnionMaskComposite* newVisibilityMask = [[[HPUnionMaskComposite alloc] initWithMasks:positionMask, brainComposite, planesComposite, mazeMask, finishMask, nil] autorelease];
 
@@ -126,7 +126,7 @@
 							  maze: newMaze 
 						 gameState: newGameState
 					visibilityMask: newVisibilityMask 
-						  markMask: [[[HPMarkMask alloc] initWithUntaken:untakenMask visited:newVisitedMask ariadna:ariadnaMask checkpoint:checkPointMask] autorelease] 
+						  markMask: [[[HPMarkMask alloc] initWithUntaken:untakenMask visited:newVisitedMask ariadna:newAriadnaMask checkpoint:checkPointMask] autorelease] 
 					   visitedMask: newVisitedMask 
 					   ariadnaMask: newAriadnaMask
 					 recursiveMask: newRecursiveMask
@@ -147,6 +147,7 @@
 }
 
 - (void) dealloc {
+	[beginDate release];
 	[maze release];
 	[gameState release];
 	[visibilityMask release];
@@ -161,6 +162,10 @@
 	[markMask release];
 	[visitedMask release];
 	[ariadnaMask release];
+	[recursiveMask release];
+	[mazeTool release];
+	[checkpointTool release];
+	//[movementHandlers release];
 	[super dealloc];
 }
 
@@ -306,7 +311,6 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeObject:beginDate forKey:@"beginDate"];
-	
 	[encoder encodeObject:maze forKey:@"maze"];
 	[encoder encodeObject:gameState forKey:@"gameState"];
 	
@@ -335,7 +339,9 @@
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
-	return [self initWithBeginDate: [decoder decodeObjectForKey:@"beginDate"]
+	NSDate* newBeginDate = [decoder decodeObjectForKey:@"beginDate"];
+	//while([newBeginDate retainCount] > 1) [newBeginDate release];
+	return [self initWithBeginDate: newBeginDate
 							  maze: [decoder decodeObjectForKey:@"maze"] 
 						 gameState: [decoder decodeObjectForKey:@"gameState"] 
 					visibilityMask: [decoder decodeObjectForKey:@"visibilityMask"]  

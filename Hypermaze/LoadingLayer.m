@@ -29,24 +29,24 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		CGPoint middleScreen = ccp( size.width /2 , size.height/2 );
 		
-		CCSprite *background = [[CCSprite alloc] initWithFile:@"background.png"];
+		CCSprite *background = [[[CCSprite alloc] initWithFile:@"background.png"] autorelease];
 		background.position = middleScreen;
 		background.scale = 2.0;
 		
-		fill = [[[CCSprite alloc] init] retain];
+		fill = [[[CCSprite alloc] init] autorelease];
 		[fill setColor: ccWHITE];
 		[fill setTextureRect: CGRectMake(0, 0, 1, 166)];
 		[fill setOpacity: 255];
 		fill.anchorPoint = ccp(0,0);
 		fill.position = ccp(114,301);
 		
-		CCSprite *jointA = [[CCSprite alloc] initWithFile:@"progressbar_joint.png"];
+		CCSprite *jointA = [[[CCSprite alloc] initWithFile:@"progressbar_joint.png"] autorelease];
 	    jointA.position = ccp(137,408);
 		
 		CCLabelTTF* labelA = [CCLabelTTF labelWithString:@"BEGIN" fontName:@"Arial" fontSize:32];
 		labelA.position = ccp(jointA.position.x, jointA.position.y - 40);
 		
-		CCSprite *jointB = [[CCSprite alloc] initWithFile:@"progressbar_joint.png"];
+		CCSprite *jointB = [[[CCSprite alloc] initWithFile:@"progressbar_joint.png"] autorelease];
 		jointB.position = ccp(892,408);
 		
 		CCLabelTTF* labelB = [CCLabelTTF labelWithString:@"END" fontName:@"Arial" fontSize:32];
@@ -55,7 +55,7 @@
 		CCLabelTTF* loadingLabel = [CCLabelTTF labelWithString:@"LOADING" fontName:@"Arial" fontSize:64];
 		loadingLabel.position = ccp(middleScreen.x,middleScreen.y * 0.5);
 		
-		CCSprite *mask = [[CCSprite alloc] initWithFile:@"progressbar_mask.png"];
+		CCSprite *mask = [[[CCSprite alloc] initWithFile:@"progressbar_mask.png"] autorelease];
 		mask.anchorPoint = ccp(0,0);
 		mask.position = ccp(114,300);
 		mask.scale = 2.0;
@@ -77,7 +77,7 @@
 }
 
 - (void) onEnterTransitionDidFinish {
-	aQueue = [[[NSOperationQueue alloc] init] retain];
+	aQueue = [[NSOperationQueue alloc] init];
 	[aQueue addOperationWithBlock:^{
 		completePerformed = NO;
 		[generator generateMazeInSize: [[HPConfiguration sharedConfiguration].difficulty intValue]];
@@ -97,7 +97,11 @@
 			{
 				completePerformed = YES;
 				[fill setTextureRect:CGRectMake(0, 0, 794, 166)];
-				[[CCDirector sharedDirector] replaceScene: [[CCTransitionCrossFade transitionWithDuration:0.5 scene:[[Game alloc] initWithLogic:  [[HPLogic alloc] initWithMaze:[generator getMaze]]]] retain]];
+				[[CCDirector sharedDirector] purgeCachedData];
+				[[CCDirector sharedDirector] replaceScene:
+				 [CCTransitionFade transitionWithDuration:0.5
+													scene: [Game sceneWithLogic:
+															 [[[HPLogic alloc] initWithMaze:[generator getMaze]] autorelease]]]];
 			}
 		} break;
 	}
@@ -105,7 +109,6 @@
 
 -(void) dealloc {
 	[generator release];
-	[fill release];
 	[aQueue release];
 	[super dealloc];
 }

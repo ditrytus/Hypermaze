@@ -32,7 +32,7 @@
 		summaryCloud.scale = 2;
 		[self addChild: summaryCloud];
 		
-		backCloud = [[CCSprite spriteWithFile:@"back_cloud.png"] retain];
+		backCloud = [CCSprite spriteWithFile:@"back_cloud.png"];
 		backCloud.opacity = 0;
 		backCloud.anchorPoint = ccp(0.5,0.5);
 		backCloud.position = ccp(winSize.width/2.0, 150);
@@ -72,8 +72,8 @@
 		
 		CCLabelTTF* backLabel = [CCLabelTTF labelWithString:@"BACK TO MENU" fontName:@"Arial" fontSize:48];
 		backLabel.color = ccBLACK;
-		backItem = [[CCMenuItemLabel itemWithLabel:backLabel target:self selector:@selector(onBack)] retain];
-		backMenu = [[CCMenu menuWithItems:backItem, nil] retain];
+		backItem = [CCMenuItemLabel itemWithLabel:backLabel target:self selector:@selector(onBack)];
+		backMenu = [CCMenu menuWithItems:backItem, nil];
 		backMenu.anchorPoint = ccp(0,0);
 		backMenu.position = ccp(0,0);
 		backItem.anchorPoint = ccp(0.5,0.5);
@@ -149,13 +149,11 @@
 }
 
 - (void) onBack {
+	[[CCDirector sharedDirector] purgeCachedData];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
 }
 
 - (void) dealloc {
-	[backItem release];
-	[backMenu release];
-	[backCloud release];
 	[super dealloc];
 }
 

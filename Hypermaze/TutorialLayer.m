@@ -35,12 +35,25 @@
 	return NSLocalizedString(messageKey,@"");
 }
 
+- (void)confirmEndTutorial
+{
+    [confirmEnd close];
+    [[CCDirector sharedDirector] purgeCachedData];
+    [[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
+}
+
+- (void)cancelEndTutorial
+{
+    [confirmEnd close];
+    [[HPSound sharedSound] playSound:SOUND_TICK];
+}
+
 - (id)initWithGame: (Game*) aGame radialMenu: (RadialMenuLayer*) aRadialMenu
 {
     self = [super init];
     if (self) {
-		game = [aGame retain];
-		radialMenu = [aRadialMenu retain];
+		game = aGame;
+		radialMenu = aRadialMenu;
 		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(oInterfaceChanged:) name: RAD_CHANGE_EVENT object: nil];
 		[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(oInterfaceChanged:) name: INTF_ARROW_CLICK_EVENT object: nil];
 		stepNum = 0;
@@ -49,113 +62,113 @@
 		CCSprite* prototype = [CCSprite spriteWithFile:@"tutorial_arrow.png"];
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFrame: [CCSpriteFrame frameWithTexture:prototype.texture rect:prototype.textureRect] name:@"tutorial_arrow.png"];
 		
-		startArrow = [[self createArrow: POS_START_ARROW angle: ANGLE_W] retain];
+		startArrow = [self createArrow: POS_START_ARROW angle: ANGLE_W];
 		[self addChild: startArrow];
-		endArrow = [[self createArrow: POS_END_ARROW angle: ANGLE_N] retain];
+		endArrow = [self createArrow: POS_END_ARROW angle: ANGLE_N];
 		[self addChild: endArrow];
-		menuArrow = [[self createArrow: POS_MENU_ARROW angle: ANGLE_S] retain];
+		menuArrow = [self createArrow: POS_MENU_ARROW angle: ANGLE_S];
 		[self addChild: menuArrow];
 		
-        borderTopArrow = [[self createArrow: POP_BORDERBOTTOM_ARROW angle: ANGLE_N] retain];
+        borderTopArrow = [self createArrow: POP_BORDERBOTTOM_ARROW angle: ANGLE_N];
 		[self addChild: borderTopArrow];
-		borderLeftArrow = [[self createArrow: POP_BORDERLEFT_ARROW angle: ANGLE_E] retain];
+		borderLeftArrow = [self createArrow: POP_BORDERLEFT_ARROW angle: ANGLE_E];
 		[self addChild: borderLeftArrow];
-		borderRightArrow = [[self createArrow: POP_BORDERRIGHT_ARROW angle: ANGLE_W] retain];
+		borderRightArrow = [self createArrow: POP_BORDERRIGHT_ARROW angle: ANGLE_W];
 		[self addChild: borderRightArrow];
 		
-		NWArrowL = [[self createArrow: POS_NWL_ARROW angle: ANGLE_S] retain];
+		NWArrowL = [self createArrow: POS_NWL_ARROW angle: ANGLE_S];
 		[self addChild: NWArrowL];
-		SWArrowL = [[self createArrow: POS_SWL_ARROW angle: ANGLE_S] retain];
+		SWArrowL = [self createArrow: POS_SWL_ARROW angle: ANGLE_S];
 		[self addChild: SWArrowL];
-		NArrowL = [[self createArrow: POS_NL_ARROW angle: ANGLE_S] retain];
+		NArrowL = [self createArrow: POS_NL_ARROW angle: ANGLE_S];
 		[self addChild: NArrowL];
-		SArrowL = [[self createArrow: POS_SL_ARROW angle: ANGLE_S] retain];
+		SArrowL = [self createArrow: POS_SL_ARROW angle: ANGLE_S];
 		[self addChild: SArrowL];
-		NEArrowL = [[self createArrow: POS_NEL_ARROW angle: ANGLE_S] retain];
+		NEArrowL = [self createArrow: POS_NEL_ARROW angle: ANGLE_S];
 		[self addChild: NEArrowL];
-		SEArrowL = [[self createArrow: POS_SEL_ARROW angle: ANGLE_S] retain];
+		SEArrowL = [self createArrow: POS_SEL_ARROW angle: ANGLE_S];
 		[self addChild: SEArrowL];
 		
-		NWArrowR = [[self createArrow: POS_NWR_ARROW angle: ANGLE_S] retain];
+		NWArrowR = [self createArrow: POS_NWR_ARROW angle: ANGLE_S];
 		[self addChild: NWArrowR];
-		SWArrowR = [[self createArrow: POS_SWR_ARROW angle: ANGLE_S] retain];
+		SWArrowR = [self createArrow: POS_SWR_ARROW angle: ANGLE_S];
 		[self addChild: SWArrowR];
-		NArrowR = [[self createArrow: POS_NR_ARROW angle: ANGLE_S] retain];
+		NArrowR = [self createArrow: POS_NR_ARROW angle: ANGLE_S];
 		[self addChild: NArrowR];
-		SArrowR = [[self createArrow: POS_SR_ARROW angle: ANGLE_S] retain];
+		SArrowR = [self createArrow: POS_SR_ARROW angle: ANGLE_S];
 		[self addChild: SArrowR];
-		NEArrowR = [[self createArrow: POS_NER_ARROW angle: ANGLE_S] retain];
+		NEArrowR = [self createArrow: POS_NER_ARROW angle: ANGLE_S];
 		[self addChild: NEArrowR];
-		SEArrowR = [[self createArrow: POS_SER_ARROW angle: ANGLE_S] retain];
+		SEArrowR = [self createArrow: POS_SER_ARROW angle: ANGLE_S];
 		[self addChild: SEArrowR];
 		
-		clockwiseArrowL = [[self createArrow: POS_CLOCKWISEL_ARROW angle: ANGLE_S] retain];
+		clockwiseArrowL = [self createArrow: POS_CLOCKWISEL_ARROW angle: ANGLE_S];
 		[self addChild: clockwiseArrowL];
-		countercolckwiseArrowL = [[self createArrow: POS_COUNTERCLOCKWISEL_ARROW angle: ANGLE_S] retain];
+		countercolckwiseArrowL = [self createArrow: POS_COUNTERCLOCKWISEL_ARROW angle: ANGLE_S];
 		[self addChild: countercolckwiseArrowL];
-		clockwiseArrowR = [[self createArrow: POS_CLOCKWISER_ARROW angle: ANGLE_S] retain];
+		clockwiseArrowR = [self createArrow: POS_CLOCKWISER_ARROW angle: ANGLE_S];
 		[self addChild: clockwiseArrowR];
-		countercolckwiseArrowR = [[self createArrow: POS_COUNTERCLOCKWISER_ARROW angle: ANGLE_S] retain];
+		countercolckwiseArrowR = [self createArrow: POS_COUNTERCLOCKWISER_ARROW angle: ANGLE_S];
 		[self addChild: countercolckwiseArrowR];
 		
-		clockArrow = [[self createArrow: POS_CLOCK_ARROW angle: ANGLE_N] retain];
+		clockArrow = [self createArrow: POS_CLOCK_ARROW angle: ANGLE_N];
 		[self addChild: clockArrow];
-		movesArrow = [[self createArrow: POS_MOVES_ARROW angle: ANGLE_N] retain];
+		movesArrow = [self createArrow: POS_MOVES_ARROW angle: ANGLE_N];
 		[self addChild: movesArrow];
-		unvisitedArrow = [[self createArrow: POS_UNVISITED_ARROW angle: ANGLE_N] retain];
+		unvisitedArrow = [self createArrow: POS_UNVISITED_ARROW angle: ANGLE_N];
 		[self addChild: unvisitedArrow];
-		visitedArrow = [[self createArrow: POS_VISITED_ARROW angle: ANGLE_N] retain];
+		visitedArrow = [self createArrow: POS_VISITED_ARROW angle: ANGLE_N];
 		[self addChild: visitedArrow];
 		
-		brainArrow = [[self createArrow: POS_BRAIN_ARROW angle: ANGLE_SE] retain];
+		brainArrow = [self createArrow: POS_BRAIN_ARROW angle: ANGLE_SE];
 		[self addChild: brainArrow];
-		planesArrow = [[self createArrow: POS_PLANES_ARROW angle: ANGLE_S] retain];
+		planesArrow = [self createArrow: POS_PLANES_ARROW angle: ANGLE_S];
 		[self addChild: planesArrow];
-		eyeArrow = [[self createArrow: POS_EYE_ARROW angle: ANGLE_S] retain];
+		eyeArrow = [self createArrow: POS_EYE_ARROW angle: ANGLE_S];
 		[self addChild: eyeArrow];
-		gearArrow = [[self createArrow: POS_GEAR_ARROW angle: ANGLE_SW] retain];
+		gearArrow = [self createArrow: POS_GEAR_ARROW angle: ANGLE_SW];
 		[self addChild: gearArrow];
 		
-		speakerArrow = [[self createArrow: POS_SPEAKER_ARROW angle: ANGLE_S] retain];
+		speakerArrow = [self createArrow: POS_SPEAKER_ARROW angle: ANGLE_S];
 		[self addChild: speakerArrow];
-		noteArrow = [[self createArrow: POS_NOTE_ARROW angle: ANGLE_S] retain];
+		noteArrow = [self createArrow: POS_NOTE_ARROW angle: ANGLE_S];
 		[self addChild: noteArrow];
-		xArrow = [[self createArrow: POS_X_ARROW angle: ANGLE_S] retain];
+		xArrow = [self createArrow: POS_X_ARROW angle: ANGLE_S];
 		[self addChild: xArrow];
-		rArrow = [[self createArrow: POS_R_ARROW angle: ANGLE_S] retain];
+		rArrow = [self createArrow: POS_R_ARROW angle: ANGLE_S];
 		[self addChild: rArrow];
 		
-		mazeArrow = [[self createArrow: POS_MAZE_ARROW angle: ANGLE_S] retain];
+		mazeArrow = [self createArrow: POS_MAZE_ARROW angle: ANGLE_S];
 		[self addChild: mazeArrow];
-		crosshairArrow = [[self createArrow: POS_CROSSHAIR_ARROW angle: ANGLE_S] retain];
+		crosshairArrow = [self createArrow: POS_CROSSHAIR_ARROW angle: ANGLE_S];
 		[self addChild: crosshairArrow];
-		bordersArrow = [[self createArrow: POS_BORDERS_ARROW angle: ANGLE_S] retain];
+		bordersArrow = [self createArrow: POS_BORDERS_ARROW angle: ANGLE_S];
 		[self addChild: bordersArrow];
-		compassArrow = [[self createArrow: POS_COMPASS_ARROW angle: ANGLE_S] retain];
+		compassArrow = [self createArrow: POS_COMPASS_ARROW angle: ANGLE_S];
 		[self addChild: compassArrow];
 		
-		xPlaneArrow = [[self createArrow: POS_XPLANE_ARROW angle: ANGLE_S] retain];
+		xPlaneArrow = [self createArrow: POS_XPLANE_ARROW angle: ANGLE_S];
 		[self addChild: xPlaneArrow];
-		yPlaneArrow = [[self createArrow: POS_YPLANE_ARROW angle: ANGLE_S] retain];
+		yPlaneArrow = [self createArrow: POS_YPLANE_ARROW angle: ANGLE_S];
 		[self addChild: yPlaneArrow];
-		zPlaneArrow = [[self createArrow: POS_ZPLANE_ARROW angle: ANGLE_S] retain];
+		zPlaneArrow = [self createArrow: POS_ZPLANE_ARROW angle: ANGLE_S];
 		[self addChild: zPlaneArrow];
-		recursiveArrow = [[self createArrow: POS_RECURSIVE_ARROW angle: ANGLE_S] retain];
+		recursiveArrow = [self createArrow: POS_RECURSIVE_ARROW angle: ANGLE_S];
 		[self addChild: recursiveArrow];
-		recursiveLevelsArrow = [[self createArrow: POS_RECURSIVELEVELS_ARROW angle: ANGLE_SW] retain];
+		recursiveLevelsArrow = [self createArrow: POS_RECURSIVELEVELS_ARROW angle: ANGLE_SW];
 		[self addChild: recursiveLevelsArrow];
 		
-		woolArrow = [[self createArrow: POS_WOOL_ARROW angle: ANGLE_S] retain];
+		woolArrow = [self createArrow: POS_WOOL_ARROW angle: ANGLE_S];
 		[self addChild: woolArrow];
-		breadArrow = [[self createArrow: POS_BREAD_ARROW angle: ANGLE_S] retain];
+		breadArrow = [self createArrow: POS_BREAD_ARROW angle: ANGLE_S];
 		[self addChild: breadArrow];
-		signArrow = [[self createArrow: POS_SIGN_ARROW angle: ANGLE_S] retain];
+		signArrow = [self createArrow: POS_SIGN_ARROW angle: ANGLE_S];
 		[self addChild: signArrow];
-		flagArrow = [[self createArrow: POS_FLAG_ARROW angle: ANGLE_S] retain];
+		flagArrow = [self createArrow: POS_FLAG_ARROW angle: ANGLE_S];
 		[self addChild: flagArrow];
-		flagLevelsArrow = [[self createArrow: POS_FLAGLEVELS_ARROW angle: ANGLE_SW] retain];
+		flagLevelsArrow = [self createArrow: POS_FLAGLEVELS_ARROW angle: ANGLE_SW];
 		[self addChild: flagLevelsArrow];
-		brushArrow = [[self createArrow: POS_BRUSH_ARROW angle: ANGLE_S] retain];
+		brushArrow = [self createArrow: POS_BRUSH_ARROW angle: ANGLE_S];
 		[self addChild: brushArrow];
 		
 		arrows = [[NSArray arrayWithObjects: startArrow, endArrow, menuArrow, borderTopArrow, borderLeftArrow, borderRightArrow, NWArrowL, SWArrowL, NArrowL,
@@ -241,14 +254,14 @@
 		
 		visibleArrows = [[NSMutableSet set] retain];
 		
-		dialog = [[[CCDialog alloc] initWithSize:CGSizeMake(420, 290) position:ccp(20,728) closeButton:NO showOverlay:NO closeOnOverlayTouch:NO isModal:NO isDraggable:NO] retain];
+		dialog = [[CCDialog alloc] initWithSize:CGSizeMake(420, 290) position:ccp(20,728) closeButton:NO showOverlay:NO closeOnOverlayTouch:NO isModal:NO isDraggable:NO];
 		dialog.dialogWindow.anchorPoint = ccp(0,1);
-		message = [[CCLabelTTF labelWithString:NSLocalizedString(@"TutorialStep61", @"FirstStep") dimensions:CGSizeMake(380, 250) alignment:UITextAlignmentLeft lineBreakMode:UILineBreakModeWordWrap fontName:@"Arial" fontSize:20] retain];
+		message = [CCLabelTTF labelWithString:NSLocalizedString(@"TutorialStep61", @"FirstStep") dimensions:CGSizeMake(380, 250) alignment:UITextAlignmentLeft lineBreakMode:UILineBreakModeWordWrap fontName:@"Arial" fontSize:20];
 		message.color = ccBLACK;
 		message.anchorPoint = ccp(0,1);
 		message.position = ccp(20,270);
 		[dialog.dialogWindow addChild: message];
- 		nextButton = [[CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NEXT" dimensions:CGSizeMake(360, 100) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:30] target:self selector:@selector(nextStep)] retain];
+ 		nextButton = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NEXT" dimensions:CGSizeMake(360, 100) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:30] target:self selector:@selector(nextStep)];
 		nextButton.anchorPoint = ccp(0.5,0);
 		nextButton.color = ccBLACK;
 		nextButton.position = ccp(0,0);
@@ -258,7 +271,7 @@
 		
 		endDialog = [[CCDialog alloc] initWithSize:CGSizeMake(100, 50) position:ccp(1004,728) closeButton:NO showOverlay:NO closeOnOverlayTouch:NO isModal:NO isDraggable:NO];
 		endDialog.dialogWindow.anchorPoint = ccp(1,1);
-		CCMenuItemLabel* endButton = [[CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"END TUTORIAL" dimensions:CGSizeMake(100, 60) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:15] target:self selector:@selector(endTutorial)] retain];
+		CCMenuItemLabel* endButton = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"END TUTORIAL" dimensions:CGSizeMake(100, 60) alignment:UITextAlignmentCenter fontName:@"Arial" fontSize:15] target:self selector:@selector(endTutorial)];
 		endButton.color = ccRED;
 		endButton.anchorPoint = ccp(0.5,0.5);
 		endButton.position = ccp(50,30);
@@ -271,16 +284,12 @@
 		CGSize dialogSize = CGSizeMake(320, 140);
 		confirmEnd = [[CCDialog alloc] initWithSize: dialogSize position: middle closeButton:NO showOverlay:YES closeOnOverlayTouch:NO isModal:YES isDraggable:YES];
 		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
-														block:^(id sender){
-															[confirmEnd close];
-															[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene: [MainMenuLayer scene]]];
-														}];
+													   target: self
+													 selector: @selector(confirmEndTutorial)];
 		yes.color = ccBLACK;
 		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
-													   block:^(id sender) {
-														   [confirmEnd close];
-														   [[HPSound sharedSound] playSound:SOUND_TICK];
-													   }];
+													  target: self
+													selector: @selector(cancelEndTutorial)];
 		no.color = ccBLACK;
 		CCMenu* promptMenu = [CCMenu menuWithItems:yes, no, nil];
 		[promptMenu alignItemsHorizontallyWithPadding:20];
@@ -301,7 +310,7 @@
 
 -(void) endTutorial {
 	[[HPSound sharedSound] playSound:SOUND_TICK];
-	[confirmEnd openInScene: game];
+	[confirmEnd openInScene: (CCScene*)game.parent];
 }
 
 - (void) hideAllArrows {
@@ -1104,74 +1113,17 @@
 }
 
 - (void) dealloc {
-	[startArrow release];
-	[endArrow release];
-	[menuArrow release];
-	
-	[NWArrowL release];
-	[SWArrowL release];
-	[NArrowL release];
-	[SArrowL release];
-	[NEArrowL release];
-	[SEArrowL release];
-	
-	[NWArrowR release];
-	[SWArrowR release];
-	[NArrowR release];
-	[SArrowR release];
-	[NEArrowR release];
-	[SEArrowR release];
-	
-	[clockwiseArrowL release];
-	[countercolckwiseArrowL release];
-	[clockwiseArrowR release];
-	[countercolckwiseArrowR release];
-	
-	[clockArrow release];
-	[movesArrow release];
-	[unvisitedArrow release];
-	[visitedArrow release];
-	
-	[brainArrow release];
-	[planesArrow release];
-	[eyeArrow release];
-	[gearArrow release];
-	
-	[speakerArrow release];
-	[noteArrow release];
-	[xArrow release];
-	[rArrow release];
-	
-	[mazeArrow release];
-	[crosshairArrow release];
-	[bordersArrow release];
-	[compassArrow release];
-	
-	[xPlaneArrow release];
-	[yPlaneArrow release];
-	[zPlaneArrow release];
-	[recursiveArrow release];
-	[recursiveLevelsArrow release];
-	
-	[woolArrow release];
-	[breadArrow release];
-	[signArrow release];
-	[flagArrow release];
-	[flagLevelsArrow release];
-	
-	[dialog release];
-	[message release];
-	[nextButton release];
-	
-	[game release];
-	[radialMenu release];
+	[arrows release];
 	
 	[arrowButtonTree release];
 	[visibleArrows release];
 	[toggleArrowDict release];
 	
 	[confirmEnd release];
+	[dialog release];
 	[endDialog release];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	
 	[super dealloc];
 }

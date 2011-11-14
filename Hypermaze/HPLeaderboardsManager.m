@@ -34,7 +34,7 @@ static HPLeaderboardsManager* sharedLeaderboardsManager;
 		[scoreReporter reportScoreWithCompletionHandler:^(NSError *error) {
 			if (error != nil)
 			{
-				
+				NSLog(@"%@",[error description]);
 			}
 		}];
 	}

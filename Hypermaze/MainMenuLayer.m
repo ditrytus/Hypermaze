@@ -123,9 +123,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 }
 
 - (CCMenu*) resumeItemFromString: (NSString *) savedGame {
-	int resumeItemHeight;
 	NSString* savedGameFolder = [PathBuilder savedGameDirectory:savedGame];
-	NSLog(@"%@", savedGameFolder);
 	
 	CCSprite* resumePanel = [CCSprite spriteWithFile:@"resume_panel.png"];
 	CCSprite* resumeLeftPanel = [CCSprite spriteWithFile:@"resume_left_panel.png"];
@@ -166,8 +164,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 	[[CCTextureCache sharedTextureCache] removeTextureForKey:savedGameScreenshotFilePath];
 	CCSprite* screenshot = [CCSprite spriteWithFile: savedGameScreenshotFilePath];
 	
-	resumeItemHeight = screenshot.textureRect.size.height;
-	
 	CCMenuItemImage* screenshotMenuItem = [CCMenuItemImage itemFromNormalSprite:screenshot selectedSprite:nil];
 	screenshotMenuItem.anchorPoint = ccp(0,0);
 	
@@ -176,16 +172,16 @@ const int RESUME_ITEMS_MARGIN = 40;
 	topPanelItem.position = ccp(screenshot.textureRect.size.width/2.0,screenshot.textureRect.size.height);
 	
 	CCMenuItemSprite* leftPanelItem = [CCMenuItemSprite itemFromNormalSprite: resumeLeftPanel selectedSprite:nil target:self selector:@selector(onResumeDelete:)];
-	leftPanelItem.userData = [savedGameFolder retain];
+	leftPanelItem.userData = savedGame;
 	leftPanelItem.anchorPoint = ccp(0,0);
 	leftPanelItem.position = ccp(0,0);
 	
 	CCMenuItemSprite* rightPanelItem = [CCMenuItemSprite itemFromNormalSprite: resumeRightPanel selectedSprite:nil target:self selector:@selector(onResumePlay:)];
-	rightPanelItem.userData = [savedGameFolder retain];
+	rightPanelItem.userData = savedGame;
 	rightPanelItem.anchorPoint = ccp(1,0);
 	rightPanelItem.position = ccp(screenshot.textureRect.size.width,0);
 	
-	NSDictionary* metadata = [[NSDictionary alloc] initWithContentsOfFile:[savedGameFolder stringByAppendingPathComponent:SAVE_METADATA_FILE]];
+	NSDictionary* metadata = [[[NSDictionary alloc] initWithContentsOfFile:[savedGameFolder stringByAppendingPathComponent:SAVE_METADATA_FILE]] autorelease];
 	
 	CGPoint resumePanelLeftMiddlePoint = ccpSub(topPanelItem.position, ccp(resumePanel.textureRect.size.width/2.0,resumePanel.textureRect.size.height/2.0));
 	
@@ -290,7 +286,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	savedGames = [[NSMutableArray arrayWithArray: [[[NSFileManager arrayOfFoldersInFolder:[PathBuilder saveDirectory]]
 													sortedArrayUsingSelector:@selector(compare:)] reversedArray]] retain];
 	resumeItems = [[NSMutableArray arrayWithCapacity:[savedGames count]] retain];
-	resumeGameMenu = [[CCMenu menuWithItems: nil] retain];
+	resumeGameMenu = [CCMenu menuWithItems: nil];
 	
 	for (int i=0; i<[savedGames count]; i++) {
 		NSString* savedGame = [savedGames objectAtIndex: i];
@@ -328,12 +324,13 @@ const int RESUME_ITEMS_MARGIN = 40;
 	[resumeGameMenu addChild:sArrow];
 	
 	resumeGameMenu.position = menuBeginLocation;
+	[self addChild: resumeGameMenu];
 }
 
 - (void) initMainMenu {
-	resumeButton = [[self menuItemSpriteFromNormalFrameName:@"resume_off_en.png"
+	resumeButton = [self menuItemSpriteFromNormalFrameName:@"resume_off_en.png"
 															selectedFameName:@"resume_on_en.png"
-																	selector:@selector(onResumeClick:)] retain];
+																	selector:@selector(onResumeClick:)];
 	[resumeButton setIsEnabled: hasSavedGames];
 	CCMenuItemSprite *newGameButton = [self menuItemSpriteFromNormalFrameName:@"new_game_off_en.png"
 															 selectedFameName:@"new_game_on_en.png"
@@ -341,14 +338,14 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite *tutorialButton = [self menuItemSpriteFromNormalFrameName:@"tutorial_off_en.png"
 															  selectedFameName:@"tutorial_on_en.png"
 																	  selector:@selector(onTutorialClick:)];
-	progressButton = [[self menuItemSpriteFromNormalFrameName:@"progress_off_en.png"
+	progressButton = [self menuItemSpriteFromNormalFrameName:@"progress_off_en.png"
 															  selectedFameName:@"progress_on_en.png"
-																	  selector:@selector(onProgressClick:)] retain];
+																	  selector:@selector(onProgressClick:)];
 	progressButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
 	CCMenuItemSprite *optionsButton = [self menuItemSpriteFromNormalFrameName:@"options_off_en.png"
 															 selectedFameName:@"options_on_en.png"
 																	 selector:@selector(onOptionsClick:)];
-	mainMenu = [[CCMenu menuWithItems: resumeButton, newGameButton, tutorialButton, progressButton, optionsButton, nil] retain];
+	mainMenu = [CCMenu menuWithItems: resumeButton, newGameButton, tutorialButton, progressButton, optionsButton, nil];
 	mainMenu.position = menuBeginLocation;
 	[mainMenu setOpacity: 0];
 	[mainMenu alignItemsInColumns: 
@@ -358,6 +355,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	 [NSNumber numberWithInt:1],
 	 [NSNumber numberWithInt:1],
 	 nil];
+	[self addChild: mainMenu];
 }
 
 - (void) initOptionsMenu {
@@ -383,7 +381,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite* backItem = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
 														selectedFameName:@"back_on_en.png"
 																selector:@selector(onBackFromOptionsClick:)];
-	optionsMenu = [[CCMenu menuWithItems: musicLabel, musicToggle, soundLabel, soundToggle, backItem, nil] retain];
+	optionsMenu = [CCMenu menuWithItems: musicLabel, musicToggle, soundLabel, soundToggle, backItem, nil];
 	optionsMenu.position = menuBeginLocation;
 	[optionsMenu setOpacity: 0];
 	optionsMenu.visible = YES;
@@ -392,21 +390,22 @@ const int RESUME_ITEMS_MARGIN = 40;
 	 [NSNumber numberWithInt:2],
 	 [NSNumber numberWithInt:1],
 	 nil];
+	[self addChild: optionsMenu];
 }
 
 - (void) initProgressMenu {
-	leaderboardsButton = [[self menuItemSpriteFromNormalFrameName:@"leaderboards_off_en.png"
+	leaderboardsButton = [self menuItemSpriteFromNormalFrameName:@"leaderboards_off_en.png"
 																  selectedFameName:@"leaderboards_on_en.png"
-																	 selector:@selector(onLeaderboardsClick:)] retain];
+																	 selector:@selector(onLeaderboardsClick:)];
 	leaderboardsButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
-	achievementsButton = [[self menuItemSpriteFromNormalFrameName:@"achievements_off_en.png"
+	achievementsButton = [self menuItemSpriteFromNormalFrameName:@"achievements_off_en.png"
 																  selectedFameName:@"achievements_on_en.png"
-																	  selector:@selector(onAchievementsClick:)] retain];
+																	  selector:@selector(onAchievementsClick:)];
 	achievementsButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
-	CCMenuItemSprite* backItem = [[self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
+	CCMenuItemSprite* backItem = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
 														selectedFameName:@"back_on_en.png"
-																selector:@selector(onBackFromProgressClick:)] retain];
-	progressMenu = [[CCMenu menuWithItems:leaderboardsButton, achievementsButton, backItem, nil] retain];
+																selector:@selector(onBackFromProgressClick:)];
+	progressMenu = [CCMenu menuWithItems:leaderboardsButton, achievementsButton, backItem, nil];
 	progressMenu.position = menuBeginLocation;
 	[progressMenu setOpacity: 0];
 	progressMenu.visible = YES;
@@ -415,6 +414,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	 [NSNumber numberWithInt:1],
 	 [NSNumber numberWithInt:1],
 	 nil];
+	[self addChild: progressMenu];
 }
 
 -(void) initNewGameMenu {
@@ -427,7 +427,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite* backButton = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
 														  selectedFameName:@"back_on_en.png"
 																  selector:@selector(onBackFromNewGameClick:)];
-	newGameMenu = [[CCMenu menuWithItems: onePlayerButton, twoPlayersButton, backButton, nil] retain];
+	newGameMenu = [CCMenu menuWithItems: onePlayerButton, twoPlayersButton, backButton, nil];
 	newGameMenu.position = menuBeginLocation;
 	[newGameMenu setOpacity: 0];
 	[newGameMenu alignItemsInColumns: 
@@ -435,6 +435,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	 [NSNumber numberWithInt:1],
 	 [NSNumber numberWithInt:1],
 	 nil];
+	[self addChild: newGameMenu];
 }
 
 -(void) initGameSettingsMenu {
@@ -452,7 +453,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 							 @".png"]];
 		CCMenuItemImage *spriteItem = [CCMenuItemImage itemFromNormalSprite:sprite selectedSprite:nil];
 		if (sizeItem==nil) {
-			sizeItem = [[CCMenuItemToggle itemWithTarget:nil selector:nil items: spriteItem,nil] retain];
+			sizeItem = [CCMenuItemToggle itemWithTarget:nil selector:nil items: spriteItem,nil];
 		} else {
 			[sizeItem.subItems addObject: spriteItem];
 		}
@@ -465,7 +466,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite* backButton = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
 														  selectedFameName:@"back_on_en.png"
 																  selector:@selector(onBackFromGameSettingsClick:)];
-	gameSettingsMenu = [[CCMenu menuWithItems:difficultyButton, decreaseSizeButton, sizeItem, increaseSizeButton, playButton, backButton, nil] retain];
+	gameSettingsMenu = [CCMenu menuWithItems:difficultyButton, decreaseSizeButton, sizeItem, increaseSizeButton, playButton, backButton, nil];
 	gameSettingsMenu.position = menuBeginLocation;
 	[gameSettingsMenu setOpacity: 0];
 	[gameSettingsMenu alignItemsInColumns: 
@@ -481,6 +482,7 @@ const int RESUME_ITEMS_MARGIN = 40;
 	decreasePosition.x += 158;
 	decreasePosition.y -= 18;
 	[decreaseSizeButton setPosition: decreasePosition];
+	[self addChild: gameSettingsMenu];
 }
 
 - (void)initActions {
@@ -545,13 +547,15 @@ const int RESUME_ITEMS_MARGIN = 40;
 	jumpUp = [[CCSequence actions:
 			  [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,30)],
 			  [CCEaseIn actionWithAction:
-			   [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,-30)] rate:4],
+			   [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,-30)]
+									rate:4],
 			  nil] retain];
 	
 	jumpDown = [[CCSequence actions:
 				 [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,-30)],
 				 [CCEaseIn actionWithAction:
-				  [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,30)] rate:4],
+				  [CCMoveBy actionWithDuration:RESUME_SCROLL_DURATION/2.0 position:ccp(0,30)]
+									   rate:4],
 				 nil] retain];
 }
 
@@ -571,23 +575,15 @@ const int RESUME_ITEMS_MARGIN = 40;
 
 }
 - (void)initBackgroundAndTitle {
-	background = [[CCSprite alloc] initWithFile:@"background.png"];
+	background = [[[CCSprite alloc] initWithFile: @"background.png"] autorelease];
 	background.position = middleScreen;
 	background.scale = 2.0;
-	
-	title = [[CCSprite alloc] initWithSpriteFrameName:@"title.png"];
-	title.position = middleScreen;
-
-}
-- (void)addElemntsToLayer {
 	[self addChild: background];
+	
+	title = [[[CCSprite alloc] initWithSpriteFrameName: @"title.png"] autorelease];
+	title.position = middleScreen;
 	[self addChild: title];
-	[self addChild: resumeGameMenu];
-	[self addChild: mainMenu];
-	[self addChild: optionsMenu];
-	[self addChild: newGameMenu];
-	[self addChild: gameSettingsMenu];
-	[self addChild: progressMenu];
+
 }
 
 - (void)startBeginAnimation {
@@ -607,10 +603,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 		 isInTrasition = NO;
 	  }],
 	  nil]];
-}
-
-- (void) changeMusicTrack {
-	//[[HPSound sharedSound] playMusic];
 }
 
 - (void) onLocalPlayerAuthorised: (NSNotification*) notification {
@@ -634,7 +626,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 												   object: [HPGameCenter sharedGameCenter]];
 		[[HPSound sharedSound] preloadSounds];
 		[[HPSound sharedSound] playMainMenuPlaylist];
-		[self schedule: @selector(changeMusicTrack) interval:2];
 		[self initActions];	
 		[self initPoints];
 		[self loadFrameCache];
@@ -645,7 +636,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 		[self initNewGameMenu];
 		[self initGameSettingsMenu];
 		[self initProgressMenu];
-		[self addElemntsToLayer];
 		[self startBeginAnimation];
 	}
 	return self;
@@ -679,6 +669,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 
 - (void) onPlayClick: (CCMenuItem  *) menuItem 
 {
+	[[CCDirector sharedDirector] purgeCachedData];
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene:[LoadingLayer scene]]];
 }
 
@@ -742,9 +733,9 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 					 [CCSequence actions:
 					  [[pushDown copy] autorelease],
 					  [CCCallBlock actionWithBlock:^(){
-						 [self removeChild:currentItem cleanup:YES];
+						 [currentItem removeFromParentAndCleanup:YES];
 						 [resumeItems replaceObjectAtIndex:i withObject:[savedGames objectAtIndex:i]];
-					 }],
+					  }],
 					  nil]];
 				} else {
 					isInTrasition = YES;
@@ -768,11 +759,11 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 				  [[jumpDown copy] autorelease],
 				  [CCCallBlock actionWithBlock:^(){
 					 isInTrasition = NO;
-					 NSLog(@"(%f x %f)", currentItem.position.x, currentItem.position.y);
 				 }],
 				  nil]];
 			}
 		}
+		[[CCTextureCache sharedTextureCache] removeUnusedTextures];
 	}
 }
 
@@ -789,10 +780,10 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 					 [CCSequence actions:
 					  [[pushUp copy] autorelease],
 					  [CCCallBlock actionWithBlock:^(){
-						 [self removeChild:currentItem cleanup:YES];
+						 [currentItem removeFromParentAndCleanup:YES];
 						 [resumeItems replaceObjectAtIndex:i withObject:[savedGames objectAtIndex:i]];
-					 }],
-					 nil]];
+					  }],
+					  nil]];
 				} else if (i==resumeGameMenuPos + RESUME_ITEMS_ON_PAGE) {
 					CCMenu* currentItem = [self resumeItemFromString: [resumeItems objectAtIndex:i]];
 					currentItem.position = [self hiddenUpPositionForResumeItem];
@@ -800,8 +791,8 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 					[resumeItems replaceObjectAtIndex:i withObject:currentItem];
 					[currentItem runAction:[[pushUp copy] autorelease]];
 				} else {
+					isInTrasition = YES;
 					CCMenu* currentItem = [resumeItems objectAtIndex:i];
-					isInTrasition = true;
 					[currentItem runAction:
 					 [CCSequence actions:
 					  [[moveUpWithEasing copy] autorelease],
@@ -825,21 +816,22 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 				  nil]];
 			}
 		}
+		[[CCTextureCache sharedTextureCache] removeUnusedTextures];
 	}
 }
 
 - (void) onResumeDelete: (CCMenuItem*) item {
 	[[HPSound sharedSound] playSound: SOUND_TICK];
-	CCDialog* dialog = [[DeleteConfirmDialog alloc] initWithSavedGame: item.userData];
+	CCDialog* dialog = [[[DeleteConfirmDialog alloc] initWithSavedGame: [PathBuilder savedGameDirectory:item.userData]] autorelease];
 	[dialog openInScene: (CCScene*)[self parent]];
 }
 
 - (void) onResumePlay: (CCMenuItem*) item {
-	NSString* filePath = [((NSString*)item.userData) stringByAppendingPathComponent:SAVE_DATA_FILE];
-	HPLogic* logic = [[NSKeyedUnarchiver unarchiveObjectWithFile: filePath] autorelease];
+	NSString* filePath = [[PathBuilder savedGameDirectory:item.userData] stringByAppendingPathComponent:SAVE_DATA_FILE];
+	HPLogic* logic = [NSKeyedUnarchiver unarchiveObjectWithFile: filePath];
 	[[CCDirector sharedDirector] replaceScene:
-	 [[CCTransitionCrossFade transitionWithDuration: 0.5
-											  scene: [[Game alloc] initWithLogic: logic]] retain]];
+	 [CCTransitionCrossFade transitionWithDuration: 0.5
+											  scene: [Game sceneWithLogic:logic]]];
 }
 
 - (void) onBackFromResumeGame: (CCMenuItem  *) menuItem {
@@ -862,7 +854,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 			deletedIndex = i;
 			NSError* error;
 			if (![[NSFileManager defaultManager] removeItemAtPath:savedGame error: &error]) {
-				NSLog(@"%@", error);
+				NSLog(@"%@", [error description]);
 			}
 			CCMenu* currentItem = [resumeItems objectAtIndex:i];
 			[currentItem runAction:
@@ -896,6 +888,7 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	if ([resumeItems count] == 0) {
 		[self onBackFromResumeGame: nil];
 	}
+	[[CCTextureCache sharedTextureCache] removeUnusedTextures];
 }
 
 - (void) onNewGameClick: (CCMenuItem  *) menuItem 
@@ -912,8 +905,8 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 - (void) onTutorialClick: (CCMenuItem  *) menuItem 
 {
 	[[CCDirector sharedDirector] replaceScene:
-	 [[CCTransitionCrossFade transitionWithDuration: 0.5
-											  scene: [[Game alloc] initTutorial]] retain]];
+	 [CCTransitionCrossFade transitionWithDuration: 0.5
+											  scene: [Game sceneWithTutorial]]];
 }
 
 - (void) onOptionsClick: (CCMenuItem  *) menuItem 
@@ -1031,23 +1024,21 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	[moveRightWithEasing release];
 	[fadeInWithEasing release];
 	[fadeOutWithEasing release];
-    [mainMenu release];
-    [optionsMenu release];
-	[newGameMenu release];
+	
 	[resumeItems release];
-	[progressMenu release];
+	
 	[moveUpWithEasing release];
 	[moveDownWithEasing release];
 	[pushUp release];
 	[pushDown release];
-	[savedGames release];
-	[resumeButton release];
+	[jumpUp release];
+	[jumpDown release];
 	
-	[progressButton release];
-	[leaderboardsButton release];
-	[achievementsButton release];
+	[savedGames release];
 	
 	[super dealloc];
+	
+	[[CCDirector sharedDirector] purgeCachedData];
 }
 
 @end

@@ -21,10 +21,10 @@
     self = [super init];
     if (self) {
 		isEnabled = enabled;
-        untakenMask = [untaken retain];
-		visitedMask = [visited retain];
-		ariadnaMask = [ariadna retain];
-		checkpointMask = [checkpoint retain];
+        untakenMask = untaken;
+		visitedMask = visited;
+		ariadnaMask = ariadna;
+		checkpointMask = checkpoint;
     }
     return self;
 }
@@ -64,19 +64,15 @@
 }
 
 - (void) dealloc {
-	[untakenMask release];
-	[visitedMask release];
-	[ariadnaMask release];
-	[checkpointMask release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeBool:isEnabled forKey:@"isEnabled"];
-	[encoder encodeObject:untakenMask forKey:@"untakenMask"];
-	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
-	[encoder encodeObject:ariadnaMask forKey:@"ariadnaMask"];
-	[encoder encodeObject:checkpointMask forKey:@"checkpointMask"];
+	[encoder encodeConditionalObject:untakenMask forKey:@"untakenMask"];
+	[encoder encodeConditionalObject:visitedMask forKey:@"visitedMask"];
+	[encoder encodeConditionalObject:ariadnaMask forKey:@"ariadnaMask"];
+	[encoder encodeConditionalObject:checkpointMask forKey:@"checkpointMask"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -85,7 +81,6 @@
 	id decodedVisited = [decoder decodeObjectForKey:@"visitedMask"];
 	id decodedAriadna = [decoder decodeObjectForKey:@"ariadnaMask"];
 	id decodedCheckpoint = [decoder decodeObjectForKey:@"checkpointMask"];
-	NSLog(@"%@",[[self class] description]);
 	return [self initWithIsEnabled: decodedIsEnabled
 						   Untaken: decodedUntaken
 						   visited: decodedVisited

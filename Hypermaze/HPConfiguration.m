@@ -71,9 +71,16 @@ static HPConfiguration *sharedConfiguration;
         [plistData writeToFile:plistPath atomically:YES];
     }
     else {
-        NSLog(@"%@",error);
+        NSLog(@"%@",[error description]);
         [error release];
     }
+}
+
+- (void) dealloc {
+	[music release];
+	[sound release];
+	[difficulty release];
+	[super dealloc];
 }
 
 @end

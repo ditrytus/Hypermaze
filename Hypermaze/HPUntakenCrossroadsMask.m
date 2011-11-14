@@ -16,8 +16,8 @@
 {
     self = [super init];
     if (self) {
-        visitedMask = [vis retain];
-		maze = [maz retain];
+        visitedMask = vis;
+		maze = maz;
     }    
     return self;
 }
@@ -43,22 +43,19 @@
 }
 
 -(void) dealloc {
-	[visitedMask release];
-	[maze release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[super encodeWithCoder:encoder];
-	[encoder encodeObject:visitedMask forKey:@"visitedMask"];
-	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeConditionalObject: visitedMask forKey:@"visitedMask"];
+	[encoder encodeConditionalObject: maze forKey:@"maze"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	visitedMask = [[decoder decodeObjectForKey:@"visitedMask"] retain];
-	maze = [[decoder decodeObjectForKey:@"maze"] retain];
-	NSLog(@"%@",[[self class] description]);
+	visitedMask = [decoder decodeObjectForKey:@"visitedMask"];
+	maze = [decoder decodeObjectForKey:@"maze"];
 	return self;
 }
 

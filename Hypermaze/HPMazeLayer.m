@@ -35,7 +35,7 @@ void loadChamberSet(NSString *colorName) {
 	int logicWidth = (width /  TILE_SIZE.width) + 1;
 	int logicHeigth = (height / TILE_SIZE.height) + 1;
 	CCRenderTexture* grassBackground = [CCRenderTexture renderTextureWithWidth: TILE_SIZE.width * (logicWidth - 1) height:TILE_SIZE.height * (logicHeigth-0.5) + 5];
-	FSIsoSystem* grassIso = [[FSIsoSystem alloc] initWithTileSize:TILE_SIZE mapSize:CGSizeMake(logicWidth+logicHeigth-1, logicWidth+logicHeigth-1)];
+	FSIsoSystem* grassIso = [[[FSIsoSystem alloc] initWithTileSize:TILE_SIZE mapSize:CGSizeMake(logicWidth+logicHeigth-1, logicWidth+logicHeigth-1)] autorelease];
 	CGPoint viewDelta = [grassIso getTileRealPosition:ccp(0,logicWidth - 1)];
 	[grassBackground beginWithClear:0 g:0 b:0 a:1];
 	for (int i=0; i<2*logicHeigth-1; i++) {
@@ -82,7 +82,7 @@ void loadChamberSet(NSString *colorName) {
 		logic = [newLogic retain];
 		mazeSize = [[logic maze] size];
 		topology = [[logic maze] topology];
-		isoSys = [[[FSIsoSystem alloc] initWithTileSize: TILE_SIZE mapSize:CGSizeMake(mazeSize,mazeSize)] retain];
+		isoSys = [[FSIsoSystem alloc] initWithTileSize: TILE_SIZE mapSize:CGSizeMake(mazeSize,mazeSize)];
 		CGSize size = [[CCDirector sharedDirector] winSize];
 		CGPoint middleScreen = ccp( size.width / 2 , size.height / 2 );
 		CGPoint firstChamberPos = [self getChamberPos:point3D(0, 0, 0)];
@@ -120,7 +120,7 @@ void loadChamberSet(NSString *colorName) {
 			redChamberPrototypes[index].anchorPoint = ccp(0,0);
 		}
 		
-		mazeTexture = [[CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height] retain];
+		mazeTexture = [CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height];
 		[mazeTexture.sprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
 		mazeTexture.sprite.anchorPoint = ccp((double)firstChamberPos.x/(double)mazeTextureSize.width,1.0-((double)firstChamberPos.y/(double)mazeTextureSize.height));
 		mazeTexture.sprite.position = middleScreen;
@@ -146,7 +146,7 @@ void loadChamberSet(NSString *colorName) {
 			}
 		}
 		
-		borderTexture = [[CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height] retain];
+		borderTexture = [CCRenderTexture renderTextureWithWidth: mazeTextureSize.width height: mazeTextureSize.height];
 		[borderTexture.sprite setBlendFunc:(ccBlendFunc){GL_ONE, GL_ONE_MINUS_SRC_ALPHA}];
 		borderTexture.sprite.anchorPoint = ccp((double)firstChamberPos.x/(double)mazeTextureSize.width,1.0-((double)firstChamberPos.y/(double)mazeTextureSize.height));
 		borderTexture.sprite.position = middleScreen;
@@ -307,20 +307,27 @@ void loadChamberSet(NSString *colorName) {
 	[self unscheduleAllSelectors];
 	[logic release];
 	for (int x=0; x<mazeSize; x++) {
-		free(positionCache[x]);
 		for (int y=0; y<mazeSize; y++) {
 			free(positionCache[x][y]);
 		}
+		free(positionCache[x]);
 	}
 	free(positionCache);
 	for (int i=0; i<64; i++) {
 		free(chamberRotationCache[i]);
+		if (i<63) {
+			[pinkChamberPrototypes[i] release];
+			[yellowChamberPrototypes[i] release];
+			[redChamberPrototypes[i] release];
+			[greenChamberPrototypes[i] release];
+		}
 	}
 	free(chamberRotationCache);
 	free(pinkChamberPrototypes);
 	free(yellowChamberPrototypes);
 	free(greenChamberPrototypes);
 	free(redChamberPrototypes);
+	[isoSys release];
 	[outerNEFilledPrototype release];
 	[outerNEWiredPrototype release];
 	[outerNWFilledPrototype release];
@@ -328,11 +335,7 @@ void loadChamberSet(NSString *colorName) {
 	[outerSFilledPrototype release];
 	[outerSWiredPrototype release];
 	[mark release];
-	[mazeTexture release];
-	[borderTexture release];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_ROTATED object:nil]; 
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[super dealloc];
 }
 - (void) onViewChanged: (NSNotification*) notification {

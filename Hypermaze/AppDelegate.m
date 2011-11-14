@@ -89,7 +89,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	//[director setDisplayFPS:YES];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -132,9 +132,12 @@
 -(void) applicationDidEnterBackground:(UIApplication*)application {
 	CCDirector *director = [CCDirector sharedDirector];
 	[director stopAnimation];
-	if ([[director.runningScene class] isSubclassOfClass:[Game class]]) {
-		[((Game*) director.runningScene) pause];
-		[((Game*) director.runningScene) saveGame];
+	for (CCNode* node in director.runningScene.children) {
+		if ([[node class] isSubclassOfClass:[Game class]]) {
+			[((Game*) node) pause];
+			[((Game*) node) saveGame];
+			break;
+		}
 	}
 }
 
@@ -144,17 +147,14 @@
 	if ([[director.runningScene class] isSubclassOfClass:[Game class]]) {
 		[((Game*) director.runningScene) resume];
 	}
+	[[HPGameCenter sharedGameCenter] invalidateAuthentication];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	CCDirector *director = [CCDirector sharedDirector];
-	
 	[[director openGLView] removeFromSuperview];
-	
 	[viewController release];
-	
 	[window release];
-	
 	[director end];	
 }
 
@@ -169,7 +169,6 @@
 	[[HPGameCenter sharedGameCenter] release];
 	[[HPConfiguration sharedConfiguration] release];
 	[[HPSound sharedSound] release];
-	[window release];
 	[super dealloc];
 }
 

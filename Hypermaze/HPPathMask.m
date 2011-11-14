@@ -10,7 +10,7 @@
 
 @implementation HPPathMask
 
-- (id)init
+- (id) init
 {
     self = [super init];
     if (self) {
@@ -57,7 +57,6 @@
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
 	path = [[decoder decodeObjectForKey:@"path"] retain];
-	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

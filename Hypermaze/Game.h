@@ -21,7 +21,7 @@
 #define INTF_ARROW_CLICK_EVENT @"onArrowClick"
 #define INTF_ARROW_CLICK_USER_INFO @"arrowClicked"
 
-@interface Game : CCScene {
+@interface Game : CCLayer {
 	HPLogic* logic;
 	HPMazeLayer* mazeLayer;
 	InfoPanel* infoPanel;
@@ -34,6 +34,8 @@
 	bool isTutorial;
 	int stepNum;
 }
+
+@property(readonly, nonatomic) TutorialLayer* tutorialLayer;
 
 - (CCMenuItem*) getLeftNArrow;
 - (CCMenuItem*) getLeftNWArrow;
@@ -63,5 +65,7 @@
 - (void) onPositionChanged: (NSNotification*) notification;
 
 + (CCMenuItemSprite*) createArrowWithName: (NSString*) arrowName target: (id) target selector: (SEL) selector;
++ (CCScene *) sceneWithLogic:(HPLogic*) logic;
++ (CCScene *) sceneWithTutorial;
 
 @end

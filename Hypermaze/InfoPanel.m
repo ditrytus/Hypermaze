@@ -57,7 +57,7 @@
 		clockInfo.position = ccp(infoPanel.position.x + 37, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		[self addChild: clockInfo];
 		
-		timeElapsedLabel = [[CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16] retain];
+		timeElapsedLabel = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16];
 		timeElapsedLabel.position = ccp(infoPanel.position.x + 52, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		timeElapsedLabel.anchorPoint = ccp(0,0.5);
 		timeElapsedLabel.color = ccBLACK;
@@ -67,7 +67,7 @@
 		footInfo.position = ccp(infoPanel.position.x + 145, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		[self addChild: footInfo];
 		
-		movesMadeLabel = [[CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16] retain];
+		movesMadeLabel = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16];
 		movesMadeLabel.anchorPoint = ccp(0,0.5);
 		movesMadeLabel.position = ccp(infoPanel.position.x + 158, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		movesMadeLabel.color = ccBLACK;
@@ -77,7 +77,7 @@
 		doorInfo.position = ccp(infoPanel.position.x + 223, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		[self addChild: doorInfo];
 		
-		unvisitedLabel =[[CCLabelTTF labelWithString:[NSString stringWithFormat:@"",(int)pow(logic.maze.size,3)-1, nil] fontName:@"Arial" fontSize:16] retain];
+		unvisitedLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"",(int)pow(logic.maze.size,3)-1, nil] fontName:@"Arial" fontSize:16];
 		unvisitedLabel.anchorPoint = ccp(0,0.5);
 		unvisitedLabel.position = ccp(infoPanel.position.x + 234, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		unvisitedLabel.color = ccBLACK;
@@ -87,7 +87,7 @@
 		doorOpenInfo.position = ccp(infoPanel.position.x + 345, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		[self addChild: doorOpenInfo];
 		
-		visitedLabel = [[CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16] retain];
+		visitedLabel = [CCLabelTTF labelWithString:@"" fontName:@"Arial" fontSize:16];
 		visitedLabel.anchorPoint = ccp(0,0.5);
 		visitedLabel.position = ccp(infoPanel.position.x + 357, infoPanel.position.y + [infoPanel textureRect].size.height / 2.0);
 		visitedLabel.color = ccBLACK;
@@ -106,12 +106,9 @@
 }
 
 -(void) dealloc {
+	[self unscheduleAllSelectors];
 	[logic release];
-	[timeElapsedLabel release];
-	[movesMadeLabel release];
-	[unvisitedLabel release];
-	[visitedLabel release];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[super dealloc];
 }
 

@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-		maze = [newMaze retain];
+		maze = newMaze;
 		numOfCheckPoints = num;
 		[self refresh];
     }
@@ -43,19 +43,18 @@
 }
 
 - (void) dealloc {
-	[maze release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[super encodeWithCoder:encoder];
-	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeConditionalObject: maze forKey:@"maze"];
 	[encoder encodeInt32:numOfCheckPoints forKey:@"numOfCheckPoints"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	maze = [[decoder decodeObjectForKey:@"maze"] retain];
+	maze = [decoder decodeObjectForKey:@"maze"];
 	numOfCheckPoints = [decoder decodeInt32ForKey:@"numOfCheckPoints"];
 	NSLog(@"%@",[[self class] description]);
 	return self;

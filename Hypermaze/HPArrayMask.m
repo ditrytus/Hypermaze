@@ -44,13 +44,13 @@
 }
 
 - (void) dealloc {
-	free(array);
 	for (int i=0; i<arraySize; i++) {
-		array[i] = malloc(arraySize*sizeof(bool*));
 		for (int j=0; j<arraySize; j++) {
-			array[i][j] = malloc(arraySize*sizeof(bool));
+			free(array[i][j]);
 		}
+		free(array[i]);
 	}
+	free(array);
 	[super dealloc];
 }
 

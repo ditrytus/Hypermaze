@@ -31,20 +31,24 @@ static HPGameCenter* sharedGameCenter;
 - (void) authenticateLocalPlayer {
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
     [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
-		if (localPlayer.isAuthenticated) {
-			isGameCenterAvailable = YES;
-			[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_AUTHORISED object: self userInfo: nil];
-			if (lastPlayerId != nil && [lastPlayerId isEqualToString: localPlayer.playerID]) {
-				[lastPlayerId release];
-				lastPlayerId = [localPlayer.playerID copy];
-				[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_CHANGED object: self userInfo: nil];
+		if (error == nil) {
+			if (localPlayer.isAuthenticated) {
+				isGameCenterAvailable = YES;
+				[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_AUTHORISED object: self userInfo: nil];
+				if (lastPlayerId != nil && [lastPlayerId isEqualToString: localPlayer.playerID]) {
+					[lastPlayerId release];
+					lastPlayerId = [localPlayer.playerID copy];
+					[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_CHANGED object: self userInfo: nil];
+				} else {
+					[lastPlayerId release];
+					lastPlayerId = [localPlayer.playerID copy];
+				}
 			} else {
-				[lastPlayerId release];
-				lastPlayerId = [localPlayer.playerID copy];
+				isGameCenterAvailable = NO;
+				[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_NOT_AUTHORISED object: self userInfo: nil];
 			}
 		} else {
-			isGameCenterAvailable = NO;
-			[[NSNotificationCenter defaultCenter] postNotificationName: EVENT_LOCAL_PLAYER_NOT_AUTHORISED object: self userInfo: nil];
+			NSLog(@"%@",[error description]);
 		}
 	}];
 }
@@ -95,15 +99,11 @@ static HPGameCenter* sharedGameCenter;
 	isGameCenterAvailable = NO;
 }
 
-- (void) loadAchievements
-{
-    
-}
-
-
 - (void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[lastPlayerId release];
 	[uiController release];
+	[super dealloc];
 }
 
 @end

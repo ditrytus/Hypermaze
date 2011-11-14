@@ -39,7 +39,7 @@ bool findPath(NSMutableArray* path, Byte*** topology, int size, FS3DPoint begin,
 @implementation HPPathFinder
 
 + (NSArray*) findPathInTopology: (Byte***) topology size: (int) size from: (FS3DPoint) begin to: (FS3DPoint) end {
-	NSMutableArray* path = [[NSMutableArray alloc] init];
+	NSMutableArray* path = [[[NSMutableArray alloc] init] autorelease];
 //	int*** distanceMap = createDistanceMap(size);
 
 	bool pathFound = findPath(path, topology, size, begin, end, dirNorthWest);

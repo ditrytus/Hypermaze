@@ -30,4 +30,10 @@
     return self;
 }
 
+- (void) dealloc {
+	[parent release];
+	[children release];
+	[super dealloc];
+}
+
 @end

@@ -21,17 +21,14 @@
 	CGSize dialogSize = CGSizeMake(320, 140);
     self = [super initWithSize: dialogSize position: middle closeButton:NO showOverlay:YES closeOnOverlayTouch:NO isModal:YES isDraggable:YES];
     if (self) {
-		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
-														block:^(id sender){
-															[self close];
-															[[NSNotificationCenter defaultCenter] postNotificationName:DELETE_GAME_CONFIRMED_EVENT object:self userInfo: [NSDictionary dictionaryWithObject:savedGame forKey:@"savedGame"]];
-														}];
+		CCMenuItemLabel* yes = [CCMenuItemLabel itemWithLabel: [CCLabelTTF labelWithString:@"YES" fontName:@"Arial" fontSize:24]
+													   target: self
+													 selector: @selector(onYes:)];
+
 		yes.color = ccBLACK;
-		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
-													   block:^(id sender) {
-														   [[HPSound sharedSound] playSound: SOUND_TICK];
-														   [self close];
-													   }];
+		CCMenuItemLabel* no = [CCMenuItemLabel itemWithLabel: [CCLabelTTF labelWithString:@"NO" fontName:@"Arial" fontSize:24]
+													  target: self
+													selector: @selector(onNo:)];
 		no.color = ccBLACK;
 		CCMenu* promptMenu = [CCMenu menuWithItems:yes, no, nil];
 		[promptMenu alignItemsHorizontallyWithPadding:20];
@@ -47,6 +44,16 @@
     }
     
     return self;
+}
+
+- (void) onYes: (CCMenuItem*) item {
+	[self close];
+	[[NSNotificationCenter defaultCenter] postNotificationName:DELETE_GAME_CONFIRMED_EVENT object:self userInfo: [NSDictionary dictionaryWithObject:savedGame forKey:@"savedGame"]];
+}
+
+- (void) onNo: (CCMenuItem*) item {
+	[[HPSound sharedSound] playSound: SOUND_TICK];
+	[self close];
 }
 
 - (void) dealloc {

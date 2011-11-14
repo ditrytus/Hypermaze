@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-		gameState = [state retain];
+		gameState = state;
 		[self addToPath: gameState.currentPosition];
     }
     
@@ -32,19 +32,17 @@
 }
 
 -(void) dealloc {
-	[gameState release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[super encodeWithCoder:encoder];
-	[encoder encodeObject:gameState forKey:@"gameState"];
+	[encoder encodeConditionalObject: gameState forKey:@"gameState"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
-	NSLog(@"%@",[[self class] description]);
+	gameState = [decoder decodeObjectForKey:@"gameState"];
 	return self;
 }
 

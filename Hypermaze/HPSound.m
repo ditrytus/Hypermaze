@@ -67,7 +67,8 @@ static HPSound *sharedSound;
 
 - (void) playMusic {
 	if (![[[HPConfiguration sharedConfiguration] music] boolValue]) {
-		currentMusic = [[CDAudioManager sharedManager] audioSourceLoad:[playlist objectAtIndex: currentTrack] channel:kASC_Right];
+		[currentMusic release];
+		currentMusic = [[[CDAudioManager sharedManager] audioSourceLoad:[playlist objectAtIndex: currentTrack] channel:kASC_Right] retain];
 		currentMusic.delegate = self;
 		[currentMusic play];
 		currentTrack++;
@@ -107,6 +108,13 @@ static HPSound *sharedSound;
 	}
 	playlist = [tempPlaylist retain];
 	[self playMusic];
+}
+
+- (void) dealloc {
+	[playlist release];
+	[engine release];
+	[currentMusic release];
+	[super dealloc];
 }
 
 @end

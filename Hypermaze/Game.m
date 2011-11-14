@@ -16,6 +16,24 @@
 
 @implementation Game
 
+@synthesize  tutorialLayer;
+
++ (CCScene *) sceneWithLogic:(HPLogic*) logic
+{
+	CCScene *scene = [CCScene node];
+	Game *layer = [[[Game alloc] initWithLogic: logic] autorelease];
+	[scene addChild: layer];
+	return scene;
+}
+
++ (CCScene *) sceneWithTutorial {
+	CCScene *scene = [CCScene node];
+	Game *layer = [[[Game alloc] initTutorial] autorelease];
+	[scene addChild: layer];
+	[layer.tutorialLayer openDialog: scene];
+	return scene;
+}
+
 - (CCMenuItem*) getLeftNArrow {
 	return  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]);
 }
@@ -100,7 +118,7 @@
 	CCMenuItemSprite *nwArrow = [Game createArrowWithName:@"iso_arrow_nw.png" target:self selector:@selector(onNW:)];
 	[nwArrow setPosition: ccp(0,arrowSize.height)];
 	CCMenuItemSprite *neArrow = [Game createArrowWithName:@"iso_arrow_ne.png" target:self selector:@selector(onNE:)];
-	[neArrow setPosition:  ccp(arrowSize.width * 2, arrowSize.height)];
+	[neArrow setPosition: ccp(arrowSize.width * 2, arrowSize.height)];
 	CCMenuItemSprite *swArrow = [Game createArrowWithName:@"iso_arrow_sw.png" target:self selector:@selector(onSW:)];
 	[swArrow setPosition: ccp(0,0)];
 	CCMenuItemSprite *seArrow = [Game createArrowWithName:@"iso_arrow_se.png" target:self selector:@selector(onSE:)];
@@ -116,8 +134,75 @@
 	return arrowsMenu;
 }
 
-- (void) changeMusicTrack {
-	//[[HPSound sharedSound] playMusic];
+- (void)disableAll {
+    //LEFT
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = NO; //N
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = NO; //NW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = NO; //NE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = NO; //SW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = NO; //SE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = NO; //S
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = NO; //CW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = NO; //CCW
+    
+    //RIGHT
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = NO; //N
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = NO; //NW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = NO; //NE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = NO; //SW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = NO; //SE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = NO; //S
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = NO; //CW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = NO; //CCW
+}
+
+- (void)enableN {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = YES; //N
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = YES; //N
+}
+
+- (void)enableNE {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = YES; //NE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = YES; //NE
+}
+
+- (void)enableNW {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = YES; //NW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = YES; //NW
+}
+
+- (void)enableS {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = YES; //S
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = YES;
+}
+
+- (void)enableSW {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = YES; //SW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = YES;
+}
+
+- (void)enableSE {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = YES; //SE
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = YES;
+}
+
+- (void)enableRotations {
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = YES; //CW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = YES; //CCW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = YES; //CW
+    ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = YES;
+}
+
+- (void)wireUpTutorialEvents {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableAll) name:TUT_DISABLE_ALL_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableN) name:TUT_ENABLE_N_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableNE) name:TUT_ENABLE_NE_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableNW) name:TUT_ENABLE_NW_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableS) name:TUT_ENABLE_S_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableSW) name:TUT_ENABLE_SW_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableSE) name:TUT_ENABLE_SE_EVENT object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableRotations) name:TUT_ENABLE_ROTATIONS_EVENT object:nil];
+	
 }
 
 -(id)initWithLogic: (HPLogic*) newLogic {
@@ -133,11 +218,11 @@
 		size = [[CCDirector sharedDirector] winSize];
 		middleScreen = ccp( size.width /2 , size.height/2 );
 		
-		mazeLayer = [[[HPMazeLayer alloc] initWithLogic: logic] retain];
+		mazeLayer = [[[HPMazeLayer alloc] initWithLogic: logic] autorelease];
 		mazeLayer.positionInPixels = ccp(-80,-85);
 		[self addChild: mazeLayer];
 		
-		compassArrow = [[CCSprite spriteWithFile:@"compass_arrow.png"] retain];
+		compassArrow = [CCSprite spriteWithFile:@"compass_arrow.png"];
 		compassArrow.opacity = 150;
 		compassArrow.anchorPoint = ccp(0.5, (-200.0+116.0/2.0)/116.0);
 		compassArrow.position = middleScreen;
@@ -145,10 +230,10 @@
 		compassArrow.visible = logic.showCompass;
 		[self addChild:compassArrow];
 		
-		infoPanel = [[InfoPanel alloc] initWithLogic:logic];
+		infoPanel = [[[InfoPanel alloc] initWithLogic:logic] autorelease];
 		[self addChild: infoPanel];
 		
-		interfaceLayer = [[CCLayer node] retain];
+		interfaceLayer = [CCLayer node];
 		
 		CCMenu *arrowsLeftMenu = [self createArrowSet];
 		arrowsLeftMenu.position = ccp(0,0);
@@ -160,106 +245,26 @@
 		
 		[self addChild: interfaceLayer];
 		
-		radialMenuLayer = [[RadialMenuLayer alloc] initWithLogic:logic game:self isInTutorial: isTutorial];
+		radialMenuLayer = [[[RadialMenuLayer alloc] initWithLogic:logic game:self isInTutorial: isTutorial] autorelease];
 		[self addChild: radialMenuLayer];
-		
 		if (isTutorial) {
-			tutorialLayer = [[TutorialLayer alloc] initWithGame:self radialMenu:radialMenuLayer];
+			[self wireUpTutorialEvents];
+			tutorialLayer = [[[TutorialLayer alloc] initWithGame:self radialMenu:radialMenuLayer] autorelease];
 			[self addChild: tutorialLayer];
-			[tutorialLayer openDialog:self];
+		} else {
+			tutorialLayer = nil;
 		}
-		
 		[[HPSound sharedSound] playGamePlaylist];
-		[self schedule:@selector(changeMusicTrack) interval:2];
 	}
 	return self;
 }
 
-- (void)wireUpTutorialEvents {
-  [[NSNotificationCenter defaultCenter] addObserverForName: TUT_DISABLE_ALL_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  //LEFT
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = NO; //N
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = NO; //NW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = NO; //NE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = NO; //SW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = NO; //SE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = NO; //S
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = NO; //CW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = NO; //CCW
-													  
-													  //RIGHT
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = NO; //N
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = NO; //NW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = NO; //NE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = NO; //SW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = NO; //SE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = NO; //S
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = NO; //CW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = NO; //CCW
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_N_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:0]).isEnabled = YES; //N
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:0]).isEnabled = YES; //N
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_NE_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:2]).isEnabled = YES; //NE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:2]).isEnabled = YES; //NE
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_NW_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:1]).isEnabled = YES; //NW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:1]).isEnabled = YES; //NW
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_S_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:5]).isEnabled = YES; //S
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:5]).isEnabled = YES; //S
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SW_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:3]).isEnabled = YES; //SW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:3]).isEnabled = YES; //SW
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_SE_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:4]).isEnabled = YES; //SE
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:4]).isEnabled = YES; //SE
-												  }];
-	[[NSNotificationCenter defaultCenter] addObserverForName: TUT_ENABLE_ROTATIONS_EVENT
-													  object: nil
-													   queue: nil
-												  usingBlock: ^(NSNotification* noification){
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:6]).isEnabled = YES; //CW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:0]).children objectAtIndex:7]).isEnabled = YES; //CCW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:6]).isEnabled = YES; //CW
-													  ((CCMenuItem*)[((CCMenu*)[interfaceLayer.children objectAtIndex:1]).children objectAtIndex:7]).isEnabled = YES; //CCW
-												  }];
-
-}
 - (id) initTutorial {
-	[self wireUpTutorialEvents];
 	NSString* filePath = [[PathBuilder resourceDirectory] stringByAppendingPathComponent: TUTORIAL_DATA_FILE];
-	NSLog(@"%@", filePath);
-	HPLogic* tutorialLogic = [[NSKeyedUnarchiver unarchiveObjectWithFile: filePath] autorelease];
+	HPLogic* tutorialLogic = [NSKeyedUnarchiver unarchiveObjectWithFile: filePath];
 	isTutorial = true;
-	return [self initWithLogic: tutorialLogic];
+	[self initWithLogic: tutorialLogic];
+	return self;
 }
 
 - (void) saveGame {
@@ -385,10 +390,10 @@
 	infoPanel.visible = NO;
 	radialMenuLayer.visible = NO;
 	interfaceLayer.visible = NO;
-	[self addChild: [[FinishLayer alloc] initWithLogic: logic]];
+	[self addChild: [[[FinishLayer alloc] initWithLogic: logic] autorelease]];
 	NSError* error;
 	if (![[NSFileManager defaultManager] removeItemAtPath:[PathBuilder savedGameDirectory:[logic.beginDate description]] error: &error]) {
-		NSLog(@"%@", error);
+		NSLog(@"%@", [error description]);
 	}
 	[[HPAchievementsManager sharedAchievementsManager] increaseWinCountForMazeSize: logic.maze.size];
 	[[HPLeaderboardsManager sharedLeaderboardsManager] postTime:[logic.gameState getTimeElapsed] forMaze:logic.maze.size];
@@ -403,14 +408,11 @@
 }
 
 -(void) dealloc {
-	[mazeLayer release];
 	[logic release];
-	[interfaceLayer release];
-	[tutorialLayer release];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_POSITION_CHANGED object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_ROTATED object:nil];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:EVENT_VIEW_CHANGED object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver: self];
 	[super dealloc];
+	[[CCSpriteFrameCache sharedSpriteFrameCache] removeUnusedSpriteFrames];
+	[[CCDirector sharedDirector] purgeCachedData];
 }
 
 @end

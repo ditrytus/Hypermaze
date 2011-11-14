@@ -29,7 +29,7 @@ previousTimeElapsed: (int) prevElapsed {
 		hasFinished = finished;
 		currentPosition = point;
 		previousTimeElapsed = prevElapsed;
-		maze = [_maze retain];
+		maze = _maze;
     }
     return self;
 }
@@ -67,29 +67,27 @@ previousTimeElapsed: (int) prevElapsed {
 
 - (void) dealloc {
 	[lastResume release];
-	[maze release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeInt32:movesMade forKey:@"movesMade"];
-	[encoder encodeDouble:previousTimeElapsed forKey:@"previousTimeElapsed"];
-	[encoder encodeObject:maze forKey:@"maze"];
+	[encoder encodeDouble:[self getTimeElapsed] forKey:@"previousTimeElapsed"];
+	[encoder encodeConditionalObject:maze forKey:@"maze"];
 	[encoder encodeObject:
-	[NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)]
-				   forKey:@"currentPosition"];
+	 [NSData dataWithBytes: &currentPosition length:sizeof(currentPosition)]
+				   forKey: @"currentPosition"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	FS3DPoint position;
 	[((NSData*)[decoder decodeObjectForKey:@"currentPosition"]) getBytes:&position];
-	NSLog(@"%@",[[self class] description]);
-	return [[HPGameState alloc] initWithMaze: [decoder decodeObjectForKey:@"maze"]
-								   movesMade: [decoder decodeInt32ForKey:@"movesMade"]
-								  lastResume: [NSDate date]
-								 hasFinished: NO
-							 currentPosition: position
-						 previousTimeElapsed: [decoder decodeDoubleForKey:@"previousTimeElapsed"]];
+	return [self initWithMaze: [decoder decodeObjectForKey:@"maze"]
+					movesMade: [decoder decodeInt32ForKey:@"movesMade"]
+				   lastResume: [NSDate date]
+				  hasFinished: NO
+		      currentPosition: position
+		  previousTimeElapsed: [decoder decodeDoubleForKey:@"previousTimeElapsed"]];
 }
 
 - (void) reset {

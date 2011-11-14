@@ -27,7 +27,6 @@
 -(void) dealloc {
 	[solution release];
 	for (int i=0; i<size; i++) {
-		topology[i] = (Byte**) malloc(size*sizeof(Byte*));
 		for (int j=0; j<size; j++) {
 			free(topology[i][j]);
 		}
@@ -70,7 +69,6 @@
 			}
 		}
 	}
-	NSLog(@"%@",[[self class] description]);
 	return [self initWithTopology: arrayWithTopology
 							 size: decodedSize
 						 solution: [decoder decodeObjectForKey:@"solution"]];

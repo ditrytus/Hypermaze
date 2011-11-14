@@ -16,6 +16,7 @@
 #import "HPPathFinder.h"
 
 #define MOLE_MAX_LENGTH 20
+#define MOLE_MIN_LENGTH 2
 
 FS3DPoint getNextFreeChamber(Byte ***topology, int size) {
 	for (int i=0; i<size; i++) {
@@ -81,6 +82,11 @@ void digEntranceAndExit(Byte ***topology,int size) {
 	crushWallInDirection(topology, point3D(size-1, size-1, size-1), dirNorthWest);
 
 }
+- (int) randomMoleLength {
+    int moleMax = arc4random() % (MOLE_MAX_LENGTH - MOLE_MIN_LENGTH) + MOLE_MIN_LENGTH;
+    return moleMax;
+}
+
 - (void) generateMazeInSize: (int) size {
 	status = genWorking;
 	Byte ***topology = initTopology(size);
@@ -90,7 +96,7 @@ void digEntranceAndExit(Byte ***topology,int size) {
 	int moleLength = 0;
 	FS3DPoint molePosition = BEGIN_POINT;
 	HPDirection* allDirections = [HPDirectionUtil getAllDirections];
-	int moleMax = arc4random() % MOLE_MAX_LENGTH;
+	int moleMax = [self randomMoleLength];
 	do {
 		moleLength++;
 		[NSThread sleepForTimeInterval:0.00005]; 
@@ -129,7 +135,7 @@ void digEntranceAndExit(Byte ***topology,int size) {
 		} else {
 			molePosition = getNextFreeChamber(topology, size);
 			moleLength = 0;
-			moleMax = arc4random() % MOLE_MAX_LENGTH;
+			moleMax = [self randomMoleLength];
 		}
 	} while (totalChambers > diggedChambers);
 	digEntranceAndExit(topology,size);
@@ -147,7 +153,7 @@ void digEntranceAndExit(Byte ***topology,int size) {
 }
 
 - (HPMaze*) getMaze {
-	return [maze autorelease];
+	return maze;
 }
 
 -(void)dealloc {

@@ -24,7 +24,7 @@
     self = [super initWithSize:size];
     if (self) {
 		numOfVisited = 0;
-		gameState = [state retain];
+		gameState = state;
 		[self markPositionAsVisited];
     }
     
@@ -36,21 +36,19 @@
 }
 
 -(void) dealloc {
-	[gameState release];
 	[super dealloc];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-	[super encodeWithCoder:encoder];
-	[encoder encodeInt32:numOfVisited forKey:@"numOfVisited"];
-	[encoder encodeObject:gameState forKey:@"gameState"];
+	[super encodeWithCoder: encoder];
+	[encoder encodeInt32: numOfVisited forKey:@"numOfVisited"];
+	[encoder encodeConditionalObject: gameState forKey:@"gameState"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
 	self = [super initWithCoder:decoder];
-	numOfVisited = [decoder decodeInt32ForKey:@"numOfVisited"];
-	gameState = [[decoder decodeObjectForKey:@"gameState"] retain];
-	NSLog(@"%@",[[self class] description]);
+	numOfVisited = [decoder decodeInt32ForKey: @"numOfVisited"];
+	gameState = [decoder decodeObjectForKey: @"gameState"];
 	return self;
 }
 

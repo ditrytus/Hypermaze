@@ -10,7 +10,7 @@
 
 @implementation NSArray (Reverse)
 
-- (NSArray *)reversedArray {
+- (NSArray *) reversedArray {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:[self count]];
     NSEnumerator *enumerator = [self reverseObjectEnumerator];
     for (id element in enumerator) {

@@ -34,7 +34,7 @@ closeOnOverlayTouch: (bool) closeOverlay
 			[overlayBkg beginWithClear:0 g:0 b:0 a:0.5];
 			[overlayBkg end];
 			
-			overlay = [[CCSprite spriteWithTexture:overlayBkg.sprite.texture] retain];
+			overlay = [CCSprite spriteWithTexture:overlayBkg.sprite.texture];
 			overlay.position = ccp(winSize.width/2.0, winSize.height/2.0);
 			[overlay setOpacity:0];
 			[self addChild: overlay];
@@ -70,13 +70,13 @@ closeOnOverlayTouch: (bool) closeOverlay
 		[bottomRight visit];
 		[bottomLeft visit];
 		[windowBkg end];
-		dialogWindow = [[CCSprite spriteWithTexture:windowBkg.sprite.texture] retain];
+		dialogWindow = [CCSprite spriteWithTexture:windowBkg.sprite.texture];
 		dialogWindow.position = point;
 		[dialogWindow setOpacity:0];
 		dialogWindow.scale = 0.75;
 		if (showCloseButton) {
-			closeButton = [[CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"close_button.png"] selectedSprite:nil target:self selector: @selector(close)] retain];
-			closeMenu = [[CCMenu menuWithItems:closeButton, nil] retain];
+			closeButton = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"close_button.png"] selectedSprite:nil target:self selector: @selector(close)];
+			closeMenu = [CCMenu menuWithItems:closeButton, nil];
 			closeMenu.anchorPoint = ccp(1,1);
 			closeMenu.position = ccp(size.width - 10, size.height - 10);
 			[dialogWindow addChild: closeMenu];
@@ -94,10 +94,12 @@ closeOnOverlayTouch: (bool) closeOverlay
 			for (id result1 in ((CCMenu *)result).children) {
 				if ([result1 isKindOfClass:[CCMenuItem class]]) {
 					if (_enable) {
-						((CCMenuItem *)result1).isEnabled = [((NSNumber*)[enabilityCache objectForKey:[NSString stringWithFormat:@"%d",result1]]) boolValue];
+						NSString* key = [NSString stringWithFormat:@"%d",result1];
+						if ([enabilityCache objectForKey:key]) {
+							((CCMenuItem *)result1).isEnabled = [((NSNumber*)[enabilityCache objectForKey:key]) boolValue];
+						}
 					} else {
 						NSString* menuItemKey = [NSString stringWithFormat:@"%d",result1, nil];
-						NSLog(@"%@", menuItemKey);
 						[enabilityCache setValue:[NSNumber numberWithBool:((CCMenuItem *)result1).isEnabled ] forKey:menuItemKey];
 						((CCMenuItem *)result1).isEnabled = NO;
 					}
@@ -113,7 +115,11 @@ closeOnOverlayTouch: (bool) closeOverlay
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:-100 swallowsTouches:YES];
 }
 
-- (void) openInScene: (CCScene*) scene {
+- (void) openInScene: (CCScene*) newScene {
+	if (scene!=nil) {
+		NSLog(@"Próba otwarcia okna dialogowego gdy jest już wyświetlnone");
+	}
+	scene = newScene;
 	if (isModal) {
 		[self menuStatus:NO node:scene];
 	}
@@ -136,10 +142,9 @@ closeOnOverlayTouch: (bool) closeOverlay
 	   [CCFadeOut actionWithDuration:ANIMATION_DURATION],
 	   nil],
 	  [CCCallBlock actionWithBlock:^(){
-		 CCNode* parent = self.parent;
-		 [parent removeChild: self cleanup:NO];
+		[self removeFromParentAndCleanup: YES];
 		 if (isModal) {
-			 [self menuStatus:YES node:parent];
+			 [self menuStatus:YES node:scene];
 		 }
 	  }],
 	  nil]];
@@ -184,10 +189,7 @@ closeOnOverlayTouch: (bool) closeOverlay
 
 - (void) dealloc {
 	[enabilityCache release];
-	[dialogWindow release];
-	[overlay release];
-	[closeButton release];
-	[closeMenu release];
+	[primaryTouch release];
 	[super dealloc];
 }
 

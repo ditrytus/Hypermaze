@@ -7,11 +7,9 @@
 //
 
 #import "HPVisitedMask.h"
-#import "HPMaze.h"
 
 @interface HPPositionMask : HPVisibilityMask {
 	HPGameState* gameState;
-	HPMaze* maze;
 }
 
 - (id)initWithGameState: (HPGameState*) state;

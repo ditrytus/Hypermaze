@@ -44,7 +44,6 @@
 	self = [super initWithCoder:decoder];
 	mask = [[decoder decodeObjectForKey:@"mask"] retain];
 	composite = [[decoder decodeObjectForKey:@"composite"] retain];
-	NSLog(@"%@",[[self class] description]);
 	return self;
 }
 

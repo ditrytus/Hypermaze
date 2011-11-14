@@ -51,6 +51,8 @@ static HPAchievementsManager* sharedAchievementsManager;
 				[achievementsDict setObject: achievement forKey: achievement.identifier];
 			}
 			areAchievementsLoaded = YES;
+		} else {
+			NSLog(@"%@", [error description]);
 		}
 	}];
 }

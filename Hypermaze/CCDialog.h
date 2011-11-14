@@ -20,6 +20,7 @@
 	CGPoint previousTouchPosition;
 	CCMenu* closeMenu;
 	NSMutableDictionary* enabilityCache;
+	CCScene* scene; //Weak
 }
 
 @property(nonatomic,readonly) CCSprite* dialogWindow;

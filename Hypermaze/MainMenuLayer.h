@@ -40,7 +40,6 @@
 	CCMenu *progressMenu;
 	CCMenu *newGameMenu;
 	CCMenu *gameSettingsMenu;
-	CCLayer *resumeGameLayer;
 	CCMenu *resumeGameMenu;
 	CCSprite *title;
 	CCSprite *background;
