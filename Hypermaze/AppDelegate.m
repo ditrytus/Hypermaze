@@ -53,7 +53,7 @@
 	
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-    viewController.wantsFullScreenLayout = YES;
+    viewController.edgesForExtendedLayout = UIRectEdgeAll;
 	
 	//
 	// Create the EAGLView manually
