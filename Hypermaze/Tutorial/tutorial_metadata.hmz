@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beginDate</key>
+	<date>2011-10-20T08:54:53Z</date>
+	<key>movesMade</key>
+	<integer>0</integer>
+	<key>numOfVisited</key>
+	<integer>1</integer>
+	<key>size</key>
+	<integer>5</integer>
+	<key>timeElapsed</key>
+	<real>0.0</real>
+	<key>totalChambers</key>
+	<integer>125</integer>
+</dict>
+</plist>

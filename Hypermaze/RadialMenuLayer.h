@@ -10,7 +10,6 @@
 #import "cocos2d.h"
 #import "FSRadialAligner.h"
 #import "HPLogic.h"
-#import "RadialMenuParticleSystem.h"
 #import "TutorialLayer.h"
 #import "HPSound.h"
 

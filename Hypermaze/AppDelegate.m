@@ -53,7 +53,7 @@
 	
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
-	viewController.wantsFullScreenLayout = YES;
+    viewController.wantsFullScreenLayout = YES;
 	
 	//
 	// Create the EAGLView manually
@@ -96,7 +96,8 @@
 	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+    // test test
+	[window setRootViewController: viewController];
 	
 	[window makeKeyAndVisible];
 	

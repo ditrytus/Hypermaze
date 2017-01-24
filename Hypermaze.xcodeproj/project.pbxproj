@@ -275,6 +275,9 @@
 		3BF8DBB113FFC949006B16C1 /* RadialMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */; };
 		3BF8DBB613FFCE56006B16C1 /* interface.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB413FFCE56006B16C1 /* interface.plist */; };
 		3BF8DBB713FFCE56006B16C1 /* interface.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB513FFCE56006B16C1 /* interface.png */; };
+		43198B101E37F3B90059E05E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */; };
+		43198B111E37F3B90059E05E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0C1E37F3B90059E05E /* Default.png */; };
+		43198B121E37F3B90059E05E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0D1E37F3B90059E05E /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -722,6 +725,9 @@
 		3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadialMenuLayer.m; sourceTree = "<group>"; };
 		3BF8DBB413FFCE56006B16C1 /* interface.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = interface.plist; sourceTree = "<group>"; };
 		3BF8DBB513FFCE56006B16C1 /* interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interface.png; sourceTree = "<group>"; };
+		43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
+		43198B0C1E37F3B90059E05E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		43198B0D1E37F3B90059E05E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -764,6 +770,9 @@
 		3B1DDF9613D185530006E818 /* Splashscreens */ = {
 			isa = PBXGroup;
 			children = (
+				43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */,
+				43198B0C1E37F3B90059E05E /* Default.png */,
+				43198B0D1E37F3B90059E05E /* Default@2x.png */,
 				3B72C018147060E700896226 /* Default-LandscapeRight.png */,
 				3B72C019147060E700896226 /* Default-LandscapeLeft.png */,
 				3B1DDF9213D183910006E818 /* Default-Landscape.png */,
@@ -1475,7 +1484,7 @@
 		3B43E1F213D0A71D006AF368 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0820;
 			};
 			buildConfigurationList = 3B43E1F513D0A71D006AF368 /* Build configuration list for PBXProject "Hypermaze" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1529,6 +1538,7 @@
 				3B7E1BEC13E44B4000D80D8F /* iso_arrow_sw.png in Resources */,
 				3BF8DBB613FFCE56006B16C1 /* interface.plist in Resources */,
 				3BF8DBB713FFCE56006B16C1 /* interface.png in Resources */,
+				43198B101E37F3B90059E05E /* Default-Portrait~ipad.png in Resources */,
 				3B3DA05414093646004AFBCD /* slider_off_pink.png in Resources */,
 				3B3DA05514093646004AFBCD /* slider_off_yellow.png in Resources */,
 				3B3DA05614093646004AFBCD /* slider_on_pink.png in Resources */,
@@ -1591,6 +1601,7 @@
 				3BE5E31D145C5F8A00E23C35 /* footsteps-14.wav in Resources */,
 				3BE5E320145C641B00E23C35 /* button-30.wav in Resources */,
 				3BE5E321145C641B00E23C35 /* button-46.wav in Resources */,
+				43198B121E37F3B90059E05E /* Default@2x.png in Resources */,
 				3BE5E323145C64E900E23C35 /* button-50.wav in Resources */,
 				3B760D27145D693200410F0E /* button-49.wav in Resources */,
 				3B760D2B145D6A8B00410F0E /* applause.wav in Resources */,
@@ -1606,6 +1617,7 @@
 				3B7AEF9714601F96007FF8B3 /* progress_menu.png in Resources */,
 				3B72C01A147060E700896226 /* Default-LandscapeRight.png in Resources */,
 				3B72C01B147060E700896226 /* Default-LandscapeLeft.png in Resources */,
+				43198B111E37F3B90059E05E /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1790,8 +1802,9 @@
 		3B43E36513D0A71F006AF368 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1802,7 +1815,8 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1810,14 +1824,14 @@
 		3B43E36613D0A71F006AF368 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
@@ -1839,8 +1853,9 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.foundation-software.hypermaze";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -1862,8 +1877,9 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.foundation-software.hypermaze";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
