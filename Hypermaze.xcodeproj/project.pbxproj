@@ -200,8 +200,6 @@
 		3B7AEF9614601F96007FF8B3 /* progress_menu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B7AEF9414601F96007FF8B3 /* progress_menu.plist */; };
 		3B7AEF9714601F96007FF8B3 /* progress_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7AEF9514601F96007FF8B3 /* progress_menu.png */; };
 		3B7AEF9914602682007FF8B3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7AEF9814602682007FF8B3 /* GameKit.framework */; };
-		3B7AEF9C14602772007FF8B3 /* HPGameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AEF9B14602772007FF8B3 /* HPGameCenter.m */; };
-		3B7AEF9F146070A2007FF8B3 /* HPAchievementsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7AEF9E146070A2007FF8B3 /* HPAchievementsManager.m */; };
 		3B7E1BDF13E4158400D80D8F /* HPGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E1BDE13E4158400D80D8F /* HPGameState.m */; };
 		3B7E1BE713E44B4000D80D8F /* iso_arrow_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE113E44B4000D80D8F /* iso_arrow_n.png */; };
 		3B7E1BE813E44B4000D80D8F /* iso_arrow_ne.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E1BE213E44B4000D80D8F /* iso_arrow_ne.png */; };
@@ -224,7 +222,6 @@
 		3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */; };
 		3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */; };
 		3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */; };
-		3BA4944214633C1D00D26037 /* HPLeaderboardsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA4944114633C1D00D26037 /* HPLeaderboardsManager.m */; };
 		3BA55998144341DE00ED02D3 /* back_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55995144341DE00ED02D3 /* back_cloud.png */; };
 		3BA55999144341DE00ED02D3 /* summary_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55996144341DE00ED02D3 /* summary_cloud.png */; };
 		3BA5599A144341DE00ED02D3 /* congratulation_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55997144341DE00ED02D3 /* congratulation_cloud.png */; };
@@ -624,10 +621,6 @@
 		3B7AEF9414601F96007FF8B3 /* progress_menu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = progress_menu.plist; sourceTree = "<group>"; };
 		3B7AEF9514601F96007FF8B3 /* progress_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress_menu.png; sourceTree = "<group>"; };
 		3B7AEF9814602682007FF8B3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		3B7AEF9A14602772007FF8B3 /* HPGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGameCenter.h; sourceTree = "<group>"; };
-		3B7AEF9B14602772007FF8B3 /* HPGameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGameCenter.m; sourceTree = "<group>"; };
-		3B7AEF9D146070A1007FF8B3 /* HPAchievementsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPAchievementsManager.h; sourceTree = "<group>"; };
-		3B7AEF9E146070A2007FF8B3 /* HPAchievementsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPAchievementsManager.m; sourceTree = "<group>"; };
 		3B7E1BDB13E414A100D80D8F /* HPMoveHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPMoveHandler.h; sourceTree = "<group>"; };
 		3B7E1BDD13E4158400D80D8F /* HPGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGameState.h; sourceTree = "<group>"; };
 		3B7E1BDE13E4158400D80D8F /* HPGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPGameState.m; sourceTree = "<group>"; };
@@ -659,8 +652,6 @@
 		3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPPathFinder.m; path = ../HPPathFinder.m; sourceTree = "<group>"; };
 		3B9CEEC71409173B0089ADF3 /* HPCheckpointMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCheckpointMask.h; sourceTree = "<group>"; };
 		3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCheckpointMask.m; sourceTree = "<group>"; };
-		3BA4944014633C1D00D26037 /* HPLeaderboardsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPLeaderboardsManager.h; sourceTree = "<group>"; };
-		3BA4944114633C1D00D26037 /* HPLeaderboardsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPLeaderboardsManager.m; sourceTree = "<group>"; };
 		3BA55995144341DE00ED02D3 /* back_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_cloud.png; sourceTree = "<group>"; };
 		3BA55996144341DE00ED02D3 /* summary_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = summary_cloud.png; sourceTree = "<group>"; };
 		3BA55997144341DE00ED02D3 /* congratulation_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = congratulation_cloud.png; sourceTree = "<group>"; };
@@ -969,12 +960,6 @@
 				3B89FAA41449A322001A08B1 /* TutorialLayer.m */,
 				3B760D22145D629900410F0E /* HPSound.h */,
 				3B760D23145D629900410F0E /* HPSound.m */,
-				3B7AEF9A14602772007FF8B3 /* HPGameCenter.h */,
-				3B7AEF9B14602772007FF8B3 /* HPGameCenter.m */,
-				3B7AEF9D146070A1007FF8B3 /* HPAchievementsManager.h */,
-				3B7AEF9E146070A2007FF8B3 /* HPAchievementsManager.m */,
-				3BA4944014633C1D00D26037 /* HPLeaderboardsManager.h */,
-				3BA4944114633C1D00D26037 /* HPLeaderboardsManager.m */,
 			);
 			path = Hypermaze;
 			sourceTree = "<group>";
@@ -1778,9 +1763,6 @@
 				3BE5E2D4145C5E6200E23C35 /* CocosDenshion.m in Sources */,
 				3BE5E2D5145C5E6200E23C35 /* SimpleAudioEngine.m in Sources */,
 				3B760D24145D629900410F0E /* HPSound.m in Sources */,
-				3B7AEF9C14602772007FF8B3 /* HPGameCenter.m in Sources */,
-				3B7AEF9F146070A2007FF8B3 /* HPAchievementsManager.m in Sources */,
-				3BA4944214633C1D00D26037 /* HPLeaderboardsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

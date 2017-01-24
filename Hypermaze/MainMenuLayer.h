@@ -10,14 +10,11 @@
 #import "cocos2d.h"
 #import "SimpleAudioEngine.h"
 #import "CCScrollLayer.h"
-#import "HPGameCenter.h"
 #import "PathBuilder.h"
 
 @interface MainMenuLayer : CCLayer {
 	BOOL isInTrasition;
 	bool hasSavedGames;
-	bool isInProgressMenu;
-	bool isProgressMenuEnable;
 	int resumeGameMenuPos;
 	NSMutableArray* savedGames;
 	NSMutableArray* resumeItems;
@@ -37,7 +34,6 @@
 	CCAction *jumpDown;
 	CCMenu *mainMenu;
 	CCMenu *optionsMenu;
-	CCMenu *progressMenu;
 	CCMenu *newGameMenu;
 	CCMenu *gameSettingsMenu;
 	CCMenu *resumeGameMenu;
@@ -46,18 +42,12 @@
 	CCMenuItemToggle *sizeItem;
 	CCMenuItemSprite* resumeButton;
 	
-	CCMenuItemSprite* progressButton;
-	CCMenuItemSprite* leaderboardsButton;
-	CCMenuItemSprite* achievementsButton;
-	
 	CGPoint menuBeginLocation;
 	CGPoint middleScreen;
 	CGPoint titleLocation;
 }
 
 +(CCScene *) scene;
-
-@property BOOL isProgressMenuEnable;
 
 - (void) onGameDeleteConfirm: (NSNotification*) notification;
 

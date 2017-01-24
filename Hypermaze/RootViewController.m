@@ -142,16 +142,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)achievementViewControllerDidFinish:(GKAchievementViewController*) viewController
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (void)dealloc {
     [super dealloc];
 }

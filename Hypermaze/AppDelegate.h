@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HPGameCenter.h"
-#import "HPAchievementsManager.h"
-#import "HPLeaderboardsManager.h"
 #import "HPConfiguration.h"
 #import "HPSound.h"
 #import "Game.h"

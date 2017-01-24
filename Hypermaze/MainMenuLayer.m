@@ -338,14 +338,11 @@ const int RESUME_ITEMS_MARGIN = 40;
 	CCMenuItemSprite *tutorialButton = [self menuItemSpriteFromNormalFrameName:@"tutorial_off_en.png"
 															  selectedFameName:@"tutorial_on_en.png"
 																	  selector:@selector(onTutorialClick:)];
-	progressButton = [self menuItemSpriteFromNormalFrameName:@"progress_off_en.png"
-															  selectedFameName:@"progress_on_en.png"
-																	  selector:@selector(onProgressClick:)];
-	progressButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
+
 	CCMenuItemSprite *optionsButton = [self menuItemSpriteFromNormalFrameName:@"options_off_en.png"
 															 selectedFameName:@"options_on_en.png"
 																	 selector:@selector(onOptionsClick:)];
-	mainMenu = [CCMenu menuWithItems: resumeButton, newGameButton, tutorialButton, progressButton, optionsButton, nil];
+	mainMenu = [CCMenu menuWithItems: resumeButton, newGameButton, tutorialButton, optionsButton, nil];
 	mainMenu.position = menuBeginLocation;
 	[mainMenu setOpacity: 0];
 	[mainMenu alignItemsInColumns: 
@@ -391,30 +388,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 	 [NSNumber numberWithInt:1],
 	 nil];
 	[self addChild: optionsMenu];
-}
-
-- (void) initProgressMenu {
-	leaderboardsButton = [self menuItemSpriteFromNormalFrameName:@"leaderboards_off_en.png"
-																  selectedFameName:@"leaderboards_on_en.png"
-																	 selector:@selector(onLeaderboardsClick:)];
-	leaderboardsButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
-	achievementsButton = [self menuItemSpriteFromNormalFrameName:@"achievements_off_en.png"
-																  selectedFameName:@"achievements_on_en.png"
-																	  selector:@selector(onAchievementsClick:)];
-	achievementsButton.isEnabled = [[HPGameCenter sharedGameCenter] isGameCenterAvailable];
-	CCMenuItemSprite* backItem = [self menuItemSpriteFromNormalFrameName:@"back_off_en.png"
-														selectedFameName:@"back_on_en.png"
-																selector:@selector(onBackFromProgressClick:)];
-	progressMenu = [CCMenu menuWithItems:leaderboardsButton, achievementsButton, backItem, nil];
-	progressMenu.position = menuBeginLocation;
-	[progressMenu setOpacity: 0];
-	progressMenu.visible = YES;
-	[progressMenu alignItemsInColumns: 
-	 [NSNumber numberWithInt:1],
-	 [NSNumber numberWithInt:1],
-	 [NSNumber numberWithInt:1],
-	 nil];
-	[self addChild: progressMenu];
 }
 
 -(void) initNewGameMenu {
@@ -605,25 +578,9 @@ const int RESUME_ITEMS_MARGIN = 40;
 	  nil]];
 }
 
-- (void) onLocalPlayerAuthorised: (NSNotification*) notification {
-	self.isProgressMenuEnable = YES;
-}
-
-- (void) onLocalPlayerNotAuthorised: (NSNotification*) notification {
-	self.isProgressMenuEnable = NO;
-}
-
 -(id) init
 {
 	if((self=[super init])) {
-		[[NSNotificationCenter defaultCenter] addObserver: self
-												 selector: @selector(onLocalPlayerAuthorised:)
-													 name: EVENT_LOCAL_PLAYER_AUTHORISED
-												   object: [HPGameCenter sharedGameCenter]];
-		[[NSNotificationCenter defaultCenter] addObserver: self
-												 selector: @selector(onLocalPlayerNotAuthorised:)
-													 name:EVENT_LOCAL_PLAYER_NOT_AUTHORISED
-												   object: [HPGameCenter sharedGameCenter]];
 		[[HPSound sharedSound] preloadSounds];
 		[[HPSound sharedSound] playMainMenuPlaylist];
 		[self initActions];	
@@ -635,7 +592,6 @@ const int RESUME_ITEMS_MARGIN = 40;
 		[self initOptionsMenu];
 		[self initNewGameMenu];
 		[self initGameSettingsMenu];
-		[self initProgressMenu];
 		[self startBeginAnimation];
 	}
 	return self;
@@ -673,14 +629,6 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	[[CCDirector sharedDirector] replaceScene: [CCTransitionCrossFade transitionWithDuration:0.5 scene:[LoadingLayer scene]]];
 }
 
-- (void) onLeaderboardsClick: (CCMenuItem*) menuItem {
-	[[HPGameCenter sharedGameCenter] showLeaderboard];
-}
-
-- (void) onAchievementsClick: (CCMenuItem*) menuItem {
-	[[HPGameCenter sharedGameCenter] showAchievements];
-}
-
 - (void) onBackFromGameSettingsClick: (CCMenuItem  *) menuItem 
 {
 	[self goBackTo: mainMenu from: gameSettingsMenu];
@@ -698,13 +646,6 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 {
 	[self goBackTo: mainMenu from: newGameMenu];
 }
-
-- (void) onBackFromProgressClick: (CCMenuItem*) menuItem {
-	[self goBackTo: mainMenu from: progressMenu];
-	isInProgressMenu = NO;
-}
-
-
 
 - (void) onResumeClick: (CCMenuItem  *) menuItem 
 {
@@ -896,12 +837,6 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 	[self goTo: gameSettingsMenu from: mainMenu];
 }
 
-
-- (void) onProgressClick: (CCMenuItem*) menuItem {
-	[self goTo: progressMenu from:mainMenu];
-	isInProgressMenu = YES;
-}
-
 - (void) onTutorialClick: (CCMenuItem  *) menuItem 
 {
 	[[CCDirector sharedDirector] replaceScene:
@@ -986,31 +921,6 @@ void UpdateDifficultyConfig(CCMenuItemToggle *sizeItem) {
 		  }],
 		  nil]];
 	}
-}
-
-- (void) setIsProgressMenuEnable: (BOOL) isEnable {
-	if (isEnable) {
-		if (!isProgressMenuEnable) {
-			isProgressMenuEnable = isEnable;
-			progressButton.isEnabled = YES;
-			leaderboardsButton.isEnabled = YES;
-			achievementsButton.isEnabled = YES;
-		}
-	} else {
-		if (isProgressMenuEnable) {
-			isProgressMenuEnable = isEnable;
-			progressButton.isEnabled = NO;
-			leaderboardsButton.isEnabled = NO;
-			achievementsButton.isEnabled = NO;
-		}
-		if (isInProgressMenu) {
-			[self onBackFromProgressClick:nil];
-		}
-	}
-}
-
-- (BOOL) isProgressMenuEnable {
-	return isProgressMenuEnable;
 }
 
 - (void) dealloc

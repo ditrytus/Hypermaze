@@ -395,8 +395,6 @@
 	if (![[NSFileManager defaultManager] removeItemAtPath:[PathBuilder savedGameDirectory:[logic.beginDate description]] error: &error]) {
 		NSLog(@"%@", [error description]);
 	}
-	[[HPAchievementsManager sharedAchievementsManager] increaseWinCountForMazeSize: logic.maze.size];
-	[[HPLeaderboardsManager sharedLeaderboardsManager] postTime:[logic.gameState getTimeElapsed] forMaze:logic.maze.size];
 }
 
 - (void) pause {
