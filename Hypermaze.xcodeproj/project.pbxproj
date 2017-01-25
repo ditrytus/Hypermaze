@@ -1470,6 +1470,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					3B43E1FA13D0A71D006AF368 = {
+						DevelopmentTeam = BN47TH24AR;
+					};
+				};
 			};
 			buildConfigurationList = 3B43E1F513D0A71D006AF368 /* Build configuration list for PBXProject "Hypermaze" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1824,6 +1829,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = BN47TH24AR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1837,7 +1843,7 @@
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foundation-software.hypermaze";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gruszecki.hypermaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -1849,6 +1855,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = BN47TH24AR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1861,7 +1868,7 @@
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foundation-software.hypermaze";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gruszecki.hypermaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
