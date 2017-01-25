@@ -473,7 +473,7 @@
 {
 	[super startWithTarget:aTarget];
 	
-	startAngle_ = [target_ rotation];
+	startAngle_ = [(CCNode*)target_ rotation];
 	if (startAngle_ > 0)
 		startAngle_ = fmodf(startAngle_, 360.0f);
 	else
@@ -487,7 +487,7 @@
 }
 -(void) update: (ccTime) t
 {
-	[target_ setRotation: startAngle_ + diffAngle_ * t];
+	[(CCNode*)target_ setRotation: startAngle_ + diffAngle_ * t];
 }
 @end
 
@@ -521,13 +521,13 @@
 -(void) startWithTarget:(id)aTarget
 {
 	[super startWithTarget:aTarget];
-	startAngle_ = [target_ rotation];
+	startAngle_ = [(CCNode*)target_ rotation];
 }
 
 -(void) update: (ccTime) t
 {	
 	// XXX: shall I add % 360
-	[target_ setRotation: (startAngle_ +angle_ * t )];
+	[(CCNode*)target_ setRotation: (startAngle_ +angle_ * t )];
 }
 
 -(CCActionInterval*) reverse
