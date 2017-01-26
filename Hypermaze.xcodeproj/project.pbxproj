@@ -274,7 +274,6 @@
 		3BF8DBB713FFCE56006B16C1 /* interface.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB513FFCE56006B16C1 /* interface.png */; };
 		43198B101E37F3B90059E05E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */; };
 		43198B111E37F3B90059E05E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0C1E37F3B90059E05E /* Default.png */; };
-		43198B121E37F3B90059E05E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0D1E37F3B90059E05E /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -718,7 +717,6 @@
 		3BF8DBB513FFCE56006B16C1 /* interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interface.png; sourceTree = "<group>"; };
 		43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
 		43198B0C1E37F3B90059E05E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
-		43198B0D1E37F3B90059E05E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -763,7 +761,6 @@
 			children = (
 				43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */,
 				43198B0C1E37F3B90059E05E /* Default.png */,
-				43198B0D1E37F3B90059E05E /* Default@2x.png */,
 				3B72C018147060E700896226 /* Default-LandscapeRight.png */,
 				3B72C019147060E700896226 /* Default-LandscapeLeft.png */,
 				3B1DDF9213D183910006E818 /* Default-Landscape.png */,
@@ -1591,7 +1588,6 @@
 				3BE5E31D145C5F8A00E23C35 /* footsteps-14.wav in Resources */,
 				3BE5E320145C641B00E23C35 /* button-30.wav in Resources */,
 				3BE5E321145C641B00E23C35 /* button-46.wav in Resources */,
-				43198B121E37F3B90059E05E /* Default@2x.png in Resources */,
 				3BE5E323145C64E900E23C35 /* button-50.wav in Resources */,
 				3B760D27145D693200410F0E /* button-49.wav in Resources */,
 				3B760D2B145D6A8B00410F0E /* applause.wav in Resources */,
