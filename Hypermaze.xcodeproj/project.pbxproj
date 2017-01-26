@@ -155,7 +155,6 @@
 		3B43E35A13D0A71F006AF368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35913D0A71F006AF368 /* main.m */; };
 		3B43E35D13D0A71F006AF368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35C13D0A71F006AF368 /* AppDelegate.m */; };
 		3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E35F13D0A71F006AF368 /* RootViewController.m */; };
-		3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */; };
 		3B472F4C140A4D1A00545739 /* grass_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B472F4B140A4D1A00545739 /* grass_tile.png */; };
 		3B47C49D14122FC500FBC3F7 /* HPPositionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B47C49C14122FC500FBC3F7 /* HPPositionUtil.m */; };
 		3B47C4A014123FD300FBC3F7 /* rotateArrowClockwise.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B47C49E14123FD300FBC3F7 /* rotateArrowClockwise.png */; };
@@ -220,7 +219,6 @@
 		3B92C78613E32A3700C1A395 /* chambers_red.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78213E32A3700C1A395 /* chambers_red.plist */; };
 		3B92C78713E32A3700C1A395 /* chambers_yellow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B92C78313E32A3700C1A395 /* chambers_yellow.plist */; };
 		3B92C78A13E32DDD00C1A395 /* FSIsoSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */; };
-		3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */; };
 		3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */; };
 		3BA55998144341DE00ED02D3 /* back_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55995144341DE00ED02D3 /* back_cloud.png */; };
 		3BA55999144341DE00ED02D3 /* summary_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BA55996144341DE00ED02D3 /* summary_cloud.png */; };
@@ -274,6 +272,7 @@
 		3BF8DBB713FFCE56006B16C1 /* interface.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8DBB513FFCE56006B16C1 /* interface.png */; };
 		43198B101E37F3B90059E05E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */; };
 		43198B111E37F3B90059E05E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 43198B0C1E37F3B90059E05E /* Default.png */; };
+		43FA53CB1E3AADDC00C12418 /* HPPathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FA53CA1E3AADDC00C12418 /* HPPathFinder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -553,8 +552,6 @@
 		3B43E35C13D0A71F006AF368 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3B43E35E13D0A71F006AF368 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3B43E35F13D0A71F006AF368 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		3B43E36113D0A71F006AF368 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		3B43E36413D0A71F006AF368 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		3B472F4B140A4D1A00545739 /* grass_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass_tile.png; sourceTree = "<group>"; };
 		3B47C49B14122FC400FBC3F7 /* HPPositionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPositionUtil.h; sourceTree = "<group>"; };
@@ -647,8 +644,6 @@
 		3B92C78813E32DDD00C1A395 /* FSIsoSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSIsoSystem.h; sourceTree = "<group>"; };
 		3B92C78913E32DDD00C1A395 /* FSIsoSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSIsoSystem.m; sourceTree = "<group>"; };
 		3B9CEEC2140904490089ADF3 /* HPGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPGlobals.h; sourceTree = "<group>"; };
-		3B9CEEC4140905E20089ADF3 /* HPPathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HPPathFinder.h; path = ../HPPathFinder.h; sourceTree = "<group>"; };
-		3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HPPathFinder.m; path = ../HPPathFinder.m; sourceTree = "<group>"; };
 		3B9CEEC71409173B0089ADF3 /* HPCheckpointMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPCheckpointMask.h; sourceTree = "<group>"; };
 		3B9CEEC81409173B0089ADF3 /* HPCheckpointMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPCheckpointMask.m; sourceTree = "<group>"; };
 		3BA55995144341DE00ED02D3 /* back_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_cloud.png; sourceTree = "<group>"; };
@@ -717,6 +712,8 @@
 		3BF8DBB513FFCE56006B16C1 /* interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interface.png; sourceTree = "<group>"; };
 		43198B0B1E37F3B90059E05E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
 		43198B0C1E37F3B90059E05E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		43FA53C91E3AADDC00C12418 /* HPPathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPPathFinder.h; sourceTree = "<group>"; };
+		43FA53CA1E3AADDC00C12418 /* HPPathFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPPathFinder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -814,14 +811,14 @@
 		3B40C8FE13D9EEDC00C2BEDF /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				43FA53C91E3AADDC00C12418 /* HPPathFinder.h */,
+				43FA53CA1E3AADDC00C12418 /* HPPathFinder.m */,
 				3B56F56B14015C6B00F99EDF /* Tools */,
 				3B56F56814015C0000F99EDF /* Masks */,
 				3B40C90013D9EF2600C2BEDF /* HPMaze.h */,
 				3B40C90113D9EF2600C2BEDF /* HPMaze.m */,
 				3B40C90313D9F28000C2BEDF /* HPMazeGenerator.h */,
 				3B40C90413D9F28000C2BEDF /* HPMazeGenerator.m */,
-				3B9CEEC4140905E20089ADF3 /* HPPathFinder.h */,
-				3B9CEEC5140905E20089ADF3 /* HPPathFinder.m */,
 				3B40C90613D9FE6900C2BEDF /* HPChamberUtil.h */,
 				3B40C90713D9FE6900C2BEDF /* HPChamberUtil.m */,
 				3B40C90913D9FF7700C2BEDF /* HPDirection.h */,
@@ -913,6 +910,7 @@
 		3B43E20F13D0A71D006AF368 /* Hypermaze */ = {
 			isa = PBXGroup;
 			children = (
+				43FA53C81E3AAC8500C12418 /* Layers */,
 				3BE5E2C8145C5E6200E23C35 /* CocosDenshion */,
 				3B31A26114222B02002CC5D3 /* CCNode+Scaling */,
 				3BF7FB71141A3E7100F90A6B /* CCScrollLayer */,
@@ -922,8 +920,6 @@
 				3B43E35C13D0A71F006AF368 /* AppDelegate.m */,
 				3B43E35E13D0A71F006AF368 /* RootViewController.h */,
 				3B43E35F13D0A71F006AF368 /* RootViewController.m */,
-				3B43E36113D0A71F006AF368 /* HelloWorldLayer.h */,
-				3B43E36213D0A71F006AF368 /* HelloWorldLayer.m */,
 				3B43E36413D0A71F006AF368 /* GameConfig.h */,
 				3B43E21013D0A71D006AF368 /* Resources */,
 				3B43E22413D0A71D006AF368 /* cocos2d */,
@@ -931,18 +927,10 @@
 				3B43E32D13D0A71F006AF368 /* FontLabel */,
 				3B43E33E13D0A71F006AF368 /* TouchJSON */,
 				3B43E35713D0A71F006AF368 /* Supporting Files */,
-				3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */,
-				3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */,
-				3B40C92A13DB254F00C2BEDF /* LoadingLayer.h */,
-				3B40C92B13DB255000C2BEDF /* LoadingLayer.m */,
 				3B3EB9EF13E2D64E001A0DD4 /* HPConfiguration.h */,
 				3B3EB9F013E2D64E001A0DD4 /* HPConfiguration.m */,
 				3B3EB9F513E306A7001A0DD4 /* Game.h */,
 				3B3EB9F613E306A7001A0DD4 /* Game.m */,
-				3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */,
-				3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */,
-				3BF8DBAF13FFC948006B16C1 /* RadialMenuLayer.h */,
-				3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */,
 				3BF7FB7A141A44D400F90A6B /* PathBuilder.h */,
 				3BF7FB7B141A44D400F90A6B /* PathBuilder.m */,
 				3B85D2F7141B53C7002CCCFA /* InfoPanel.h */,
@@ -951,10 +939,6 @@
 				3B31A25D1422002B002CC5D3 /* CCDialog.m */,
 				3B31A26714224868002CC5D3 /* DeleteConfirmDialog.h */,
 				3B31A26814224868002CC5D3 /* DeleteConfirmDialog.m */,
-				3B4D179F144316F800F100E2 /* FinishLayer.h */,
-				3B4D17A0144316F800F100E2 /* FinishLayer.m */,
-				3B89FAA31449A321001A08B1 /* TutorialLayer.h */,
-				3B89FAA41449A322001A08B1 /* TutorialLayer.m */,
 				3B760D22145D629900410F0E /* HPSound.h */,
 				3B760D23145D629900410F0E /* HPSound.m */,
 			);
@@ -1440,6 +1424,25 @@
 			path = CCScrollLayer;
 			sourceTree = "<group>";
 		};
+		43FA53C81E3AAC8500C12418 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				3B793D3413D1AD6900DB6EEB /* MainMenuLayer.h */,
+				3B793D3513D1AD6900DB6EEB /* MainMenuLayer.m */,
+				3B40C92A13DB254F00C2BEDF /* LoadingLayer.h */,
+				3B40C92B13DB255000C2BEDF /* LoadingLayer.m */,
+				3BAF89CF13FE4BF7002356BF /* HPMazeLayer.h */,
+				3BAF89D013FE4BF7002356BF /* HPMazeLayer.m */,
+				3BF8DBAF13FFC948006B16C1 /* RadialMenuLayer.h */,
+				3BF8DBB013FFC949006B16C1 /* RadialMenuLayer.m */,
+				3B4D179F144316F800F100E2 /* FinishLayer.h */,
+				3B4D17A0144316F800F100E2 /* FinishLayer.m */,
+				3B89FAA31449A321001A08B1 /* TutorialLayer.h */,
+				3B89FAA41449A322001A08B1 /* TutorialLayer.m */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1707,7 +1710,6 @@
 				3B43E35A13D0A71F006AF368 /* main.m in Sources */,
 				3B43E35D13D0A71F006AF368 /* AppDelegate.m in Sources */,
 				3B43E36013D0A71F006AF368 /* RootViewController.m in Sources */,
-				3B43E36313D0A71F006AF368 /* HelloWorldLayer.m in Sources */,
 				3B793D3613D1AD6900DB6EEB /* MainMenuLayer.m in Sources */,
 				3B40C90213D9EF2600C2BEDF /* HPMaze.m in Sources */,
 				3B40C90513D9F28000C2BEDF /* HPMazeGenerator.m in Sources */,
@@ -1743,7 +1745,6 @@
 				3B7104921407BDA200D3CCEE /* HPUntakenCrossroadsMask.m in Sources */,
 				3B7104961407CAB800D3CCEE /* HPPathMask.m in Sources */,
 				3B7104991407D09E00D3CCEE /* HPAriadnaMask.m in Sources */,
-				3B9CEEC6140905E20089ADF3 /* HPPathFinder.m in Sources */,
 				3B9CEEC91409173B0089ADF3 /* HPCheckpointMask.m in Sources */,
 				3B3DA04C1409293F004AFBCD /* HPMarkMask.m in Sources */,
 				3B3DA05A140943CF004AFBCD /* HPRangeTool.m in Sources */,
@@ -1760,6 +1761,7 @@
 				3B4D17A1144316F800F100E2 /* FinishLayer.m in Sources */,
 				3B89FAA51449A322001A08B1 /* TutorialLayer.m in Sources */,
 				3BE5E2D2145C5E6200E23C35 /* CDAudioManager.m in Sources */,
+				43FA53CB1E3AADDC00C12418 /* HPPathFinder.m in Sources */,
 				3BE5E2D3145C5E6200E23C35 /* CDOpenALSupport.m in Sources */,
 				3BE5E2D4145C5E6200E23C35 /* CocosDenshion.m in Sources */,
 				3BE5E2D5145C5E6200E23C35 /* SimpleAudioEngine.m in Sources */,
