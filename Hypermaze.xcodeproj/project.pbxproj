@@ -1472,7 +1472,7 @@
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					3B43E1FA13D0A71D006AF368 = {
-						DevelopmentTeam = BN47TH24AR;
+						DevelopmentTeam = JD9LLU8CY7;
 					};
 				};
 			};
@@ -1827,7 +1827,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = BN47TH24AR;
+				DEVELOPMENT_TEAM = JD9LLU8CY7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1853,7 +1853,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = BN47TH24AR;
+				DEVELOPMENT_TEAM = JD9LLU8CY7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
