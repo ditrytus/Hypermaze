@@ -1841,7 +1841,7 @@
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gruszecki.hypermaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Gruszecki.hypermazegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -1866,7 +1866,7 @@
 				INFOPLIST_FILE = Hypermaze/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-lz";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gruszecki.hypermaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Gruszecki.hypermazegame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
